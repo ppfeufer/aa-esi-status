@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [0.1.0-alpha.3] - 2020-10-11
+
+### Fixed
+
+- including the right directory in MANIFEST
+
+### Added
+
+- Warning when ESI status couldn't be loaded, for what ever reason
+
+
 ## [0.1.0-alpha.2] - 2020-10-11
 
 ### Changed
