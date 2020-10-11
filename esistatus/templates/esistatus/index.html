@@ -5,9 +5,13 @@
 
 {% block details %}
     <div class="aa-esistatus row">
-        {% include 'esistatus/partials/red_endpoints.html' %}
-        {% include 'esistatus/partials/yellow_endpoints.html' %}
-        {% include 'esistatus/partials/green_endpoints.html' %}
+        {% if has_status_result %}
+            {% include 'esistatus/partials/red_endpoints.html' %}
+            {% include 'esistatus/partials/yellow_endpoints.html' %}
+            {% include 'esistatus/partials/green_endpoints.html' %}
+        {% else %}
+            <p class="alert alert-warning text-center">{% trans "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely." %}</p>
+        {% endif %}
     </div>
 {% endblock %}
 

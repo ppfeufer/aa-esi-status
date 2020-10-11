@@ -2,7 +2,7 @@ include LICENSE
 include README.md
 include CHANGELOG.md
 include MANIFEST.in
-graft esi-status
+graft esistatus
 
 global-exclude __pycache__
 global-exclude *.py[co]
