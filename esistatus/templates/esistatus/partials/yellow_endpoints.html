@@ -1,0 +1,42 @@
+{% load i18n %}
+
+<!-- yellow endpoints -->
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                {% trans 'Yellow Endpoints' %}
+            </h3>
+        </div>
+
+        <div class="panel-body text-center">
+            <b style="font-size:140%;">{{ esi_endpoint_status_yellow_count }}</b><br>
+            <span>
+                {{ esi_endpoint_status_yellow_percentage }}
+            </span>
+        </div>
+
+        <div class="panel-footer">
+            {% if esi_endpoint_status_yellow_count > 0 %}
+                {% for category, endpoints in esi_endpoint_status_yellow.items %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" href="#{{ category }}-yellow" aria-expanded="false" aria-controls="{{ category }}-yellow">
+                            <h4 class="panel-title">
+                                {{ category }}
+                            </h4>
+                        </div>
+
+                        <div id="{{ category }}-yellow" class="panel-body collapse">
+                            {% for endpoint in endpoints %}
+                                <p class="small">
+                                    {{ endpoint.method }}
+                                    {{ endpoint.route }}
+                                </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
