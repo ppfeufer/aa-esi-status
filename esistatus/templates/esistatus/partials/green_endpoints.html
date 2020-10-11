@@ -19,7 +19,6 @@
         <div class="panel-footer">
             {% if esi_endpoint_status_green_count > 0 %}
                 {% for category, endpoints in esi_endpoint_status_green.items %}
-{#                    <pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre>#}
                     <div class="panel panel-default">
                         <div class="panel-heading" data-toggle="collapse" href="#{{ category }}-green" aria-expanded="false" aria-controls="{{ category }}-green">
                             <h4 class="panel-title">
