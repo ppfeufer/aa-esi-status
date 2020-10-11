@@ -1,0 +1,42 @@
+{% load i18n %}
+
+<!-- red endpoints -->
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                {% trans 'Red Endpoints' %}
+            </h3>
+        </div>
+
+        <div class="panel-body text-center">
+            <b style="font-size:140%;">{{ esi_endpoint_status_red_count }}</b><br>
+            <span>
+                {{ esi_endpoint_status_red_percentage }}
+            </span>
+        </div>
+
+        <div class="panel-footer">
+            {% if esi_endpoint_status_red_count > 0 %}
+                {% for category, endpoints in esi_endpoint_status_red.items %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" href="#{{ category }}-red" aria-expanded="false" aria-controls="{{ category }}-red">
+                            <h4 class="panel-title">
+                                {{ category }}
+                            </h4>
+                        </div>
+
+                        <div id="{{ category }}-red" class="panel-body collapse">
+                            {% for endpoint in endpoints %}
+                                <p class="small">
+                                    {{ endpoint.method }}
+                                    {{ endpoint.route }}
+                                </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>

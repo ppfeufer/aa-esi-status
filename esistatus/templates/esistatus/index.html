@@ -5,6 +5,9 @@
 
 {% block details %}
     <div class="aa-esistatus row">
+        {% include 'esistatus/partials/red_endpoints.html' %}
+        {% include 'esistatus/partials/yellow_endpoints.html' %}
+        {% include 'esistatus/partials/green_endpoints.html' %}
     </div>
 {% endblock %}
 
@@ -12,6 +15,7 @@
 {% endblock %}
 
 {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'esistatus/css/esistatus.min.css' %}" type="text/css">
 {% endblock %}
 
 {% block extra_script %}
