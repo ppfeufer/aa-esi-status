@@ -8,7 +8,7 @@
 
 App for Alliance Auth to show the current status of ESI and its end points.
 
-![AA ESI Status](https://raw.githubusercontent.com/ppfeufer/aa-esi-status/master/esistatus/docs/aa-esi-status.jpg)
+![AA ESI Status](https://raw.githubusercontent.com/ppfeufer/aa-esi-status/main/esistatus/docs/aa-esi-status.jpg)
 
 ## Contents
 
