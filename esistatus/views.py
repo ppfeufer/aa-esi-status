@@ -120,13 +120,13 @@ def index(request):
 
     context = {
         "has_status_result": has_status_result,
-        "esi_endpoint_status_green": esi_endpoint_status_green,
+        "esi_endpoint_status_green": dict(sorted(esi_endpoint_status_green.items())),
         "esi_endpoint_status_green_count": esi_endpoint_status_green_count,
         "esi_endpoint_status_green_percentage": esi_endpoint_status_green_percentage,
-        "esi_endpoint_status_yellow": esi_endpoint_status_yellow,
+        "esi_endpoint_status_yellow": dict(sorted(esi_endpoint_status_yellow.items())),
         "esi_endpoint_status_yellow_count": esi_endpoint_status_yellow_count,
         "esi_endpoint_status_yellow_percentage": esi_endpoint_status_yellow_percentage,
-        "esi_endpoint_status_red": esi_endpoint_status_red,
+        "esi_endpoint_status_red": dict(sorted(esi_endpoint_status_red.items())),
         "esi_endpoint_status_red_count": esi_endpoint_status_red_count,
         "esi_endpoint_status_red_percentage": esi_endpoint_status_red_percentage,
         "avoidCdn": avoid_cdn(),
