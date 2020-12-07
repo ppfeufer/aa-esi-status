@@ -3,11 +3,15 @@
 """
 the views
 """
+
 import requests
+
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, permission_required
 
+from esistatus import __user_agent__
 from esistatus.app_settings import avoid_cdn
+
 from requests import HTTPError
 
 
@@ -38,8 +42,12 @@ def index(request):
     has_status_result = False
 
     try:
+        request_headers = {"User-Agent": __user_agent__}
+
         esi_status_json_url = "https://esi.evetech.net/status.json?version=latest"
-        esi_endpoint_status_result = requests.get(esi_status_json_url)
+        esi_endpoint_status_result = requests.get(
+            esi_status_json_url, headers=request_headers
+        )
 
         esi_endpoint_status_green = {}
         esi_endpoint_status_green_count = 0
