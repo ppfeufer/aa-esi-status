@@ -19,14 +19,14 @@ App for Alliance Auth to show the current status of ESI and its end points.
 
 ## Installation
 
-**Important**: This app is a plugin for Alliance Auth. If you don't have 
-Alliance Auth running already, please install it first before proceeding. 
+**Important**: This app is a plugin for Alliance Auth. If you don't have
+Alliance Auth running already, please install it first before proceeding.
 (see the official [AA installation guide](https://allianceauth.readthedocs.io/en/latest/installation/allianceauth.html) for details)
 
 
 ### Step 1 - Install app
 
-Make sure you are in the virtual environment (venv) of your Alliance Auth installation. 
+Make sure you are in the virtual environment (venv) of your Alliance Auth installation.
 Then install the latest version:
 
 ```bash
@@ -55,8 +55,8 @@ Restart your supervisor services for AA
 
 ### Step 4 - Setup permissions
 
-Now you can setup permissions in Alliance Auth for your users. 
-Add ``esistatus|esi status|Can access ths app`` to the states and/or groups you would 
+Now you can setup permissions in Alliance Auth for your users.
+Add ``esistatus|esi status|Can access ths app`` to the states and/or groups you would
 like to have access.
 
 
