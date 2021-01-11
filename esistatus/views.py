@@ -9,8 +9,8 @@ import requests
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, permission_required
 
-from esistatus import __user_agent__
 from esistatus.app_settings import avoid_cdn
+from esistatus.constants import USER_AGENT
 
 from requests import HTTPError
 
@@ -52,7 +52,7 @@ def index(request):
     esi_endpoint_status_red_percentage = None
 
     try:
-        request_headers = {"User-Agent": __user_agent__}
+        request_headers = {"User-Agent": USER_AGENT}
 
         esi_status_json_url = "https://esi.evetech.net/status.json?version=latest"
         esi_endpoint_status_result = requests.get(
