@@ -41,6 +41,16 @@ def index(request):
 
     has_status_result = False
 
+    esi_endpoint_status_green = {}
+    esi_endpoint_status_green_count = 0
+    esi_endpoint_status_green_percentage = None
+    esi_endpoint_status_yellow = {}
+    esi_endpoint_status_yellow_count = 0
+    esi_endpoint_status_yellow_percentage = None
+    esi_endpoint_status_red = {}
+    esi_endpoint_status_red_count = 0
+    esi_endpoint_status_red_percentage = None
+
     try:
         request_headers = {"User-Agent": __user_agent__}
 
@@ -48,16 +58,6 @@ def index(request):
         esi_endpoint_status_result = requests.get(
             esi_status_json_url, headers=request_headers
         )
-
-        esi_endpoint_status_green = {}
-        esi_endpoint_status_green_count = 0
-        esi_endpoint_status_green_percentage = None
-        esi_endpoint_status_yellow = {}
-        esi_endpoint_status_yellow_count = 0
-        esi_endpoint_status_yellow_percentage = None
-        esi_endpoint_status_red = {}
-        esi_endpoint_status_red_count = 0
-        esi_endpoint_status_red_percentage = None
 
         try:
             for esi_endpoint in esi_endpoint_status_result.json():
@@ -68,7 +68,6 @@ def index(request):
                         {
                             "route": esi_endpoint["route"],
                             "method": esi_endpoint["method"].upper(),
-                            # "category": esi_endpoint["tags"][0],
                         },
                     )
 
@@ -81,7 +80,6 @@ def index(request):
                         {
                             "route": esi_endpoint["route"],
                             "method": esi_endpoint["method"].upper(),
-                            # "category": esi_endpoint["tags"][0],
                         },
                     )
 
@@ -94,7 +92,6 @@ def index(request):
                         {
                             "route": esi_endpoint["route"],
                             "method": esi_endpoint["method"].upper(),
-                            # "category": esi_endpoint["tags"][0],
                         },
                     )
 
