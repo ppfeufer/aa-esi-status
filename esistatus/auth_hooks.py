@@ -4,10 +4,10 @@ hook into AA
 
 from django.utils.translation import ugettext_lazy as _
 
-from esistatus import urls, __title__
-
-from allianceauth.services.hooks import MenuItemHook, UrlHook
 from allianceauth import hooks
+from allianceauth.services.hooks import MenuItemHook, UrlHook
+
+from esistatus import __title__, urls
 
 
 class AaEsiStatusMenuItem(MenuItemHook):  # pylint: disable=too-few-public-methods

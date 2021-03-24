@@ -3,14 +3,13 @@ the views
 """
 
 import requests
+from requests import HTTPError
 
-from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, permission_required
+from django.shortcuts import render
 
 from esistatus.app_settings import avoid_cdn
 from esistatus.constants import USER_AGENT
-
-from requests import HTTPError
 
 
 def append_value(dict_obj, key, value):
