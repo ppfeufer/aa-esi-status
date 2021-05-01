@@ -11,7 +11,7 @@ from esistatus import __title__, urls
 
 
 class AaEsiStatusMenuItem(MenuItemHook):  # pylint: disable=too-few-public-methods
-    """ This class ensures only authorized users will see the menu entry """
+    """This class ensures only authorized users will see the menu entry"""
 
     def __init__(self):
         # setup menu entry for sidebar
