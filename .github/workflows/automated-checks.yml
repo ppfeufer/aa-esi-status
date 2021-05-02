@@ -1,4 +1,4 @@
-name: Run Automated Checks
+name: Automated Checks
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - '**'
 
     tags-ignore:
-      - v*
+      - '**'
 
 jobs:
   # pre-commit checks
@@ -26,7 +26,7 @@ jobs:
 
   # codacy security scan
   codacy-security-scan:
-    needs: pre-commit
+    needs: [pre-commit]
     name: Codacy Security Scan
     runs-on: ubuntu-latest
     steps:
