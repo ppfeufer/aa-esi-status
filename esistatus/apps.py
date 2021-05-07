@@ -14,4 +14,4 @@ class AaEsiStatusConfig(AppConfig):
 
     name = "esistatus"
     label = "esistatus"
-    verbose_name = "ESI Statusv{}".format(__version__)
+    verbose_name = f"ESI Status v{__version__}"

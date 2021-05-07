@@ -103,16 +103,16 @@ def index(request):
             )
 
             # calculate percentages
-            esi_endpoint_status_green_percentage = "{0:.2f}%".format(
-                (esi_endpoint_status_green_count / endpoints_total * 100)
+            esi_endpoint_status_green_percentage = "{:.2f}%".format(
+                esi_endpoint_status_green_count / endpoints_total * 100
             )
 
-            esi_endpoint_status_yellow_percentage = "{0:.2f}%".format(
-                (esi_endpoint_status_yellow_count / endpoints_total * 100)
+            esi_endpoint_status_yellow_percentage = "{:.2f}%".format(
+                esi_endpoint_status_yellow_count / endpoints_total * 100
             )
 
-            esi_endpoint_status_red_percentage = "{0:.2f}%".format(
-                (esi_endpoint_status_red_count / endpoints_total * 100)
+            esi_endpoint_status_red_percentage = "{:.2f}%".format(
+                esi_endpoint_status_red_count / endpoints_total * 100
             )
 
         except Exception:
