@@ -1,5 +1,3 @@
-# coding=utf-8
-
 """
 constants used in this app
 """

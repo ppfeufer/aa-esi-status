@@ -1,19 +1,17 @@
-# -*- coding: utf-8 -*-
-
 """
 hook into AA
 """
 
 from django.utils.translation import ugettext_lazy as _
 
-from esistatus import urls, __title__
-
-from allianceauth.services.hooks import MenuItemHook, UrlHook
 from allianceauth import hooks
+from allianceauth.services.hooks import MenuItemHook, UrlHook
+
+from esistatus import __title__, urls
 
 
 class AaEsiStatusMenuItem(MenuItemHook):  # pylint: disable=too-few-public-methods
-    """ This class ensures only authorized users will see the menu entry """
+    """This class ensures only authorized users will see the menu entry"""
 
     def __init__(self):
         # setup menu entry for sidebar

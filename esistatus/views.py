@@ -1,18 +1,15 @@
-# -*- coding: utf-8 -*-
-
 """
 the views
 """
 
 import requests
+from requests import HTTPError
 
-from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, permission_required
+from django.shortcuts import render
 
 from esistatus.app_settings import avoid_cdn
 from esistatus.constants import USER_AGENT
-
-from requests import HTTPError
 
 
 def append_value(dict_obj, key, value):
@@ -106,16 +103,16 @@ def index(request):
             )
 
             # calculate percentages
-            esi_endpoint_status_green_percentage = "{0:.2f}%".format(
-                (esi_endpoint_status_green_count / endpoints_total * 100)
+            esi_endpoint_status_green_percentage = "{:.2f}%".format(
+                esi_endpoint_status_green_count / endpoints_total * 100
             )
 
-            esi_endpoint_status_yellow_percentage = "{0:.2f}%".format(
-                (esi_endpoint_status_yellow_count / endpoints_total * 100)
+            esi_endpoint_status_yellow_percentage = "{:.2f}%".format(
+                esi_endpoint_status_yellow_count / endpoints_total * 100
             )
 
-            esi_endpoint_status_red_percentage = "{0:.2f}%".format(
-                (esi_endpoint_status_red_count / endpoints_total * 100)
+            esi_endpoint_status_red_percentage = "{:.2f}%".format(
+                esi_endpoint_status_red_count / endpoints_total * 100
             )
 
         except Exception:

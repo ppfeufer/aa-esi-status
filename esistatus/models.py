@@ -1,9 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
-
-
 class EsiStatus(models.Model):
     """Meta model for app permissions"""
 
