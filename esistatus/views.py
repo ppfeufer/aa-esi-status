@@ -61,7 +61,7 @@ def index(request):
             esi_status_json_url, headers=request_headers
         )
 
-        request.raise_for_status()
+        esi_endpoint_status_result.raise_for_status()
 
     except requests.exceptions.RequestException as e:
         error_str = str(e)
