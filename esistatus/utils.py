@@ -2,9 +2,15 @@
 utilities
 """
 
+from app_utils.logging import LoggerAddTag
+
 from django.conf import settings
 
-from esistatus.tasks import logger
+from allianceauth.services.hooks import get_extension_logger
+
+from esistatus import __title__
+
+logger = LoggerAddTag(get_extension_logger(__name__), __title__)
 
 
 def clean_setting(
@@ -45,7 +51,7 @@ def clean_setting(
             cleaned_value = getattr(settings, name)
         else:
             logger.warning(
-                "You setting for {name} is not valid. Please correct it. "
+                "Your setting for {name} is not valid. Please correct it. "
                 "Using default for now: {value}".format(name=name, value=default_value)
             )
             cleaned_value = default_value

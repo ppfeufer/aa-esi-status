@@ -21,3 +21,16 @@ compiletranslationfiles:
 	django-admin compilemessages -l ko  && \
 	django-admin compilemessages -l ru  && \
 	django-admin compilemessages -l zh_Hans
+
+coverage:
+	rm -rfv htmlcov && \
+	coverage run ../myauth/manage.py test $(package) --keepdb --failfast && coverage html && coverage report
+
+build_test:
+	rm -rfv dist && \
+	rm -rfv build && \
+	python3 setup.py sdist bdist_wheel
+
+tox_tests:
+	rm -rfv .tox && \
+	tox
