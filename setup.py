@@ -46,5 +46,5 @@ setup(
         "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
     ],
     python_requires="~=3.6",
-    install_requires=["allianceauth>=2.7.3"],
+    install_requires=["allianceauth>=2.8.8", "allianceauth-app-utils>=1.8.2"],
 )

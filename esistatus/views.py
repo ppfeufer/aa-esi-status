@@ -3,13 +3,18 @@ the views
 """
 
 import requests
-from requests import HTTPError
+from app_utils.logging import LoggerAddTag
 
 from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render
 
+from allianceauth.services.hooks import get_extension_logger
+
+from esistatus import __title__
 from esistatus.app_settings import avoid_cdn
 from esistatus.constants import USER_AGENT
+
+logger = LoggerAddTag(get_extension_logger(__name__), __title__)
 
 
 def append_value(dict_obj, key, value):
@@ -56,69 +61,84 @@ def index(request):
             esi_status_json_url, headers=request_headers
         )
 
-        try:
-            for esi_endpoint in esi_endpoint_status_result.json():
-                if esi_endpoint["status"] == "green":
-                    append_value(
-                        esi_endpoint_status_green,
-                        esi_endpoint["tags"][0],
-                        {
-                            "route": esi_endpoint["route"],
-                            "method": esi_endpoint["method"].upper(),
-                        },
-                    )
+        request.raise_for_status()
 
-                    esi_endpoint_status_green_count += 1
+    except requests.exceptions.RequestException as e:
+        error_str = str(e)
 
-                if esi_endpoint["status"] == "yellow":
-                    append_value(
-                        esi_endpoint_status_yellow,
-                        esi_endpoint["tags"][0],
-                        {
-                            "route": esi_endpoint["route"],
-                            "method": esi_endpoint["method"].upper(),
-                        },
-                    )
+        logger.warning(
+            f"Unable to get ESI status. Error: {error_str}",
+            exc_info=True,
+        )
 
-                    esi_endpoint_status_yellow_count += 1
+        context = {
+            "has_status_result": has_status_result,
+            "avoidCdn": avoid_cdn(),
+        }
 
-                if esi_endpoint["status"] == "red":
-                    append_value(
-                        esi_endpoint_status_red,
-                        esi_endpoint["tags"][0],
-                        {
-                            "route": esi_endpoint["route"],
-                            "method": esi_endpoint["method"].upper(),
-                        },
-                    )
+        return render(request, "esistatus/index.html", context)
 
-                    esi_endpoint_status_red_count += 1
+    try:
+        for esi_endpoint in esi_endpoint_status_result.json():
+            if esi_endpoint["status"] == "green":
+                append_value(
+                    esi_endpoint_status_green,
+                    esi_endpoint["tags"][0],
+                    {
+                        "route": esi_endpoint["route"],
+                        "method": esi_endpoint["method"].upper(),
+                    },
+                )
 
-            has_status_result = True
+                esi_endpoint_status_green_count += 1
 
-            endpoints_total = (
-                esi_endpoint_status_green_count
-                + esi_endpoint_status_yellow_count
-                + esi_endpoint_status_red_count
-            )
+            if esi_endpoint["status"] == "yellow":
+                append_value(
+                    esi_endpoint_status_yellow,
+                    esi_endpoint["tags"][0],
+                    {
+                        "route": esi_endpoint["route"],
+                        "method": esi_endpoint["method"].upper(),
+                    },
+                )
 
-            # calculate percentages
-            esi_endpoint_status_green_percentage = "{:.2f}%".format(
-                esi_endpoint_status_green_count / endpoints_total * 100
-            )
+                esi_endpoint_status_yellow_count += 1
 
-            esi_endpoint_status_yellow_percentage = "{:.2f}%".format(
-                esi_endpoint_status_yellow_count / endpoints_total * 100
-            )
+            if esi_endpoint["status"] == "red":
+                append_value(
+                    esi_endpoint_status_red,
+                    esi_endpoint["tags"][0],
+                    {
+                        "route": esi_endpoint["route"],
+                        "method": esi_endpoint["method"].upper(),
+                    },
+                )
 
-            esi_endpoint_status_red_percentage = "{:.2f}%".format(
-                esi_endpoint_status_red_count / endpoints_total * 100
-            )
+                esi_endpoint_status_red_count += 1
 
-        except Exception:
-            has_status_result = False
-    except HTTPError:
-        pass
+        has_status_result = True
+
+        endpoints_total = (
+            esi_endpoint_status_green_count
+            + esi_endpoint_status_yellow_count
+            + esi_endpoint_status_red_count
+        )
+
+        # calculate percentages
+        esi_endpoint_status_green_percentage = "{:.2f}%".format(
+            esi_endpoint_status_green_count / endpoints_total * 100
+        )
+
+        esi_endpoint_status_yellow_percentage = "{:.2f}%".format(
+            esi_endpoint_status_yellow_count / endpoints_total * 100
+        )
+
+        esi_endpoint_status_red_percentage = "{:.2f}%".format(
+            esi_endpoint_status_red_count / endpoints_total * 100
+        )
+
+    except Exception:
+        has_status_result = False
 
     context = {
         "has_status_result": has_status_result,
