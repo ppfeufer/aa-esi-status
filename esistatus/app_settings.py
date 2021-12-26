@@ -2,6 +2,7 @@
 our app setting
 """
 
+# AA ESI Status
 from esistatus.utils import clean_setting
 
 # AA-GDPR

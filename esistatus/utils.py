@@ -2,12 +2,16 @@
 utilities
 """
 
+# Third Party
 from app_utils.logging import LoggerAddTag
 
+# Django
 from django.conf import settings
 
+# Alliance Auth
 from allianceauth.services.hooks import get_extension_logger
 
+# AA ESI Status
 from esistatus import __title__
 
 logger = LoggerAddTag(get_extension_logger(__name__), __title__)
