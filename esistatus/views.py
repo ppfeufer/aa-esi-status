@@ -4,7 +4,6 @@ the views
 
 # Third Party
 import requests
-from app_utils.logging import LoggerAddTag
 
 # Django
 from django.contrib.auth.decorators import login_required, permission_required
@@ -12,6 +11,9 @@ from django.shortcuts import render
 
 # Alliance Auth
 from allianceauth.services.hooks import get_extension_logger
+
+# Alliance Auth (External Libs)
+from app_utils.logging import LoggerAddTag
 
 # AA ESI Status
 from esistatus import __title__
