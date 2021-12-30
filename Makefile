@@ -32,5 +32,5 @@ build_test:
 	python3 setup.py sdist bdist_wheel
 
 tox_tests:
-	rm -rfv .tox && \
-	tox
+	tox && \
+	rm -rf .tox/
