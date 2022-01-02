@@ -17,7 +17,6 @@ from app_utils.logging import LoggerAddTag
 
 # AA ESI Status
 from esistatus import __title__
-from esistatus.app_settings import avoid_cdn
 from esistatus.constants import USER_AGENT
 
 logger = LoggerAddTag(get_extension_logger(__name__), __title__)
@@ -77,10 +76,7 @@ def index(request):
             exc_info=True,
         )
 
-        context = {
-            "has_status_result": has_status_result,
-            "avoidCdn": avoid_cdn(),
-        }
+        context = {"has_status_result": has_status_result}
 
         return render(request, "esistatus/index.html", context)
 
@@ -157,7 +153,6 @@ def index(request):
         "esi_endpoint_status_red": dict(sorted(esi_endpoint_status_red.items())),
         "esi_endpoint_status_red_count": esi_endpoint_status_red_count,
         "esi_endpoint_status_red_percentage": esi_endpoint_status_red_percentage,
-        "avoidCdn": avoid_cdn(),
     }
 
     return render(request, "esistatus/index.html", context)
