@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Removed
 
 - Check for AA-GDPR, since we don't load any external resources it is not needed
+- No longer needed function and file
 
 
 ## [1.2.0] - 2021-11-30
