@@ -29,7 +29,7 @@ project_git_url = "https://github.com/ppfeufer/aa-esi-status/"
 project_issues_url = f"{project_git_url}/issues"
 project_changelog_url = f"{project_git_url}/blob/master/CHANGELOG.md"
 project_homepage_url = project_git_url
-project_install_requirements = ["allianceauth>=2.9.3", "allianceauth-app-utils>=1.8.2"]
+project_install_requirements = ["allianceauth>=2.9.4", "allianceauth-app-utils>=1.8.2"]
 project_python_requires = "~=3.7"
 project_classifiers = [
     "Environment :: Web Environment",
