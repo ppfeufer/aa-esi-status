@@ -2,8 +2,10 @@
 constants used in this app
 """
 
+# Django
 from django.utils.text import slugify
 
+# AA ESI Status
 from esistatus import __version__
 
 VERBOSE_NAME = "AA ESI Status for Alliance Auth"

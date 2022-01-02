@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [1.3.0] - 2022-01-02
+
+### Added
+
+- Tests for Python 3.11 (still allowed failing, since Python 3.11 is still in alpha
+  state)
+
+### Changed
+
+- Minimum requirements
+  - Alliance Auth v2.9.4
+
+### Removed
+
+- Check for AA-GDPR, since we don't load any external resources it is not needed
+- No longer needed function and file
+
+
 ## [1.2.0] - 2021-11-30
 
 ### Changed

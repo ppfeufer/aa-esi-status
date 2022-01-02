@@ -2,8 +2,10 @@
 app config
 """
 
+# Django
 from django.apps import AppConfig
 
+# AA ESI Status
 from esistatus import __version__
 
 
