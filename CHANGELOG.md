@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [In Development] - Unreleased
 
+### Added
+
+- Test suite for AA 3.x and Django 4
+
 ### Removed
 
 - Deprecated settings
