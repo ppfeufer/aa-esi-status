@@ -6,9 +6,14 @@
 {% block details %}
     <div class="aa-esistatus row">
         {% if has_status_result %}
-            {% include 'esistatus/partials/red_endpoints.html' %}
-            {% include 'esistatus/partials/yellow_endpoints.html' %}
-            {% include 'esistatus/partials/green_endpoints.html' %}
+            {% translate "Red Endpoints" as translated_header_red %}
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="red" data=endpoints_red %}
+
+            {% translate "Yellow Endpoints" as translated_header_yellow %}
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_yellow status="yellow" data=endpoints_yellow %}
+
+            {% translate "Green Endpoints" as translated_header_green %}
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_green status="green" data=endpoints_green %}
         {% else %}
             <p class="alert alert-warning text-center">
                 {% translate "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely." %}
