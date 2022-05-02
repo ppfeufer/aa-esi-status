@@ -20,13 +20,13 @@
             {% if esi_endpoint_status_red_count > 0 %}
                 {% for category, endpoints in esi_endpoint_status_red.items %}
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#{{ category }}-red" aria-expanded="false" aria-controls="{{ category }}-red">
+                        <div class="panel-heading" data-toggle="collapse" href="#{{ category|slugify  }}-red" aria-expanded="false" aria-controls="{{ category|slugify  }}-red">
                             <h4 class="panel-title">
                                 {{ category }}
                             </h4>
                         </div>
 
-                        <div id="{{ category }}-red" class="panel-body collapse">
+                        <div id="{{ category|slugify  }}-red" class="panel-body collapse">
                             {% for endpoint in endpoints %}
                                 <p class="small">
                                     {{ endpoint.method }}

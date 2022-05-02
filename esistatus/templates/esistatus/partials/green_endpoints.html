@@ -20,13 +20,13 @@
             {% if esi_endpoint_status_green_count > 0 %}
                 {% for category, endpoints in esi_endpoint_status_green.items %}
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#{{ category }}-green" aria-expanded="false" aria-controls="{{ category }}-green">
+                        <div class="panel-heading" data-toggle="collapse" href="#{{ category|slugify }}-green" aria-expanded="false" aria-controls="{{ category|slugify }}-green">
                             <h4 class="panel-title">
                                 {{ category }}
                             </h4>
                         </div>
 
-                        <div id="{{ category }}-green" class="panel-body collapse">
+                        <div id="{{ category|slugify }}-green" class="panel-body collapse">
                             {% for endpoint in endpoints %}
                                 <p class="small">
                                     {{ endpoint.method }}

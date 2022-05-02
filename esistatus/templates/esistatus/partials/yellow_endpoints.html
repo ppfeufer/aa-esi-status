@@ -20,13 +20,13 @@
             {% if esi_endpoint_status_yellow_count > 0 %}
                 {% for category, endpoints in esi_endpoint_status_yellow.items %}
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#{{ category }}-yellow" aria-expanded="false" aria-controls="{{ category }}-yellow">
+                        <div class="panel-heading" data-toggle="collapse" href="#{{ category|slugify  }}-yellow" aria-expanded="false" aria-controls="{{ category|slugify  }}-yellow">
                             <h4 class="panel-title">
                                 {{ category }}
                             </h4>
                         </div>
 
-                        <div id="{{ category }}-yellow" class="panel-body collapse">
+                        <div id="{{ category|slugify  }}-yellow" class="panel-body collapse">
                             {% for endpoint in endpoints %}
                                 <p class="small">
                                     {{ endpoint.method }}
