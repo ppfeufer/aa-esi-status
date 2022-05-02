@@ -144,15 +144,21 @@ def index(request):
 
     context = {
         "has_status_result": has_status_result,
-        "esi_endpoint_status_green": dict(sorted(esi_endpoint_status_green.items())),
-        "esi_endpoint_status_green_count": esi_endpoint_status_green_count,
-        "esi_endpoint_status_green_percentage": esi_endpoint_status_green_percentage,
-        "esi_endpoint_status_yellow": dict(sorted(esi_endpoint_status_yellow.items())),
-        "esi_endpoint_status_yellow_count": esi_endpoint_status_yellow_count,
-        "esi_endpoint_status_yellow_percentage": esi_endpoint_status_yellow_percentage,
-        "esi_endpoint_status_red": dict(sorted(esi_endpoint_status_red.items())),
-        "esi_endpoint_status_red_count": esi_endpoint_status_red_count,
-        "esi_endpoint_status_red_percentage": esi_endpoint_status_red_percentage,
+        "endpoints_green": {
+            "items": dict(sorted(esi_endpoint_status_green.items())),
+            "count": esi_endpoint_status_green_count,
+            "percentage": esi_endpoint_status_green_percentage,
+        },
+        "endpoints_yellow": {
+            "items": dict(sorted(esi_endpoint_status_yellow.items())),
+            "count": esi_endpoint_status_yellow_count,
+            "percentage": esi_endpoint_status_yellow_percentage,
+        },
+        "endpoints_red": {
+            "items": dict(sorted(esi_endpoint_status_red.items())),
+            "count": esi_endpoint_status_red_count,
+            "percentage": esi_endpoint_status_red_percentage,
+        },
     }
 
     return render(request, "esistatus/index.html", context)

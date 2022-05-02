@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Category with names containing a space couldn't be opened (e.g. Faction Warfare)
 
+### Changed
+
+- Templates unified
+
 
 ## [1.5.1] - 2022-03-02
 
