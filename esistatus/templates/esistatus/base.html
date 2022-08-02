@@ -6,7 +6,9 @@
 
 {% block content %}
     <div class="aa-esi-status">
-        <h1 class="page-header text-center">{% translate "ESI Status" %}</h1>
-        {% block details %}{% endblock %}
+        {% translate "ESI Status" as translated_header %}
+        {% include "esistatus/partials/header/page-header.html" with header_text=translated_header %}
+
+        {% block esistatus_details %}{% endblock %}
     </div>
 {% endblock %}

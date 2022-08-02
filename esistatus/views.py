@@ -48,15 +48,11 @@ def index(request):
 
     has_status_result = False
 
-    esi_endpoint_status_green = {}
-    esi_endpoint_status_green_count = 0
-    esi_endpoint_status_green_percentage = None
-    esi_endpoint_status_yellow = {}
-    esi_endpoint_status_yellow_count = 0
-    esi_endpoint_status_yellow_percentage = None
-    esi_endpoint_status_red = {}
-    esi_endpoint_status_red_count = 0
-    esi_endpoint_status_red_percentage = None
+    esi_endpoint_status = {
+        "green": {"endpoints": {}, "count": 0, "percentage": ""},
+        "yellow": {"endpoints": {}, "count": 0, "percentage": ""},
+        "red": {"endpoints": {}, "count": 0, "percentage": ""},
+    }
 
     try:
         request_headers = {"User-Agent": USER_AGENT}
@@ -81,10 +77,14 @@ def index(request):
         return render(request, "esistatus/index.html", context)
 
     try:
-        for esi_endpoint in esi_endpoint_status_result.json():
+        esi_endpoint_json = esi_endpoint_status_result.json()
+    except requests.exceptions.RequestsJSONDecodeError:
+        has_status_result = False
+    else:
+        for esi_endpoint in esi_endpoint_json:
             if esi_endpoint["status"] == "green":
                 append_value(
-                    esi_endpoint_status_green,
+                    esi_endpoint_status["green"]["endpoints"],
                     esi_endpoint["tags"][0],
                     {
                         "route": esi_endpoint["route"],
@@ -92,11 +92,11 @@ def index(request):
                     },
                 )
 
-                esi_endpoint_status_green_count += 1
+                esi_endpoint_status["green"]["count"] += 1
 
             if esi_endpoint["status"] == "yellow":
                 append_value(
-                    esi_endpoint_status_yellow,
+                    esi_endpoint_status["yellow"]["endpoints"],
                     esi_endpoint["tags"][0],
                     {
                         "route": esi_endpoint["route"],
@@ -104,11 +104,11 @@ def index(request):
                     },
                 )
 
-                esi_endpoint_status_yellow_count += 1
+                esi_endpoint_status["yellow"]["count"] += 1
 
             if esi_endpoint["status"] == "red":
                 append_value(
-                    esi_endpoint_status_red,
+                    esi_endpoint_status["red"]["endpoints"],
                     esi_endpoint["tags"][0],
                     {
                         "route": esi_endpoint["route"],
@@ -116,49 +116,39 @@ def index(request):
                     },
                 )
 
-                esi_endpoint_status_red_count += 1
+                esi_endpoint_status["red"]["count"] += 1
 
         has_status_result = True
 
         endpoints_total = (
-            esi_endpoint_status_green_count
-            + esi_endpoint_status_yellow_count
-            + esi_endpoint_status_red_count
+            esi_endpoint_status["green"]["count"]
+            + esi_endpoint_status["yellow"]["count"]
+            + esi_endpoint_status["red"]["count"]
         )
 
         # calculate percentages
-        esi_endpoint_status_green_percentage = "{:.2f}%".format(
-            esi_endpoint_status_green_count / endpoints_total * 100
+        green_percentage_calculation = (
+            esi_endpoint_status["green"]["count"] / endpoints_total * 100
         )
+        esi_endpoint_status["green"][
+            "percentage"
+        ] = f"{green_percentage_calculation:.2f}%"
 
-        esi_endpoint_status_yellow_percentage = "{:.2f}%".format(
-            esi_endpoint_status_yellow_count / endpoints_total * 100
+        yellow_percentage_calculation = (
+            esi_endpoint_status["yellow"]["count"] / endpoints_total * 100
         )
+        esi_endpoint_status["yellow"][
+            "percentage"
+        ] = f"{yellow_percentage_calculation:.2f}%"
 
-        esi_endpoint_status_red_percentage = "{:.2f}%".format(
-            esi_endpoint_status_red_count / endpoints_total * 100
+        red_percentage_calculation = (
+            esi_endpoint_status["red"]["count"] / endpoints_total * 100
         )
-
-    except Exception:
-        has_status_result = False
+        esi_endpoint_status["red"]["percentage"] = f"{red_percentage_calculation:.2f}%"
 
     context = {
         "has_status_result": has_status_result,
-        "endpoints_green": {
-            "items": dict(sorted(esi_endpoint_status_green.items())),
-            "count": esi_endpoint_status_green_count,
-            "percentage": esi_endpoint_status_green_percentage,
-        },
-        "endpoints_yellow": {
-            "items": dict(sorted(esi_endpoint_status_yellow.items())),
-            "count": esi_endpoint_status_yellow_count,
-            "percentage": esi_endpoint_status_yellow_percentage,
-        },
-        "endpoints_red": {
-            "items": dict(sorted(esi_endpoint_status_red.items())),
-            "count": esi_endpoint_status_red_count,
-            "percentage": esi_endpoint_status_red_percentage,
-        },
+        "esi_endpoint_status": esi_endpoint_status,
     }
 
     return render(request, "esistatus/index.html", context)

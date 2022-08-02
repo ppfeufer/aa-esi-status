@@ -1,4 +1,8 @@
 @media all {
+    .aa-esistatus-header-addition {
+        display: block;
+    }
+
     .aa-esistatus .panel-footer .panel-heading {
         cursor: pointer;
     }

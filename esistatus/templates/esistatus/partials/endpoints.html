@@ -10,7 +10,7 @@
         </div>
 
         <div class="panel-body text-center">
-            <b style="font-size:140%;">{{ data.count }}</b><br>
+            <b style="font-size: 140%;">{{ data.count }}</b><br>
             <span>
                 {{ data.percentage }}
             </span>
@@ -18,7 +18,7 @@
 
         <div class="panel-footer">
             {% if data.count > 0 %}
-                {% for category, endpoints in data.items.items %}
+                {% for category, endpoints in data.endpoints.items %}
                     <div class="panel panel-default">
                         <div class="panel-heading" data-toggle="collapse" href="#{{ category|slugify  }}-{{ status }}" aria-expanded="false" aria-controls="{{ category|slugify  }}-{{ status }}">
                             <h4 class="panel-title">
