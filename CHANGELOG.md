@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Templates cleaned up
+- Minimum dependencies:
+  - Python>=3.8
+  - Alliance Auth>=2.15.1
+
+### Removed
+
+- tox tests for AA beta version
 
 
 ## [1.6.0] - 2022-06-24
@@ -100,7 +107,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Checked for compatibility with Python 3.9 and Django 3.2
+- Checks for compatibility with Python 3.9 and Django 3.2
 
 
 ## [1.0.4] - 2021-01-12
