@@ -127,17 +127,24 @@ def index(request):
         )
 
         # calculate percentages
-        esi_endpoint_status["green"]["percentage"] = "{:.2f}%".format(
+        green_percentage_calculation = (
             esi_endpoint_status["green"]["count"] / endpoints_total * 100
         )
+        esi_endpoint_status["green"][
+            "percentage"
+        ] = f"{green_percentage_calculation:.2f}%"
 
-        esi_endpoint_status["yellow"]["percentage"] = "{:.2f}%".format(
+        yellow_percentage_calculation = (
             esi_endpoint_status["yellow"]["count"] / endpoints_total * 100
         )
+        esi_endpoint_status["yellow"][
+            "percentage"
+        ] = f"{yellow_percentage_calculation:.2f}%"
 
-        esi_endpoint_status["red"]["percentage"] = "{:.2f}%".format(
+        red_percentage_calculation = (
             esi_endpoint_status["red"]["count"] / endpoints_total * 100
         )
+        esi_endpoint_status["red"]["percentage"] = f"{red_percentage_calculation:.2f}%"
 
     context = {
         "has_status_result": has_status_result,
