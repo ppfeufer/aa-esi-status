@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 
 - Templates cleaned up
+- Data handling
 - Minimum dependencies:
   - Python>=3.8
   - Alliance Auth>=2.15.1
