@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [In Development] - Unreleased
 
 
+## [1.7.1] - 2022-08-27
+
+### Fixed
+
+- Module 'requests.exceptions' has no attribute 'RequestsJSONDecodeError'
+
+### Changed
+
+- General code improvements
+
+
 ## [1.7.0] - 2022-08-02
 
 ### Changed
