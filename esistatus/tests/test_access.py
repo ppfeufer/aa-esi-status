@@ -2,15 +2,23 @@
 Test checks for access to fleetpings
 """
 
+# Standard Library
+from http import HTTPStatus
+
 # Django
 from django.contrib.auth.models import Group
 from django.test import TestCase
 from django.urls import reverse
 
-from .utils import create_fake_user
+# AA ESI Status
+from esistatus.tests.utils import create_fake_user
 
 
 class TestAccess(TestCase):
+    """
+    Test access to the app
+    """
+
     @classmethod
     def setUpClass(cls) -> None:
         """
@@ -42,7 +50,7 @@ class TestAccess(TestCase):
         res = self.client.get(reverse("esistatus:index"))
 
         # then
-        self.assertEqual(res.status_code, 302)
+        self.assertEqual(res.status_code, HTTPStatus.FOUND)
 
     def test_has_access(self):
         """
@@ -57,4 +65,4 @@ class TestAccess(TestCase):
         res = self.client.get(reverse("esistatus:index"))
 
         # then
-        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.status_code, HTTPStatus.OK)

@@ -11,7 +11,17 @@ from esistatus import __version__
 
 
 class TestVersionedStatic(TestCase):
+    """
+    Test the esistatus_versioned_static template tag
+    """
+
     def test_versioned_static(self):
+        """
+        Test should return a versioned static file
+        :return:
+        :rtype:
+        """
+
         context = Context({"version": __version__})
         template_to_render = Template(
             "{% load esistatus_versioned_static %}"

@@ -11,6 +11,7 @@ import requests
 
 # Django
 from django.contrib.auth.decorators import login_required, permission_required
+from django.http import HttpResponse
 from django.shortcuts import render
 
 # Alliance Auth
@@ -132,7 +133,7 @@ def _esi_endpoint_status(esi_endpoint_json: json) -> Tuple:
 
 @login_required
 @permission_required("esistatus.basic_access")
-def index(request):
+def index(request) -> HttpResponse:
     """
     Index view
     """

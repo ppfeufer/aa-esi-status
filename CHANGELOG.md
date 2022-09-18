@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [In Development] - Unreleased
 
 
+## [1.7.2] - 2022-09-18
+
+### Change
+
+- Internal code changes/improvements
+- Minimum dependencies:
+  - Alliance Auth>=3.0.0
+
+
 ## [1.7.1] - 2022-08-27
 
 ### Fixed
