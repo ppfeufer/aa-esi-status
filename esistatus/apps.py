@@ -1,5 +1,5 @@
 """
-app config
+App config
 """
 
 # Django
@@ -11,7 +11,7 @@ from esistatus import __version__
 
 class AaEsiStatusConfig(AppConfig):
     """
-    application config
+    Application config
     """
 
     name = "esistatus"

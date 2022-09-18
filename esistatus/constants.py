@@ -1,5 +1,5 @@
 """
-constants used in this app
+Constants used in this app
 """
 
 # Django
