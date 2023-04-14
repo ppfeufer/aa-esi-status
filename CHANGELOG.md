@@ -187,7 +187,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Link to image in README updated since GitHub changed the default **master** branch to _main_. Fucking stupid change ...
+- Link to image in README updated since GitHub changed the default **master** branch
+  to _main_. Fucking stupid change ...
 
 
 ## [0.1.0-alpha.1] - 2020-10-11
