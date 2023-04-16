@@ -17,42 +17,47 @@ App for Alliance Auth to show the current status of ESI and its end points.
 
 ![AA ESI Status](https://raw.githubusercontent.com/ppfeufer/aa-esi-status/main/esistatus/docs/aa-esi-status.jpg)
 
-## Contents
 
-- [Installation](#installation)
-- [Updating](#updating)
-- [Change Log](CHANGELOG.md)
+<!-- TOC -->
+* [AA ESI Status](#aa-esi-status)
+  * [Installation](#installation)
+    * [Step 1: Install the app](#step-1-install-the-app)
+    * [Step 2: Update your AA settings](#step-2-update-your-aa-settings)
+    * [Step 3: Finalizing the installation](#step-3-finalizing-the-installation)
+    * [Step 4: Setting up permissions](#step-4-setting-up-permissions)
+  * [Updating](#updating)
+<!-- TOC -->
 
 
 ## Installation
 
 **Important**: This app is a plugin for Alliance Auth. If you don't have
 Alliance Auth running already, please install it first before proceeding.
-(see the official [AA installation guide](https://allianceauth.readthedocs.io/en/latest/installation/allianceauth.html) for details)
+(See the official [AA installation guide](https://allianceauth.readthedocs.io/en/latest/installation/allianceauth.html) for details)
 
 
-### Step 1 - Install app
+### Step 1: Install the app
 
-Make sure you are in the virtual environment (venv) of your Alliance Auth installation.
+Make sure you're in the virtual environment (venv) of your Alliance Auth installation.
 Then install the latest version:
 
-```bash
+```shell
 pip install aa-esi-status
 ```
 
 
-### Step 2 - Update your AA settings
+### Step 2: Update your AA settings
 
 Configure your AA settings (`local.py`) as follows:
 
 - Add `'esistatus',` to `INSTALLED_APPS`
 
 
-### Step 3 - Finalize the installation
+### Step 3: Finalizing the installation
 
 Run migrations & copy static files
 
-```bash
+```shell
 python manage.py collectstatic
 python manage.py migrate
 ```
@@ -60,28 +65,30 @@ python manage.py migrate
 Restart your supervisor services for AA
 
 
-### Step 4 - Setup permissions
+### Step 4: Setting up permissions
 
-Now you can setup permissions in Alliance Auth for your users.
-Add ``esistatus|esi status|Can access ths app`` to the states and/or groups you would
+Now you can set up permissions in Alliance Auth for your users.
+Add `esistatus|esi status|Can access this app` to the states and/or groups you would
 like to have access.
 
 
 ## Updating
 
-To update your existing installation of AA Time Zones first enable your virtual environment.
+To update your existing installation of AA Time Zones, first enable your virtual
+environment.
 
-Then run the following commands from your AA project directory (the one that contains `manage.py`).
+Then run the following commands from your AA project directory (the one that
+contains `manage.py`).
 
-```bash
+```shell
 pip install -U aa-esi-status
 ```
 
-```bash
+```shell
 python manage.py collectstatic
 ```
 
-```bash
+```shell
 python manage.py migrate
 ```
 

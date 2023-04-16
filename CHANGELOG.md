@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [In Development] - Unreleased
 
 
+## [1.9.0] - 2023-04-16
+
+### Added
+
+- Russian translation
+
+
 ## [1.8.0] - 2023-04-13
 
 ### Added
@@ -187,7 +194,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Link to image in README updated since GitHub changed the default **master** branch to _main_. Fucking stupid change ...
+- Link to image in README updated since GitHub changed the default **master** branch
+  to _main_. Fucking stupid change ...
 
 
 ## [0.1.0-alpha.1] - 2020-10-11
