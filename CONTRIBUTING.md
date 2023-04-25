@@ -1,3 +1,7 @@
+# Contributing
+
+---
+
 <!-- TOC -->
 * [Contributing](#contributing)
   * [Code Formatting](#code-formatting)
@@ -6,8 +10,8 @@
   * [Translation](#translation)
 <!-- TOC -->
 
+---
 
-# Contributing
 
 ## Code Formatting
 

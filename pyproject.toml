@@ -1,6 +1,52 @@
 [build-system]
-requires = [
-    "setuptools>=42",
-    "wheel"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aa-esi-status"
+version = "1.10.0"
+description = "A simple status monitor for ESI"
+readme = "README.md"
+license = "GPL-3.0"
+requires-python = "~=3.8"
+authors = [
+    { name = "Peter Pfeufer", email = "develop@ppfeufer.de" },
 ]
-build-backend = "setuptools.build_meta"
+keywords = [
+    "allianceauth",
+    "esi",
+    "esistatus",
+    "eveonline",
+]
+classifiers = [
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 4.0",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+]
+dependencies = [
+    "allianceauth-app-utils>=1.12.0",
+    "allianceauth>=3.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/ppfeufer/aa-esi-status"
+Documentation = "https://github.com/ppfeufer/aa-esi-status/blob/master/README.md"
+Source = "https://github.com/ppfeufer/aa-esi-status.git"
+Changelog = "https://github.com/ppfeufer/aa-esi-status/blob/master/CHANGELOG.md"
+Tracker = "https://github.com/ppfeufer/aa-esi-status/issues"
+
+[tool.hatch.build]
+include = [
+    "/esistatus",
+]
