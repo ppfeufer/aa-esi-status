@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "aa-esi-status"
-version = "1.9.0"
+version = "1.10.0"
 description = "A simple status monitor for ESI"
 readme = "README.md"
 license = "GPL-3.0"
