@@ -15,18 +15,21 @@
 
 App for Alliance Auth to show the current status of ESI and its end points.
 
-![AA ESI Status](https://raw.githubusercontent.com/ppfeufer/aa-esi-status/main/esistatus/docs/aa-esi-status.jpg)
-
+---
 
 <!-- TOC -->
 * [AA ESI Status](#aa-esi-status)
   * [Installation](#installation)
-    * [Step 1: Install the app](#step-1-install-the-app)
-    * [Step 2: Update your AA settings](#step-2-update-your-aa-settings)
-    * [Step 3: Finalizing the installation](#step-3-finalizing-the-installation)
-    * [Step 4: Setting up permissions](#step-4-setting-up-permissions)
+    * [Step 1: Install the App](#step-1-install-the-app)
+    * [Step 2: Update Your AA Settings](#step-2-update-your-aa-settings)
+    * [Step 3: Finalizing the Installation](#step-3-finalizing-the-installation)
+    * [Step 4: Setting up Permissions](#step-4-setting-up-permissions)
   * [Updating](#updating)
 <!-- TOC -->
+
+---
+
+![AA ESI Status](https://raw.githubusercontent.com/ppfeufer/aa-esi-status/main/esistatus/docs/aa-esi-status.jpg)
 
 
 ## Installation
@@ -36,7 +39,7 @@ Alliance Auth running already, please install it first before proceeding.
 (See the official [AA installation guide](https://allianceauth.readthedocs.io/en/latest/installation/allianceauth.html) for details)
 
 
-### Step 1: Install the app
+### Step 1: Install the App
 
 Make sure you're in the virtual environment (venv) of your Alliance Auth installation.
 Then install the latest version:
@@ -46,14 +49,14 @@ pip install aa-esi-status
 ```
 
 
-### Step 2: Update your AA settings
+### Step 2: Update Your AA Settings
 
 Configure your AA settings (`local.py`) as follows:
 
 - Add `'esistatus',` to `INSTALLED_APPS`
 
 
-### Step 3: Finalizing the installation
+### Step 3: Finalizing the Installation
 
 Run migrations & copy static files
 
@@ -65,7 +68,7 @@ python manage.py migrate
 Restart your supervisor services for AA
 
 
-### Step 4: Setting up permissions
+### Step 4: Setting up Permissions
 
 Now you can set up permissions in Alliance Auth for your users.
 Add `esistatus|esi status|Can access this app` to the states and/or groups you would
