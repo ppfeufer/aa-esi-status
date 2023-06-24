@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [In Development] - Unreleased
 
+### Added
+
+- Ukrainian translation
+
 
 ## [1.10.0] - 2023-04-25
 
