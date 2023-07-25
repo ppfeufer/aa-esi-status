@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [In Development] - Unreleased
 
+### Changed
+
+- try/except improved in `views.index`
+
 
 ## [1.11.0] - 2023-06-24
 
