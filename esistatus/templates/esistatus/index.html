@@ -3,8 +3,13 @@
 {% load i18n %}
 {% load esistatus_versioned_static %}
 
-{% block esistatus_details %}
-    <div class="aa-esistatus row">
+{% block aa_esistatus_header %}
+    {% translate "ESI Status" as translated_header %}
+    {% include "esistatus/partials/header/page-header.html" with header_text=translated_header %}
+{% endblock %}
+
+{% block aa_esistatus_body %}
+    <div class="row">
         {% if has_status_result %}
             {% translate "Red Endpoints" as translated_header_red %}
             {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="red" data=esi_endpoint_status.red %}
@@ -23,5 +28,6 @@
 {% endblock %}
 
 {% block extra_css %}
+    <link rel="stylesheet" href="{% esistatus_static 'esistatus/css/aa-bootstrap-fix.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% esistatus_static 'esistatus/css/esistatus.min.css' %}" type="text/css">
 {% endblock %}

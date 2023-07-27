@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-19 01:17+0200\n"
+"POT-Creation-Date: 2023-07-27 22:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,24 +17,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: templates/esistatus/base.html:5 templates/esistatus/base.html:9
+#: templates/esistatus/base.html:5 templates/esistatus/index.html:7
 msgid "ESI Status"
 msgstr ""
 
-#: templates/esistatus/index.html:9
+#: templates/esistatus/index.html:14
 msgid "Red Endpoints"
 msgstr ""
 
-#: templates/esistatus/index.html:12
+#: templates/esistatus/index.html:17
 msgid "Yellow Endpoints"
 msgstr ""
 
-#: templates/esistatus/index.html:15
+#: templates/esistatus/index.html:20
 msgid "Green Endpoints"
 msgstr ""
 
-#: templates/esistatus/index.html:19
+#: templates/esistatus/index.html:24
 msgid ""
 "Couldn't read the ESI status. Please try and reload the page. If that "
 "doesn't help, it is possible that ESI might be down entirely."
+msgstr ""
+
+#: templates/esistatus/partials/footer/app-translation-footer.html:4
+msgid "Join our team of translators!"
+msgstr ""
+
+#: templates/esistatus/partials/footer/app-translation-footer.html:7
+#, python-format
+msgid ""
+"\n"
+"            Do you want to help translate this app into your language or "
+"improve the\n"
+"            existing translation? - %(weblate_link)s\n"
+"        "
 msgstr ""

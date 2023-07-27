@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [In Development] - Unreleased
 
+### Added
+
+- Bootstrap CSS fix
+- Footer to promote help with the app translation
+
 ### Changed
 
 - try/except improved in `views.index`
