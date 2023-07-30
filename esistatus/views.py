@@ -29,25 +29,25 @@ logger = LoggerAddTag(get_extension_logger(__name__), __title__)
 
 def _append_value(dict_obj: Dict, key: str, value: Any) -> None:
     """
-    Appanding values to dicts
+    Appending values to dicts
     :param dict_obj:
     :param key:
     :param value:
     :return:
     """
 
-    # Check if key exist in dict or not
+    # Check if key exists in dict or not
     if key in dict_obj:
         # Key exist in dict.
-        # Check if type of value of key is list or not
+        # Check if the type of the value of a key is a list or not
         if not isinstance(dict_obj[key], list):
-            # If type is not list then make it list
+            # If the type is not list then make it list
             dict_obj[key] = [dict_obj[key]]
 
-        # Append the value in list
+        # Append the value in a list
         dict_obj[key].append(value)
     else:
-        # As key is not in dict, so, add key-value pair
+        # As key is not in dict, so, add a key-value pair
         dict_obj[key] = [value]
 
 
@@ -140,15 +140,13 @@ def index(request) -> HttpResponse:
 
     esi_endpoint_status = {}
     has_status_result = False
+    request_headers = {"User-Agent": USER_AGENT}
+    esi_status_json_url = "https://esi.evetech.net/status.json?version=latest"
+    esi_endpoint_status_result = requests.get(
+        esi_status_json_url, headers=request_headers, timeout=10
+    )
 
     try:
-        request_headers = {"User-Agent": USER_AGENT}
-
-        esi_status_json_url = "https://esi.evetech.net/status.json?version=latest"
-        esi_endpoint_status_result = requests.get(
-            esi_status_json_url, headers=request_headers, timeout=10
-        )
-
         esi_endpoint_status_result.raise_for_status()
     except requests.exceptions.RequestException as exc:
         error_str = str(exc)

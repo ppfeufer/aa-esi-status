@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-11 23:50+0200\n"
-"PO-Revision-Date: 2023-05-19 23:43+0000\n"
-"Last-Translator: \"H. Peter Pfeufer\" <info@ppfeufer.de>\n"
+"POT-Creation-Date: 2023-07-27 23:14+0200\n"
+"PO-Revision-Date: 2023-07-28 22:39+0000\n"
+"Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: German <https://weblate.ppfeufer.de/projects/"
 "alliance-auth-apps/aa-esi-status/de/>\n"
 "Language: de\n"
@@ -16,25 +16,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 4.18.2\n"
 
-#: templates/esistatus/base.html:5 templates/esistatus/base.html:9
+#: templates/esistatus/base.html:5 templates/esistatus/index.html:7
 msgid "ESI Status"
 msgstr "ESI Status"
 
-#: templates/esistatus/index.html:9
+#: templates/esistatus/index.html:14
 msgid "Red Endpoints"
 msgstr "Rote Endpunkte"
 
-#: templates/esistatus/index.html:12
+#: templates/esistatus/index.html:17
 msgid "Yellow Endpoints"
 msgstr "Gelbe Endpunkte"
 
-#: templates/esistatus/index.html:15
+#: templates/esistatus/index.html:20
 msgid "Green Endpoints"
 msgstr "Grüne Endpunkte"
 
-#: templates/esistatus/index.html:19
+#: templates/esistatus/index.html:24
 msgid ""
 "Couldn't read the ESI status. Please try and reload the page. If that "
 "doesn't help, it is possible that ESI might be down entirely."
@@ -42,3 +42,20 @@ msgstr ""
 "Der ESI-Status konnte nicht gelesen werden. Bitte versuche die Seite neu zu "
 "laden. Wenn das nicht hilft, ist es möglich, dass ESI vollständig "
 "unerreichbar ist."
+
+#: templates/esistatus/partials/footer/app-translation-footer.html:4
+msgid "Join our team of translators!"
+msgstr "Tritt unserm Team von Übersetzern bei!"
+
+#: templates/esistatus/partials/footer/app-translation-footer.html:7
+#, python-format
+msgid ""
+"\n"
+"            Do you want to help translate this app into your language or "
+"improve the existing translation? - %(weblate_link)s\n"
+"        "
+msgstr ""
+"\n"
+"            Du möchtest helfen diese App in Deine Sprache zu übersetzen oder "
+"die bestehende Übersetzung verbessern? - %(weblate_link)s\n"
+"        "

@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [In Development] - Unreleased
 
 
+## [1.11.1] - 2023-07-30
+
+### Added
+
+- Bootstrap CSS fix
+- Footer to promote help with the app translation
+
+### Changed
+
+- try/except improved in `views.index`
+
+
 ## [1.11.0] - 2023-06-24
 
 ### Added

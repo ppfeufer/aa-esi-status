@@ -5,10 +5,17 @@
 {% block page_title %}{% translate "ESI Status" %}{% endblock %}
 
 {% block content %}
-    <div class="aa-esi-status">
-        {% translate "ESI Status" as translated_header %}
-        {% include "esistatus/partials/header/page-header.html" with header_text=translated_header %}
+    <div class="aa-esistatus">
+        <div class="aa-esistatus-header">
+            {% block aa_esistatus_header %}{% endblock %}
+        </div>
 
-        {% block esistatus_details %}{% endblock %}
+        <div class="aa-esistatus-body">
+            {% block aa_esistatus_body %}{% endblock %}
+        </div>
+
+        <div class="aa-esistatus-footer">
+            {% include "esistatus/partials/footer/app-translation-footer.html" %}
+        </div>
     </div>
 {% endblock %}

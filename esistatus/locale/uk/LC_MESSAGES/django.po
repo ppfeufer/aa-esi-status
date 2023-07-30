@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-19 01:17+0200\n"
+"POT-Creation-Date: 2023-07-27 23:14+0200\n"
 "PO-Revision-Date: 2023-06-14 17:18+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
-"Language-Team: Ukrainian <https://weblate.ppfeufer.de/projects/"
-"alliance-auth-apps/aa-esi-status/uk/>\n"
+"Language-Team: Ukrainian <https://weblate.ppfeufer.de/projects/alliance-auth-"
+"apps/aa-esi-status/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,23 +19,23 @@ msgstr ""
 "n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 4.17\n"
 
-#: templates/esistatus/base.html:5 templates/esistatus/base.html:9
+#: templates/esistatus/base.html:5 templates/esistatus/index.html:7
 msgid "ESI Status"
 msgstr "Статус ESI"
 
-#: templates/esistatus/index.html:9
+#: templates/esistatus/index.html:14
 msgid "Red Endpoints"
 msgstr "Червоні кінцеві точки"
 
-#: templates/esistatus/index.html:12
+#: templates/esistatus/index.html:17
 msgid "Yellow Endpoints"
 msgstr "Жовті кінцеві точки"
 
-#: templates/esistatus/index.html:15
+#: templates/esistatus/index.html:20
 msgid "Green Endpoints"
 msgstr "Зелені кінцеві точки"
 
-#: templates/esistatus/index.html:19
+#: templates/esistatus/index.html:24
 msgid ""
 "Couldn't read the ESI status. Please try and reload the page. If that "
 "doesn't help, it is possible that ESI might be down entirely."
@@ -43,3 +43,16 @@ msgstr ""
 "Не вдалося прочитати статус ESI. Будь ласка, спробуйте перезавантажити "
 "сторінку. Якщо це не допомогло, цілком можливо, що ESI може повністю вийти з "
 "ладу."
+
+#: templates/esistatus/partials/footer/app-translation-footer.html:4
+msgid "Join our team of translators!"
+msgstr ""
+
+#: templates/esistatus/partials/footer/app-translation-footer.html:7
+#, python-format
+msgid ""
+"\n"
+"            Do you want to help translate this app into your language or "
+"improve the existing translation? - %(weblate_link)s\n"
+"        "
+msgstr ""
