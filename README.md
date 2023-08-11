@@ -16,6 +16,7 @@
 
 App for Alliance Auth to show the current status of ESI and its end points.
 
+
 ---
 
 <!-- TOC -->
@@ -24,20 +25,27 @@ App for Alliance Auth to show the current status of ESI and its end points.
     * [Step 1: Install the App](#step-1-install-the-app)
     * [Step 2: Update Your AA Settings](#step-2-update-your-aa-settings)
     * [Step 3: Finalizing the Installation](#step-3-finalizing-the-installation)
-    * [Step 4: Setting up Permissions](#step-4-setting-up-permissions)
+  * [(Optional) Public Views](#optional-public-views)
   * [Updating](#updating)
 <!-- TOC -->
 
 ---
+
 
 ![AA ESI Status](https://raw.githubusercontent.com/ppfeufer/aa-esi-status/main/esistatus/docs/aa-esi-status.jpg)
 
 
 ## Installation
 
-**Important**: This app is a plugin for Alliance Auth. If you don't have
-Alliance Auth running already, please install it first before proceeding.
-(See the official [AA installation guide](https://allianceauth.readthedocs.io/en/latest/installation/allianceauth.html) for details)
+> **Note**
+>
+> This app is a plugin for Alliance Auth. If you don't have Alliance Auth running
+> already, please install it first before proceeding. (See the official [AA
+> installation guide](https://allianceauth.readthedocs.io/en/latest/installation/allianceauth.html) for details)
+>
+> AA ESI Status needs at least **Alliance Auth v3.6.1**. Please make sure to meet
+> this condition _before_ installing this app, otherwise an update to Alliance Auth
+> will be pulled in unsupervised.
 
 
 ### Step 1: Install the App
@@ -54,31 +62,47 @@ pip install aa-esi-status
 
 Configure your AA settings (`local.py`) as follows:
 
-- Add `'esistatus',` to `INSTALLED_APPS`
+- Add `"esistatus",` to `INSTALLED_APPS`
 
 
 ### Step 3: Finalizing the Installation
 
-Run migrations & copy static files
+Run migrations & copy static files.
 
 ```shell
 python manage.py collectstatic
 python manage.py migrate
 ```
 
-Restart your supervisor services for AA
+Restart your supervisor services for AA.
 
 
-### Step 4: Setting up Permissions
+## (Optional) Public Views
 
-Now you can set up permissions in Alliance Auth for your users.
-Add `esistatus|esi status|Can access this app` to the states and/or groups you would
-like to have access.
+This app supports AA's feature of public views, since the ESI status is not any
+mission-critical information.
+To allow users to view the time zone conversion page without the need to log in,
+please add `"esistatus",` to the list of `APPS_WITH_PUBLIC_VIEWS` in your `local.py`:
+
+```python
+# By default, apps are prevented from having public views for security reasons.
+# To allow specific apps to have public views, add them to APPS_WITH_PUBLIC_VIEWS
+#   » The format is the same as in INSTALLED_APPS
+#   » The app developer must also explicitly allow public views for their app
+APPS_WITH_PUBLIC_VIEWS = [
+    "esistatus",  # https://github.com/ppfeufer/aa-esi-status/
+]
+```
+> **Note**
+>
+> If you don't have a list for `APPS_WITH_PUBLIC_VIEWS` yet, then add the whole
+> block from here. This feature has been added in Alliance Auth v3.6.0 so you
+> might not yet have this list in your `local.py`.
 
 
 ## Updating
 
-To update your existing installation of AA Time Zones, first enable your virtual
+To update your existing installation of AA ESI Status, first enable your virtual
 environment.
 
 Then run the following commands from your AA project directory (the one that
@@ -86,13 +110,7 @@ contains `manage.py`).
 
 ```shell
 pip install -U aa-esi-status
-```
-
-```shell
 python manage.py collectstatic
-```
-
-```shell
 python manage.py migrate
 ```
 
