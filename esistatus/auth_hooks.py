@@ -25,7 +25,7 @@ class AaEsiStatusMenuItem(MenuItemHook):  # pylint: disable=too-few-public-metho
             _(__title__),
             "fas fa-signal fa-fw",
             "esistatus:index",
-            navactive=["esistatus:index"],
+            navactive=["esistatus:"],
         )
 
     def render(self, request):
@@ -35,10 +35,7 @@ class AaEsiStatusMenuItem(MenuItemHook):  # pylint: disable=too-few-public-metho
         :return:
         """
 
-        if request.user.has_perm("esistatus.basic_access"):
-            return MenuItemHook.render(self, request)
-
-        return ""
+        return MenuItemHook.render(self, request)
 
 
 @hooks.register("menu_item_hook")
@@ -58,4 +55,9 @@ def register_urls():
     :return:
     """
 
-    return UrlHook(urls, "esistatus", r"^esi-status/")
+    return UrlHook(
+        urls=urls,
+        namespace="esistatus",
+        base_url=r"^esi-status/",
+        excluded_views=["esistatus.views.index"],
+    )

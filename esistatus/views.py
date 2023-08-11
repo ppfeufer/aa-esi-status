@@ -10,7 +10,6 @@ from typing import Any, Dict, Tuple
 import requests
 
 # Django
-from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -131,8 +130,6 @@ def _esi_endpoint_status(esi_endpoint_json: json) -> Tuple:
     return esi_endpoint_status, True
 
 
-@login_required
-@permission_required("esistatus.basic_access")
 def index(request) -> HttpResponse:
     """
     Index view
@@ -143,7 +140,7 @@ def index(request) -> HttpResponse:
     request_headers = {"User-Agent": USER_AGENT}
     esi_status_json_url = "https://esi.evetech.net/status.json?version=latest"
     esi_endpoint_status_result = requests.get(
-        esi_status_json_url, headers=request_headers, timeout=10
+        url=esi_status_json_url, headers=request_headers, timeout=10
     )
 
     try:
@@ -152,24 +149,30 @@ def index(request) -> HttpResponse:
         error_str = str(exc)
 
         logger.warning(
-            f"Unable to get ESI status. Error: {error_str}",
+            msg=f"Unable to get ESI status. Error: {error_str}",
             exc_info=True,
         )
 
         context = {"has_status_result": has_status_result}
 
-        return render(request, "esistatus/index.html", context)
+        return render(
+            request=request, template_name="esistatus/index.html", context=context
+        )
 
     try:
         esi_endpoint_json = esi_endpoint_status_result.json()
     except requests.exceptions.JSONDecodeError:
         has_status_result = False
     else:
-        esi_endpoint_status, has_status_result = _esi_endpoint_status(esi_endpoint_json)
+        esi_endpoint_status, has_status_result = _esi_endpoint_status(
+            esi_endpoint_json=esi_endpoint_json
+        )
 
     context = {
         "has_status_result": has_status_result,
         "esi_endpoint_status": esi_endpoint_status,
     }
 
-    return render(request, "esistatus/index.html", context)
+    return render(
+        request=request, template_name="esistatus/index.html", context=context
+    )

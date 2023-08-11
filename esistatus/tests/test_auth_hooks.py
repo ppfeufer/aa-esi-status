@@ -26,21 +26,25 @@ class TestHooks(TestCase):
 
         super().setUpClass()
 
-        # User cannot access
         cls.user_1001 = create_fake_user(1001, "Peter Parker")
-
-        # User can access
-        cls.user_1002 = create_fake_user(
-            1002, "Bruce Wayne", permissions=["esistatus.basic_access"]
-        )
 
         cls.html_menu = f"""
             <li>
-                <a class href="{reverse('esistatus:index')}">
+                <a class="active" href="{reverse('esistatus:index')}">
                     <i class="fas fa-signal fa-fw"></i>
                     ESI Status
                 </a>
             </li>
+        """
+
+        cls.html_header = """
+            <div class="aa-esistatus-header">
+                <header>
+                    <h1 class="page-header text-center">
+                        ESI Status
+                    </h1>
+                </header>
+            </div>
         """
 
     def test_render_hook_success(self):
@@ -50,24 +54,23 @@ class TestHooks(TestCase):
         :rtype:
         """
 
-        self.client.force_login(self.user_1002)
+        self.client.force_login(self.user_1001)
 
-        response = self.client.get(reverse("authentication:dashboard"))
+        response = self.client.get(path=reverse(viewname="esistatus:index"))
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertContains(response, self.html_menu, html=True)
+        self.assertContains(response=response, text=self.html_header, html=True)
 
-    def test_render_hook_fail(self):
+    def test_render_hook_with_public_page(self):
         """
-        Test should not show the link to the app in the
-        navigation to user without access
+        Test should show the public page
+
         :return:
         :rtype:
         """
 
-        self.client.force_login(self.user_1001)
+        response = self.client.get(path=reverse(viewname="esistatus:index"))
 
-        response = self.client.get(reverse("authentication:dashboard"))
-
-        self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertNotContains(response, self.html_menu, html=True)
+        self.assertEqual(first=response.status_code, second=HTTPStatus.OK)
+        self.assertContains(response=response, text=self.html_header, html=True)

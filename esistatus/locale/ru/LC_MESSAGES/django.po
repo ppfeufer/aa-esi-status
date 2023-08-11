@@ -2,13 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Nikolay <nick.postnikov@gmail.com>, 2023.
+# Peter Pfeufer <info@ppfeufer.de>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-27 23:14+0200\n"
-"PO-Revision-Date: 2023-07-29 23:45+0000\n"
-"Last-Translator: Nikolay <nick.postnikov@gmail.com>\n"
+"POT-Creation-Date: 2023-07-30 18:40+0200\n"
+"PO-Revision-Date: 2023-07-31 17:39+0000\n"
+"Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Russian <https://weblate.ppfeufer.de/projects/"
 "alliance-auth-apps/aa-esi-status/ru/>\n"
 "Language: ru\n"
@@ -43,19 +44,14 @@ msgstr ""
 "Невозможно прочитать статус ESI. Пожалуйста, перегрузите страницу. Если "
 "проблема сохраниться, возможно ESI полностью неработоспособна."
 
-#: templates/esistatus/partials/footer/app-translation-footer.html:4
+#: templates/esistatus/partials/footer/app-translation-footer.html:5
+msgid ""
+"Do you want to help translate this app into your language or improve the "
+"existing translation?"
+msgstr ""
+"Вы хотите помочь перевести это приложение на ваш язык или улучшить текущий "
+"перевод?"
+
+#: templates/esistatus/partials/footer/app-translation-footer.html:8
 msgid "Join our team of translators!"
 msgstr "Присоединяйтесь к нашей команде переводчиков!"
-
-#: templates/esistatus/partials/footer/app-translation-footer.html:7
-#, python-format
-msgid ""
-"\n"
-"            Do you want to help translate this app into your language or "
-"improve the existing translation? - %(weblate_link)s\n"
-"        "
-msgstr ""
-"\n"
-"            Вы хотите помочь перевести это приложение на ваш язык или "
-"улучшить текущий перевод? - %(weblate_link)s\n"
-"        "
