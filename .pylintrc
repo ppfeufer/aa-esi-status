@@ -1,3 +1,11 @@
+[MASTER]
+# Add files or directories matching the regex patterns to the ignore-list.
+# The regex matches against paths.
+ignore-paths=
+    testauth/,
+    (.*)/tests/,
+    (.*)/migrations/
+
 [MESSAGES CONTROL]
 disable=
     attribute-defined-outside-init,
@@ -5,12 +13,12 @@ disable=
     protected-access,
     too-few-public-methods,
 
-    # handled by isort
+# handled by isort
     wrong-import-position,
     ungrouped-imports,
 
-    # handled by black
+# handled by black
     format,
 
-    # We anticipate #3512 where it will become optional
+# We anticipate #3512 where it will become optional
     fixme,
