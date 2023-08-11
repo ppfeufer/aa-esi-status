@@ -282,6 +282,17 @@ if os.environ.get("USE_MYSQL", True) is True:
 # Add any additional apps to this list.
 INSTALLED_APPS += ["esistatus"]
 
+# By default, apps are prevented from having public views for security reasons.
+# If you want to allow specific apps to have public views,
+# you can put their names here (same name as in INSTALLED_APPS).
+#
+# Note:
+#   » The format is the same as in INSTALLED_APPS
+#   » The app developer must explicitly allow public views for his app
+APPS_WITH_PUBLIC_VIEWS = [
+    "esistatus",  # https://github.com/ppfeufer/aa-esi-status/
+]
+
 # Register an application at https://developers.eveonline.com for Authentication
 # & API Access and fill out these settings. Be sure to set the callback URL
 # to https://example.com/sso/callback substituting your domain for example.com
