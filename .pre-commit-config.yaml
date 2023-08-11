@@ -92,14 +92,6 @@ repos:
             static/(.*)/libs/
           )
 
-  - repo: https://github.com/pre-commit/pygrep-hooks
-    rev: v1.10.0
-    hooks:
-      - id: python-check-mock-methods
-      - id: python-no-log-warn
-      - id: python-use-type-annotations
-      - id: text-unicode-replacement-char
-
   - repo: https://github.com/adamchainz/django-upgrade
     rev: 1.14.0
     hooks:
@@ -154,10 +146,5 @@ repos:
     rev: v3.0.0a6
     hooks:
       - id: pylint
-        exclude: |
-          (?x)(
-            tests/ |
-            migrations/
-          )
         args:
           - --py-version=3.8.0
