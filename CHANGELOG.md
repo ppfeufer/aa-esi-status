@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [In Development] - Unreleased
 
+
+## [1.12.0] - 2023-08-11
+
 > **Warning**
 >
 > The update makes use of a feature introduced in Allianceauth v3.6.1, meaning this
