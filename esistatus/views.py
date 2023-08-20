@@ -35,9 +35,9 @@ def _append_value(dict_obj: Dict, key: str, value: Any) -> None:
     :return:
     """
 
-    # Check if key exists in dict or not
+    # Check if key exists in the dict or not
     if key in dict_obj:
-        # Key exist in dict.
+        # Key exist in the dict.
         # Check if the type of the value of a key is a list or not
         if not isinstance(dict_obj[key], list):
             # If the type is not list then make it list
@@ -46,7 +46,7 @@ def _append_value(dict_obj: Dict, key: str, value: Any) -> None:
         # Append the value in a list
         dict_obj[key].append(value)
     else:
-        # As key is not in dict, so, add a key-value pair
+        # Is the key is not in the dict, add a key-value pair
         dict_obj[key] = [value]
 
 
@@ -64,44 +64,16 @@ def _esi_endpoint_status(esi_endpoint_json: json) -> Tuple:
     }
 
     for esi_endpoint in esi_endpoint_json:
-        # Green endpoints
-        if esi_endpoint["status"] == "green":
-            _append_value(
-                esi_endpoint_status["green"]["endpoints"],
-                esi_endpoint["tags"][0],
-                {
-                    "route": esi_endpoint["route"],
-                    "method": esi_endpoint["method"].upper(),
-                },
-            )
+        _append_value(
+            dict_obj=esi_endpoint_status[esi_endpoint["status"]]["endpoints"],
+            key=esi_endpoint["tags"][0],
+            value={
+                "route": esi_endpoint["route"],
+                "method": esi_endpoint["method"].upper(),
+            },
+        )
 
-            esi_endpoint_status["green"]["count"] += 1
-
-        # Yellow endpoints
-        if esi_endpoint["status"] == "yellow":
-            _append_value(
-                esi_endpoint_status["yellow"]["endpoints"],
-                esi_endpoint["tags"][0],
-                {
-                    "route": esi_endpoint["route"],
-                    "method": esi_endpoint["method"].upper(),
-                },
-            )
-
-            esi_endpoint_status["yellow"]["count"] += 1
-
-        # Red endpoints
-        if esi_endpoint["status"] == "red":
-            _append_value(
-                esi_endpoint_status["red"]["endpoints"],
-                esi_endpoint["tags"][0],
-                {
-                    "route": esi_endpoint["route"],
-                    "method": esi_endpoint["method"].upper(),
-                },
-            )
-
-            esi_endpoint_status["red"]["count"] += 1
+        esi_endpoint_status[esi_endpoint["status"]]["count"] += 1
 
     endpoints_total = (
         esi_endpoint_status["green"]["count"]
@@ -109,20 +81,19 @@ def _esi_endpoint_status(esi_endpoint_json: json) -> Tuple:
         + esi_endpoint_status["red"]["count"]
     )
 
-    # Calculate percentages
-    # Green endpoints
+    # Calculate percentages - Green endpoints
     green_percentage_calc = (
         esi_endpoint_status["green"]["count"] / endpoints_total * 100
     )
     esi_endpoint_status["green"]["percentage"] = f"{green_percentage_calc:.2f}%"
 
-    # Yellow endpoints
+    # Calculate percentages - Yellow endpoints
     yellow_percentage_calc = (
         esi_endpoint_status["yellow"]["count"] / endpoints_total * 100
     )
     esi_endpoint_status["yellow"]["percentage"] = f"{yellow_percentage_calc:.2f}%"
 
-    # Red endpoints
+    # Calculate percentages - Red endpoints
     red_percentage_calc = esi_endpoint_status["red"]["count"] / endpoints_total * 100
     esi_endpoint_status["red"]["percentage"] = f"{red_percentage_calc:.2f}%"
 
@@ -154,24 +125,20 @@ def index(request) -> HttpResponse:
         )
 
         context = {"has_status_result": has_status_result}
-
-        return render(
-            request=request, template_name="esistatus/index.html", context=context
-        )
-
-    try:
-        esi_endpoint_json = esi_endpoint_status_result.json()
-    except requests.exceptions.JSONDecodeError:
-        has_status_result = False
     else:
-        esi_endpoint_status, has_status_result = _esi_endpoint_status(
-            esi_endpoint_json=esi_endpoint_json
-        )
+        try:
+            esi_endpoint_json = esi_endpoint_status_result.json()
+        except requests.exceptions.JSONDecodeError:
+            has_status_result = False
+        else:
+            esi_endpoint_status, has_status_result = _esi_endpoint_status(
+                esi_endpoint_json=esi_endpoint_json
+            )
 
-    context = {
-        "has_status_result": has_status_result,
-        "esi_endpoint_status": esi_endpoint_status,
-    }
+        context = {
+            "has_status_result": has_status_result,
+            "esi_endpoint_status": esi_endpoint_status,
+        }
 
     return render(
         request=request, template_name="esistatus/index.html", context=context
