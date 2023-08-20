@@ -119,10 +119,7 @@ def index(request) -> HttpResponse:
     except requests.exceptions.RequestException as exc:
         error_str = str(exc)
 
-        logger.warning(
-            msg=f"Unable to get ESI status. Error: {error_str}",
-            exc_info=True,
-        )
+        logger.info(msg=f"Unable to get ESI status. Error: {error_str}")
 
         context = {"has_status_result": has_status_result}
     else:
@@ -130,6 +127,12 @@ def index(request) -> HttpResponse:
             esi_endpoint_json = esi_endpoint_status_result.json()
         except requests.exceptions.JSONDecodeError:
             has_status_result = False
+
+            logger.info(
+                msg=(
+                    "Unable to get ESI status. ESI returning gibberish, I can't understand …"
+                )
+            )
         else:
             esi_endpoint_status, has_status_result = _esi_endpoint_status(
                 esi_endpoint_json=esi_endpoint_json
