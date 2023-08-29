@@ -5,29 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-
-## [In Development] - Unreleased
+## \[In Development\] - Unreleased
 
 ### Changed
 
 - Code improvements
 
-
-## [1.13.0] - 2023-08-15
+## \[1.13.0\] - 2023-08-15
 
 ### Added
 
 - Spanish translation
 
-
-## [1.12.1] - 2023-08-11
+## \[1.12.1\] - 2023-08-11
 
 ### Fixed
 
 - Bootstrap CSS fix
 
-
-## [1.12.0] - 2023-08-11
+## \[1.12.0\] - 2023-08-11
 
 > **Warning**
 >
@@ -39,8 +35,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Support public views (see [README])
 
-
-## [1.11.1] - 2023-07-30
+## \[1.11.1\] - 2023-07-30
 
 ### Added
 
@@ -51,37 +46,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - try/except improved in `views.index`
 
-
-## [1.11.0] - 2023-06-24
+## \[1.11.0\] - 2023-06-24
 
 ### Added
 
 - Ukrainian translation
 
-
-## [1.10.0] - 2023-04-25
+## \[1.10.0\] - 2023-04-25
 
 ### Changed
 
 - Moved the build process to PEP 621 / pyproject.toml
 - Russian translation updated
 
-
-## [1.9.0] - 2023-04-16
+## \[1.9.0\] - 2023-04-16
 
 ### Added
 
 - Russian translation
 
-
-## [1.8.0] - 2023-04-13
+## \[1.8.0\] - 2023-04-13
 
 ### Added
 
 - German translation
 
-
-## [1.7.2] - 2022-09-18
+## \[1.7.2\] - 2022-09-18
 
 ### Change
 
@@ -89,8 +79,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Minimum dependencies:
   - Alliance Auth>=3.0.0
 
-
-## [1.7.1] - 2022-08-27
+## \[1.7.1\] - 2022-08-27
 
 ### Fixed
 
@@ -100,8 +89,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - General code improvements
 
-
-## [1.7.0] - 2022-08-02
+## \[1.7.0\] - 2022-08-02
 
 ### Changed
 
@@ -116,15 +104,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - tox tests for AA beta version
 
-
-## [1.6.0] - 2022-06-24
+## \[1.6.0\] - 2022-06-24
 
 ### Added
 
 - Versioned static template tag
 
-
-## [1.5.2] - 2022-05-02
+## \[1.5.2\] - 2022-05-02
 
 ### Fixed
 
@@ -134,15 +120,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Templates unified
 
-
-## [1.5.1] - 2022-03-02
+## \[1.5.1\] - 2022-03-02
 
 ### Fixed
 
 - Include the right app ...
 
-
-## [1.5.0] - 2022-03-02
+## \[1.5.0\] - 2022-03-02
 
 ### Added
 
@@ -156,16 +140,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Switched to `setup.cfg` as config file, since `setup.py` is deprecated now
 
-
-## [1.4.0] - 2022-02-28
+## \[1.4.0\] - 2022-02-28
 
 ### Fixed
 
-- [Compatibility] AA 3.x / Django 4 :: ImportError: cannot import name
+- \[Compatibility\] AA 3.x / Django 4 :: ImportError: cannot import name
   'ugettext_lazy' from 'django.utils.translation'
 
-
-## [1.3.0] - 2022-01-02
+## \[1.3.0\] - 2022-01-02
 
 ### Added
 
@@ -182,8 +164,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Check for AA-GDPR, since we don't load any external resources it is not needed
 - No longer needed function and file
 
-
-## [1.2.0] - 2021-11-30
+## \[1.2.0\] - 2021-11-30
 
 ### Changed
 
@@ -191,37 +172,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - Python 3.7
   - Alliance Auth v2.9.3
 
-
-## [1.1.0] - 2021-11-24
+## \[1.1.0\] - 2021-11-24
 
 ### Added
 
 - Error handling on connection problems to ESI status URL
 - Tests
 
-
-## [1.0.5] - 2021-07-08
+## \[1.0.5\] - 2021-07-08
 
 ### Added
 
 - Checks for compatibility with Python 3.9 and Django 3.2
 
-
-## [1.0.4] - 2021-01-12
+## \[1.0.4\] - 2021-01-12
 
 ### Removed
 
 - Support for Django 2
 
-
-## [1.0.3] - 2021-01-11
+## \[1.0.3\] - 2021-01-11
 
 ### Fixed
 
 - Local variable might be referenced before being initialized
 
-
-## [1.0.1] - 2020-12-16
+## \[1.0.1\] - 2020-12-16
 
 ### Added
 
@@ -231,13 +207,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Bootstrap classes used in template
 
-
-## [1.0.0] - 2020-10-12
+## \[1.0.0\] - 2020-10-12
 
 - first official release
 
-
-## [0.1.0-alpha.3] - 2020-10-11
+## \[0.1.0-alpha.3\] - 2020-10-11
 
 ### Fixed
 
@@ -247,21 +221,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Warning when ESI status couldn't be loaded, for what ever reason
 
-
-## [0.1.0-alpha.2] - 2020-10-11
+## \[0.1.0-alpha.2\] - 2020-10-11
 
 ### Changed
 
 - Link to image in README updated since GitHub changed the default **master** branch
   to _main_. Fucking stupid change ...
 
-
-## [0.1.0-alpha.1] - 2020-10-11
+## \[0.1.0-alpha.1\] - 2020-10-11
 
 ### Added
 
 - initial version for testing purposes
 
-
 <!-- Links -->
-[README]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
+
+[readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
