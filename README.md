@@ -1,4 +1,4 @@
-# AA ESI Status
+# AA ESI Status<a name="aa-esi-status"></a>
 
 [![Version](https://img.shields.io/pypi/v/aa-esi-status?label=release)](https://pypi.org/project/aa-esi-status/)
 [![License](https://img.shields.io/github/license/ppfeufer/aa-esi-status)](https://github.com/ppfeufer/aa-esi-status/blob/master/LICENSE)
@@ -14,29 +14,27 @@
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/N4N8CL1BY)
 
-
 App for Alliance Auth to show the current status of ESI and its end points.
 
+______________________________________________________________________
 
----
+<!-- mdformat-toc start --slug=github --maxlevel=6 --minlevel=1 -->
 
-<!-- TOC -->
-* [AA ESI Status](#aa-esi-status)
-  * [Installation](#installation)
-    * [Step 1: Install the App](#step-1-install-the-app)
-    * [Step 2: Update Your AA Settings](#step-2-update-your-aa-settings)
-    * [Step 3: Finalizing the Installation](#step-3-finalizing-the-installation)
-  * [(Optional) Public Views](#optional-public-views)
-  * [Updating](#updating)
-<!-- TOC -->
+- [AA ESI Status](#aa-esi-status)
+  - [Installation](#installation)
+    - [Step 1: Install the App](#step-1-install-the-app)
+    - [Step 2: Update Your AA Settings](#step-2-update-your-aa-settings)
+    - [Step 3: Finalizing the Installation](#step-3-finalizing-the-installation)
+  - [(Optional) Public Views](#optional-public-views)
+  - [Updating](#updating)
 
----
+<!-- mdformat-toc end -->
 
+______________________________________________________________________
 
 ![AA ESI Status](https://raw.githubusercontent.com/ppfeufer/aa-esi-status/main/esistatus/docs/aa-esi-status.jpg)
 
-
-## Installation
+## Installation<a name="installation"></a>
 
 > **Note**
 >
@@ -48,8 +46,7 @@ App for Alliance Auth to show the current status of ESI and its end points.
 > this condition _before_ installing this app, otherwise an update to Alliance Auth
 > will be pulled in unsupervised.
 
-
-### Step 1: Install the App
+### Step 1: Install the App<a name="step-1-install-the-app"></a>
 
 Make sure you're in the virtual environment (venv) of your Alliance Auth installation.
 Then install the latest version:
@@ -58,15 +55,13 @@ Then install the latest version:
 pip install aa-esi-status
 ```
 
-
-### Step 2: Update Your AA Settings
+### Step 2: Update Your AA Settings<a name="step-2-update-your-aa-settings"></a>
 
 Configure your AA settings (`local.py`) as follows:
 
 - Add `"esistatus",` to `INSTALLED_APPS`
 
-
-### Step 3: Finalizing the Installation
+### Step 3: Finalizing the Installation<a name="step-3-finalizing-the-installation"></a>
 
 Run migrations & copy static files.
 
@@ -77,8 +72,7 @@ python manage.py migrate
 
 Restart your supervisor services for AA.
 
-
-## (Optional) Public Views
+## (Optional) Public Views<a name="optional-public-views"></a>
 
 This app supports AA's feature of public views, since the ESI status is not any
 mission-critical information.
@@ -94,14 +88,14 @@ APPS_WITH_PUBLIC_VIEWS = [
     "esistatus",  # https://github.com/ppfeufer/aa-esi-status/
 ]
 ```
+
 > **Note**
 >
 > If you don't have a list for `APPS_WITH_PUBLIC_VIEWS` yet, then add the whole
 > block from here. This feature has been added in Alliance Auth v3.6.0 so you
 > might not yet have this list in your `local.py`.
 
-
-## Updating
+## Updating<a name="updating"></a>
 
 To update your existing installation of AA ESI Status, first enable your virtual
 environment.

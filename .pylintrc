@@ -13,12 +13,12 @@ disable=
     protected-access,
     too-few-public-methods,
 
-# handled by isort
+    # handled by isort
     wrong-import-position,
     ungrouped-imports,
 
-# handled by black
+    # handled by black
     format,
 
-# We anticipate #3512 where it will become optional
+    # We anticipate #3512 where it will become optional
     fixme,
