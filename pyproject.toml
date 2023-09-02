@@ -6,7 +6,7 @@ requires = [
 
 [project]
 name = "aa-esi-status"
-version = "1.14.0"
+version = "1.14.1"
 description = "A simple status monitor for ESI"
 readme = "README.md"
 keywords = [
