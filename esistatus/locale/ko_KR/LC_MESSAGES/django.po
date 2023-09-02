@@ -2,13 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Author50CO <tkddlschry@gmail.com>, 2023.
+# Peter Pfeufer <info@ppfeufer.de>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-07-30 18:40+0200\n"
-"PO-Revision-Date: 2023-08-29 15:40+0000\n"
-"Last-Translator: Author50CO <tkddlschry@gmail.com>\n"
+"PO-Revision-Date: 2023-09-02 14:40+0000\n"
+"Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Korean <https://weblate.ppfeufer.de/projects/"
 "alliance-auth-apps/aa-esi-status/ko/>\n"
 "Language: ko_KR\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.18.2\n"
+"X-Generator: Weblate 5.0\n"
 
 #: templates/esistatus/base.html:5 templates/esistatus/index.html:7
 msgid "ESI Status"
@@ -50,4 +51,4 @@ msgstr "이 앱을 번역하거나 기존 번역을 개선하고 싶으신가요
 
 #: templates/esistatus/partials/footer/app-translation-footer.html:8
 msgid "Join our team of translators!"
-msgstr "번역 팀에 참여하세요!"
+msgstr "번역가 팀에 참여하세요!"
