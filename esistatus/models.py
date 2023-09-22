@@ -4,6 +4,7 @@ The models
 
 # Django
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class EsiStatus(models.Model):
@@ -18,4 +19,4 @@ class EsiStatus(models.Model):
 
         managed = False
         default_permissions = ()
-        permissions = (("basic_access", "Can access this app"),)
+        permissions = (("basic_access", _("Can access this app")),)
