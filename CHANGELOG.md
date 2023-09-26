@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Last missing strings to translations
 
+### Changed
+
+- Translation updated and improved
+- Test suite updated
+
 ## \[1.14.1\] - 2023-09-02
 
 ### Changed
