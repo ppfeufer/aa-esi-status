@@ -36,7 +36,7 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-![AA ESI Status](https://raw.githubusercontent.com/ppfeufer/aa-esi-status/main/esistatus/docs/aa-esi-status.jpg)
+![AA ESI Status](https://raw.githubusercontent.com/ppfeufer/aa-esi-status/main/docs/images/aa-esi-status.jpg)
 
 ## Installation<a name="installation"></a>
 
