@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## \[In Development\] - Unreleased
 
+## \[1.14.2\] - 2023-09-26
+
 ### Added
 
 - Last missing strings to translations

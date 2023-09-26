@@ -35,7 +35,7 @@ pre-commit run black
 
 ### JavaScript<a name="javascript"></a>
 
-The JavaScript code follows [ECMAScript 6 (or ES6 for short)][ecmascript 6] or later
+The JavaScript code follows [ECMAScript 6 (or ES6 for short)][ecmascript 6] or newer
 rules. The use of arrow functions is preferred and `this` or `$(this)` should be
 prevented. Functions need to be declared before their use and the JavaScript code
 should follow `'use strict';`.
@@ -43,6 +43,7 @@ should follow `'use strict';`.
 Indent size: 4 spaces
 
 A linter configuration is declared as `.eslintrc.json` in the app's root directory.
+Do not change this file.
 
 To check that your JavaScript code adheres to the rules, run:
 
@@ -52,10 +53,11 @@ pre-commit run eslint
 
 ### CSS<a name="css"></a>
 
-The CSS should be written in a modern manner. Colour definitions should be in RGB(A)
-(`rgb(255 255 255)`, `rgba(255 255 255 / 50%)`) for example.
+The CSS should be written in a modern manner. Colour definitions should be in
+modern RGB(A) (`rgb(255 255 255)`, `rgba(255 255 255 / 50%)`) for example.
 
-A linter configuration is declared as `.stylelintrc.json` in the app's root directory.
+A linter configuration is declared as `.stylelintrc.json` in the app's root
+directory. Do not change this file.
 
 Indent size: 4 spaces
 
@@ -106,8 +108,11 @@ The following will be checked by `pre-commit` (among others):
 ## Contributing via Pull Requests<a name="contributing-via-pull-requests"></a>
 
 To contribute code via pull request, make sure that you fork the repository and
-branch your changes from the `development` branch. Only pull requests towards the
-development branch will be considered.
+branch your changes from the `master` branch.
+
+We strongly recommend to create a new branch for every new feature or change you
+plan to be submitting as merge request. Please make sure to keep the `master` branch of
+your fork in sync with the main repository to avoid conflicts.
 
 Before you start working on a new feature, please open an Issue (Type: Feature
 Request) and start a discussion if your idea is generally wanted and considered a
