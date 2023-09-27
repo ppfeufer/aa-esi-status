@@ -5,12 +5,16 @@ ______________________________________________________________________
 <!-- mdformat-toc start --slug=github --maxlevel=6 --minlevel=1 -->
 
 - [Contributing](#contributing)
-  - [Code Formatting](#code-formatting)
+  - [Development Environment](#development-environment)
+  - [Code Formatting and Linting](#code-formatting-and-linting)
     - [Python](#python)
     - [JavaScript](#javascript)
+      - [Minified JS](#minified-js)
     - [CSS](#css)
+      - [Minified CSS](#minified-css)
     - [pre-commit](#pre-commit)
-  - [Contributing via Pull Requests](#contributing-via-pull-requests)
+  - [Branching and Contributing via Pull Requests](#branching-and-contributing-via-pull-requests)
+    - [Tests](#tests)
     - [Checklist](#checklist)
   - [Translation](#translation)
 
@@ -18,7 +22,16 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-## Code Formatting<a name="code-formatting"></a>
+## Development Environment<a name="development-environment"></a>
+
+To develop and test your change you will need a development environment on your
+local machine. There are many different options to choose from. But please make sure
+that you can run pre-commit checks and tox tests on your local machine.
+
+If you are on Windows or Linux you can use the [AA guide for setting up a dev
+environment][aa guide for setting up a dev environment].
+
+## Code Formatting and Linting<a name="code-formatting-and-linting"></a>
 
 ### Python<a name="python"></a>
 
@@ -51,6 +64,17 @@ To check that your JavaScript code adheres to the rules, run:
 pre-commit run eslint
 ```
 
+#### Minified JS<a name="minified-js"></a>
+
+This project uses minified and compressed JavaScript files with source maps created by
+[UglifyJS]. Make sure to add/update them as well if you add or change JavaScript.
+
+To do so, run:
+
+```shell
+uglifyjs script.js -o script.min.js --source-map "url='script.min.js.map'" --compress --mangle
+```
+
 ### CSS<a name="css"></a>
 
 The CSS should be written in a modern manner. Colour definitions should be in
@@ -65,6 +89,15 @@ To check that your JavaScript code adheres to the rules, run:
 
 ```shell
 pre-commit run stylelint
+```
+
+#### Minified CSS<a name="minified-css"></a>
+
+This project uses minified CSS files with source maps created by [CSSO]. Make sure
+to add/update them as well if you add or change CSS.
+
+```shell
+csso -i styles.css -o styles.min.css  -s file
 ```
 
 ### pre-commit<a name="pre-commit"></a>
@@ -105,7 +138,7 @@ The following will be checked by `pre-commit` (among others):
 - Markdown files are formatted properly
 - No pylint issues
 
-## Contributing via Pull Requests<a name="contributing-via-pull-requests"></a>
+## Branching and Contributing via Pull Requests<a name="branching-and-contributing-via-pull-requests"></a>
 
 To contribute code via pull request, make sure that you fork the repository and
 branch your changes from the `master` branch.
@@ -117,6 +150,24 @@ your fork in sync with the main repository to avoid conflicts.
 Before you start working on a new feature, please open an Issue (Type: Feature
 Request) and start a discussion if your idea is generally wanted and considered a
 good addition to the app in general.
+
+Please feel free to create your merge request early and while you are still not
+finished developing to flag that you are working on a specific topic. Merge request
+that are not yet ready to review should be marked as DRAFT. You can signal others
+that your merge request is ready for review by removing the DRAFT flag again.
+
+### Tests<a name="tests"></a>
+
+Please update existing or provide additional unit tests for your changes. Note that
+your merge request might fail if it reduces the current level of test coverage.
+
+We are using [Python unittest] with the Django `TestCase` class for all tests. In
+addition we are using some following 3rd party test tools:
+
+- django-webtest / [WebTest] - testing the web UI
+- [request-mock] - testing requests with the requests library
+- [tox] - Running the test suite
+- [coverage] - Measuring the test coverage
 
 ### Checklist<a name="checklist"></a>
 
@@ -136,7 +187,15 @@ register on my [Weblate] instance and start translating.
 
 <!-- Links -->
 
+[aa guide for setting up a dev environment]: https://allianceauth.readthedocs.io/en/latest/development/dev_setup/aa-dev-setup-wsl-vsc-v2.html "AA Guide for Setting up a Dev Environment"
 [black code style]: https://black.readthedocs.io/en/latest/l "Black Code Style"
+[coverage]: https://coverage.readthedocs.io/en/latest/ "coverage"
+[csso]: https://github.com/css/csso "CSSO (CSS Optimizer)"
 [ecmascript 6]: https://www.w3schools.com/js/js_es6.asp "JavaScript ECMAScript 6"
 [pre-commit]: https://github.com/pre-commit/pre-commit "pre-commit"
+[python unittest]: https://docs.python.org/3/library/unittest.html "Python Unittests"
+[request-mock]: https://requests-mock.readthedocs.io/en/latest/ "request-mock"
+[tox]: https://tox.wiki/en/latest/ "tox"
+[uglifyjs]: https://github.com/mishoo/UglifyJS "UglifyJS"
 [weblate]: https://weblate.ppfeufer.de/ "Weblate"
+[webtest]: https://docs.pylonsproject.org/projects/webtest/en/latest/ "Webtest"
