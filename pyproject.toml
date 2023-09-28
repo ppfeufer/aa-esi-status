@@ -40,6 +40,11 @@ dependencies = [
     "allianceauth>=3.6.1",
     "allianceauth-app-utils>=1.12",
 ]
+[project.optional-dependencies]
+tests-allianceauth-stable = [
+    "coverage",
+    "django-webtest",
+]
 [project.urls]
 Changelog = "https://github.com/ppfeufer/aa-esi-status/blob/master/CHANGELOG.md"
 Documentation = "https://github.com/ppfeufer/aa-esi-status/blob/master/README.md"
