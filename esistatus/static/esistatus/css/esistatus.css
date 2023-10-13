@@ -3,16 +3,12 @@
         display: block;
     }
 
-    .aa-esistatus .panel-footer .panel-heading {
+    .aa-esistatus .card-footer .card-header {
         cursor: pointer;
     }
 
-    .aa-esistatus .panel-footer .panel-default,
-    .aa-esistatus .panel-footer .panel-default .panel-body p:last-child {
+    .aa-esistatus .card-footer .card-default,
+    .aa-esistatus .card-footer .card-default .card-body p:last-child {
         margin-bottom: 0;
-    }
-
-    .aa-esistatus-footer {
-        font-size: 85%;
     }
 }

@@ -1,30 +1,29 @@
-<!-- {{ title }} -->
 <div class="col-md-4">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
+    <div class="card card-{{ status }}-esi-endpoints">
+        <div class="card-header bg-{% if status == 'red' %}danger{% elif status == 'yellow' %}warning{% else %}success{% endif %}">
+            <p class="card-title h5 text-white text-center">
                 {{ title }}
-            </h3>
+            </p>
         </div>
 
-        <div class="panel-body text-center">
+        <div class="card-body text-center">
             <b style="font-size: 140%;">{{ data.count }}</b><br>
             <span>
                 {{ data.percentage }}
             </span>
         </div>
 
-        <div class="panel-footer">
+        <div class="card-footer">
             {% if data.count > 0 %}
                 {% for category, endpoints in data.endpoints.items %}
-                    <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#{{ category|slugify  }}-{{ status }}" aria-expanded="false" aria-controls="{{ category|slugify  }}-{{ status }}">
-                            <h4 class="panel-title">
+                    <div class="card card-default border-0">
+                        <div class="card-header border-0" data-bs-toggle="collapse" href="#{{ category|slugify  }}-{{ status }}" aria-expanded="false" aria-controls="{{ category|slugify  }}-{{ status }}">
+                            <p class="card-title h6">
                                 {{ category }}
-                            </h4>
+                            </p>
                         </div>
 
-                        <div id="{{ category|slugify  }}-{{ status }}" class="panel-body collapse">
+                        <div id="{{ category|slugify  }}-{{ status }}" class="card-body collapse">
                             {% for endpoint in endpoints %}
                                 <p class="small">
                                     {{ endpoint.method }}

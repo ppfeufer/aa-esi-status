@@ -3,12 +3,15 @@
 {% load i18n %}
 
 {% block page_title %}{% translate "ESI Status" %}{% endblock %}
+{% block header_nav_brand %}{% translate "ESI Status" %}{% endblock header_nav_brand %}
 
 {% block content %}
-    <div class="aa-esistatus">
-        <div class="aa-esistatus-header">
-            {% block aa_esistatus_header %}{% endblock %}
-        </div>
+    <div class="aa-esistatus pt-2">
+        {% if not user.is_authenticated %}
+            <div class="aa-esistatus-header">
+                {% block aa_esistatus_header %}{% endblock %}
+            </div>
+        {% endif %}
 
         <div class="aa-esistatus-body">
             {% block aa_esistatus_body %}{% endblock %}
