@@ -37,7 +37,7 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
 ]
 dependencies = [
-    "allianceauth>=3.6.1",
+    "allianceauth>=4.0.0a1",
     "allianceauth-app-utils>=1.12",
 ]
 [project.optional-dependencies]

@@ -29,9 +29,9 @@ class TestHooks(TestCase):
         cls.user_1001 = create_fake_user(1001, "Peter Parker")
 
         cls.html_menu = f"""
-            <li>
-                <a class="active" href="{reverse('esistatus:index')}">
-                    <i class="fas fa-signal fa-fw"></i>
+            <li class="d-flex flex-wrap m-2 p-2 pt-0 pb-0 mt-0 mb-0 me-0 pe-0">
+                <i class="nav-link fas fa-signal fa-fw fa-fw align-self-center me-3 active"></i>
+                <a class="nav-link flex-fill align-self-center" href="{reverse('esistatus:index')}">
                     ESI Status
                 </a>
             </li>
@@ -40,7 +40,7 @@ class TestHooks(TestCase):
         cls.html_header = """
             <div class="aa-esistatus-header">
                 <header>
-                    <h1 class="page-header text-center">
+                    <h1 class="text-center">
                         ESI Status
                     </h1>
                 </header>
