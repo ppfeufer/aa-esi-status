@@ -13,13 +13,6 @@
     }
 
     .aa-esistatus-footer {
-        border-top: 1px solid rgb(236 240 241);
         font-size: 85%;
-        margin-top: 1rem;
-        padding-top: 1rem;
-    }
-
-    .template-dark-mode .aa-esistatus-footer {
-        border-color: rgb(70 69 69);
     }
 }
