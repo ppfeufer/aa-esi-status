@@ -6,7 +6,6 @@ requires = [
 
 [project]
 name = "aa-esi-status"
-version = "1.14.2"
 description = "A simple status monitor for ESI"
 readme = "README.md"
 keywords = [
@@ -36,6 +35,9 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
     "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
 ]
+dynamic = [
+    "version",
+]
 dependencies = [
     "allianceauth>=4.0.0a1",
     "allianceauth-app-utils>=1.12",
@@ -57,3 +59,6 @@ Tracker = "https://github.com/ppfeufer/aa-esi-status/issues"
 include = [
     "/esistatus",
 ]
+
+[tool.hatch.version]
+path = "esistatus/__init__.py"
