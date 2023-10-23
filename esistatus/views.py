@@ -8,14 +8,12 @@ from typing import Any, Dict, Tuple
 
 # Third Party
 import requests
-from packaging import version
 
 # Django
 from django.http import HttpResponse
 from django.shortcuts import render
 
 # Alliance Auth
-from allianceauth import __version__ as allianceauth__version
 from allianceauth.services.hooks import get_extension_logger
 
 # Alliance Auth (External Libs)
@@ -23,33 +21,9 @@ from app_utils.logging import LoggerAddTag
 
 # AA ESI Status
 from esistatus import __title__
-from esistatus.apps import AaEsiStatusConfig
-from esistatus.constants import USER_AGENT
+from esistatus.constants import TEMPLATE_PATH, USER_AGENT
 
 logger = LoggerAddTag(get_extension_logger(__name__), __title__)
-
-
-def _get_template_path() -> str:
-    """
-    Get template path
-
-    This is used to determine if we have Alliance Auth v4 or still v3, in which case we
-    have to fall back to the legacy templates to ensure backwards compatibility
-
-    :return:
-    :rtype:
-    """
-
-    app_name = AaEsiStatusConfig.name
-
-    if version.parse(allianceauth__version).major < 4:
-        logger.debug(
-            msg="Alliance Auth v3 detected, falling back to legacy templates …"
-        )
-
-        return f"{app_name}/legacy_templates"
-
-    return app_name
 
 
 def _append_value(dict_obj: Dict, key: str, value: Any) -> None:
@@ -139,7 +113,6 @@ def index(request) -> HttpResponse:
     esi_endpoint_status_result = requests.get(
         url=esi_status_json_url, headers=request_headers, timeout=10
     )
-    template_path = _get_template_path()
 
     try:
         esi_endpoint_status_result.raise_for_status()
@@ -171,5 +144,5 @@ def index(request) -> HttpResponse:
         }
 
     return render(
-        request=request, template_name=f"{template_path}/index.html", context=context
+        request=request, template_name=f"{TEMPLATE_PATH}/index.html", context=context
     )

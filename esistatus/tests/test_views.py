@@ -9,9 +9,8 @@ from unittest.mock import patch
 from django_webtest import WebTest
 
 # AA ESI Status
-from esistatus.views import _get_template_path
-
-VIEWS_PATH = "esistatus.views"
+from esistatus.app_settings import template_path
+from esistatus.constants import TEMPLATE_PATH
 
 
 class TestBulletinUI(WebTest):
@@ -30,7 +29,7 @@ class TestBulletinUI(WebTest):
 
         super().setUpClass()
 
-        cls.template_path = _get_template_path()
+        cls.template_path = TEMPLATE_PATH
 
     def test_should_return_template_path(self):
         """
@@ -40,11 +39,11 @@ class TestBulletinUI(WebTest):
         :rtype:
         """
 
-        with patch(target=VIEWS_PATH + ".allianceauth__version", new="4.0.0"):
-            template_path = _get_template_path()
+        with patch(target="esistatus.app_settings.allianceauth__version", new="4.0.0"):
+            current_template_path = template_path()
             expected_template_path = "esistatus"
 
-            self.assertEqual(first=template_path, second=expected_template_path)
+            self.assertEqual(first=current_template_path, second=expected_template_path)
 
     def test_should_return_legacy_template_path(self):
         """
@@ -54,8 +53,8 @@ class TestBulletinUI(WebTest):
         :rtype:
         """
 
-        with patch(target=VIEWS_PATH + ".allianceauth__version", new="3.7.1"):
-            template_path = _get_template_path()
+        with patch(target="esistatus.app_settings.allianceauth__version", new="3.7.1"):
+            current_template_path = template_path()
             expected_template_path = "esistatus/legacy_templates"
 
-            self.assertEqual(first=template_path, second=expected_template_path)
+            self.assertEqual(first=current_template_path, second=expected_template_path)
