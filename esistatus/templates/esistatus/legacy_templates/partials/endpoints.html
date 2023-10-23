@@ -1,0 +1,40 @@
+<!-- {{ title }} -->
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                {{ title }}
+            </h3>
+        </div>
+
+        <div class="panel-body text-center">
+            <b style="font-size: 140%;">{{ data.count }}</b><br>
+            <span>
+                {{ data.percentage }}
+            </span>
+        </div>
+
+        <div class="panel-footer">
+            {% if data.count > 0 %}
+                {% for category, endpoints in data.endpoints.items %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" href="#{{ category|slugify  }}-{{ status }}" aria-expanded="false" aria-controls="{{ category|slugify  }}-{{ status }}">
+                            <h4 class="panel-title">
+                                {{ category }}
+                            </h4>
+                        </div>
+
+                        <div id="{{ category|slugify  }}-{{ status }}" class="panel-body collapse">
+                            {% for endpoint in endpoints %}
+                                <p class="small">
+                                    {{ endpoint.method }}
+                                    {{ endpoint.route }}
+                                </p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>

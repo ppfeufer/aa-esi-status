@@ -10,7 +10,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 # AA ESI Status
-from esistatus.tests.utils import create_fake_user
+from esistatus.tests.utils import create_fake_user, is_legacy_auth
 
 
 class TestHooks(TestCase):
@@ -26,7 +26,9 @@ class TestHooks(TestCase):
 
         super().setUpClass()
 
-        cls.user_1001 = create_fake_user(1001, "Peter Parker")
+        cls.user_1001 = create_fake_user(
+            character_id=1001, character_name="Peter Parker"
+        )
 
         cls.html_menu = f"""
             <li class="d-flex flex-wrap m-2 p-2 pt-0 pb-0 mt-0 mb-0 me-0 pe-0">
@@ -47,19 +49,40 @@ class TestHooks(TestCase):
             </div>
         """
 
+        if is_legacy_auth:
+            cls.html_menu = f"""
+                        <li>
+                            <a class="active" href="{reverse('esistatus:index')}">
+                                <i class="fas fa-signal fa-fw"></i>
+                                ESI Status
+                            </a>
+                        </li>
+                    """
+
+            cls.html_header = """
+                        <div class="aa-esistatus-header">
+                            <header>
+                                <h1 class="page-header text-center">
+                                    ESI Status
+                                </h1>
+                            </header>
+                        </div>
+                    """
+
     def test_render_hook_success(self):
         """
         Test should show the link to the app in the navigation to user with access
+
         :return:
         :rtype:
         """
 
-        self.client.force_login(self.user_1001)
+        self.client.force_login(user=self.user_1001)
 
         response = self.client.get(path=reverse(viewname="esistatus:index"))
 
-        self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertContains(response, self.html_menu, html=True)
+        self.assertEqual(first=response.status_code, second=HTTPStatus.OK)
+        self.assertContains(response=response, text=self.html_menu, html=True)
         self.assertContains(response=response, text=self.html_header, html=True)
 
     def test_render_hook_with_public_page(self):

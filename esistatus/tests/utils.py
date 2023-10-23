@@ -4,12 +4,14 @@ Test utilities
 
 # Standard Library
 import re
+from packaging import version
 from typing import List
 
 # Django
 from django.contrib.auth.models import User
 
 # Alliance Auth
+from allianceauth import __version__ as allianceauth__version
 from allianceauth.tests.auth_utils import AuthUtils
 
 
@@ -55,3 +57,14 @@ def create_fake_user(
         user = AuthUtils.add_permissions_to_user(perms=perm_objs, user=user)
 
     return user
+
+
+def is_legacy_auth():
+    """
+    Check if we have a legacy Auth (<4.0.0)
+
+    :return:
+    :rtype:
+    """
+
+    return version.parse(allianceauth__version).major < 4

@@ -1,0 +1,25 @@
+@media all {
+    .aa-esistatus-header-addition {
+        display: block;
+    }
+
+    .aa-esistatus .panel-footer .panel-heading {
+        cursor: pointer;
+    }
+
+    .aa-esistatus .panel-footer .panel-default,
+    .aa-esistatus .panel-footer .panel-default .panel-body p:last-child {
+        margin-bottom: 0;
+    }
+
+    .aa-esistatus-footer {
+        border-top: 1px solid rgb(236 240 241);
+        font-size: 85%;
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
+    .template-dark-mode .aa-esistatus-footer {
+        border-color: rgb(70 69 69);
+    }
+}

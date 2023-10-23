@@ -29,31 +29,37 @@ class TestAccess(TestCase):
 
         cls.group = Group.objects.create(name="Superhero")
 
-        cls.user_1001 = create_fake_user(1001, "Peter Parker")
+        cls.user_1001 = create_fake_user(
+            character_id=1001, character_name="Peter Parker"
+        )
 
     def test_has_access(self):
         """
         Test that a user without access get a 302
+
         :return:
+        :rtype:
         """
 
         # when
-        res = self.client.get(reverse("esistatus:index"))
+        res = self.client.get(path=reverse(viewname="esistatus:index"))
 
         # then
-        self.assertEqual(res.status_code, HTTPStatus.OK)
+        self.assertEqual(first=res.status_code, second=HTTPStatus.OK)
 
     def test_logged_in_has_access(self):
         """
         Test that a user with access get to see it
+
         :return:
+        :rtype:
         """
 
         # given
-        self.client.force_login(self.user_1001)
+        self.client.force_login(user=self.user_1001)
 
         # when
-        res = self.client.get(reverse("esistatus:index"))
+        res = self.client.get(path=reverse(viewname="esistatus:index"))
 
         # then
-        self.assertEqual(res.status_code, HTTPStatus.OK)
+        self.assertEqual(first=res.status_code, second=HTTPStatus.OK)

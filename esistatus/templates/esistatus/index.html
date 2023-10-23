@@ -20,9 +20,11 @@
             {% translate "Green Endpoints" as translated_header_green %}
             {% include 'esistatus/partials/endpoints.html' with title=translated_header_green status="green" data=esi_endpoint_status.green %}
         {% else %}
-            <p class="alert alert-warning text-center">
-                {% translate "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely." %}
-            </p>
+            <div class="col-12">
+                <p class="alert alert-warning text-center">
+                    {% translate "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely." %}
+                </p>
+            </div>
         {% endif %}
     </div>
 {% endblock %}

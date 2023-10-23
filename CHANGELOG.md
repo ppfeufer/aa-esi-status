@@ -5,7 +5,46 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+<!--
+GitHub MD Syntax:
+https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+
+Highlighting:
+https://docs.github.com/assets/cb-41128/mw-1440/images/help/writing/alerts-rendered.webp
+
+> [!NOTE]
+> Highlights information that users should take into account, even when skimming.
+
+> [!IMPORTANT]
+> Crucial information necessary for users to succeed.
+
+> [!WARNING]
+> Critical content demanding immediate user attention due to potential risks.
+-->
+
 ## \[In Development\] - Unreleased
+
+<!--
+Section Order:
+
+### Added
+### Fixed
+### Changed
+### Deprecated
+### Removed
+### Security
+-->
+
+> \[!NOTE\]
+>
+> This will be the last version to be compatible with Alliance Auth older
+> than version 4.0.0. So make sure to update your Alliance Auth instance in a timely
+> manner to make sure future updates will work.
+
+### Added
+
+- Compatibility with Alliance Auth v4
+- Backwards compatibility with Alliance Auth v3 or older
 
 ## \[1.14.2\] - 2023-09-26
 
