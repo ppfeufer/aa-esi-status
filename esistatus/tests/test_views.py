@@ -8,8 +8,8 @@ from unittest.mock import patch
 # Third Party
 from django_webtest import WebTest
 
+# AA ESI Status
 from esistatus.views import _get_template_path
-
 
 VIEWS_PATH = "esistatus.views"
 

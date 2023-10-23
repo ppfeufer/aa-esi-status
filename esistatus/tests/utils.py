@@ -4,8 +4,10 @@ Test utilities
 
 # Standard Library
 import re
-from packaging import version
 from typing import List
+
+# Third Party
+from packaging import version
 
 # Django
 from django.contrib.auth.models import User
