@@ -19,6 +19,17 @@ from esistatus.apps import AaEsiStatusConfig
 logger = LoggerAddTag(my_logger=get_extension_logger(name=__name__), prefix=__title__)
 
 
+def allianceauth_major_version():
+    """
+    Get the major version of the current installed Alliance Auth instance
+
+    :return:
+    :rtype:
+    """
+
+    return version.parse(allianceauth__version).major
+
+
 def template_path() -> str:
     """
     Get template path
@@ -30,9 +41,10 @@ def template_path() -> str:
     :rtype:
     """
 
+    current_aa_major = allianceauth_major_version()
     app_name = AaEsiStatusConfig.name
 
-    if version.parse(allianceauth__version).major < 4:
+    if current_aa_major < 4:
         logger.debug(
             msg="Alliance Auth v3 detected, falling back to legacy templates …"
         )
