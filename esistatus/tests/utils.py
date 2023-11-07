@@ -6,14 +6,10 @@ Test utilities
 import re
 from typing import List
 
-# Third Party
-from packaging import version
-
 # Django
 from django.contrib.auth.models import User
 
 # Alliance Auth
-from allianceauth import __version__ as allianceauth__version
 from allianceauth.tests.auth_utils import AuthUtils
 
 
@@ -28,10 +24,10 @@ def create_fake_user(
     permissions: List[str] = None,
 ) -> User:
     """
-    Create a fake user incl. main character and (optional) permissions.
+    Create a fake user incl. Main character and (optional) permissions.
     """
 
-    username = re.sub(r"[^\w\d@\.\+-]", "_", character_name)
+    username = re.sub(pattern=r"[^\w\d@\.\+-]", repl="_", string=character_name)
     user = AuthUtils.create_user(username)
 
     if not corporation_id:
@@ -55,18 +51,9 @@ def create_fake_user(
     )
 
     if permissions:
-        perm_objs = [AuthUtils.get_permission_by_name(perm) for perm in permissions]
+        perm_objs = [
+            AuthUtils.get_permission_by_name(perm=perm) for perm in permissions
+        ]
         user = AuthUtils.add_permissions_to_user(perms=perm_objs, user=user)
 
     return user
-
-
-def is_legacy_auth():
-    """
-    Check if we have a legacy Auth (<4.0.0)
-
-    :return:
-    :rtype:
-    """
-
-    return version.parse(allianceauth__version).major < 4

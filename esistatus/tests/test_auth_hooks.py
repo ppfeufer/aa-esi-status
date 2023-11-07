@@ -10,7 +10,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 # AA ESI Status
-from esistatus.tests.utils import create_fake_user, is_legacy_auth
+from esistatus.tests.utils import create_fake_user
 
 
 class TestHooks(TestCase):
@@ -32,7 +32,7 @@ class TestHooks(TestCase):
 
         cls.html_menu = f"""
             <li class="d-flex flex-wrap m-2 p-2 pt-0 pb-0 mt-0 mb-0 me-0 pe-0">
-                <i class="nav-link fas fa-signal fa-fw fa-fw align-self-center me-3 active"></i>
+                <i class="nav-link fas fa-signal fa-fw align-self-center me-3 active"></i>
                 <a class="nav-link flex-fill align-self-center" href="{reverse('esistatus:index')}">
                     ESI Status
                 </a>
@@ -48,26 +48,6 @@ class TestHooks(TestCase):
                 </header>
             </div>
         """
-
-        if is_legacy_auth:
-            cls.html_menu = f"""
-                        <li>
-                            <a class="active" href="{reverse('esistatus:index')}">
-                                <i class="fas fa-signal fa-fw"></i>
-                                ESI Status
-                            </a>
-                        </li>
-                    """
-
-            cls.html_header = """
-                        <div class="aa-esistatus-header">
-                            <header>
-                                <h1 class="page-header text-center">
-                                    ESI Status
-                                </h1>
-                            </header>
-                        </div>
-                    """
 
     def test_render_hook_success(self):
         """

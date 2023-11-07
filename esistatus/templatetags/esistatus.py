@@ -20,7 +20,7 @@ def esistatus_static(path: str) -> str:
     :rtype:
     """
 
-    static_url = static(path)
-    versioned_url = static_url + "?v=" + __version__
+    static_url = static(path=path)
+    versioned_url = f"{static_url}?v={__version__}"
 
     return versioned_url
