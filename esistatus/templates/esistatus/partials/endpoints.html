@@ -17,7 +17,7 @@
             {% if data.count > 0 %}
                 {% for category, endpoints in data.endpoints.items %}
                     <div class="card card-default border-0">
-                        <div class="card-header border-0" data-bs-toggle="collapse" href="#{{ category|slugify  }}-{{ status }}" aria-expanded="false" aria-controls="{{ category|slugify  }}-{{ status }}">
+                        <div class="card-header border-0 cursor-pointer" data-bs-toggle="collapse" href="#{{ category|slugify  }}-{{ status }}" aria-expanded="false" aria-controls="{{ category|slugify  }}-{{ status }}">
                             <p class="card-title h6">
                                 {{ category }}
                             </p>
