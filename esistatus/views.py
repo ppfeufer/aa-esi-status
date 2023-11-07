@@ -21,7 +21,7 @@ from app_utils.logging import LoggerAddTag
 
 # AA ESI Status
 from esistatus import __title__
-from esistatus.constants import TEMPLATE_PATH, USER_AGENT
+from esistatus.constants import USER_AGENT
 
 logger = LoggerAddTag(get_extension_logger(__name__), __title__)
 
@@ -144,5 +144,5 @@ def index(request) -> HttpResponse:
         }
 
     return render(
-        request=request, template_name=f"{TEMPLATE_PATH}/index.html", context=context
+        request=request, template_name="esistatus/index.html", context=context
     )
