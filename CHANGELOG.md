@@ -37,14 +37,15 @@ Section Order:
 
 > \[!NOTE\]
 >
-> This will be the last version to be compatible with Alliance Auth older
-> than version 4.0.0. So make sure to update your Alliance Auth instance in a timely
-> manner to make sure future updates will work.
+> **This version needs at least Alliance Auth v4.0.0!**
+>
+> Please make sure to update your Alliance Auth instance before
+> you install this version, otherwise an update to Alliance Auth will
+> be pulled in unsupervised.
 
 ### Added
 
 - Compatibility with Alliance Auth v4
-- Backwards compatibility with Alliance Auth v3 or older
 
 ## \[1.14.2\] - 2023-09-26
 
@@ -176,7 +177,7 @@ Section Order:
 
 ### Fixed
 
-- Category with names containing a space couldn't be opened (e.g. Faction Warfare)
+- Category with names containing a space couldn't be opened (e.g., Faction Warfare)
 
 ### Changed
 
@@ -281,7 +282,7 @@ Section Order:
 
 ### Added
 
-- Warning when ESI status couldn't be loaded, for what ever reason
+- Warning when ESI status couldn't be loaded, for whatever reason
 
 ## \[0.1.0-alpha.2\] - 2020-10-11
 

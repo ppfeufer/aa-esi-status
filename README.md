@@ -40,15 +40,17 @@ ______________________________________________________________________
 
 ## Installation<a name="installation"></a>
 
-> **Note**
+> \[!NOTE\]
 >
-> This app is a plugin for Alliance Auth. If you don't have Alliance Auth running
-> already, please install it first before proceeding. (See the official [AA
-> installation guide](https://allianceauth.readthedocs.io/en/latest/installation/allianceauth.html) for details)
+> **AA ESI Status needs at least Alliance Auth v4.0.0!**
 >
-> AA ESI Status needs at least **Alliance Auth v3.6.1**. Please make sure to meet
-> this condition _before_ installing this app, otherwise an update to Alliance Auth
-> will be pulled in unsupervised.
+> Please make sure to update your Alliance Auth instance _before_ you install this
+> module or update to the latest version, otherwise an update to Alliance Auth will
+> be pulled in unsupervised.
+
+This app is a plugin for Alliance Auth. If you don't have Alliance Auth running
+already, please install it first before proceeding.
+(See the official [AA installation guide](https://allianceauth.readthedocs.io/en/latest/installation/allianceauth.html) for details)
 
 ### Step 1: Install the App<a name="step-1-install-the-app"></a>
 
