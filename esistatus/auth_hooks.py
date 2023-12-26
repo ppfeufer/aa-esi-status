@@ -20,7 +20,7 @@ class AaEsiStatusMenuItem(MenuItemHook):  # pylint: disable=too-few-public-metho
         MenuItemHook.__init__(
             self,
             text=__title__,
-            classes="fas fa-signal fa-fw",
+            classes="fas fa-signal",
             url_name="esistatus:index",
             navactive=["esistatus:"],
         )

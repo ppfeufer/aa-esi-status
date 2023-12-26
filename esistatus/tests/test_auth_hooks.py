@@ -63,7 +63,6 @@ class TestHooks(TestCase):
 
         self.assertEqual(first=response.status_code, second=HTTPStatus.OK)
         self.assertContains(response=response, text=self.html_menu, html=True)
-        self.assertContains(response=response, text=self.html_header, html=True)
 
     def test_render_hook_with_public_page(self):
         """

@@ -22,8 +22,10 @@ INSTALLED_APPS = [
     "django.contrib.humanize",
     "django_celery_beat",
     "bootstrapform",
+    "django_bootstrap5",  # https://github.com/zostera/django-bootstrap5
     "sortedm2m",
     "esi",
+    "allianceauth.framework",
     "allianceauth.authentication",
     "allianceauth.services",
     "allianceauth.eveonline",
@@ -71,6 +73,7 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 MIDDLEWARE = [
+    "allianceauth.menu.middleware.MenuSyncMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "allianceauth.authentication.middleware.UserSettingsMiddleware",
@@ -189,7 +192,8 @@ DATABASES = {
 
 SITE_NAME = "Alliance Auth"
 
-DEFAULT_THEME = "allianceauth.theme.darkly"
+DEFAULT_THEME = "allianceauth.theme.flatly.auth_hooks.FlatlyThemeHook"
+DEFAULT_THEME_DARK = "allianceauth.theme.darkly.auth_hooks.DarklyThemeHook"  # Legacy AAv3 user.profile.night_mode=1
 
 LOGIN_URL = "auth_login_user"  # view that handles login logic
 
