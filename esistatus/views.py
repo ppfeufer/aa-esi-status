@@ -106,42 +106,36 @@ def index(request) -> HttpResponse:
     Index view
     """
 
-    esi_endpoint_status = {}
     has_status_result = False
     request_headers = {"User-Agent": USER_AGENT}
     esi_status_json_url = "https://esi.evetech.net/status.json?version=latest"
-    esi_endpoint_status_result = requests.get(
-        url=esi_status_json_url, headers=request_headers, timeout=10
-    )
+    esi_endpoint_status = {}
 
     try:
+        esi_endpoint_status_result = requests.get(
+            url=esi_status_json_url, headers=request_headers, timeout=10
+        )
         esi_endpoint_status_result.raise_for_status()
+        esi_endpoint_json = esi_endpoint_status_result.json()
     except requests.exceptions.RequestException as exc:
         error_str = str(exc)
 
         logger.info(msg=f"Unable to get ESI status. Error: {error_str}")
-
-        context = {"has_status_result": has_status_result}
+    except json.JSONDecodeError:
+        logger.info(
+            msg=(
+                "Unable to get ESI status. ESI returning gibberish, I can't understand …"
+            )
+        )
     else:
-        try:
-            esi_endpoint_json = esi_endpoint_status_result.json()
-        except requests.exceptions.JSONDecodeError:
-            has_status_result = False
+        esi_endpoint_status, has_status_result = _esi_endpoint_status(
+            esi_endpoint_json=esi_endpoint_json
+        )
 
-            logger.info(
-                msg=(
-                    "Unable to get ESI status. ESI returning gibberish, I can't understand …"
-                )
-            )
-        else:
-            esi_endpoint_status, has_status_result = _esi_endpoint_status(
-                esi_endpoint_json=esi_endpoint_json
-            )
-
-        context = {
-            "has_status_result": has_status_result,
-            "esi_endpoint_status": esi_endpoint_status,
-        }
+    context = {
+        "has_status_result": has_status_result,
+        "esi_endpoint_status": esi_endpoint_status,
+    }
 
     return render(
         request=request, template_name="esistatus/index.html", context=context
