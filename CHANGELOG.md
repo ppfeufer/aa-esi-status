@@ -24,6 +24,8 @@ https://docs.github.com/assets/cb-41128/mw-1440/images/help/writing/alerts-rende
 
 ## \[In Development\] - Unreleased
 
+## \[2.0.0-beta.1\] - 2024-02-18
+
 <!--
 Section Order:
 
@@ -37,15 +39,21 @@ Section Order:
 
 > \[!NOTE\]
 >
-> **This version needs at least Alliance Auth v4.0.0!**
+> **This version needs at least Alliance Auth v4.0.0b1!**
 >
 > Please make sure to update your Alliance Auth instance before
-> you install this version, otherwise an update to Alliance Auth will
+> you install this version, otherwise, an update to Alliance Auth will
 > be pulled in unsupervised.
 
 ### Added
 
-- Compatibility with Alliance Auth v4
+- Compatibility to Alliance Auth v4
+  - Bootstrap 5
+  - Django 4.2
+
+### Removed
+
+- Compatibility to Alliance Auth v3
 
 ## \[1.14.2\] - 2023-09-26
 
