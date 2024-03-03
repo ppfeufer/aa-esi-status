@@ -24,8 +24,6 @@ https://docs.github.com/assets/cb-41128/mw-1440/images/help/writing/alerts-rende
 
 ## \[In Development\] - Unreleased
 
-## \[2.0.0-beta.1\] - 2024-02-18
-
 <!--
 Section Order:
 
@@ -36,6 +34,20 @@ Section Order:
 ### Removed
 ### Security
 -->
+
+> \[!NOTE\]
+>
+> **This version needs at least Alliance Auth v4.0.0!**
+>
+> Please make sure to update your Alliance Auth instance before
+> you install this version, otherwise, an update to Alliance Auth will
+> be pulled in unsupervised.
+
+### Added
+
+- Dashboard widget for administrative users
+
+## \[2.0.0-beta.1\] - 2024-02-18
 
 > \[!NOTE\]
 >
