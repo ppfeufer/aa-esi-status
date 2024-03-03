@@ -68,9 +68,9 @@ def _esi_endpoint_status_from_json(esi_endpoint_json: json) -> Tuple:
     """
 
     esi_endpoint_status = {
-        "green": {"endpoints": {}, "count": 0, "percentage": ""},
-        "yellow": {"endpoints": {}, "count": 0, "percentage": ""},
-        "red": {"endpoints": {}, "count": 0, "percentage": ""},
+        "green": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+        "yellow": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+        "red": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
     }
 
     for esi_endpoint in esi_endpoint_json:
@@ -93,18 +93,26 @@ def _esi_endpoint_status_from_json(esi_endpoint_json: json) -> Tuple:
 
     # Calculate percentages - Green endpoints
     green_percentage_calc = (
-        esi_endpoint_status["green"]["count"] / endpoints_total * 100
+        (esi_endpoint_status["green"]["count"] / endpoints_total * 100)
+        if esi_endpoint_status["green"]["count"] > 0
+        else 0
     )
     esi_endpoint_status["green"]["percentage"] = f"{green_percentage_calc:.2f}%"
 
     # Calculate percentages - Yellow endpoints
     yellow_percentage_calc = (
-        esi_endpoint_status["yellow"]["count"] / endpoints_total * 100
+        (esi_endpoint_status["yellow"]["count"] / endpoints_total * 100)
+        if esi_endpoint_status["yellow"]["count"] > 0
+        else 0
     )
     esi_endpoint_status["yellow"]["percentage"] = f"{yellow_percentage_calc:.2f}%"
 
     # Calculate percentages - Red endpoints
-    red_percentage_calc = esi_endpoint_status["red"]["count"] / endpoints_total * 100
+    red_percentage_calc = (
+        (esi_endpoint_status["red"]["count"] / endpoints_total * 100)
+        if esi_endpoint_status["red"]["count"] > 0
+        else 0
+    )
     esi_endpoint_status["red"]["percentage"] = f"{red_percentage_calc:.2f}%"
 
     # Return the whole jazz (Tuple[(bool) Has Status Results, (dict) Endpoint Status])
@@ -134,16 +142,20 @@ def _esi_status() -> Tuple:
         error_str = str(exc)
 
         logger.info(msg=f"Unable to get ESI status. Error: {error_str}")
+
+        return has_status_result, esi_endpoint_status
     except json.JSONDecodeError:
         logger.info(
             msg=(
                 "Unable to get ESI status. ESI returning gibberish, I can't understand …"
             )
         )
-    else:
-        has_status_result, esi_endpoint_status = _esi_endpoint_status_from_json(
-            esi_endpoint_json=esi_endpoint_json
-        )
+
+        return has_status_result, esi_endpoint_status
+
+    has_status_result, esi_endpoint_status = _esi_endpoint_status_from_json(
+        esi_endpoint_json=esi_endpoint_json
+    )
 
     return has_status_result, esi_endpoint_status
 
