@@ -35,6 +35,8 @@ Section Order:
 ### Security
 -->
 
+## \[2.0.0-beta.2\] - 2024-03-08
+
 > \[!NOTE\]
 >
 > **This version needs at least Alliance Auth v4.0.0!**
