@@ -1,7 +1,7 @@
 {% extends "esistatus/base.html" %}
 
 {% load i18n %}
-{% load esistatus_versioned_static %}
+{% load esistatus %}
 
 {% block aa_esistatus_header %}
     {% translate "ESI Status" as translated_header %}
@@ -20,14 +20,15 @@
             {% translate "Green Endpoints" as translated_header_green %}
             {% include 'esistatus/partials/endpoints.html' with title=translated_header_green status="green" data=esi_endpoint_status.green %}
         {% else %}
-            <p class="alert alert-warning text-center">
-                {% translate "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely." %}
-            </p>
+            <div class="col-12">
+                <p class="alert alert-warning text-center">
+                    {% translate "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely." %}
+                </p>
+            </div>
         {% endif %}
     </div>
 {% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% esistatus_static 'esistatus/css/aa-bootstrap-fix.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% esistatus_static 'esistatus/css/esistatus.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% esistatus_static 'esistatus/css/esistatus.min.css' %}">
 {% endblock %}

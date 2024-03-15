@@ -1,0 +1,26 @@
+<div id="esi-status-dashboard-panel" class="col-12 align-self-stretch py-2 collapse"></div>
+
+<script>
+    const esiStatusDashboardWidget = document.getElementById("esi-status-dashboard-panel");
+
+    fetch('{% url "esistatus:ajax_esi_status" %}')
+        .then((response) => {
+            if (response.ok) {
+                return response.text();
+            }
+            throw new Error("Something went wrong");
+        })
+        .then((responseText) => {
+            {#console.log("ESI Status Dashboard Widget: ", responseText);#}
+            if (responseText !== "") {
+                esiStatusDashboardWidget.innerHTML = responseText;
+
+                new bootstrap.Collapse(esiStatusDashboardWidget, {
+                    toggle: true
+                });
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+</script>

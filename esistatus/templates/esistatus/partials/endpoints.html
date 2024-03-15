@@ -1,40 +1,41 @@
-<!-- {{ title }} -->
-<div class="col-md-4">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">
+<div class="col-md-4 mb-3 mb-md-0">
+    <div class="card card-{{ status }}-esi-endpoints">
+        <div class="card-header bg-{% if status == 'red' %}danger{% elif status == 'yellow' %}warning{% else %}success{% endif %}">
+            <div class="card-title text-white text-center mb-0">
                 {{ title }}
-            </h3>
+            </div>
         </div>
 
-        <div class="panel-body text-center">
-            <b style="font-size: 140%;">{{ data.count }}</b><br>
+        <div class="card-body text-center">
+            <b class="fs-4">{{ data.count }}</b><br>
             <span>
                 {{ data.percentage }}
             </span>
         </div>
 
-        <div class="panel-footer">
-            {% if data.count > 0 %}
-                {% for category, endpoints in data.endpoints.items %}
-                    <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" href="#{{ category|slugify  }}-{{ status }}" aria-expanded="false" aria-controls="{{ category|slugify  }}-{{ status }}">
-                            <h4 class="panel-title">
-                                {{ category }}
-                            </h4>
-                        </div>
-
-                        <div id="{{ category|slugify  }}-{{ status }}" class="panel-body collapse">
-                            {% for endpoint in endpoints %}
-                                <p class="small">
-                                    {{ endpoint.method }}
-                                    {{ endpoint.route }}
+        {% if with_details is not False %}
+            <div class="card-footer">
+                {% if data.count > 0 %}
+                    {% for category, endpoints in data.endpoints.items %}
+                        <div class="card card-default border-0">
+                            <div class="card-header border-0 cursor-pointer" data-bs-toggle="collapse" href="#{{ category|slugify  }}-{{ status }}" aria-expanded="false" aria-controls="{{ category|slugify  }}-{{ status }}">
+                                <p class="card-title h6">
+                                    {{ category }}
                                 </p>
-                            {% endfor %}
+                            </div>
+
+                            <div id="{{ category|slugify  }}-{{ status }}" class="card-body collapse">
+                                {% for endpoint in endpoints %}
+                                    <p class="small">
+                                        {{ endpoint.method }}
+                                        {{ endpoint.route }}
+                                    </p>
+                                {% endfor %}
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        {% endif %}
     </div>
 </div>

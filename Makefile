@@ -47,5 +47,10 @@ build_test:
 
 tox_tests:
 	export USE_MYSQL=False; \
-	tox -v -e allianceauth-stable; \
+	tox -v -e allianceauth-latest; \
+	rm -rf .tox/
+
+tox_tests_testing:
+	export USE_MYSQL=False; \
+	tox -v -e allianceauth-testing; \
 	rm -rf .tox/

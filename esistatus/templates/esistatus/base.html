@@ -1,20 +1,28 @@
-{% extends "allianceauth/base.html" %}
+{% extends "allianceauth/base-bs5.html" %}
 
 {% load i18n %}
 
-{% block page_title %}{% translate "ESI Status" %}{% endblock %}
+{% block page_title %}
+    {% translate "ESI Status" %}
+{% endblock %}
+
+{% block header_nav_brand %}
+    {% translate "ESI Status" %}
+{% endblock header_nav_brand %}
 
 {% block content %}
     <div class="aa-esistatus">
-        <div class="aa-esistatus-header">
-            {% block aa_esistatus_header %}{% endblock %}
-        </div>
+        {% if not user.is_authenticated %}
+            <div class="aa-esistatus-header">
+                {% block aa_esistatus_header %}{% endblock %}
+            </div>
+        {% endif %}
 
         <div class="aa-esistatus-body">
             {% block aa_esistatus_body %}{% endblock %}
         </div>
 
-        <div class="aa-esistatus-footer">
+        <div class="aa-esistatus-footer mt-3 pt-3 border-top border-light">
             {% include "esistatus/partials/footer/app-translation-footer.html" %}
         </div>
     </div>

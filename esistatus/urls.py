@@ -11,5 +11,6 @@ from esistatus import views
 app_name: str = "esistatus"
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path(route="", view=views.index, name="index"),
+    path(route="ajax/esi_status/", view=views.ajax_esi_status, name="ajax_esi_status"),
 ]

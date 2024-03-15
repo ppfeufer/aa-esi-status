@@ -1,0 +1,30 @@
+{% load i18n %}
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title text-center mb-0">
+            {% translate "ESI Status" %}
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row mb-3">
+            {% translate "Red Endpoints" as translated_header_red %}
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="red" data=esi_endpoint_status.red with_details=False %}
+
+            {% translate "Yellow Endpoints" as translated_header_yellow %}
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_yellow status="yellow" data=esi_endpoint_status.yellow with_details=False %}
+
+            {% translate "Green Endpoints" as translated_header_green %}
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_green status="green" data=esi_endpoint_status.green with_details=False %}
+        </div>
+
+        <div class="text-end">
+            <p class="small mb-0">
+                <a href="{% url 'esistatus:index' %}">{% translate "Detailed ESI status" %}</a>
+                |
+                <a href="https://status.eveonline.com/" target="_blank" rel="noopener noreferer">{% translate "EVE Online status" %}</a>
+            </p>
+        </div>
+    </div>
+</div>

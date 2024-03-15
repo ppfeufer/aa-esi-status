@@ -6,7 +6,6 @@ requires = [
 
 [project]
 name = "aa-esi-status"
-version = "1.14.2"
 description = "A simple status monitor for ESI"
 readme = "README.md"
 keywords = [
@@ -23,7 +22,7 @@ requires-python = ">=3.8"
 classifiers = [
     "Environment :: Web Environment",
     "Framework :: Django",
-    "Framework :: Django :: 4.0",
+    "Framework :: Django :: 4.2",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Operating System :: OS Independent",
@@ -33,15 +32,19 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Internet :: WWW/HTTP",
     "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
 ]
+dynamic = [
+    "version",
+]
 dependencies = [
-    "allianceauth>=3.6.1",
+    "allianceauth>=4.0.0b2",
     "allianceauth-app-utils>=1.12",
 ]
 [project.optional-dependencies]
-tests-allianceauth-stable = [
+tests-allianceauth-latest = [
     "coverage",
     "django-webtest",
 ]
@@ -57,3 +60,6 @@ Tracker = "https://github.com/ppfeufer/aa-esi-status/issues"
 include = [
     "/esistatus",
 ]
+
+[tool.hatch.version]
+path = "esistatus/__init__.py"

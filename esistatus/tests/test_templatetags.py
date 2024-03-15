@@ -12,25 +12,28 @@ from esistatus import __version__
 
 class TestVersionedStatic(TestCase):
     """
-    Test the esistatus_versioned_static template tag
+    Test the esistatus_static template tag
     """
 
     def test_versioned_static(self):
         """
         Test should return a versioned static file
+
         :return:
         :rtype:
         """
 
-        context = Context({"version": __version__})
+        context = Context(dict_={"version": __version__})
         template_to_render = Template(
-            "{% load esistatus_versioned_static %}"
-            "{% esistatus_static 'esistatus/css/esistatus.min.css' %}"
+            template_string=(
+                "{% load esistatus %}"
+                "{% esistatus_static 'esistatus/css/esistatus.min.css' %}"
+            )
         )
 
-        rendered_template = template_to_render.render(context)
+        rendered_template = template_to_render.render(context=context)
 
         self.assertInHTML(
-            f'/static/esistatus/css/esistatus.min.css?v={context["version"]}',
-            rendered_template,
+            needle=f'/static/esistatus/css/esistatus.min.css?v={context["version"]}',
+            haystack=rendered_template,
         )

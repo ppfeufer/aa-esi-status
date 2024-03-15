@@ -2,15 +2,14 @@
 Hook into AA
 """
 
-# Django
-from django.utils.translation import gettext_lazy as _
-
 # Alliance Auth
 from allianceauth import hooks
+from allianceauth.hooks import DashboardItemHook
 from allianceauth.services.hooks import MenuItemHook, UrlHook
 
 # AA ESI Status
 from esistatus import __title__, urls
+from esistatus.views import dashboard_widget
 
 
 class AaEsiStatusMenuItem(MenuItemHook):  # pylint: disable=too-few-public-methods
@@ -22,27 +21,42 @@ class AaEsiStatusMenuItem(MenuItemHook):  # pylint: disable=too-few-public-metho
         # Setup menu entry for sidebar
         MenuItemHook.__init__(
             self,
-            _(__title__),
-            "fas fa-signal fa-fw",
-            "esistatus:index",
+            text=__title__,
+            classes="fa-solid fa-signal",
+            url_name="esistatus:index",
             navactive=["esistatus:"],
         )
 
     def render(self, request):
         """
         Check if the user has the permission to view this app
+
         :param request:
+        :type request:
         :return:
+        :rtype:
         """
 
         return MenuItemHook.render(self, request)
+
+
+class AaEsiStatusDashboardHook(DashboardItemHook):
+    """
+    This class adds the widget to the dashboard
+    """
+
+    def __init__(self):
+        # Setup dashboard widget
+        DashboardItemHook.__init__(self=self, view_function=dashboard_widget, order=1)
 
 
 @hooks.register("menu_item_hook")
 def register_menu():
     """
     Register our menu item
-    :return:
+
+    :return: The hook
+    :rtype: AaEsiStatusMenuItem
     """
 
     return AaEsiStatusMenuItem()
@@ -52,7 +66,9 @@ def register_menu():
 def register_urls():
     """
     Register our base url
-    :return:
+
+    :return: The hook
+    :rtype: UrlHook
     """
 
     return UrlHook(
@@ -61,3 +77,15 @@ def register_urls():
         base_url=r"^esi-status/",
         excluded_views=["esistatus.views.index"],
     )
+
+
+@hooks.register("dashboard_hook")
+def register_esi_hook():
+    """
+    Register our dashboard hook
+
+    :return: The hook
+    :rtype: AaEsiStatusDashboardHook
+    """
+
+    return AaEsiStatusDashboardHook()
