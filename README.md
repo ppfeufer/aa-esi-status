@@ -42,11 +42,13 @@ ______________________________________________________________________
 
 > \[!NOTE\]
 >
-> **AA ESI Status needs at least Alliance Auth v4.0.0!**
+> **AA ESI Status >= 2.0.0 needs at least Alliance Auth v4.0.0!**
 >
 > Please make sure to update your Alliance Auth instance _before_ you install this
 > module or update to the latest version, otherwise an update to Alliance Auth will
 > be pulled in unsupervised.
+>
+> The last version of AA ESI Status that supports Alliance Auth v3 is 1.14.2
 
 This app is a plugin for Alliance Auth. If you don't have Alliance Auth running
 already, please install it first before proceeding.
