@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-24 15:52+0200\n"
+"POT-Creation-Date: 2024-03-15 19:54+0100\n"
 "PO-Revision-Date: 2024-01-11 21:04+0000\n"
 "Last-Translator: Dehao Wu <wudehao2000@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.ppfeufer.de/projects/"
@@ -20,43 +20,60 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.3.1\n"
 
-#: apps.py:20
+#: esistatus/__init__.py:9 esistatus/templates/esistatus/base.html:6
+#: esistatus/templates/esistatus/base.html:10
+#: esistatus/templates/esistatus/index.html:7
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:6
+msgid "ESI Status"
+msgstr "esi状态"
+
+#: esistatus/apps.py:20
 #, python-brace-format
 msgid "ESI Status v{__version__}"
 msgstr "esi 状态 {__version__}"
 
-#: models.py:22
+#: esistatus/models.py:22
 msgid "Can access this app"
 msgstr "允许访问此软件"
 
-#: templates/esistatus/base.html:5 templates/esistatus/index.html:7
-msgid "ESI Status"
-msgstr "esi状态"
-
-#: templates/esistatus/index.html:14
+#: esistatus/templates/esistatus/index.html:14
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:12
 msgid "Red Endpoints"
 msgstr ""
 
-#: templates/esistatus/index.html:17
+#: esistatus/templates/esistatus/index.html:17
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:15
 msgid "Yellow Endpoints"
 msgstr ""
 
-#: templates/esistatus/index.html:20
+#: esistatus/templates/esistatus/index.html:20
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
 msgid "Green Endpoints"
 msgstr ""
 
-#: templates/esistatus/index.html:24
+#: esistatus/templates/esistatus/index.html:25
 msgid ""
 "Couldn't read the ESI status. Please try and reload the page. If that "
 "doesn't help, it is possible that ESI might be down entirely."
-msgstr "无法读取 ESI 状态。 请尝试重新加载页面。 如果这没有解决，ESI 可能完全失效了。"
+msgstr ""
+"无法读取 ESI 状态。 请尝试重新加载页面。 如果这没有解决，ESI 可能完全失效了。"
 
-#: templates/esistatus/partials/footer/app-translation-footer.html:5
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
+#, fuzzy
+#| msgid "ESI Status"
+msgid "Detailed ESI status"
+msgstr "esi状态"
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:26
+msgid "EVE Online status"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:5
 msgid ""
 "Do you want to help translate this app into your language or improve the "
 "existing translation?"
 msgstr "您想帮助将此应用程序翻译成您的母语或改进现有的翻译吗?"
 
-#: templates/esistatus/partials/footer/app-translation-footer.html:8
+#: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:8
 msgid "Join our team of translators!"
 msgstr "加入我们的翻译团队吧！"

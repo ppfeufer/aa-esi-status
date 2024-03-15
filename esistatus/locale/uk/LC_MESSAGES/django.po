@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-24 15:52+0200\n"
+"POT-Creation-Date: 2024-03-15 19:54+0100\n"
 "PO-Revision-Date: 2023-09-24 13:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://weblate.ppfeufer.de/projects/alliance-auth-"
@@ -19,32 +19,38 @@ msgstr ""
 "n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 5.0.2\n"
 
-#: apps.py:20
+#: esistatus/__init__.py:9 esistatus/templates/esistatus/base.html:6
+#: esistatus/templates/esistatus/base.html:10
+#: esistatus/templates/esistatus/index.html:7
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:6
+msgid "ESI Status"
+msgstr "Статус ESI"
+
+#: esistatus/apps.py:20
 #, python-brace-format
 msgid "ESI Status v{__version__}"
 msgstr ""
 
-#: models.py:22
+#: esistatus/models.py:22
 msgid "Can access this app"
 msgstr ""
 
-#: templates/esistatus/base.html:5 templates/esistatus/index.html:7
-msgid "ESI Status"
-msgstr "Статус ESI"
-
-#: templates/esistatus/index.html:14
+#: esistatus/templates/esistatus/index.html:14
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:12
 msgid "Red Endpoints"
 msgstr "Червоні кінцеві точки"
 
-#: templates/esistatus/index.html:17
+#: esistatus/templates/esistatus/index.html:17
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:15
 msgid "Yellow Endpoints"
 msgstr "Жовті кінцеві точки"
 
-#: templates/esistatus/index.html:20
+#: esistatus/templates/esistatus/index.html:20
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
 msgid "Green Endpoints"
 msgstr "Зелені кінцеві точки"
 
-#: templates/esistatus/index.html:24
+#: esistatus/templates/esistatus/index.html:25
 msgid ""
 "Couldn't read the ESI status. Please try and reload the page. If that "
 "doesn't help, it is possible that ESI might be down entirely."
@@ -53,12 +59,22 @@ msgstr ""
 "сторінку. Якщо це не допомогло, цілком можливо, що ESI може повністю вийти з "
 "ладу."
 
-#: templates/esistatus/partials/footer/app-translation-footer.html:5
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
+#, fuzzy
+#| msgid "ESI Status"
+msgid "Detailed ESI status"
+msgstr "Статус ESI"
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:26
+msgid "EVE Online status"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:5
 msgid ""
 "Do you want to help translate this app into your language or improve the "
 "existing translation?"
 msgstr ""
 
-#: templates/esistatus/partials/footer/app-translation-footer.html:8
+#: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:8
 msgid "Join our team of translators!"
 msgstr ""
