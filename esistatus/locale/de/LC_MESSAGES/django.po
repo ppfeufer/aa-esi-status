@@ -1,22 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# "H. Peter Pfeufer" <info@ppfeufer.de>, 2023.
+# "H. Peter Pfeufer" <info@ppfeufer.de>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-15 19:54+0100\n"
-"PO-Revision-Date: 2023-09-24 13:12+0000\n"
+"PO-Revision-Date: 2024-03-16 08:53+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
-"Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-"
-"apps/aa-esi-status/de/>\n"
+"Language-Team: German <https://weblate.ppfeufer.de/projects/"
+"alliance-auth-apps/aa-esi-status/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.4.2\n"
 
 #: esistatus/__init__.py:9 esistatus/templates/esistatus/base.html:6
 #: esistatus/templates/esistatus/base.html:10
@@ -59,14 +59,12 @@ msgstr ""
 "unerreichbar ist."
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
-#, fuzzy
-#| msgid "ESI Status"
 msgid "Detailed ESI status"
-msgstr "ESI Status"
+msgstr "Detaillierter ESI Status"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:26
 msgid "EVE Online status"
-msgstr ""
+msgstr "EVE Online Status"
 
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:5
 msgid ""
