@@ -47,6 +47,9 @@ ______________________________________________________________________
 
 ### Dashboard Widget<a name="dashboard-widget"></a>
 
+This is how the dashboard widget looks like.
+It shows the current status of ESI for administrative users.
+
 ![AA ESI Status Dashboard Widget](https://raw.githubusercontent.com/ppfeufer/aa-esi-status/master/docs/images/dashboard-widget.jpg "AA ESI Status Dashboard Widget")
 
 ## Installation<a name="installation"></a>
