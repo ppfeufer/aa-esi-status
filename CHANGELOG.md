@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+### Changed
+
+- Dashboard widget will be auto-updated every 60 seconds when the browser tab is active
+
 ## \[2.0.0\] - 2024-03-16
 
 > \[!NOTE\]
