@@ -32,8 +32,9 @@ class TestHooks(TestCase):
 
         cls.html_menu = f"""
             <li class="d-flex flex-wrap m-2 p-2 pt-0 pb-0 mt-0 mb-0 me-0 pe-0">
-                <i class="nav-link fa-solid fa-signal fa-fw align-self-center me-3 active"></i>
-                <a class="nav-link flex-fill align-self-center me-auto" href="{reverse('esistatus:index')}">
+                <i class="nav-link fa-solid fa-signal fa-fw align-self-center me-3 active">
+                </i>
+                <a class="nav-link flex-fill align-self-center me-auto active" href="{reverse('esistatus:index')}">
                     ESI Status
                 </a>
             </li>
