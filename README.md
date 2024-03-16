@@ -22,6 +22,9 @@ ______________________________________________________________________
 <!-- mdformat-toc start --slug=github --maxlevel=6 --minlevel=1 -->
 
 - [AA ESI Status](#aa-esi-status)
+  - [Screenshots](#screenshots)
+    - [ESI Status Page](#esi-status-page)
+    - [Dashboard Widget](#dashboard-widget)
   - [Installation](#installation)
     - [Step 1: Install the App](#step-1-install-the-app)
     - [Step 2: Update Your AA Settings](#step-2-update-your-aa-settings)
@@ -36,7 +39,15 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
+## Screenshots<a name="screenshots"></a>
+
+### ESI Status Page<a name="esi-status-page"></a>
+
 ![AA ESI Status](https://raw.githubusercontent.com/ppfeufer/aa-esi-status/master/docs/images/aa-esi-status.jpg "AA ESI Status")
+
+### Dashboard Widget<a name="dashboard-widget"></a>
+
+![AA ESI Status Dashboard Widget](https://raw.githubusercontent.com/ppfeufer/aa-esi-status/master/docs/images/dashboard-widget.jpg "AA ESI Status Dashboard Widget")
 
 ## Installation<a name="installation"></a>
 
