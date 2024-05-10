@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-15 19:54+0100\n"
-"PO-Revision-Date: 2024-01-11 21:04+0000\n"
+"PO-Revision-Date: 2024-05-10 14:01+0000\n"
 "Last-Translator: Dehao Wu <wudehao2000@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.ppfeufer.de/projects/"
 "alliance-auth-apps/aa-esi-status/zh_Hans/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.3.1\n"
+"X-Generator: Weblate 5.5.3\n"
 
 #: esistatus/__init__.py:9 esistatus/templates/esistatus/base.html:6
 #: esistatus/templates/esistatus/base.html:10
@@ -55,8 +55,7 @@ msgstr ""
 msgid ""
 "Couldn't read the ESI status. Please try and reload the page. If that "
 "doesn't help, it is possible that ESI might be down entirely."
-msgstr ""
-"无法读取 ESI 状态。 请尝试重新加载页面。 如果这没有解决，ESI 可能完全失效了。"
+msgstr "无法读取 ESI 状态。 请尝试重新加载页面。 如果这没有解决，ESI 可能完全失效了。"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
 #, fuzzy
