@@ -1,15 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Author50CO <tkddlschry@gmail.com>, 2023.
-# Peter Pfeufer <info@ppfeufer.de>, 2023.
+# Author50CO <tkddlschry@gmail.com>, 2023, 2024.
+# Peter Pfeufer <info@ppfeufer.de>, 2023, 2024.
 # Mind of the Raven <okanieva@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-15 19:54+0100\n"
-"PO-Revision-Date: 2024-03-22 01:11+0000\n"
+"PO-Revision-Date: 2024-05-10 14:01+0000\n"
 "Last-Translator: Mind of the Raven <okanieva@gmail.com>\n"
 "Language-Team: Korean <https://weblate.ppfeufer.de/projects/"
 "alliance-auth-apps/aa-esi-status/ko/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.4.2\n"
+"X-Generator: Weblate 5.5.3\n"
 
 #: esistatus/__init__.py:9 esistatus/templates/esistatus/base.html:6
 #: esistatus/templates/esistatus/base.html:10
@@ -56,8 +56,8 @@ msgid ""
 "Couldn't read the ESI status. Please try and reload the page. If that "
 "doesn't help, it is possible that ESI might be down entirely."
 msgstr ""
-"ESI 상태를 읽을 수 없습니다. 페이지를 새로고침 해 보세요. 그래도 읽어올 수 없"
-"는 경우, ESI가 완전히 다운됐을 수도 있습니다."
+"ESI 상태를 읽을 수 없습니다. 페이지를 새로고침 해 보세요. 그래도 읽어올 수 "
+"없는 경우, ESI가 완전히 다운됐을 수도 있습니다."
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
 msgid "Detailed ESI status"
