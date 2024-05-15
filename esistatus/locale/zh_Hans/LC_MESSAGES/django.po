@@ -4,13 +4,14 @@
 # Faer Yili <yilifaer@gmail.com>, 2024.
 # Peter Pfeufer <info@ppfeufer.de>, 2024.
 # Dehao Wu <wudehao2000@163.com>, 2024.
+# SAM_FPS <sam_fps@163.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-15 19:54+0100\n"
-"PO-Revision-Date: 2024-05-10 14:01+0000\n"
-"Last-Translator: Dehao Wu <wudehao2000@163.com>\n"
+"PO-Revision-Date: 2024-05-15 09:21+0000\n"
+"Last-Translator: SAM_FPS <sam_fps@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.ppfeufer.de/projects/"
 "alliance-auth-apps/aa-esi-status/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -34,22 +35,22 @@ msgstr "esi 状态 {__version__}"
 
 #: esistatus/models.py:22
 msgid "Can access this app"
-msgstr "允许访问此软件"
+msgstr "能够访问此应用程序"
 
 #: esistatus/templates/esistatus/index.html:14
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:12
 msgid "Red Endpoints"
-msgstr ""
+msgstr "红色终端"
 
 #: esistatus/templates/esistatus/index.html:17
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:15
 msgid "Yellow Endpoints"
-msgstr ""
+msgstr "黄色终端"
 
 #: esistatus/templates/esistatus/index.html:20
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
 msgid "Green Endpoints"
-msgstr ""
+msgstr "绿色终端"
 
 #: esistatus/templates/esistatus/index.html:25
 msgid ""
@@ -58,14 +59,12 @@ msgid ""
 msgstr "无法读取 ESI 状态。 请尝试重新加载页面。 如果这没有解决，ESI 可能完全失效了。"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
-#, fuzzy
-#| msgid "ESI Status"
 msgid "Detailed ESI status"
-msgstr "esi状态"
+msgstr "ESI详细状态"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:26
 msgid "EVE Online status"
-msgstr ""
+msgstr "EVE Online状态"
 
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:5
 msgid ""
