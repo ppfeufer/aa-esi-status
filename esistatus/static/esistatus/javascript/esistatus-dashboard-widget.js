@@ -32,6 +32,12 @@ const esiStatusDashboardWidget = () => {
                         show: true
                     });
                 }
+
+                // Initialize Bootstrap tooltips
+                [].slice.call(document.querySelectorAll('[data-bs-tooltip="aa-esi-status"]'))
+                    .map((tooltipTriggerEl) => {
+                        return new bootstrap.Tooltip(tooltipTriggerEl);
+                    });
             }
         })
         .catch((error) => {
