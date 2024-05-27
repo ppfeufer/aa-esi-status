@@ -56,7 +56,7 @@ It shows the current status of ESI for administrative users.
 
 > \[!NOTE\]
 >
-> **AA ESI Status >= 2.0.0 needs at least Alliance Auth v4.0.0!**
+> **AA ESI Status >= 2.0.0 needs at least Alliance Auth v4!**
 >
 > Please make sure to update your Alliance Auth instance _before_ you install this
 > module or update to the latest version, otherwise an update to Alliance Auth will

@@ -39,6 +39,11 @@ Section Order:
 
 - Tooltips with explanation for the endpoint level
 
+### Changed
+
+- The minimum required AA version is now 4.1.0
+- Using the AA framework template for the widget title
+
 ## \[2.1.1\] - 2024-05-16
 
 ### Changed

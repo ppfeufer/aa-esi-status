@@ -1,13 +1,10 @@
 {% load i18n %}
 
 <div class="card">
-    <div class="card-header">
-        <div class="card-title text-center mb-0">
-            {% translate "ESI Status" %}
-        </div>
-    </div>
-
     <div class="card-body">
+        {% translate "ESI Status" as widget_title %}
+        {% include "framework/dashboard/widget-title.html" with title=widget_title %}
+
         <div class="row mb-3">
             {% translate "Red endpoints" as translated_header_red %}
             {% translate "Red enpoints have a good chance of not responding at all or being completely unavailable." as translated_header_red_explanation %}
