@@ -35,6 +35,8 @@ Section Order:
 ### Security
 -->
 
+## \[2.2.0\] - 2024-05-27
+
 ### Added
 
 - Tooltips with explanation for the endpoint level
