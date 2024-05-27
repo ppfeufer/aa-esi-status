@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-15 19:54+0100\n"
+"POT-Creation-Date: 2024-05-27 07:15+0200\n"
 "PO-Revision-Date: 2024-05-15 09:21+0000\n"
 "Last-Translator: SAM_FPS <sam_fps@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.ppfeufer.de/projects/"
@@ -24,7 +24,7 @@ msgstr ""
 #: esistatus/__init__.py:9 esistatus/templates/esistatus/base.html:6
 #: esistatus/templates/esistatus/base.html:10
 #: esistatus/templates/esistatus/index.html:7
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:6
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:5
 msgid "ESI Status"
 msgstr "esi状态"
 
@@ -38,25 +38,49 @@ msgid "Can access this app"
 msgstr "能够访问此应用程序"
 
 #: esistatus/templates/esistatus/index.html:14
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:12
-msgid "Red Endpoints"
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:9
+#, fuzzy
+#| msgid "Red Endpoints"
+msgid "Red endpoints"
 msgstr "红色终端"
 
-#: esistatus/templates/esistatus/index.html:17
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:15
-msgid "Yellow Endpoints"
+#: esistatus/templates/esistatus/index.html:15
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
+msgid ""
+"Red enpoints have a good chance of not responding at all or being completely "
+"unavailable."
+msgstr ""
+
+#: esistatus/templates/esistatus/index.html:18
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:13
+#, fuzzy
+#| msgid "Yellow Endpoints"
+msgid "Yellow endpoints"
 msgstr "黄色终端"
 
-#: esistatus/templates/esistatus/index.html:20
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
-msgid "Green Endpoints"
+#: esistatus/templates/esistatus/index.html:19
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:14
+msgid "Yellow endpoints have a good chance of being slow or returning errors."
+msgstr ""
+
+#: esistatus/templates/esistatus/index.html:22
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
+#, fuzzy
+#| msgid "Green Endpoints"
+msgid "Green endpoints"
 msgstr "绿色终端"
 
-#: esistatus/templates/esistatus/index.html:25
+#: esistatus/templates/esistatus/index.html:23
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
+msgid "Green endpoints are responding as expected."
+msgstr ""
+
+#: esistatus/templates/esistatus/index.html:28
 msgid ""
 "Couldn't read the ESI status. Please try and reload the page. If that "
 "doesn't help, it is possible that ESI might be down entirely."
-msgstr "无法读取 ESI 状态。 请尝试重新加载页面。 如果这没有解决，ESI 可能完全失效了。"
+msgstr ""
+"无法读取 ESI 状态。 请尝试重新加载页面。 如果这没有解决，ESI 可能完全失效了。"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
 msgid "Detailed ESI status"
