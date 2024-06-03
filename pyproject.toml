@@ -14,7 +14,7 @@ keywords = [
     "esistatus",
     "eveonline",
 ]
-license = {file = "LICENSE"}
+license = { file = "LICENSE" }
 authors = [
     { name = "Peter Pfeufer", email = "develop@ppfeufer.de" },
 ]
@@ -40,21 +40,19 @@ dynamic = [
     "version",
 ]
 dependencies = [
-    "allianceauth<5.0.0,>=4.1",
+    "allianceauth<5,>=4.1",
     "allianceauth-app-utils>=1.12",
 ]
-[project.optional-dependencies]
-tests-allianceauth-latest = [
+optional-dependencies.tests-allianceauth-latest = [
     "coverage",
     "django-webtest",
 ]
-[project.urls]
-Changelog = "https://github.com/ppfeufer/aa-esi-status/blob/master/CHANGELOG.md"
-Documentation = "https://github.com/ppfeufer/aa-esi-status/blob/master/README.md"
-Donations = "https://ko-fi.com/ppfeufer"
-Homepage = "https://github.com/ppfeufer/aa-esi-status"
-Source = "https://github.com/ppfeufer/aa-esi-status.git"
-Tracker = "https://github.com/ppfeufer/aa-esi-status/issues"
+urls.Changelog = "https://github.com/ppfeufer/aa-esi-status/blob/master/CHANGELOG.md"
+urls.Documentation = "https://github.com/ppfeufer/aa-esi-status/blob/master/README.md"
+urls.Donations = "https://ko-fi.com/ppfeufer"
+urls.Homepage = "https://github.com/ppfeufer/aa-esi-status"
+urls.Source = "https://github.com/ppfeufer/aa-esi-status.git"
+urls.Tracker = "https://github.com/ppfeufer/aa-esi-status/issues"
 
 [tool.hatch.build]
 include = [
