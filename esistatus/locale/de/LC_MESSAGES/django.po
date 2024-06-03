@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-27 07:15+0200\n"
-"PO-Revision-Date: 2024-05-10 14:01+0000\n"
+"PO-Revision-Date: 2024-05-28 05:27+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
-"Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-"
-"apps/aa-esi-status/de/>\n"
+"Language-Team: German <https://weblate.ppfeufer.de/projects/"
+"alliance-auth-apps/aa-esi-status/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.3\n"
+"X-Generator: Weblate 5.5.5\n"
 
 #: esistatus/__init__.py:9 esistatus/templates/esistatus/base.html:6
 #: esistatus/templates/esistatus/base.html:10
@@ -36,8 +36,6 @@ msgstr "Kann auf diese App zugreifen"
 
 #: esistatus/templates/esistatus/index.html:14
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:9
-#, fuzzy
-#| msgid "Red Endpoints"
 msgid "Red endpoints"
 msgstr "Rote Endpunkte"
 
@@ -47,11 +45,11 @@ msgid ""
 "Red enpoints have a good chance of not responding at all or being completely "
 "unavailable."
 msgstr ""
+"Rote Endpunkte haben eine gute Chance nicht zu antworten oder überhaupt "
+"nicht erreichbar zu sein."
 
 #: esistatus/templates/esistatus/index.html:18
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:13
-#, fuzzy
-#| msgid "Yellow Endpoints"
 msgid "Yellow endpoints"
 msgstr "Gelbe Endpunkte"
 
@@ -59,18 +57,18 @@ msgstr "Gelbe Endpunkte"
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:14
 msgid "Yellow endpoints have a good chance of being slow or returning errors."
 msgstr ""
+"Gelbe Endpunkte haben eine gute Chance langsam zu sein oder Fehler "
+"zurückzugeben."
 
 #: esistatus/templates/esistatus/index.html:22
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
-#, fuzzy
-#| msgid "Green Endpoints"
 msgid "Green endpoints"
 msgstr "Grüne Endpunkte"
 
 #: esistatus/templates/esistatus/index.html:23
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
 msgid "Green endpoints are responding as expected."
-msgstr ""
+msgstr "Grüne Endpunkte antworten wie erwartet."
 
 #: esistatus/templates/esistatus/index.html:28
 msgid ""
