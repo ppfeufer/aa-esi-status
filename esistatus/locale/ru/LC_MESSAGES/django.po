@@ -3,22 +3,23 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Nikolay <nick.postnikov@gmail.com>, 2023, 2024.
 # Peter Pfeufer <info@ppfeufer.de>, 2023, 2024.
+# Roycce_ <malyasov.roma@mail.ru>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-27 07:15+0200\n"
-"PO-Revision-Date: 2024-05-10 14:01+0000\n"
-"Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
-"Language-Team: Russian <https://weblate.ppfeufer.de/projects/alliance-auth-"
-"apps/aa-esi-status/ru/>\n"
+"PO-Revision-Date: 2024-06-07 13:27+0000\n"
+"Last-Translator: Roycce_ <malyasov.roma@mail.ru>\n"
+"Language-Team: Russian <https://weblate.ppfeufer.de/projects/"
+"alliance-auth-apps/aa-esi-status/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : (n%10==1 && n%100!=11 ? 0 : "
 "n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5.3\n"
+"X-Generator: Weblate 5.5.5\n"
 
 #: esistatus/__init__.py:9 esistatus/templates/esistatus/base.html:6
 #: esistatus/templates/esistatus/base.html:10
@@ -38,8 +39,6 @@ msgstr "Имеет доступ к приложению"
 
 #: esistatus/templates/esistatus/index.html:14
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:9
-#, fuzzy
-#| msgid "Red Endpoints"
 msgid "Red endpoints"
 msgstr "Красные конечные точки"
 
@@ -49,11 +48,11 @@ msgid ""
 "Red enpoints have a good chance of not responding at all or being completely "
 "unavailable."
 msgstr ""
+"Есть большая вероятность, что красные конечные точки вообще не будут "
+"отвечать на запросы или будут полностью недоступны."
 
 #: esistatus/templates/esistatus/index.html:18
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:13
-#, fuzzy
-#| msgid "Yellow Endpoints"
 msgid "Yellow endpoints"
 msgstr "Желтые конечные точки"
 
@@ -61,18 +60,17 @@ msgstr "Желтые конечные точки"
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:14
 msgid "Yellow endpoints have a good chance of being slow or returning errors."
 msgstr ""
+"Желтые конечные точки имеют высокую вероятность замедления работы или ошибок."
 
 #: esistatus/templates/esistatus/index.html:22
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
-#, fuzzy
-#| msgid "Green Endpoints"
 msgid "Green endpoints"
 msgstr "Зеленые конечные точки"
 
 #: esistatus/templates/esistatus/index.html:23
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
 msgid "Green endpoints are responding as expected."
-msgstr ""
+msgstr "Зеленые конечные точки реагируют так, как ожидалось."
 
 #: esistatus/templates/esistatus/index.html:28
 msgid ""
@@ -83,14 +81,12 @@ msgstr ""
 "проблема сохраниться, возможно ESI полностью неработоспособна."
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
-#, fuzzy
-#| msgid "ESI Status"
 msgid "Detailed ESI status"
-msgstr "Статус ESI"
+msgstr "Подробный статус ESI"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:26
 msgid "EVE Online status"
-msgstr ""
+msgstr "EVE Online статус"
 
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:5
 msgid ""
