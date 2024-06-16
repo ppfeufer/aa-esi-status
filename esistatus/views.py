@@ -4,7 +4,7 @@ The views
 
 # Standard Library
 import json
-from typing import Any, Dict, Tuple
+from typing import Any
 
 # Third Party
 import requests
@@ -28,7 +28,7 @@ from esistatus.constants import USER_AGENT
 logger = LoggerAddTag(get_extension_logger(__name__), __title__)
 
 
-def _append_value(dict_obj: Dict, key: str, value: Any) -> None:
+def _append_value(dict_obj: dict, key: str, value: Any) -> None:
     """
     Append a value to a key in a dictionary
 
@@ -57,7 +57,7 @@ def _append_value(dict_obj: Dict, key: str, value: Any) -> None:
         dict_obj[key] = [value]
 
 
-def _esi_endpoint_status_from_json(esi_endpoint_json: json) -> Tuple:
+def _esi_endpoint_status_from_json(esi_endpoint_json: json) -> tuple:
     """
     Get the ESI endpoint status from the ESI json
 
@@ -119,7 +119,7 @@ def _esi_endpoint_status_from_json(esi_endpoint_json: json) -> Tuple:
     return True, esi_endpoint_status
 
 
-def _esi_status() -> Tuple:
+def _esi_status() -> tuple:
     """
     Get the ESI status
 
