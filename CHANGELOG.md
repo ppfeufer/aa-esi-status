@@ -35,9 +35,20 @@ Section Order:
 ### Security
 -->
 
+## \[2.3.0\] - 2024-07-15
+
+### Added
+
+- Czech translation prepared for when AA supports it
+
 ### Fixed
 
 - Dashboard widget Bootstrap classes
+
+### Changed
+
+- French translation updated
+- Russian translation updated
 
 ### Removed
 
