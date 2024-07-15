@@ -20,6 +20,10 @@ app = Celery("testauth")
 # the configuration object to child processes.
 app.config_from_object("django.conf:settings")
 
+# Automatically try to establish the connection to the AMQP broker on
+# Celery startup if it is unavailable.
+app.conf.broker_connection_retry_on_startup = True
+
 # setup priorities ( 0 Highest, 9 Lowest)
 app.conf.broker_transport_options = {
     "priority_steps": list(range(10)),  # setup que to have 10 steps
