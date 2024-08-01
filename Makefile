@@ -9,19 +9,19 @@ package = esistatus
 .DEFAULT_GOAL := help
 
 # Graph models
-.PHONY: graph_models
-graph_models:
-	@echo "Creating a graph of the models"
-	@python ../myauth/manage.py \
-		graph_models \
-		$(package) \
-		--arrow-shape normal \
-		-o $(appname)-models.png
+#.PHONY: graph_models
+#graph_models:
+#	@echo "Creating a graph of the models"
+#	@python ../myauth/manage.py \
+#		graph_models \
+#		$(package) \
+#		--arrow-shape normal \
+#		-o $(appname)-models.png
 
 # Prepare a new release
 # Update the graph of the models, translation files and the version in the package
 .PHONY: prepare-release
-prepare-release: graph_models translations
+prepare-release: translations
 	@echo ""
 	@echo "Preparing a release"
 	@read -p "New Version Number: " new_version; \
