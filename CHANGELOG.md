@@ -35,6 +35,12 @@ Section Order:
 ### Security
 -->
 
+## \[2.4.1\] - 2024-09-19
+
+### Fixed
+
+- A typo in the red endpoint explanation
+
 ## \[2.4.0\] - 2024-09-16
 
 ### Changed
