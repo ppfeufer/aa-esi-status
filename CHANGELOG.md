@@ -22,7 +22,7 @@ https://docs.github.com/assets/cb-41128/mw-1440/images/help/writing/alerts-rende
 > Critical content demanding immediate user attention due to potential risks.
 -->
 
-## \[In Development\] - Unreleased
+## [In Development] - Unreleased
 
 <!--
 Section Order:
@@ -35,19 +35,19 @@ Section Order:
 ### Security
 -->
 
-## \[2.4.2\] - 2024-11-01
+## [2.4.2] - 2024-11-01
 
 ### Changed
 
 - Italian translation improved
 
-## \[2.4.1\] - 2024-09-19
+## [2.4.1] - 2024-09-19
 
 ### Fixed
 
 - A typo in the red endpoint explanation
 
-## \[2.4.0\] - 2024-09-16
+## [2.4.0] - 2024-09-16
 
 ### Changed
 
@@ -56,7 +56,7 @@ Section Order:
 - Japanese translation improved
 - Lingua codes updated to match Alliance Auth
 
-## \[2.3.0\] - 2024-07-15
+## [2.3.0] - 2024-07-15
 
 ### Added
 
@@ -75,13 +75,13 @@ Section Order:
 
 - Support for Python 3.8 and Python 3.9
 
-## \[2.2.1\] - 2024-06-03
+## [2.2.1] - 2024-06-03
 
 ### Change
 
 - German translation updated
 
-## \[2.2.0\] - 2024-05-27
+## [2.2.0] - 2024-05-27
 
 ### Added
 
@@ -92,21 +92,21 @@ Section Order:
 - The minimum required AA version is now 4.1.0
 - Using the AA framework template for the widget title
 
-## \[2.1.1\] - 2024-05-16
+## [2.1.1] - 2024-05-16
 
 ### Changed
 
 - Translations updated
 
-## \[2.1.0\] - 2024-03-17
+## [2.1.0] - 2024-03-17
 
 ### Changed
 
 - Dashboard widget will be auto-updated every 60 seconds when the browser tab is active
 
-## \[2.0.0\] - 2024-03-16
+## [2.0.0] - 2024-03-16
 
-> \[!NOTE\]
+> [!NOTE]
 >
 > **This version needs at least Alliance Auth v4.0.0!**
 >
@@ -125,9 +125,9 @@ Section Order:
 
 - Compatibility to Alliance Auth v3
 
-## \[2.0.0-beta.2\] - 2024-03-08
+## [2.0.0-beta.2] - 2024-03-08
 
-> \[!NOTE\]
+> [!NOTE]
 >
 > **This version needs at least Alliance Auth v4.0.0b2!**
 >
@@ -139,9 +139,9 @@ Section Order:
 
 - Dashboard widget for administrative users
 
-## \[2.0.0-beta.1\] - 2024-02-18
+## [2.0.0-beta.1] - 2024-02-18
 
-> \[!NOTE\]
+> [!NOTE]
 >
 > **This version needs at least Alliance Auth v4.0.0b1!**
 >
@@ -159,9 +159,9 @@ Section Order:
 
 - Compatibility to Alliance Auth v3
 
-## \[1.14.2\] - 2023-09-26
+## [1.14.2] - 2023-09-26
 
-> \[!NOTE\]
+> [!NOTE]
 >
 > **This is the last version compatible with Alliance Auth v3.**
 
@@ -174,13 +174,13 @@ Section Order:
 - Translation updated and improved
 - Test suite updated
 
-## \[1.14.1\] - 2023-09-02
+## [1.14.1] - 2023-09-02
 
 ### Changed
 
 - Korean translation improved
 
-## \[1.14.0\] - 2023-08-29
+## [1.14.0] - 2023-08-29
 
 ### Added
 
@@ -190,19 +190,19 @@ Section Order:
 
 - Code improvements
 
-## \[1.13.0\] - 2023-08-15
+## [1.13.0] - 2023-08-15
 
 ### Added
 
 - Spanish translation
 
-## \[1.12.1\] - 2023-08-11
+## [1.12.1] - 2023-08-11
 
 ### Fixed
 
 - Bootstrap CSS fix
 
-## \[1.12.0\] - 2023-08-11
+## [1.12.0] - 2023-08-11
 
 > **Warning**
 >
@@ -214,7 +214,7 @@ Section Order:
 
 - Support public views (see [README])
 
-## \[1.11.1\] - 2023-07-30
+## [1.11.1] - 2023-07-30
 
 ### Added
 
@@ -225,32 +225,32 @@ Section Order:
 
 - try/except improved in `views.index`
 
-## \[1.11.0\] - 2023-06-24
+## [1.11.0] - 2023-06-24
 
 ### Added
 
 - Ukrainian translation
 
-## \[1.10.0\] - 2023-04-25
+## [1.10.0] - 2023-04-25
 
 ### Changed
 
 - Moved the build process to PEP 621 / pyproject.toml
 - Russian translation updated
 
-## \[1.9.0\] - 2023-04-16
+## [1.9.0] - 2023-04-16
 
 ### Added
 
 - Russian translation
 
-## \[1.8.0\] - 2023-04-13
+## [1.8.0] - 2023-04-13
 
 ### Added
 
 - German translation
 
-## \[1.7.2\] - 2022-09-18
+## [1.7.2] - 2022-09-18
 
 ### Change
 
@@ -258,7 +258,7 @@ Section Order:
 - Minimum dependencies:
   - Alliance Auth>=3.0.0
 
-## \[1.7.1\] - 2022-08-27
+## [1.7.1] - 2022-08-27
 
 ### Fixed
 
@@ -268,7 +268,7 @@ Section Order:
 
 - General code improvements
 
-## \[1.7.0\] - 2022-08-02
+## [1.7.0] - 2022-08-02
 
 ### Changed
 
@@ -283,13 +283,13 @@ Section Order:
 
 - tox tests for AA beta version
 
-## \[1.6.0\] - 2022-06-24
+## [1.6.0] - 2022-06-24
 
 ### Added
 
 - Versioned static template tag
 
-## \[1.5.2\] - 2022-05-02
+## [1.5.2] - 2022-05-02
 
 ### Fixed
 
@@ -299,13 +299,13 @@ Section Order:
 
 - Templates unified
 
-## \[1.5.1\] - 2022-03-02
+## [1.5.1] - 2022-03-02
 
 ### Fixed
 
 - Include the right app ...
 
-## \[1.5.0\] - 2022-03-02
+## [1.5.0] - 2022-03-02
 
 ### Added
 
@@ -319,14 +319,14 @@ Section Order:
 
 - Switched to `setup.cfg` as config file, since `setup.py` is deprecated now
 
-## \[1.4.0\] - 2022-02-28
+## [1.4.0] - 2022-02-28
 
 ### Fixed
 
-- \[Compatibility\] AA 3.x / Django 4 :: ImportError: cannot import name
+- [Compatibility] AA 3.x / Django 4 :: ImportError: cannot import name
   'ugettext_lazy' from 'django.utils.translation'
 
-## \[1.3.0\] - 2022-01-02
+## [1.3.0] - 2022-01-02
 
 ### Added
 
@@ -343,7 +343,7 @@ Section Order:
 - Check for AA-GDPR, since we don't load any external resources it is not needed
 - No longer needed function and file
 
-## \[1.2.0\] - 2021-11-30
+## [1.2.0] - 2021-11-30
 
 ### Changed
 
@@ -351,32 +351,32 @@ Section Order:
   - Python 3.7
   - Alliance Auth v2.9.3
 
-## \[1.1.0\] - 2021-11-24
+## [1.1.0] - 2021-11-24
 
 ### Added
 
 - Error handling on connection problems to ESI status URL
 - Tests
 
-## \[1.0.5\] - 2021-07-08
+## [1.0.5] - 2021-07-08
 
 ### Added
 
 - Checks for compatibility with Python 3.9 and Django 3.2
 
-## \[1.0.4\] - 2021-01-12
+## [1.0.4] - 2021-01-12
 
 ### Removed
 
 - Support for Django 2
 
-## \[1.0.3\] - 2021-01-11
+## [1.0.3] - 2021-01-11
 
 ### Fixed
 
 - Local variable might be referenced before being initialized
 
-## \[1.0.1\] - 2020-12-16
+## [1.0.1] - 2020-12-16
 
 ### Added
 
@@ -386,11 +386,11 @@ Section Order:
 
 - Bootstrap classes used in template
 
-## \[1.0.0\] - 2020-10-12
+## [1.0.0] - 2020-10-12
 
 - first official release
 
-## \[0.1.0-alpha.3\] - 2020-10-11
+## [0.1.0-alpha.3] - 2020-10-11
 
 ### Fixed
 
@@ -400,14 +400,14 @@ Section Order:
 
 - Warning when ESI status couldn't be loaded, for whatever reason
 
-## \[0.1.0-alpha.2\] - 2020-10-11
+## [0.1.0-alpha.2] - 2020-10-11
 
 ### Changed
 
 - Link to image in README updated since GitHub changed the default **master** branch
   to _main_. Fucking stupid change ...
 
-## \[0.1.0-alpha.1\] - 2020-10-11
+## [0.1.0-alpha.1] - 2020-10-11
 
 ### Added
 

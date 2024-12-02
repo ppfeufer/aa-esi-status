@@ -54,7 +54,7 @@ It shows the current status of ESI for administrative users.
 
 ## Installation<a name="installation"></a>
 
-> \[!NOTE\]
+> [!NOTE]
 >
 > **AA ESI Status >= 2.0.0 needs at least Alliance Auth v4!**
 >
