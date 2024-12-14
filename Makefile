@@ -6,6 +6,7 @@ appname_verbose = AA ESI Status
 package = esistatus
 translation_directory = $(package)/locale
 translation_template = $(translation_directory)/django.pot
+translation_file_relative_path = LC_MESSAGES/django.po
 git_repository = https://github.com/ppfeufer/$(appname)
 git_repository_issues = $(git_repository)/issues
 
@@ -33,36 +34,36 @@ confirm:
 	fi
 
 # Graph models
-#.PHONY: graph_models
-#graph_models:
-#	@echo "Creating a graph of the models"
-#	@python ../myauth/manage.py \
-#		graph_models \
-#		$(package) \
-#		--arrow-shape normal \
-#		-o $(appname)-models.png
+.PHONY: graph_models
+graph_models:
+	@echo "Creating a graph of the models …"
+	@python ../myauth/manage.py \
+		graph_models \
+		$(package) \
+		--arrow-shape normal \
+		-o $(appname)-models.png
 
 # Prepare a new release
 # Update the graph of the models, translation files and the version in the package
 .PHONY: prepare-release
-prepare-release: translations
+prepare-release: graph_models pot
 	@echo ""
 	@echo "Preparing a release …"
 	@read -p "New Version Number: " new_version; \
 	sed -i "/__version__/c\__version__ = \"$$new_version\"" $(package)/__init__.py; \
 	sed -i "/\"Project-Id-Version: /c\\\"Project-Id-Version: $(appname_verbose) $$new_version\\\n\"" $(translation_template); \
 	sed -i "/\"Report-Msgid-Bugs-To: /c\\\"Report-Msgid-Bugs-To: $(git_repository_issues)\\\n\"" $(translation_template); \
-	subdircount=$$(find $(translation_directory) -mindepth 1 -maxdepth 1 -type d | wc -l); \
-	if [[ $$subdircount -gt 1 ]]; then \
-		for path in $(translation_directory)/*/; do \
-			[ -d "$$path/LC_MESSAGES" ] || continue; \
-			if [[ -f "$$path/LC_MESSAGES/django.po" ]] \
-				then \
-					sed -i "/\"Project-Id-Version: /c\\\"Project-Id-Version: $(appname_verbose) $$new_version\\\n\"" $$path/LC_MESSAGES/django.po; \
-					sed -i "/\"Report-Msgid-Bugs-To: /c\\\"Report-Msgid-Bugs-To: $(git_repository_issues)\\\n\"" $$path/LC_MESSAGES/django.po; \
-			fi; \
-		done; \
-	fi;
+#	subdircount=$$(find $(translation_directory) -mindepth 1 -maxdepth 1 -type d | wc -l); \
+#	if [[ $$subdircount -gt 1 ]]; then \
+#		for path in $(translation_directory)/*/; do \
+#			[ -d "$$path/LC_MESSAGES" ] || continue; \
+#			if [[ -f "$$path/$(translation_file_relative_path)" ]] \
+#				then \
+#					sed -i "/\"Project-Id-Version: /c\\\"Project-Id-Version: $(appname_verbose) $$new_version\\\n\"" $$path/$(translation_file_relative_path); \
+#					sed -i "/\"Report-Msgid-Bugs-To: /c\\\"Report-Msgid-Bugs-To: $(git_repository_issues)\\\n\"" $$path/$(translation_file_relative_path); \
+#			fi; \
+#		done; \
+#	fi;
 	echo "Updated version in $(TEXT_BOLD)$(package)/__init__.py$(TEXT_BOLD_END)"
 
 # Help
