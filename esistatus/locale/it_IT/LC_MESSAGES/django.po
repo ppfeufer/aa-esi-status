@@ -4,8 +4,8 @@
 # "Dr. Mattia Zago" <dev@zagomattia.it>, 2024.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: AA ESI Status 2.4.3\n"
+"Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
 "POT-Creation-Date: 2024-09-19 15:36+0200\n"
 "PO-Revision-Date: 2024-10-23 02:25+0000\n"
 "Last-Translator: \"Dr. Mattia Zago\" <dev@zagomattia.it>\n"

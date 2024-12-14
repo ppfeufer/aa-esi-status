@@ -53,7 +53,7 @@ jobs:
 
   # Run Test Coverage
   test-coverage:
-    needs: [pre-commit]
+    needs: [ pre-commit ]
     name: AA Latest (Python ${{ matrix.python-version }} with ${{ matrix.database }})
     runs-on: ubuntu-latest
 
@@ -65,6 +65,7 @@ jobs:
           - '3.10'  # [EOL] End of Life: 31 Oct 2026
           - '3.11'  # [EOL] End of Life: 31 Dec 2027
           - '3.12'  # [EOL] End of Life: 31 Dec 2028
+          - '3.13'  # [EOL] End of Life: 31 Oct 2029
         # MySQL versions to test against
         database:
           # https://endoflife.date/mysql
