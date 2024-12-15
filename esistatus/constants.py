@@ -2,15 +2,12 @@
 Constants used in this app
 """
 
-# Django
-from django.utils.text import slugify
+# Third Party
+from requests.__version__ import __version__ as requests_version
 
 # AA ESI Status
 from esistatus import __version__
 
-VERBOSE_NAME = "AA ESI Status for Alliance Auth"
-
-slugified_name: str = slugify(value=VERBOSE_NAME, allow_unicode=True)
-github_url: str = "https://github.com/ppfeufer/aa-esi-status"
-
-USER_AGENT = f"{slugified_name} v{__version__} {github_url}"
+APP_NAME = "aa-esi-status"
+GITHUB_URL = f"https://github.com/ppfeufer/{APP_NAME}"
+USER_AGENT = f"{APP_NAME}/{__version__} ({GITHUB_URL}) via requests/{requests_version}"
