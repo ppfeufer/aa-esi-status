@@ -2,28 +2,28 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # "Dr. Mattia Zago" <dev@zagomattia.it>, 2024.
+# Peter Pfeufer <info@ppfeufer.de>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
 "POT-Creation-Date: 2024-12-14 15:09+0100\n"
-"PO-Revision-Date: 2024-10-23 02:25+0000\n"
-"Last-Translator: \"Dr. Mattia Zago\" <dev@zagomattia.it>\n"
-"Language-Team: Italian <https://weblate.ppfeufer.de/projects/alliance-auth-"
-"apps/aa-esi-status/it/>\n"
+"PO-Revision-Date: 2024-12-22 21:15+0000\n"
+"Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
+"Language-Team: Italian <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/it/>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.9.2\n"
 
 #: esistatus/__init__.py:9 esistatus/templates/esistatus/base.html:6
 #: esistatus/templates/esistatus/base.html:10
 #: esistatus/templates/esistatus/index.html:7
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:5
 msgid "ESI Status"
-msgstr ""
+msgstr "Stato ESI"
 
 #: esistatus/apps.py:20
 #, python-brace-format
