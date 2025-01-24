@@ -33,7 +33,7 @@
 {% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% esistatus_static 'esistatus/css/esistatus.min.css' %}">
+    {% include "esistatus/bundles/esistatus-css.html" %}
 {% endblock %}
 
 {% block extra_javascript %}
