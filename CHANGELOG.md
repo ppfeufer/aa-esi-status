@@ -35,6 +35,8 @@ Section Order:
 ### Security
 -->
 
+## [2.5.0] - 2025-01-24
+
 ### Added
 
 - SRI hash calculation for static files
@@ -42,6 +44,7 @@ Section Order:
 ### Changed
 
 - Set user agent according to MDN guidelines
+- Translations updated
 - Minimum requirements:
   - Alliance Auth>=4.6.0
 
