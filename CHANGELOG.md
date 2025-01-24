@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+### Added
+
+- SRI hash calculation for static files
+
 ### Changed
 
 - Set user agent according to MDN guidelines
