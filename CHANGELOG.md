@@ -42,6 +42,8 @@ Section Order:
 ### Changed
 
 - Set user agent according to MDN guidelines
+- Minimum requirements:
+  - Alliance Auth>=4.6.0
 
 ## [2.4.3] - 2024-12-14
 
