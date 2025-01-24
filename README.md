@@ -19,21 +19,20 @@ App for Alliance Auth to show the current status of ESI and its end points.
 
 ______________________________________________________________________
 
-<!-- mdformat-toc start --slug=github --maxlevel=6 --minlevel=1 -->
+<!-- mdformat-toc start --slug=github --maxlevel=6 --minlevel=2 -->
 
-- [AA ESI Status](#aa-esi-status)
-  - [Screenshots](#screenshots)
-    - [ESI Status Page](#esi-status-page)
-    - [Dashboard Widget](#dashboard-widget)
-  - [Installation](#installation)
-    - [Step 1: Install the App](#step-1-install-the-app)
-    - [Step 2: Update Your AA Settings](#step-2-update-your-aa-settings)
-    - [Step 3: Finalizing the Installation](#step-3-finalizing-the-installation)
-  - [(Optional) Public Views](#optional-public-views)
-  - [Updating](#updating)
-  - [Changelog](#changelog)
-  - [Translation Status](#translation-status)
-  - [Contributing](#contributing)
+- [Screenshots](#screenshots)
+  - [ESI Status Page](#esi-status-page)
+  - [Dashboard Widget](#dashboard-widget)
+- [Installation](#installation)
+  - [Step 1: Install the App](#step-1-install-the-app)
+  - [Step 2: Update Your AA Settings](#step-2-update-your-aa-settings)
+  - [Step 3: Finalizing the Installation](#step-3-finalizing-the-installation)
+- [(Optional) Public Views](#optional-public-views)
+- [Updating](#updating)
+- [Changelog](#changelog)
+- [Translation Status](#translation-status)
+- [Contributing](#contributing)
 
 <!-- mdformat-toc end -->
 
