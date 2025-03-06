@@ -12,8 +12,11 @@ from requests.__version__ import __version__ as requests_version
 from esistatus import __version__
 
 APP_NAME = "aa-esi-status"
+APP_NAME_VERBOSE = "AA ESI Status"
+APP_NAME_VERBOSE_USERAGENT = "AA-ESI-Status"
+PACKAGE_NAME = "esistatus"
 GITHUB_URL = f"https://github.com/ppfeufer/{APP_NAME}"
-USER_AGENT = f"{APP_NAME}/{__version__} ({GITHUB_URL}) via requests/{requests_version}"
+USER_AGENT = f"{APP_NAME_VERBOSE_USERAGENT}/{__version__} (+{GITHUB_URL}) requests/{requests_version}"
 
-AA_ESI_STATUS_BASE_DIR = os.path.join(os.path.dirname(__file__))
-AA_ESI_STATUS_STATIC_DIR = os.path.join(AA_ESI_STATUS_BASE_DIR, "static", "esistatus")
+APP_BASE_DIR = os.path.join(os.path.dirname(__file__))
+APP_STATIC_DIR = os.path.join(APP_BASE_DIR, "static", PACKAGE_NAME)
