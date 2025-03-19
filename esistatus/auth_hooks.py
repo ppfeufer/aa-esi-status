@@ -80,7 +80,7 @@ def register_urls():
 
 
 @hooks.register("dashboard_hook")
-def register_esi_hook():
+def register_esi_status_dashboard_hook():
     """
     Register our dashboard hook
 
