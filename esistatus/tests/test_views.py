@@ -5,12 +5,13 @@ Test the apps' views
 # Standard Library
 import json
 from http import HTTPStatus
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 # Third Party
 from requests import RequestException
 
 # Django
+from django.http import HttpRequest
 from django.test import TestCase
 from django.urls import reverse
 
@@ -19,6 +20,78 @@ from app_utils.testing import create_fake_user
 
 # AA ESI Status
 from esistatus import views
+from esistatus.views import _append_value, dashboard_widget
+
+
+class TestAppendValue(TestCase):
+    """
+    Test the _append_value function
+    """
+
+    def test_append_value_to_existing_key_with_list(self):
+        """
+        Test the _append_value function with an existing key that has a list value
+
+        :return:
+        :rtype:
+        """
+
+        dict_obj = {"key1": [1, 2]}
+        _append_value(dict_obj, "key1", 3)
+
+        self.assertEqual(dict_obj, {"key1": [1, 2, 3]})
+
+    def test_append_value_to_existing_key_without_list(self):
+        """
+        Test the _append_value function with an existing key that has a non-list value
+
+        :return:
+        :rtype:
+        """
+
+        dict_obj = {"key1": 1}
+        _append_value(dict_obj, "key1", 2)
+
+        self.assertEqual(dict_obj, {"key1": [1, 2]})
+
+    def test_append_value_to_non_existing_key(self):
+        """
+        Test the _append_value function with a non-existing key
+
+        :return:
+        :rtype:
+        """
+
+        dict_obj = {}
+        _append_value(dict_obj, "key1", 1)
+
+        self.assertEqual(dict_obj, {"key1": [1]})
+
+    def test_append_value_to_existing_key_with_empty_list(self):
+        """
+        Test the _append_value function with an existing key that has an empty list value
+
+        :return:
+        :rtype:
+        """
+
+        dict_obj = {"key1": []}
+        _append_value(dict_obj, "key1", 1)
+
+        self.assertEqual(dict_obj, {"key1": [1]})
+
+    def test_append_value_to_existing_key_with_non_list_value(self):
+        """
+        Test the _append_value function with an existing key that has a non-list value
+
+        :return:
+        :rtype:
+        """
+
+        dict_obj = {"key1": "value1"}
+        _append_value(dict_obj, "key1", "value2")
+
+        self.assertEqual(dict_obj, {"key1": ["value1", "value2"]})
 
 
 class TestDashboardWidget(TestCase):
@@ -28,7 +101,7 @@ class TestDashboardWidget(TestCase):
 
     def setUp(self):
         """
-        Set up users
+        Set up the test case
 
         :return:
         :rtype:
@@ -44,14 +117,26 @@ class TestDashboardWidget(TestCase):
             character_id=1001, character_name="Peter Parker"
         )
 
-    # def test_dashboard_widget_with_superuser(self):
-    #     self.client.force_login(self.superuser)
-    #     response = self.client.get(path=reverse(viewname="authentication:dashboard"))
-    #     self.assertContains(
-    #         response,
-    #         '<div class="card-title text-center mb-0">ESI Status</div>',
-    #         html=True,
-    #     )
+        self.widget_wrapper = '<div id="esi-status-dashboard-panel" class="aa-esistatus col-12 mb-3 collapse"></div>'
+
+    def test_dashboard_widget_with_superuser(self):
+        """
+        Test that a superuser sees the ESI status widget
+
+        :param mock_render_to_string:
+        :type mock_render_to_string:
+        :return:
+        :rtype:
+        """
+
+        request = MagicMock(spec=HttpRequest)
+        request.user = MagicMock()
+        request.user.is_superuser = True
+        request.META = {}
+
+        result = dashboard_widget(request)
+
+        self.assertInHTML(self.widget_wrapper, result)
 
     def test_dashboard_widget_with_normal_user(self):
         """
@@ -61,13 +146,14 @@ class TestDashboardWidget(TestCase):
         :rtype:
         """
 
-        self.client.force_login(user=self.normal_user)
-        response = self.client.get(path=reverse(viewname="authentication:dashboard"))
-        self.assertNotContains(
-            response=response,
-            text='<div class="card-title text-center mb-0">ESI Status</div>',
-            html=True,
-        )
+        request = MagicMock(spec=HttpRequest)
+        request.user = MagicMock()
+        request.user.is_superuser = False
+        request.META = {}
+
+        result = dashboard_widget(request)
+
+        self.assertEqual(result, "")
 
 
 class TestAjaxEsiStatus(TestCase):
@@ -102,7 +188,9 @@ class TestAjaxEsiStatus(TestCase):
         """
 
         mock_esi_status.return_value = (True, {})
+
         response = self.client.get(path=reverse(viewname="esistatus:ajax_esi_status"))
+
         self.assertEqual(first=response.status_code, second=HTTPStatus.OK)
 
     @patch("esistatus.views._esi_status")
@@ -117,7 +205,9 @@ class TestAjaxEsiStatus(TestCase):
         """
 
         mock_esi_status.return_value = (False, {})
+
         response = self.client.get(path=reverse(viewname="esistatus:ajax_esi_status"))
+
         self.assertEqual(first=response.status_code, second=HTTPStatus.NO_CONTENT)
 
 

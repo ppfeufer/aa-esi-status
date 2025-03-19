@@ -10,7 +10,12 @@ from django.test import TestCase
 from django.urls import reverse
 
 # AA ESI Status
+from esistatus.auth_hooks import (
+    AaEsiStatusDashboardHook,
+    register_esi_status_dashboard_hook,
+)
 from esistatus.tests.utils import create_fake_user
+from esistatus.views import dashboard_widget
 
 
 class TestHooks(TestCase):
@@ -77,3 +82,29 @@ class TestHooks(TestCase):
 
         self.assertEqual(first=response.status_code, second=HTTPStatus.OK)
         self.assertContains(response=response, text=self.html_header, html=True)
+
+    def test_initializes_dashboard_widget(self):
+        """
+        Test should initialize the dashboard widget with the correct view function and order
+
+        :return:
+        :rtype:
+        """
+
+        hook = AaEsiStatusDashboardHook()
+
+        self.assertIsInstance(hook, AaEsiStatusDashboardHook)
+        self.assertEqual(hook.view_function, dashboard_widget)
+        self.assertEqual(hook.order, 1)
+
+    def test_returns_instance_of_AaEsiStatusDashboardHook(self):
+        """
+        Test should return an instance of AaEsiStatusDashboardHook
+
+        :return:
+        :rtype:
+        """
+
+        result = register_esi_status_dashboard_hook()
+
+        self.assertIsInstance(result, AaEsiStatusDashboardHook)
