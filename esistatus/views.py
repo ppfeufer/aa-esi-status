@@ -136,14 +136,19 @@ def _esi_status() -> tuple:
         esi_endpoint_status_result = requests.get(
             url=esi_status_json_url, headers=request_headers, timeout=10
         )
+
         esi_endpoint_status_result.raise_for_status()
         esi_endpoint_json = esi_endpoint_status_result.json()
     except requests.exceptions.RequestException as exc:
-        error_str = str(exc)
+        if exc.response is not None:
+            # If the response is not None, get the status code and reason.
+            error_str = f"{exc.response.status_code} - {exc.response.reason}"
+        else:
+            error_str = str(exc)
 
         logger.info(msg=f"Unable to get ESI status. Error: {error_str}")
 
-        return has_status_result, esi_endpoint_status
+        return has_status_result, error_str
     except json.JSONDecodeError:
         logger.info(
             msg=(

@@ -25,7 +25,13 @@
         {% else %}
             <div class="col-12">
                 <p class="alert alert-warning text-center">
-                    {% translate "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely." %}
+                    {% translate "Couldn't read the ESI status." %}
+
+                    {% if esi_endpoint_status %}
+                        <span id="aa-esi-status-error-message" class="d-block mt-3">
+                            {% translate "Error Message" %}: {{ esi_endpoint_status }}
+                        </span>
+                    {% endif %}
                 </p>
             </div>
         {% endif %}
