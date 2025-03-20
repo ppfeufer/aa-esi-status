@@ -5,10 +5,10 @@ Test the apps' views
 # Standard Library
 import json
 from http import HTTPStatus
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, Mock, patch
 
 # Third Party
-from requests import RequestException
+import requests
 
 # Django
 from django.http import HttpRequest
@@ -20,7 +20,7 @@ from app_utils.testing import create_fake_user
 
 # AA ESI Status
 from esistatus import views
-from esistatus.views import _append_value, dashboard_widget
+from esistatus.views import _append_value, _esi_status, dashboard_widget
 
 
 class TestAppendValue(TestCase):
@@ -294,8 +294,8 @@ class TestEsiStatus(TestCase):
             },
         )
 
-    @patch("requests.get")
-    def test_esi_status_with_request_exception(self, mock_get):
+    @patch("esistatus.views.requests.get")
+    def test_esi_status_request_exception(self, mock_get):
         """
         Test the _esi_status function with a request exception
 
@@ -305,14 +305,56 @@ class TestEsiStatus(TestCase):
         :rtype:
         """
 
-        mock_get.side_effect = RequestException("Request Exception")
-        has_status_result, esi_endpoint_status = views._esi_status()
+        mock_get.side_effect = requests.exceptions.RequestException("Error")
 
-        self.assertFalse(expr=has_status_result)
-        self.assertEqual(first=esi_endpoint_status, second={})
+        has_status_result, error_str = _esi_status()
 
-    @patch("requests.get")
-    def test_esi_status_with_json_decode_error(self, mock_get):
+        self.assertFalse(has_status_result)
+        self.assertIn("Error", error_str)
+
+    @patch("esistatus.views.requests.get")
+    def test_esi_status_request_exception_with_response(self, mock_get):
+        """
+        Test the _esi_status function with a request exception that has a response
+
+        :param mock_get:
+        :type mock_get:
+        :return:
+        :rtype:
+        """
+
+        mock_response = Mock()
+        mock_response.status_code = 500
+        mock_response.reason = "Internal Server Error"
+        mock_get.side_effect = requests.exceptions.RequestException(
+            response=mock_response
+        )
+
+        has_status_result, error_str = _esi_status()
+
+        self.assertFalse(has_status_result)
+        self.assertEqual(error_str, "500 - Internal Server Error")
+
+    @patch("esistatus.views.requests.get")
+    def test_esi_status_request_exception_without_response(self, mock_get):
+        """
+        Test the _esi_status function with a request exception that does not have a response
+
+        :param mock_get:
+        :type mock_get:
+        :return:
+        :rtype:
+        """
+
+        mock_get.side_effect = requests.exceptions.RequestException("Network Error")
+
+        has_status_result, error_str = _esi_status()
+
+        self.assertFalse(has_status_result)
+        self.assertEqual(error_str, "Network Error")
+
+    @patch("esistatus.views.requests.get")
+    def test_esi_status_json_decode_error(self, mock_get):
         """
         Test the _esi_status function with a JSON decode error
 
@@ -322,10 +364,12 @@ class TestEsiStatus(TestCase):
         :rtype:
         """
 
-        mock_get.return_value.json.side_effect = json.JSONDecodeError(
-            msg="Expecting property name enclosed in double quotes", doc="{}", pos=0
-        )
-        has_status_result, esi_endpoint_status = views._esi_status()
+        mock_response = Mock()
+        mock_response.json.side_effect = json.JSONDecodeError("Error", "", 0)
+        mock_response.raise_for_status.return_value = None
+        mock_get.return_value = mock_response
 
-        self.assertFalse(expr=has_status_result)
-        self.assertEqual(first=esi_endpoint_status, second={})
+        has_status_result, esi_endpoint_status = _esi_status()
+
+        self.assertFalse(has_status_result)
+        self.assertEqual(esi_endpoint_status, {})

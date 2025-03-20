@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+### Added
+
+- Error message from the server response when the ESI status couldn't be loaded
+
 ### Changed
 
 - Test coverage improved

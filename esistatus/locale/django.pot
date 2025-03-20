@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.5.1\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-03-06 21:40+0100\n"
+"POT-Creation-Date: 2025-03-20 14:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,9 +66,11 @@ msgid "Green endpoints are responding as expected."
 msgstr ""
 
 #: esistatus/templates/esistatus/index.html:28
-msgid ""
-"Couldn't read the ESI status. Please try and reload the page. If that "
-"doesn't help, it is possible that ESI might be down entirely."
+msgid "Couldn't read the ESI status."
+msgstr ""
+
+#: esistatus/templates/esistatus/index.html:32
+msgid "Error Message"
 msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
