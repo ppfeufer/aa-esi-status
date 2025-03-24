@@ -35,6 +35,8 @@ Section Order:
 ### Security
 -->
 
+## [2.5.2] - 2025-03-24
+
 ### Added
 
 - Error message from the server response when the ESI status couldn't be loaded
@@ -43,6 +45,7 @@ Section Order:
 
 - Use AA framework page header template
 - Test coverage improved
+- Translations updated
 
 ## [2.5.1] - 2025-03-06
 
