@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# "H. Peter Pfeufer" <info@ppfeufer.de>, 2023, 2024.
+# "H. Peter Pfeufer" <info@ppfeufer.de>, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-03-06 21:40+0100\n"
-"PO-Revision-Date: 2024-09-19 13:30+0000\n"
+"POT-Creation-Date: 2025-03-24 13:37+0100\n"
+"PO-Revision-Date: 2025-03-21 14:17+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/de/>\n"
 "Language: de\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.10.3\n"
 
 #: esistatus/__init__.py:9 esistatus/templates/esistatus/base.html:6
 #: esistatus/templates/esistatus/base.html:10
@@ -64,8 +64,12 @@ msgid "Green endpoints are responding as expected."
 msgstr "Grüne Endpunkte antworten wie erwartet."
 
 #: esistatus/templates/esistatus/index.html:28
-msgid "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely."
-msgstr "Der ESI-Status konnte nicht gelesen werden. Bitte versuche die Seite neu zu laden. Wenn das nicht hilft, ist es möglich, dass ESI vollständig unerreichbar ist."
+msgid "Couldn't read the ESI status."
+msgstr "Der ESI-Status konnte nicht ermittelt werden."
+
+#: esistatus/templates/esistatus/index.html:32
+msgid "Error Message"
+msgstr "Fehlermeldung"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
 msgid "Detailed ESI status"
@@ -82,3 +86,6 @@ msgstr "Du möchtest helfen diese App in Deine Sprache zu übersetzen oder die b
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:8
 msgid "Join our team of translators!"
 msgstr "Tritt unserm Team von Übersetzern bei!"
+
+#~ msgid "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely."
+#~ msgstr "Der ESI-Status konnte nicht gelesen werden. Bitte versuche die Seite neu zu laden. Wenn das nicht hilft, ist es möglich, dass ESI vollständig unerreichbar ist."
