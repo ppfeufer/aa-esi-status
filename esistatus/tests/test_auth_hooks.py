@@ -47,11 +47,9 @@ class TestHooks(TestCase):
 
         cls.html_header = """
             <div class="aa-esistatus-header">
-                <header>
-                    <h1 class="text-center">
-                        ESI Status
-                    </h1>
-                </header>
+                <h1 class="page-header text-center mb-3">
+                    ESI Status
+                </h1>
             </div>
         """
 
