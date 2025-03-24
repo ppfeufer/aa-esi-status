@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-03-06 21:40+0100\n"
+"POT-Creation-Date: 2025-03-24 13:37+0100\n"
 "PO-Revision-Date: 2024-10-04 18:10+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: French <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/fr/>\n"
@@ -66,8 +66,12 @@ msgid "Green endpoints are responding as expected."
 msgstr ""
 
 #: esistatus/templates/esistatus/index.html:28
-msgid "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely."
-msgstr "Impossible de lire le statut ESI. Veuillez essayer de recharger la page. Si cela ne résout pas le problème, il est possible que le statut ESI soit complètement en panne."
+msgid "Couldn't read the ESI status."
+msgstr ""
+
+#: esistatus/templates/esistatus/index.html:32
+msgid "Error Message"
+msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
 msgid "Detailed ESI status"
@@ -84,3 +88,6 @@ msgstr "Voulez-vous aider à traduire cette application dans votre langue ou am�
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:8
 msgid "Join our team of translators!"
 msgstr "Rejoignez notre équipe de traducteurs !"
+
+#~ msgid "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely."
+#~ msgstr "Impossible de lire le statut ESI. Veuillez essayer de recharger la page. Si cela ne résout pas le problème, il est possible que le statut ESI soit complètement en panne."

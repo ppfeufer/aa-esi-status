@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-03-06 21:40+0100\n"
+"POT-Creation-Date: 2025-03-24 13:37+0100\n"
 "PO-Revision-Date: 2024-09-19 13:30+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Korean <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/ko/>\n"
@@ -68,8 +68,12 @@ msgid "Green endpoints are responding as expected."
 msgstr ""
 
 #: esistatus/templates/esistatus/index.html:28
-msgid "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely."
-msgstr "ESI 상태를 읽을 수 없습니다. 페이지를 새로고침 해 보세요. 그래도 읽어올 수 없는 경우, ESI가 완전히 다운됐을 수도 있습니다."
+msgid "Couldn't read the ESI status."
+msgstr ""
+
+#: esistatus/templates/esistatus/index.html:32
+msgid "Error Message"
+msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
 msgid "Detailed ESI status"
@@ -86,3 +90,6 @@ msgstr "이 앱을 번역하거나 기존 번역을 개선하고 싶으신가요
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:8
 msgid "Join our team of translators!"
 msgstr "번역팀에 참여하세요!"
+
+#~ msgid "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely."
+#~ msgstr "ESI 상태를 읽을 수 없습니다. 페이지를 새로고침 해 보세요. 그래도 읽어올 수 없는 경우, ESI가 완전히 다운됐을 수도 있습니다."
