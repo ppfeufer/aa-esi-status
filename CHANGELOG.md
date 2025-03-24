@@ -41,6 +41,7 @@ Section Order:
 
 ### Changed
 
+- Use AA framework page header template
 - Test coverage improved
 
 ## [2.5.1] - 2025-03-06
