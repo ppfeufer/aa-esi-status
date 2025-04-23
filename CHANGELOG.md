@@ -38,6 +38,8 @@ Section Order:
 ### Changed
 
 - JavaScript code improved
+- Use Bootstraps `text-bg-*` classes for the status colors to leverage Bootstraps
+  native background/text contrast handling
 
 ## [2.5.2] - 2025-03-24
 
