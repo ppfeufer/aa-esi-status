@@ -1,6 +1,6 @@
 <div class="col-md-4 mb-3 mb-md-0">
     <div class="card card-{{ status }}-esi-endpoints">
-        <div class="card-header bg-{% if status == 'red' %}danger{% elif status == 'yellow' %}warning{% else %}success{% endif %}">
+        <div class="card-header text-bg-{% if status == 'red' %}danger{% elif status == 'yellow' %}warning{% else %}success{% endif %}">
             <div class="card-title text-white text-center mb-0">
                 {{ title|title }}
                 <i
