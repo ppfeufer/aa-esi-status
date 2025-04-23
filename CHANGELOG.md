@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+### Changed
+
+- JavaScript code improved
+
 ## [2.5.2] - 2025-03-24
 
 ### Added
