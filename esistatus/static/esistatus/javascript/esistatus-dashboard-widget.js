@@ -16,32 +16,31 @@ const esiStatusDashboardWidget = () => {
 
     fetch(esistatusSettings.dashboardWidget.ajaxUrl)
         .then((response) => {
-            if (response.ok) {
-                return response.text();
-            }
-            throw new Error('Something went wrong');
+            return response.ok ? response.text() : Promise.reject(new Error('Something went wrong'));
         })
         .then((responseText) => {
-            if (responseText !== '') {
-                console.log('ESI Status Dashboard Widget: Updating widget content');
-
-                elementEsiStatusDashboardWidget.innerHTML = responseText;
-
-                if (!elementEsiStatusDashboardWidget.classList.contains('show')) {
-                    const bsCollapse = new bootstrap.Collapse(elementEsiStatusDashboardWidget, { // eslint-disable-line no-unused-vars
-                        show: true
-                    });
-                }
-
-                // Initialize Bootstrap tooltips
-                [].slice.call(document.querySelectorAll('[data-bs-tooltip="aa-esi-status"]'))
-                    .map((tooltipTriggerEl) => {
-                        return new bootstrap.Tooltip(tooltipTriggerEl);
-                    });
+            if (responseText === '') {
+                return;
             }
+
+            console.log('ESI Status Dashboard Widget: Updating widget content');
+
+            elementEsiStatusDashboardWidget.innerHTML = responseText;
+
+            if (!elementEsiStatusDashboardWidget.classList.contains('show')) {
+                new bootstrap.Collapse(elementEsiStatusDashboardWidget, { // jshint ignore:line
+                    show: true
+                });
+            }
+
+            // Initialize Bootstrap tooltips
+            [].slice.call(document.querySelectorAll('[data-bs-tooltip="aa-esi-status"]'))
+                .map((tooltipTriggerEl) => {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
         })
         .catch((error) => {
-            console.log(error);
+            console.error(error);
         });
 };
 
