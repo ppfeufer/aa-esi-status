@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+### Changed
+
+- Template code slightly refactored/improved for better readability
+
 ## [2.5.3] - 2025-04-23
 
 ### Changed

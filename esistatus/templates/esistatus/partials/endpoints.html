@@ -1,18 +1,22 @@
 <div class="col-md-4 mb-3 mb-md-0">
     <div class="card card-{{ status }}-esi-endpoints">
         <div class="card-header text-bg-{% if status == 'red' %}danger{% elif status == 'yellow' %}warning{% else %}success{% endif %}">
-            <div class="card-title text-white text-center mb-0">
+            <div class="card-title text-center mb-0">
                 {{ title|title }}
-                <i
-                    class="fa-solid fa-info-circle cursor-pointer"
-                    data-bs-tooltip="aa-esi-status"
-                    title="{{ explanation }}"
-                ></i>
+
+                <sup>
+                    <i
+                        class="fa-solid fa-info-circle cursor-pointer"
+                        data-bs-tooltip="aa-esi-status"
+                        title="{{ explanation }}"
+                    ></i>
+                </sup>
             </div>
         </div>
 
         <div class="card-body text-center">
             <b class="fs-4">{{ data.count }}</b><br>
+
             <span>
                 {{ data.percentage }}
             </span>
@@ -23,13 +27,19 @@
                 {% if data.count > 0 %}
                     {% for category, endpoints in data.endpoints.items %}
                         <div class="card card-default border-0">
-                            <div class="card-header border-0 cursor-pointer" data-bs-toggle="collapse" href="#{{ category|slugify  }}-{{ status }}" aria-expanded="false" aria-controls="{{ category|slugify  }}-{{ status }}">
+                            <div
+                                class="card-header border-0 cursor-pointer"
+                                data-bs-toggle="collapse"
+                                href="#{{ category|slugify }}-{{ status }}"
+                                aria-expanded="false"
+                                aria-controls="{{ category|slugify }}-{{ status }}"
+                            >
                                 <p class="card-title h6">
                                     {{ category }}
                                 </p>
                             </div>
 
-                            <div id="{{ category|slugify  }}-{{ status }}" class="card-body collapse">
+                            <div id="{{ category|slugify }}-{{ status }}" class="card-body collapse">
                                 {% for endpoint in endpoints %}
                                     <p class="small">
                                         {{ endpoint.method }}
