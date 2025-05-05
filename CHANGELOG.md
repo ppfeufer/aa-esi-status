@@ -35,9 +35,12 @@ Section Order:
 ### Security
 -->
 
+## [2.5.4] - 2025-05-05
+
 ### Changed
 
 - Template code slightly refactored/improved for better readability
+- Translations updated
 
 ## [2.5.3] - 2025-04-23
 
