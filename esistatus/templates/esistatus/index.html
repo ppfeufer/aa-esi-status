@@ -2,11 +2,6 @@
 
 {% load i18n %}
 
-{% block aa_esistatus_header %}
-    {% translate "ESI Status" as translated_header %}
-    {% include "framework/header/page-header.html" with title=translated_header %}
-{% endblock %}
-
 {% block aa_esistatus_body %}
     <div class="row">
         {% if has_status_result %}
