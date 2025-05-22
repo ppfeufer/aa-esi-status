@@ -12,12 +12,6 @@
 
 {% block content %}
     <div class="aa-esistatus">
-        {% if not user.is_authenticated %}
-            <div class="aa-esistatus-header">
-                {% block aa_esistatus_header %}{% endblock %}
-            </div>
-        {% endif %}
-
         <div class="aa-esistatus-body">
             {% block aa_esistatus_body %}{% endblock %}
         </div>

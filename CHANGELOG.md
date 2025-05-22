@@ -35,6 +35,11 @@ Section Order:
 ### Security
 -->
 
+### Removed
+
+- Cache breaker for static files
+- Redundant header on public views
+
 ## [2.5.4] - 2025-05-05
 
 ### Changed
