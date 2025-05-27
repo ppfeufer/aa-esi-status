@@ -25,11 +25,21 @@ ______________________________________________________________________
   - [ESI Status Page](#esi-status-page)
   - [Dashboard Widget](#dashboard-widget)
 - [Installation](#installation)
-  - [Step 1: Install the App](#step-1-install-the-app)
-  - [Step 2: Update Your AA Settings](#step-2-update-your-aa-settings)
-  - [Step 3: Finalizing the Installation](#step-3-finalizing-the-installation)
-- [(Optional) Public Views](#optional-public-views)
+  - [Bare Metal Installation](#bare-metal-installation)
+    - [Step 1: Install the App](#step-1-install-the-app)
+    - [Step 2: Update Your AA Settings](#step-2-update-your-aa-settings)
+    - [Step 3: Finalizing the Installation](#step-3-finalizing-the-installation)
+  - [Docker Installation](#docker-installation)
+    - [Step 1: Add the App](#step-1-add-the-app)
+    - [Step 2: Update Your AA Settings](#step-2-update-your-aa-settings-1)
+    - [Step 3: Build Auth and Restart Your Containers](#step-3-build-auth-and-restart-your-containers)
+    - [Step 4: Finalizing the Installation](#step-4-finalizing-the-installation)
+  - [Common Steps](#common-steps)
+    - [(Optional) Public Views](#optional-public-views)
 - [Updating](#updating)
+  - [Bare Metal Installation](#bare-metal-installation-1)
+  - [Docker Installation](#docker-installation-1)
+  - [Common Steps](#common-steps-1)
 - [Changelog](#changelog)
 - [Translation Status](#translation-status)
 - [Contributing](#contributing)
@@ -53,21 +63,15 @@ It shows the current status of ESI for administrative users.
 
 ## Installation<a name="installation"></a>
 
-> [!NOTE]
+> [!Important]
 >
-> **AA ESI Status >= 2.0.0 needs at least Alliance Auth v4!**
->
-> Please make sure to update your Alliance Auth instance _before_ you install this
-> module or update to the latest version, otherwise an update to Alliance Auth will
-> be pulled in unsupervised.
->
-> The last version of AA ESI Status that supports Alliance Auth v3 is `1.14.2`.
+> This app is a plugin for [Alliance Auth](https://gitlab.com/allianceauth/allianceauth). \
+> If you don't have Alliance Auth running already, please install it first before
+> proceeding. (See the official [AA installation guide](https://allianceauth.readthedocs.io/en/latest/installation/allianceauth.html) for details)
 
-This app is a plugin for Alliance Auth. If you don't have Alliance Auth running
-already, please install it first before proceeding.
-(See the official [AA installation guide](https://allianceauth.readthedocs.io/en/latest/installation/allianceauth.html) for details)
+### Bare Metal Installation<a name="bare-metal-installation"></a>
 
-### Step 1: Install the App<a name="step-1-install-the-app"></a>
+#### Step 1: Install the App<a name="step-1-install-the-app"></a>
 
 Make sure you're in the virtual environment (venv) of your Alliance Auth installation.
 Then install the latest version:
@@ -76,13 +80,13 @@ Then install the latest version:
 pip install aa-esi-status
 ```
 
-### Step 2: Update Your AA Settings<a name="step-2-update-your-aa-settings"></a>
+#### Step 2: Update Your AA Settings<a name="step-2-update-your-aa-settings"></a>
 
 Configure your AA settings (`local.py`) as follows:
 
 - Add `"esistatus",` to `INSTALLED_APPS`
 
-### Step 3: Finalizing the Installation<a name="step-3-finalizing-the-installation"></a>
+#### Step 3: Finalizing the Installation<a name="step-3-finalizing-the-installation"></a>
 
 Run migrations & copy static files.
 
@@ -93,7 +97,43 @@ python manage.py migrate
 
 Restart your supervisor services for AA.
 
-## (Optional) Public Views<a name="optional-public-views"></a>
+### Docker Installation<a name="docker-installation"></a>
+
+#### Step 1: Add the App<a name="step-1-add-the-app"></a>
+
+Add the app to your `conf/requirements.txt`:
+
+```text
+aa-esi-status==2.5.4
+```
+
+#### Step 2: Update Your AA Settings<a name="step-2-update-your-aa-settings-1"></a>
+
+Configure your AA settings (`conf/local.py`) as follows:
+
+- Add `"esistatus",` to `INSTALLED_APPS`
+
+#### Step 3: Build Auth and Restart Your Containers<a name="step-3-build-auth-and-restart-your-containers"></a>
+
+```shell
+docker compose build --no-cache
+docker compose --env-file=.env up -d
+```
+
+#### Step 4: Finalizing the Installation<a name="step-4-finalizing-the-installation"></a>
+
+Run migrations, copy static files and load EVE universe data:
+
+```shell
+docker compose exec allianceauth_gunicorn bash
+
+auth collectstatic
+auth migrate
+```
+
+### Common Steps<a name="common-steps"></a>
+
+#### (Optional) Public Views<a name="optional-public-views"></a>
 
 This app supports AA's feature of public views, since the ESI status is not any
 mission-critical information.
@@ -118,6 +158,8 @@ APPS_WITH_PUBLIC_VIEWS = [
 
 ## Updating<a name="updating"></a>
 
+### Bare Metal Installation<a name="bare-metal-installation-1"></a>
+
 To update your existing installation of AA ESI Status, first enable your virtual
 environment.
 
@@ -131,6 +173,36 @@ python manage.py migrate
 ```
 
 Now restart your AA supervisor services.
+
+### Docker Installation<a name="docker-installation-1"></a>
+
+To update your existing installation of AA ESI Status, all you need to do is to
+update the respective line in your `conf/requirements.txt` file to the latest version.
+
+```text
+aa-esi-status==2.5.4
+```
+
+Now rebuild your containers:
+
+```shell
+docker compose build
+docker compose --env-file=.env up -d
+```
+
+After that, run the following commands to update your database and static files:
+
+```shell
+docker compose exec allianceauth_gunicorn bash
+
+auth collectstatic
+auth migrate
+```
+
+### Common Steps<a name="common-steps-1"></a>
+
+It is possible that some versions need some more changes. Always read the
+[release notes](https://github.com/ppfeufer/allianceauth-afat/releases) to find out more.
 
 ## Changelog<a name="changelog"></a>
 
