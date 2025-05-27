@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+### Added
+
+- Docker instructions to README
+
 ### Removed
 
 - Cache breaker for static files. Doesn't work as expected with `django-sri`.
