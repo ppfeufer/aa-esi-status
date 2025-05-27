@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-05-05 20:48+0200\n"
+"POT-Creation-Date: 2025-05-27 06:14+0200\n"
 "PO-Revision-Date: 2024-09-19 13:30+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Russian <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/ru/>\n"
@@ -19,9 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : (n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 5.7.2\n"
 
-#: esistatus/__init__.py:9 esistatus/templates/esistatus/base.html:6
+#: esistatus/__init__.py:12 esistatus/templates/esistatus/base.html:6
 #: esistatus/templates/esistatus/base.html:10
-#: esistatus/templates/esistatus/index.html:7
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:5
 msgid "ESI Status"
 msgstr "Статус ESI"
@@ -35,41 +34,41 @@ msgstr "Статус ESI v{__version__}"
 msgid "Can access this app"
 msgstr "Имеет доступ к приложению"
 
-#: esistatus/templates/esistatus/index.html:14
+#: esistatus/templates/esistatus/index.html:8
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:9
 msgid "Red endpoints"
 msgstr "Красные конечные точки"
 
-#: esistatus/templates/esistatus/index.html:15
+#: esistatus/templates/esistatus/index.html:9
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
 msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
 msgstr "Есть большая вероятность, что красные конечные точки вообще не будут отвечать на запросы или будут полностью недоступны."
 
-#: esistatus/templates/esistatus/index.html:18
+#: esistatus/templates/esistatus/index.html:12
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:13
 msgid "Yellow endpoints"
 msgstr "Желтые конечные точки"
 
-#: esistatus/templates/esistatus/index.html:19
+#: esistatus/templates/esistatus/index.html:13
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:14
 msgid "Yellow endpoints have a good chance of being slow or returning errors."
 msgstr "Желтые конечные точки имеют высокую вероятность замедления работы или ошибок."
 
-#: esistatus/templates/esistatus/index.html:22
+#: esistatus/templates/esistatus/index.html:16
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
 msgid "Green endpoints"
 msgstr "Зеленые конечные точки"
 
-#: esistatus/templates/esistatus/index.html:23
+#: esistatus/templates/esistatus/index.html:17
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
 msgid "Green endpoints are responding as expected."
 msgstr "Зеленые конечные точки реагируют так, как ожидалось."
 
-#: esistatus/templates/esistatus/index.html:28
+#: esistatus/templates/esistatus/index.html:22
 msgid "Couldn't read the ESI status."
 msgstr ""
 
-#: esistatus/templates/esistatus/index.html:32
+#: esistatus/templates/esistatus/index.html:26
 msgid "Error Message"
 msgstr ""
 
