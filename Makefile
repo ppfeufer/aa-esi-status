@@ -54,7 +54,7 @@ graph_models:
 # Prepare a new release
 # Update the graph of the models, translation files and the version in the package
 .PHONY: prepare-release
-prepare-release: graph_models pot
+prepare-release: pot
 	@echo ""
 	@echo "Preparing a release …"
 	@read -p "New Version Number: " new_version; \

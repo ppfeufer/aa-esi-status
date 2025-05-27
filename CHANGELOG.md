@@ -35,6 +35,8 @@ Section Order:
 ### Security
 -->
 
+## [2.6.0] - 2025-05-27
+
 ### Added
 
 - Docker instructions to README

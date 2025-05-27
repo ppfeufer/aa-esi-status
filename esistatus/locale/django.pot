@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: AA ESI Status 2.5.4\n"
+"Project-Id-Version: AA ESI Status 2.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-05-22 06:09+0200\n"
+"POT-Creation-Date: 2025-05-27 06:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: esistatus/__init__.py:9 esistatus/templates/esistatus/base.html:6
+#: esistatus/__init__.py:12 esistatus/templates/esistatus/base.html:6
 #: esistatus/templates/esistatus/base.html:10
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:5
 msgid "ESI Status"

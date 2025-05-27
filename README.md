@@ -104,7 +104,7 @@ Restart your supervisor services for AA.
 Add the app to your `conf/requirements.txt`:
 
 ```text
-aa-esi-status==2.5.4
+aa-esi-status==2.6.0
 ```
 
 #### Step 2: Update Your AA Settings<a name="step-2-update-your-aa-settings-1"></a>
@@ -180,7 +180,7 @@ To update your existing installation of AA ESI Status, all you need to do is to
 update the respective line in your `conf/requirements.txt` file to the latest version.
 
 ```text
-aa-esi-status==2.5.4
+aa-esi-status==2.6.0
 ```
 
 Now rebuild your containers:
