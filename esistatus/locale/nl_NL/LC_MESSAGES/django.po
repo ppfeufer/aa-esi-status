@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-05-05 20:48+0200\n"
+"POT-Creation-Date: 2025-05-27 06:14+0200\n"
 "PO-Revision-Date: 2024-05-10 14:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/nl/>\n"
@@ -18,9 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.5.3\n"
 
-#: esistatus/__init__.py:9 esistatus/templates/esistatus/base.html:6
+#: esistatus/__init__.py:12 esistatus/templates/esistatus/base.html:6
 #: esistatus/templates/esistatus/base.html:10
-#: esistatus/templates/esistatus/index.html:7
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:5
 msgid "ESI Status"
 msgstr ""
@@ -34,41 +33,41 @@ msgstr ""
 msgid "Can access this app"
 msgstr ""
 
-#: esistatus/templates/esistatus/index.html:14
+#: esistatus/templates/esistatus/index.html:8
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:9
 msgid "Red endpoints"
 msgstr ""
 
-#: esistatus/templates/esistatus/index.html:15
+#: esistatus/templates/esistatus/index.html:9
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
 msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
 msgstr ""
 
-#: esistatus/templates/esistatus/index.html:18
+#: esistatus/templates/esistatus/index.html:12
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:13
 msgid "Yellow endpoints"
 msgstr ""
 
-#: esistatus/templates/esistatus/index.html:19
+#: esistatus/templates/esistatus/index.html:13
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:14
 msgid "Yellow endpoints have a good chance of being slow or returning errors."
 msgstr ""
 
-#: esistatus/templates/esistatus/index.html:22
+#: esistatus/templates/esistatus/index.html:16
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
 msgid "Green endpoints"
 msgstr ""
 
-#: esistatus/templates/esistatus/index.html:23
+#: esistatus/templates/esistatus/index.html:17
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
 msgid "Green endpoints are responding as expected."
 msgstr ""
 
-#: esistatus/templates/esistatus/index.html:28
+#: esistatus/templates/esistatus/index.html:22
 msgid "Couldn't read the ESI status."
 msgstr ""
 
-#: esistatus/templates/esistatus/index.html:32
+#: esistatus/templates/esistatus/index.html:26
 msgid "Error Message"
 msgstr ""
 
