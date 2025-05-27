@@ -22,8 +22,7 @@ from allianceauth.services.hooks import get_extension_logger
 from app_utils.logging import LoggerAddTag
 
 # AA ESI Status
-from esistatus import __title__
-from esistatus.constants import USER_AGENT
+from esistatus import __title__, __user_agent__
 
 logger = LoggerAddTag(get_extension_logger(__name__), __title__)
 
@@ -128,7 +127,7 @@ def _esi_status() -> tuple:
     """
 
     has_status_result = False
-    request_headers = {"User-Agent": USER_AGENT}
+    request_headers = {"User-Agent": __user_agent__}
     esi_status_json_url = "https://esi.evetech.net/status.json?version=latest"
     esi_endpoint_status = {}
 
