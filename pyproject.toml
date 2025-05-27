@@ -6,7 +6,7 @@ requires = [
 
 [project]
 name = "aa-esi-status"
-description = "A simple status monitor for ESI"
+description = "A simple Alliance Auth app to check the status of ESI and its endpoints"
 readme = "README.md"
 keywords = [
     "allianceauth",
