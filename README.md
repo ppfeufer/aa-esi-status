@@ -21,6 +21,8 @@ ______________________________________________________________________
 
 <!-- mdformat-toc start --slug=github --maxlevel=6 --minlevel=2 -->
 
+- [Testimonials](#testimonials)
+  - [So good that even CCP copies it, after 5 years of the existence of this app!](#so-good-that-even-ccp-copies-it-after-5-years-of-the-existence-of-this-app)
 - [Screenshots](#screenshots)
   - [ESI Status Page](#esi-status-page)
   - [Dashboard Widget](#dashboard-widget)
@@ -47,6 +49,14 @@ ______________________________________________________________________
 <!-- mdformat-toc end -->
 
 ______________________________________________________________________
+
+## Testimonials<a name="testimonials"></a>
+
+### So good that even CCP copies it, after 5 years of the existence of this app!<a name="so-good-that-even-ccp-copies-it-after-5-years-of-the-existence-of-this-app"></a>
+
+![CCP Stroopwafel Testimonial](https://raw.githubusercontent.com/ppfeufer/aa-esi-status/master/docs/images/ccp-stroopwafel-testimonial.jpg "CCP Stroopwafel Testimonial")
+
+And "yoink" the idea they did! » [CCP ESI Status Page](https://developers.eveonline.com/status)
 
 ## Screenshots<a name="screenshots"></a>
 
