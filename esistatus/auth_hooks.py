@@ -8,7 +8,7 @@ from allianceauth.hooks import DashboardItemHook
 from allianceauth.services.hooks import MenuItemHook, UrlHook
 
 # AA ESI Status
-from esistatus import __title__, urls
+from esistatus import __app_name__, __title__, urls
 from esistatus.views import dashboard_widget
 
 
@@ -73,7 +73,7 @@ def register_urls():
 
     return UrlHook(
         urls=urls,
-        namespace="esistatus",
+        namespace=__app_name__,
         base_url=r"^esi-status/",
         excluded_views=["esistatus.views.index"],
     )

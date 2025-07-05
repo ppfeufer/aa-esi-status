@@ -6,9 +6,9 @@ App url config
 from django.urls import path
 
 # AA ESI Status
-from esistatus import views
+from esistatus import __app_name__, views
 
-app_name: str = "esistatus"
+app_name: str = __app_name__
 
 urlpatterns = [
     path(route="", view=views.index, name="index"),
