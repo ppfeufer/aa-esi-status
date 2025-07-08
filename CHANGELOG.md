@@ -35,6 +35,8 @@ Section Order:
 ### Security
 -->
 
+## [2.7.0] - 2025-07-08
+
 ### Changed
 
 - Code refactored and improved
