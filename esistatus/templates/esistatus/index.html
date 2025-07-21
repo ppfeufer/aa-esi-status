@@ -1,35 +1,18 @@
 {% extends "esistatus/base.html" %}
 
+{% load static %}
 {% load i18n %}
 
 {% block aa_esistatus_body %}
-    <div class="row">
-        {% if has_status_result %}
-            {% translate "Red endpoints" as translated_header_red %}
-            {% translate "Red endpoints have a good chance of not responding at all or being completely unavailable." as translated_header_red_explanation %}
-            {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="red" explanation=translated_header_red_explanation data=esi_endpoint_status.red with_details=True %}
-
-            {% translate "Yellow endpoints" as translated_header_yellow %}
-            {% translate "Yellow endpoints have a good chance of being slow or returning errors." as translated_header_yellow_explanation %}
-            {% include 'esistatus/partials/endpoints.html' with title=translated_header_yellow status="yellow" explanation=translated_header_yellow_explanation data=esi_endpoint_status.yellow with_details=True %}
-
-            {% translate "Green endpoints" as translated_header_green %}
-            {% translate "Green endpoints are responding as expected." as translated_header_green_explanation %}
-            {% include 'esistatus/partials/endpoints.html' with title=translated_header_green status="green" explanation=translated_header_green_explanation data=esi_endpoint_status.green with_details=True %}
-        {% else %}
-            <div class="col-12">
-                <p class="alert alert-warning text-center">
-                    {% translate "Couldn't read the ESI status." %}
-
-                    {% if esi_endpoint_status %}
-                        <span id="aa-esi-status-error-message" class="d-block mt-3">
-                            {% translate "Error Message" %}: {{ esi_endpoint_status }}
-                        </span>
-                    {% endif %}
-                </p>
-            </div>
-        {% endif %}
+    <div class="esistatus-loading-spinner text-center">
+        <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="{% static "afat/images/ring-resize-white-36.svg" %}">
+            <img src="{% static "afat/images/ring-resize-black-36.svg" %}" alt="{% translate 'Loading …' %}">
+        </picture>
+        <p class="mt-3">{% translate "Loading ESI status …" %}</p>
     </div>
+
+    <div class="row esi-status-index"></div>
 {% endblock %}
 
 {% block extra_css %}
@@ -38,13 +21,12 @@
 
 {% block extra_javascript %}
     <script>
-        $(document).ready(() => {
-            // Initialize Bootstrap tooltips
-            [].slice.call(document.querySelectorAll(
-                '[data-bs-tooltip="aa-esi-status"]'
-            )).map((tooltipTriggerEl) => {
-                return new bootstrap.Tooltip(tooltipTriggerEl, {html: true});
-            });
-        });
+        const esistatusSettings = {
+            url: {
+                esistatus: '{% url "esistatus:ajax_esi_status" %}',
+            }
+        };
     </script>
+
+    {% include "esistatus/bundles/esistatus-js.html" %}
 {% endblock %}

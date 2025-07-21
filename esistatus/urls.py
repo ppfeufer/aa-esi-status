@@ -17,10 +17,15 @@ ajax_urls = [
         view=include(
             [
                 path(
-                    route="esi_status/",
+                    route="dashboard-widget/",
+                    view=views.ajax_dashboard_widget,
+                    name="ajax_dashboard_widget",
+                ),
+                path(
+                    route="esi-status/",
                     view=views.ajax_esi_status,
                     name="ajax_esi_status",
-                )
+                ),
             ]
         ),
     ),

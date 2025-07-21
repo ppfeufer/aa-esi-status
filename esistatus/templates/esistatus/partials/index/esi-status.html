@@ -1,0 +1,30 @@
+{% load i18n %}
+
+{% if has_status_result %}
+    <!-- Red Endpoints -->
+    {% translate "Red endpoints" as translated_header_red %}
+    {% translate "Red endpoints have a good chance of not responding at all or being completely unavailable." as translated_header_red_explanation %}
+    {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="red" explanation=translated_header_red_explanation data=esi_endpoint_status.red with_details=True %}
+
+    <!-- Yellow Endpoints -->
+    {% translate "Yellow endpoints" as translated_header_yellow %}
+    {% translate "Yellow endpoints have a good chance of being slow or returning errors." as translated_header_yellow_explanation %}
+    {% include 'esistatus/partials/endpoints.html' with title=translated_header_yellow status="yellow" explanation=translated_header_yellow_explanation data=esi_endpoint_status.yellow with_details=True %}
+
+    <!-- Green Endpoints -->
+    {% translate "Green endpoints" as translated_header_green %}
+    {% translate "Green endpoints are responding as expected." as translated_header_green_explanation %}
+    {% include 'esistatus/partials/endpoints.html' with title=translated_header_green status="green" explanation=translated_header_green_explanation data=esi_endpoint_status.green with_details=True %}
+{% else %}
+    <div class="col-12">
+        <p class="alert alert-warning text-center">
+            {% translate "Couldn't read the ESI status." %}
+
+            {% if esi_endpoint_status %}
+                <span id="aa-esi-status-error-message" class="d-block mt-3">
+                    {% translate "Error Message" %}: {{ esi_endpoint_status }}
+                </span>
+            {% endif %}
+        </p>
+    </div>
+{% endif %}

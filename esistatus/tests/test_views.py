@@ -20,7 +20,12 @@ from app_utils.testing import create_fake_user
 
 # AA ESI Status
 from esistatus import views
-from esistatus.views import _append_value, _esi_status, dashboard_widget
+from esistatus.views import (
+    _append_value,
+    _esi_endpoint_status_from_json,
+    _esi_status,
+    dashboard_widget,
+)
 
 
 class TestAppendValue(TestCase):
@@ -193,6 +198,46 @@ class TestAjaxEsiStatus(TestCase):
 
         self.assertEqual(first=response.status_code, second=HTTPStatus.OK)
 
+
+class TestAjaxEsiStatusDasboardWidget(TestCase):
+    """
+    Test the AJAX ESI Status view for the dashboard widget
+    """
+
+    def setUp(self):
+        """
+        Set up users
+
+        :return:
+        :rtype:
+        """
+
+        self.superuser = create_fake_user(
+            character_id=1002, character_name="Clark Kent"
+        )
+        self.superuser.is_superuser = True
+
+        self.client.force_login(user=self.superuser)
+
+    @patch("esistatus.views._esi_status")
+    def test_ajax_esi_status_with_status_result(self, mock_esi_status):
+        """
+        Test the AJAX ESI Status view with HTTPStatus.OK
+
+        :param mock_esi_status:
+        :type mock_esi_status:
+        :return:
+        :rtype:
+        """
+
+        mock_esi_status.return_value = (True, {})
+
+        response = self.client.get(
+            path=reverse(viewname="esistatus:ajax_dashboard_widget")
+        )
+
+        self.assertEqual(first=response.status_code, second=HTTPStatus.OK)
+
     @patch("esistatus.views._esi_status")
     def test_ajax_esi_status_without_status_result(self, mock_esi_status):
         """
@@ -206,7 +251,9 @@ class TestAjaxEsiStatus(TestCase):
 
         mock_esi_status.return_value = (False, {})
 
-        response = self.client.get(path=reverse(viewname="esistatus:ajax_esi_status"))
+        response = self.client.get(
+            path=reverse(viewname="esistatus:ajax_dashboard_widget")
+        )
 
         self.assertEqual(first=response.status_code, second=HTTPStatus.NO_CONTENT)
 
@@ -373,3 +420,51 @@ class TestEsiStatus(TestCase):
 
         self.assertFalse(has_status_result)
         self.assertEqual(esi_endpoint_status, {})
+
+    def test_returns_correct_status_counts_and_percentages(self):
+        """
+        Test the _esi_endpoint_status_from_json function with a sample ESI endpoint JSON
+
+        :return:
+        """
+
+        esi_endpoint_json = [
+            {"status": "green", "tags": ["tag1"], "route": "/route1", "method": "get"},
+            {
+                "status": "yellow",
+                "tags": ["tag2"],
+                "route": "/route2",
+                "method": "post",
+            },
+            {"status": "red", "tags": ["tag3"], "route": "/route3", "method": "put"},
+            {"status": "green", "tags": ["tag1"], "route": "/route4", "method": "get"},
+        ]
+        has_status_result, esi_endpoint_status = _esi_endpoint_status_from_json(
+            esi_endpoint_json
+        )
+        self.assertTrue(has_status_result)
+        self.assertEqual(esi_endpoint_status["green"]["count"], 2)
+        self.assertEqual(esi_endpoint_status["yellow"]["count"], 1)
+        self.assertEqual(esi_endpoint_status["red"]["count"], 1)
+        self.assertEqual(esi_endpoint_status["green"]["percentage"], "50.00%")
+        self.assertEqual(esi_endpoint_status["yellow"]["percentage"], "25.00%")
+        self.assertEqual(esi_endpoint_status["red"]["percentage"], "25.00%")
+
+    def test_handles_empty_esi_endpoint_json(self):
+        """
+        Test the _esi_endpoint_status_from_json function with an empty ESI endpoint JSON
+
+        :return:
+        """
+
+        esi_endpoint_json = []
+        has_status_result, esi_endpoint_status = _esi_endpoint_status_from_json(
+            esi_endpoint_json
+        )
+        self.assertTrue(has_status_result)
+        self.assertEqual(esi_endpoint_status["green"]["count"], 0)
+        self.assertEqual(esi_endpoint_status["yellow"]["count"], 0)
+        self.assertEqual(esi_endpoint_status["red"]["count"], 0)
+        self.assertEqual(esi_endpoint_status["green"]["percentage"], "0.00%")
+        self.assertEqual(esi_endpoint_status["yellow"]["percentage"], "0.00%")
+        self.assertEqual(esi_endpoint_status["red"]["percentage"], "0.00%")
