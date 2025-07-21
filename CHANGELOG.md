@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+### Changed
+
+- Endpoints alphabetically sorted
+
 ## [2.8.0] - 2025-07-21
 
 ### Added
