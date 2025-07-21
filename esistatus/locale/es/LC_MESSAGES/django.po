@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-05-27 06:14+0200\n"
+"POT-Creation-Date: 2025-07-21 10:57+0200\n"
 "PO-Revision-Date: 2024-12-02 17:40+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Spanish <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/es/>\n"
@@ -34,42 +34,44 @@ msgstr "Esta de ESI v{__version__}"
 msgid "Can access this app"
 msgstr "Puede acceder esta aplicacion"
 
-#: esistatus/templates/esistatus/index.html:8
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:9
-msgid "Red endpoints"
-msgstr "Endpoints en Rojo"
-
-#: esistatus/templates/esistatus/index.html:9
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
-msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
+#: esistatus/templates/esistatus/index.html:10
+msgid "Loading …"
 msgstr ""
 
 #: esistatus/templates/esistatus/index.html:12
+#, fuzzy
+#| msgid "Detailed ESI status"
+msgid "Loading ESI status …"
+msgstr "Estado detallado del ESI"
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:9
+#: esistatus/templates/esistatus/partials/index/esi-status.html:5
+msgid "Red endpoints"
+msgstr "Endpoints en Rojo"
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
+#: esistatus/templates/esistatus/partials/index/esi-status.html:6
+msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
+msgstr ""
+
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:13
+#: esistatus/templates/esistatus/partials/index/esi-status.html:10
 msgid "Yellow endpoints"
 msgstr "Endpoints en Amarillo"
 
-#: esistatus/templates/esistatus/index.html:13
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:14
+#: esistatus/templates/esistatus/partials/index/esi-status.html:11
 msgid "Yellow endpoints have a good chance of being slow or returning errors."
 msgstr ""
 
-#: esistatus/templates/esistatus/index.html:16
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
+#: esistatus/templates/esistatus/partials/index/esi-status.html:15
 msgid "Green endpoints"
 msgstr "Endpoints en Verde"
 
-#: esistatus/templates/esistatus/index.html:17
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
+#: esistatus/templates/esistatus/partials/index/esi-status.html:16
 msgid "Green endpoints are responding as expected."
-msgstr ""
-
-#: esistatus/templates/esistatus/index.html:22
-msgid "Couldn't read the ESI status."
-msgstr ""
-
-#: esistatus/templates/esistatus/index.html:26
-msgid "Error Message"
 msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
@@ -87,6 +89,14 @@ msgstr "¿Quieres ayudar a traducir esta aplicación a tu idioma o mejorar la tr
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:8
 msgid "Join our team of translators!"
 msgstr "¡Únete a nuestro equipo de traductores!"
+
+#: esistatus/templates/esistatus/partials/index/esi-status.html:21
+msgid "Couldn't read the ESI status."
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/index/esi-status.html:25
+msgid "Error Message"
+msgstr ""
 
 #~ msgid "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely."
 #~ msgstr "No se pudo leer el estado del ESI. Intenta recargar la página. Si esto no ayuda, es posible que el ESI se haya caído por completo."
