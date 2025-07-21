@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+### Added
+
+- Internal URL prefix
+
 ## [2.7.0] - 2025-07-08
 
 ### Changed
