@@ -21,6 +21,11 @@ ajax_urls = [
                     view=views.ajax_dashboard_widget,
                     name="ajax_dashboard_widget",
                 ),
+                path(
+                    route="esi-status/",
+                    view=views.ajax_esi_status,
+                    name="ajax_esi_status",
+                ),
             ]
         ),
     ),

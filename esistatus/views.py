@@ -142,6 +142,19 @@ def index(request: WSGIRequest) -> HttpResponse:
     :rtype: HttpResponse
     """
 
+    return render(request=request, template_name="esistatus/index.html")
+
+
+def ajax_esi_status(request: WSGIRequest) -> HttpResponse:
+    """
+    AJAX ESI Status view
+
+    :param request: The request
+    :type request: WSGIRequest
+    :return: The response
+    :rtype: HttpResponse
+    """
+
     has_status_result, esi_endpoint_status = _esi_status()
 
     context = {
@@ -150,7 +163,9 @@ def index(request: WSGIRequest) -> HttpResponse:
     }
 
     return render(
-        request=request, template_name="esistatus/index.html", context=context
+        request=request,
+        template_name="esistatus/partials/index/esi-status.html",
+        context=context,
     )
 
 
