@@ -4,6 +4,7 @@ $(document).ready(() => {
     'use strict';
 
     const elementEsiStatusIndex = $('.esi-status-index');
+    const elementLoadingSpinner = $('.esistatus-loading-spinner');
 
     fetch(esistatusSettings.url.esistatus)
         .then((response) => {
@@ -14,6 +15,7 @@ $(document).ready(() => {
                 return;
             }
 
+            elementLoadingSpinner.addClass('d-none');
             elementEsiStatusIndex.html(responseText);
 
             // Initialize Bootstrap tooltips

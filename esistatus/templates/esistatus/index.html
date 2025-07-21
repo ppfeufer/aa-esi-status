@@ -1,8 +1,17 @@
 {% extends "esistatus/base.html" %}
 
+{% load static %}
 {% load i18n %}
 
 {% block aa_esistatus_body %}
+    <div class="esistatus-loading-spinner text-center">
+        <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="{% static "afat/images/ring-resize-white-36.svg" %}">
+            <img src="{% static "afat/images/ring-resize-black-36.svg" %}" alt="{% translate 'Loading …' %}">
+        </picture>
+        <p class="mt-3">{% translate "Loading ESI status …" %}</p>
+    </div>
+
     <div class="row esi-status-index"></div>
 {% endblock %}
 
