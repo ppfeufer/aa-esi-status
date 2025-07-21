@@ -154,7 +154,7 @@ def index(request: WSGIRequest) -> HttpResponse:
     )
 
 
-def ajax_esi_status(request: WSGIRequest) -> HttpResponse:
+def ajax_esi_status_dashboard_widget(request: WSGIRequest) -> HttpResponse:
     """
     AJAX ESI Status view
 
