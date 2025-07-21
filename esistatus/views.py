@@ -66,16 +66,20 @@ def _esi_endpoint_status_from_json(esi_endpoint_json: json) -> tuple:
     }
 
     for esi_endpoint in esi_endpoint_json:
+        status = esi_endpoint["status"]
         _append_value(
-            dict_obj=esi_endpoint_status[esi_endpoint["status"]]["endpoints"],
+            dict_obj=esi_endpoint_status[status]["endpoints"],
             key=esi_endpoint["tags"][0],
             value={
                 "route": esi_endpoint["route"],
                 "method": esi_endpoint["method"].upper(),
             },
         )
+        esi_endpoint_status[status]["count"] += 1
 
-        esi_endpoint_status[esi_endpoint["status"]]["count"] += 1
+    # Sort endpoints alphabetically by tag (key)
+    for status_data in esi_endpoint_status.values():
+        status_data["endpoints"] = dict(sorted(status_data["endpoints"].items()))
 
     endpoints_total = sum(
         esi_endpoint_status[status]["count"]
