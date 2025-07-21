@@ -39,6 +39,10 @@ Section Order:
 
 - Internal URL prefix
 
+### Changed
+
+- Use an Ajax call to load the ESI status instead of loading it directly in the template
+
 ## [2.7.0] - 2025-07-08
 
 ### Changed
