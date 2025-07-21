@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-05-27 06:14+0200\n"
+"POT-Creation-Date: 2025-07-21 10:57+0200\n"
 "PO-Revision-Date: 2025-04-28 07:24+0000\n"
 "Last-Translator: SiO4 <hohoit0078@gmail.com>\n"
 "Language-Team: Korean <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/ko/>\n"
@@ -35,44 +35,46 @@ msgstr "ESI 상태 v{__version__}"
 msgid "Can access this app"
 msgstr "서비스에 접근할 수 있습니다"
 
-#: esistatus/templates/esistatus/index.html:8
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:9
-msgid "Red endpoints"
-msgstr "적색 엔드포인트"
-
-#: esistatus/templates/esistatus/index.html:9
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
-msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
+#: esistatus/templates/esistatus/index.html:10
+msgid "Loading …"
 msgstr ""
 
 #: esistatus/templates/esistatus/index.html:12
+#, fuzzy
+#| msgid "Detailed ESI status"
+msgid "Loading ESI status …"
+msgstr "ESI 상태"
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:9
+#: esistatus/templates/esistatus/partials/index/esi-status.html:5
+msgid "Red endpoints"
+msgstr "적색 엔드포인트"
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
+#: esistatus/templates/esistatus/partials/index/esi-status.html:6
+msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
+msgstr ""
+
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:13
+#: esistatus/templates/esistatus/partials/index/esi-status.html:10
 msgid "Yellow endpoints"
 msgstr "황색 엔드포인트"
 
-#: esistatus/templates/esistatus/index.html:13
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:14
+#: esistatus/templates/esistatus/partials/index/esi-status.html:11
 msgid "Yellow endpoints have a good chance of being slow or returning errors."
 msgstr ""
 
-#: esistatus/templates/esistatus/index.html:16
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
+#: esistatus/templates/esistatus/partials/index/esi-status.html:15
 #, fuzzy
 #| msgid "Green Endpoints"
 msgid "Green endpoints"
 msgstr "청색 엔드포인트"
 
-#: esistatus/templates/esistatus/index.html:17
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
+#: esistatus/templates/esistatus/partials/index/esi-status.html:16
 msgid "Green endpoints are responding as expected."
-msgstr ""
-
-#: esistatus/templates/esistatus/index.html:22
-msgid "Couldn't read the ESI status."
-msgstr ""
-
-#: esistatus/templates/esistatus/index.html:26
-msgid "Error Message"
 msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
@@ -90,6 +92,14 @@ msgstr "이 앱을 번역하거나 기존 번역을 개선하고 싶으신가요
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:8
 msgid "Join our team of translators!"
 msgstr "번역가 팀에 참여하세요!"
+
+#: esistatus/templates/esistatus/partials/index/esi-status.html:21
+msgid "Couldn't read the ESI status."
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/index/esi-status.html:25
+msgid "Error Message"
+msgstr ""
 
 #~ msgid "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely."
 #~ msgstr "ESI 상태를 읽을 수 없습니다. 페이지를 새로고침 해 보세요. 그래도 읽어올 수 없는 경우, ESI가 완전히 다운됐을 수도 있습니다."

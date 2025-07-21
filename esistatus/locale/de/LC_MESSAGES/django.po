@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-05-27 06:14+0200\n"
-"PO-Revision-Date: 2025-04-25 11:24+0000\n"
+"POT-Creation-Date: 2025-07-21 10:57+0200\n"
+"PO-Revision-Date: 2025-07-21 09:03+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/de/>\n"
 "Language: de\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #: esistatus/__init__.py:12 esistatus/templates/esistatus/base.html:6
 #: esistatus/templates/esistatus/base.html:10
@@ -32,43 +32,43 @@ msgstr "ESI Status v{__version__}"
 msgid "Can access this app"
 msgstr "Kann auf diese App zugreifen"
 
-#: esistatus/templates/esistatus/index.html:8
+#: esistatus/templates/esistatus/index.html:10
+msgid "Loading …"
+msgstr "Lade …"
+
+#: esistatus/templates/esistatus/index.html:12
+msgid "Loading ESI status …"
+msgstr "Lade ESI Status …"
+
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:9
+#: esistatus/templates/esistatus/partials/index/esi-status.html:5
 msgid "Red endpoints"
 msgstr "Rote Endpunkte"
 
-#: esistatus/templates/esistatus/index.html:9
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
+#: esistatus/templates/esistatus/partials/index/esi-status.html:6
 msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
 msgstr "Rote Endpunkte haben eine gute Chance nicht zu antworten oder überhaupt nicht erreichbar zu sein."
 
-#: esistatus/templates/esistatus/index.html:12
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:13
+#: esistatus/templates/esistatus/partials/index/esi-status.html:10
 msgid "Yellow endpoints"
 msgstr "Gelbe Endpunkte"
 
-#: esistatus/templates/esistatus/index.html:13
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:14
+#: esistatus/templates/esistatus/partials/index/esi-status.html:11
 msgid "Yellow endpoints have a good chance of being slow or returning errors."
 msgstr "Gelbe Endpunkte haben eine gute Chance langsam zu sein oder Fehler zurückzugeben."
 
-#: esistatus/templates/esistatus/index.html:16
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
+#: esistatus/templates/esistatus/partials/index/esi-status.html:15
 msgid "Green endpoints"
 msgstr "Grüne Endpunkte"
 
-#: esistatus/templates/esistatus/index.html:17
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
+#: esistatus/templates/esistatus/partials/index/esi-status.html:16
 msgid "Green endpoints are responding as expected."
 msgstr "Grüne Endpunkte antworten wie erwartet."
-
-#: esistatus/templates/esistatus/index.html:22
-msgid "Couldn't read the ESI status."
-msgstr "Der ESI-Status konnte nicht ermittelt werden."
-
-#: esistatus/templates/esistatus/index.html:26
-msgid "Error Message"
-msgstr "Fehlermeldung"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
 msgid "Detailed ESI status"
@@ -85,6 +85,14 @@ msgstr "Du möchtest helfen diese App in Deine Sprache zu übersetzen oder die b
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:8
 msgid "Join our team of translators!"
 msgstr "Tritt unserm Team von Übersetzern bei!"
+
+#: esistatus/templates/esistatus/partials/index/esi-status.html:21
+msgid "Couldn't read the ESI status."
+msgstr "Der ESI-Status konnte nicht ermittelt werden."
+
+#: esistatus/templates/esistatus/partials/index/esi-status.html:25
+msgid "Error Message"
+msgstr "Fehlermeldung"
 
 #~ msgid "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely."
 #~ msgstr "Der ESI-Status konnte nicht gelesen werden. Bitte versuche die Seite neu zu laden. Wenn das nicht hilft, ist es möglich, dass ESI vollständig unerreichbar ist."
