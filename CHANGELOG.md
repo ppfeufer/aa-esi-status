@@ -35,6 +35,8 @@ Section Order:
 ### Security
 -->
 
+## [2.8.1] - 2025-07-22
+
 ### Changed
 
 - Using the official ESI logo in the page header
