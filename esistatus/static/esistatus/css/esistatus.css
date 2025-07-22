@@ -3,4 +3,8 @@
     .aa-esistatus .card-footer .card-default .card-body p:last-child {
         margin-bottom: 0;
     }
+
+    .aa-esistatus .esistatus-spinner svg.svg-spinner {
+        stroke: var(--bs-body-color);
+    }
 }

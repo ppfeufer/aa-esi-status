@@ -37,6 +37,7 @@ Section Order:
 
 ### Changed
 
+- Loading spinner animation improved
 - Endpoints alphabetically sorted
 
 ## [2.8.0] - 2025-07-21
