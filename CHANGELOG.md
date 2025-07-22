@@ -37,6 +37,7 @@ Section Order:
 
 ### Changed
 
+- Using the official ESI logo in the page header
 - Loading spinner animation improved
 - Endpoints alphabetically sorted
 

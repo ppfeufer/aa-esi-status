@@ -6,6 +6,7 @@ Test auth_hooks
 from http import HTTPStatus
 
 # Django
+from django.template.loader import render_to_string
 from django.test import TestCase
 from django.urls import reverse
 
@@ -45,7 +46,8 @@ class TestHooks(TestCase):
             </li>
         """
 
-        cls.html_header = '<div class="navbar-brand">ESI Status</div>'
+        esi_logo_svg = render_to_string(template_name="esistatus/svg/esi-logo.svg")
+        cls.html_header = f'<div class="navbar-brand">{esi_logo_svg} Status</div>'
 
     def test_render_hook_success(self):
         """
