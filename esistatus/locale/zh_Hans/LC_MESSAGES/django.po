@@ -2,15 +2,15 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Faer Yili <yilifaer@gmail.com>, 2024.
-# Peter Pfeufer <info@ppfeufer.de>, 2024.
+# Peter Pfeufer <info@ppfeufer.de>, 2024, 2025.
 # Dehao Wu <wudehao2000@163.com>, 2024.
 # SAM_FPS <sam_fps@163.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-07-21 10:57+0200\n"
-"PO-Revision-Date: 2024-09-19 13:30+0000\n"
+"POT-Creation-Date: 2025-07-22 19:06+0200\n"
+"PO-Revision-Date: 2025-07-22 17:13+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Chinese (Simplified Han script) <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -18,10 +18,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #: esistatus/__init__.py:12 esistatus/templates/esistatus/base.html:6
-#: esistatus/templates/esistatus/base.html:10
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:5
 msgid "ESI Status"
 msgstr "esi状态"
@@ -35,11 +34,11 @@ msgstr "esi 状态 {__version__}"
 msgid "Can access this app"
 msgstr "能够访问此应用程序"
 
-#: esistatus/templates/esistatus/index.html:10
-msgid "Loading …"
-msgstr ""
+#: esistatus/templates/esistatus/base.html:11
+msgid "Status"
+msgstr "状态"
 
-#: esistatus/templates/esistatus/index.html:12
+#: esistatus/templates/esistatus/index.html:11
 #, fuzzy
 #| msgid "Detailed ESI status"
 msgid "Loading ESI status …"
@@ -98,6 +97,9 @@ msgstr ""
 #: esistatus/templates/esistatus/partials/index/esi-status.html:25
 msgid "Error Message"
 msgstr ""
+
+#~ msgid "Loading …"
+#~ msgstr "加载中…"
 
 #~ msgid "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely."
 #~ msgstr "无法读取 ESI 状态。 请尝试重新加载页面。 如果这没有解决，ESI 可能完全失效了。"
