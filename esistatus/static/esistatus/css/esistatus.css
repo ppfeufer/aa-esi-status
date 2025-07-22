@@ -7,4 +7,9 @@
     .aa-esistatus .esistatus-spinner svg.svg-spinner {
         stroke: var(--bs-body-color);
     }
+
+    .navbar-brand .esi-logo {
+        height: 1rem;
+        margin-bottom: 0.25rem;
+    }
 }
