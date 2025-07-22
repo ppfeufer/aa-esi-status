@@ -1,0 +1,1757 @@
+[
+    {
+        "endpoint": "esi-insurance",
+        "method": "get",
+        "route": "/insurance/prices/",
+        "status": "red",
+        "tags": [
+            "Insurance"
+        ]
+    },
+    {
+        "endpoint": "esi-ui",
+        "method": "post",
+        "route": "/ui/autopilot/waypoint/",
+        "status": "red",
+        "tags": [
+            "User Interface"
+        ]
+    },
+    {
+        "endpoint": "esi-ui",
+        "method": "post",
+        "route": "/ui/openwindow/contract/",
+        "status": "green",
+        "tags": [
+            "User Interface"
+        ]
+    },
+    {
+        "endpoint": "esi-ui",
+        "method": "post",
+        "route": "/ui/openwindow/information/",
+        "status": "green",
+        "tags": [
+            "User Interface"
+        ]
+    },
+    {
+        "endpoint": "esi-ui",
+        "method": "post",
+        "route": "/ui/openwindow/marketdetails/",
+        "status": "green",
+        "tags": [
+            "User Interface"
+        ]
+    },
+    {
+        "endpoint": "esi-ui",
+        "method": "post",
+        "route": "/ui/openwindow/newmail/",
+        "status": "green",
+        "tags": [
+            "User Interface"
+        ]
+    },
+    {
+        "endpoint": "esi-loyalty",
+        "method": "get",
+        "route": "/characters/{character_id}/loyalty/points/",
+        "status": "green",
+        "tags": [
+            "Loyalty"
+        ]
+    },
+    {
+        "endpoint": "esi-loyalty",
+        "method": "get",
+        "route": "/loyalty/stores/{corporation_id}/offers/",
+        "status": "green",
+        "tags": [
+            "Loyalty"
+        ]
+    },
+    {
+        "endpoint": "esi-routes",
+        "method": "get",
+        "route": "/route/{origin}/{destination}/",
+        "status": "green",
+        "tags": [
+            "Routes"
+        ]
+    },
+    {
+        "endpoint": "esi-dogma",
+        "method": "get",
+        "route": "/dogma/attributes/",
+        "status": "red",
+        "tags": [
+            "Dogma"
+        ]
+    },
+    {
+        "endpoint": "esi-dogma",
+        "method": "get",
+        "route": "/dogma/attributes/{attribute_id}/",
+        "status": "green",
+        "tags": [
+            "Dogma"
+        ]
+    },
+    {
+        "endpoint": "esi-dogma",
+        "method": "get",
+        "route": "/dogma/dynamic/items/{type_id}/{item_id}/",
+        "status": "green",
+        "tags": [
+            "Dogma"
+        ]
+    },
+    {
+        "endpoint": "esi-dogma",
+        "method": "get",
+        "route": "/dogma/effects/",
+        "status": "green",
+        "tags": [
+            "Dogma"
+        ]
+    },
+    {
+        "endpoint": "esi-dogma",
+        "method": "get",
+        "route": "/dogma/effects/{effect_id}/",
+        "status": "green",
+        "tags": [
+            "Dogma"
+        ]
+    },
+    {
+        "endpoint": "esi-clones-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/clones/",
+        "status": "green",
+        "tags": [
+            "Clones"
+        ]
+    },
+    {
+        "endpoint": "esi-clones-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/implants/",
+        "status": "green",
+        "tags": [
+            "Clones"
+        ]
+    },
+    {
+        "endpoint": "esi-killmails",
+        "method": "get",
+        "route": "/characters/{character_id}/killmails/recent/",
+        "status": "yellow",
+        "tags": [
+            "Killmails"
+        ]
+    },
+    {
+        "endpoint": "esi-killmails",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/killmails/recent/",
+        "status": "yellow",
+        "tags": [
+            "Killmails"
+        ]
+    },
+    {
+        "endpoint": "esi-killmails",
+        "method": "get",
+        "route": "/killmails/{killmail_id}/{killmail_hash}/",
+        "status": "red",
+        "tags": [
+            "Killmails"
+        ]
+    },
+    {
+        "endpoint": "esi-contacts",
+        "method": "get",
+        "route": "/alliances/{alliance_id}/contacts/",
+        "status": "yellow",
+        "tags": [
+            "Contacts"
+        ]
+    },
+    {
+        "endpoint": "esi-contacts",
+        "method": "get",
+        "route": "/alliances/{alliance_id}/contacts/labels/",
+        "status": "green",
+        "tags": [
+            "Contacts"
+        ]
+    },
+    {
+        "endpoint": "esi-contacts",
+        "method": "delete",
+        "route": "/characters/{character_id}/contacts/",
+        "status": "green",
+        "tags": [
+            "Contacts"
+        ]
+    },
+    {
+        "endpoint": "esi-contacts",
+        "method": "get",
+        "route": "/characters/{character_id}/contacts/",
+        "status": "green",
+        "tags": [
+            "Contacts"
+        ]
+    },
+    {
+        "endpoint": "esi-contacts",
+        "method": "post",
+        "route": "/characters/{character_id}/contacts/",
+        "status": "green",
+        "tags": [
+            "Contacts"
+        ]
+    },
+    {
+        "endpoint": "esi-contacts",
+        "method": "put",
+        "route": "/characters/{character_id}/contacts/",
+        "status": "green",
+        "tags": [
+            "Contacts"
+        ]
+    },
+    {
+        "endpoint": "esi-contacts",
+        "method": "get",
+        "route": "/characters/{character_id}/contacts/labels/",
+        "status": "green",
+        "tags": [
+            "Contacts"
+        ]
+    },
+    {
+        "endpoint": "esi-contacts",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/contacts/",
+        "status": "green",
+        "tags": [
+            "Contacts"
+        ]
+    },
+    {
+        "endpoint": "esi-contacts",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/contacts/labels/",
+        "status": "green",
+        "tags": [
+            "Contacts"
+        ]
+    },
+    {
+        "endpoint": "esi-planets-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/planets/",
+        "status": "green",
+        "tags": [
+            "Planetary Interaction"
+        ]
+    },
+    {
+        "endpoint": "esi-planets-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/planets/{planet_id}/",
+        "status": "green",
+        "tags": [
+            "Planetary Interaction"
+        ]
+    },
+    {
+        "endpoint": "esi-planets-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/customs_offices/",
+        "status": "green",
+        "tags": [
+            "Planetary Interaction"
+        ]
+    },
+    {
+        "endpoint": "esi-planets-protobuf",
+        "method": "get",
+        "route": "/universe/schematics/{schematic_id}/",
+        "status": "green",
+        "tags": [
+            "Planetary Interaction"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/ancestries/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/asteroid_belts/{asteroid_belt_id}/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/bloodlines/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/categories/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/categories/{category_id}/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/constellations/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/constellations/{constellation_id}/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/factions/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/graphics/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/graphics/{graphic_id}/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/groups/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/groups/{group_id}/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/moons/{moon_id}/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "post",
+        "route": "/universe/names/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/planets/{planet_id}/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/races/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/regions/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/regions/{region_id}/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/stargates/{stargate_id}/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/stars/{star_id}/",
+        "status": "red",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/stations/{station_id}/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/structures/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/structures/{structure_id}/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/system_jumps/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/system_kills/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/systems/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/systems/{system_id}/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/types/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-universe-json",
+        "method": "get",
+        "route": "/universe/types/{type_id}/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-industry-protobuf",
+        "method": "get",
+        "route": "/industry/facilities/",
+        "status": "green",
+        "tags": [
+            "Industry"
+        ]
+    },
+    {
+        "endpoint": "esi-industry-protobuf",
+        "method": "get",
+        "route": "/industry/systems/",
+        "status": "green",
+        "tags": [
+            "Industry"
+        ]
+    },
+    {
+        "endpoint": "esi-alliances-protobuf",
+        "method": "get",
+        "route": "/alliances/",
+        "status": "green",
+        "tags": [
+            "Alliance"
+        ]
+    },
+    {
+        "endpoint": "esi-alliances-protobuf",
+        "method": "get",
+        "route": "/alliances/{alliance_id}/",
+        "status": "green",
+        "tags": [
+            "Alliance"
+        ]
+    },
+    {
+        "endpoint": "esi-alliances-protobuf",
+        "method": "get",
+        "route": "/alliances/{alliance_id}/corporations/",
+        "status": "green",
+        "tags": [
+            "Alliance"
+        ]
+    },
+    {
+        "endpoint": "esi-alliances-protobuf",
+        "method": "get",
+        "route": "/alliances/{alliance_id}/icons/",
+        "status": "green",
+        "tags": [
+            "Alliance"
+        ]
+    },
+    {
+        "endpoint": "esi-wars-protobuf",
+        "method": "get",
+        "route": "/wars/",
+        "status": "green",
+        "tags": [
+            "Wars"
+        ]
+    },
+    {
+        "endpoint": "esi-wars-protobuf",
+        "method": "get",
+        "route": "/wars/{war_id}/",
+        "status": "green",
+        "tags": [
+            "Wars"
+        ]
+    },
+    {
+        "endpoint": "esi-wars-protobuf",
+        "method": "get",
+        "route": "/wars/{war_id}/killmails/",
+        "status": "green",
+        "tags": [
+            "Wars"
+        ]
+    },
+    {
+        "endpoint": "esi-contracts",
+        "method": "get",
+        "route": "/characters/{character_id}/contracts/",
+        "status": "green",
+        "tags": [
+            "Contracts"
+        ]
+    },
+    {
+        "endpoint": "esi-contracts",
+        "method": "get",
+        "route": "/characters/{character_id}/contracts/{contract_id}/bids/",
+        "status": "green",
+        "tags": [
+            "Contracts"
+        ]
+    },
+    {
+        "endpoint": "esi-contracts",
+        "method": "get",
+        "route": "/characters/{character_id}/contracts/{contract_id}/items/",
+        "status": "green",
+        "tags": [
+            "Contracts"
+        ]
+    },
+    {
+        "endpoint": "esi-contracts",
+        "method": "get",
+        "route": "/contracts/public/bids/{contract_id}/",
+        "status": "green",
+        "tags": [
+            "Contracts"
+        ]
+    },
+    {
+        "endpoint": "esi-contracts",
+        "method": "get",
+        "route": "/contracts/public/items/{contract_id}/",
+        "status": "green",
+        "tags": [
+            "Contracts"
+        ]
+    },
+    {
+        "endpoint": "esi-contracts",
+        "method": "get",
+        "route": "/contracts/public/{region_id}/",
+        "status": "green",
+        "tags": [
+            "Contracts"
+        ]
+    },
+    {
+        "endpoint": "esi-contracts",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/contracts/",
+        "status": "green",
+        "tags": [
+            "Contracts"
+        ]
+    },
+    {
+        "endpoint": "esi-contracts",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/contracts/{contract_id}/bids/",
+        "status": "green",
+        "tags": [
+            "Contracts"
+        ]
+    },
+    {
+        "endpoint": "esi-contracts",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/contracts/{contract_id}/items/",
+        "status": "green",
+        "tags": [
+            "Contracts"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/npccorps/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/alliancehistory/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/blueprints/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/containers/logs/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/divisions/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/facilities/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/icons/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/medals/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/medals/issued/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/members/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/members/limit/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/members/titles/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/membertracking/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/roles/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/roles/history/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/standings/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/starbases/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/starbases/{starbase_id}/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/structures/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-corporations-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/titles/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-calendar-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/calendar/",
+        "status": "green",
+        "tags": [
+            "Calendar"
+        ]
+    },
+    {
+        "endpoint": "esi-calendar-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/calendar/{event_id}/",
+        "status": "green",
+        "tags": [
+            "Calendar"
+        ]
+    },
+    {
+        "endpoint": "esi-calendar-protobuf",
+        "method": "put",
+        "route": "/characters/{character_id}/calendar/{event_id}/",
+        "status": "green",
+        "tags": [
+            "Calendar"
+        ]
+    },
+    {
+        "endpoint": "esi-calendar-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/calendar/{event_id}/attendees/",
+        "status": "red",
+        "tags": [
+            "Calendar"
+        ]
+    },
+    {
+        "endpoint": "esi-mail",
+        "method": "get",
+        "route": "/characters/{character_id}/mail/",
+        "status": "green",
+        "tags": [
+            "Mail"
+        ]
+    },
+    {
+        "endpoint": "esi-mail",
+        "method": "post",
+        "route": "/characters/{character_id}/mail/",
+        "status": "green",
+        "tags": [
+            "Mail"
+        ]
+    },
+    {
+        "endpoint": "esi-mail",
+        "method": "get",
+        "route": "/characters/{character_id}/mail/labels/",
+        "status": "green",
+        "tags": [
+            "Mail"
+        ]
+    },
+    {
+        "endpoint": "esi-mail",
+        "method": "post",
+        "route": "/characters/{character_id}/mail/labels/",
+        "status": "green",
+        "tags": [
+            "Mail"
+        ]
+    },
+    {
+        "endpoint": "esi-mail",
+        "method": "delete",
+        "route": "/characters/{character_id}/mail/labels/{label_id}/",
+        "status": "green",
+        "tags": [
+            "Mail"
+        ]
+    },
+    {
+        "endpoint": "esi-mail",
+        "method": "get",
+        "route": "/characters/{character_id}/mail/lists/",
+        "status": "green",
+        "tags": [
+            "Mail"
+        ]
+    },
+    {
+        "endpoint": "esi-mail",
+        "method": "delete",
+        "route": "/characters/{character_id}/mail/{mail_id}/",
+        "status": "green",
+        "tags": [
+            "Mail"
+        ]
+    },
+    {
+        "endpoint": "esi-mail",
+        "method": "get",
+        "route": "/characters/{character_id}/mail/{mail_id}/",
+        "status": "green",
+        "tags": [
+            "Mail"
+        ]
+    },
+    {
+        "endpoint": "esi-mail",
+        "method": "put",
+        "route": "/characters/{character_id}/mail/{mail_id}/",
+        "status": "green",
+        "tags": [
+            "Mail"
+        ]
+    },
+    {
+        "endpoint": "esi-factionalwarfare-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/fw/stats/",
+        "status": "green",
+        "tags": [
+            "Faction Warfare"
+        ]
+    },
+    {
+        "endpoint": "esi-factionalwarfare-protobuf",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/fw/stats/",
+        "status": "green",
+        "tags": [
+            "Faction Warfare"
+        ]
+    },
+    {
+        "endpoint": "esi-factionalwarfare-protobuf",
+        "method": "get",
+        "route": "/fw/leaderboards/",
+        "status": "green",
+        "tags": [
+            "Faction Warfare"
+        ]
+    },
+    {
+        "endpoint": "esi-factionalwarfare-protobuf",
+        "method": "get",
+        "route": "/fw/leaderboards/characters/",
+        "status": "green",
+        "tags": [
+            "Faction Warfare"
+        ]
+    },
+    {
+        "endpoint": "esi-factionalwarfare-protobuf",
+        "method": "get",
+        "route": "/fw/leaderboards/corporations/",
+        "status": "green",
+        "tags": [
+            "Faction Warfare"
+        ]
+    },
+    {
+        "endpoint": "esi-factionalwarfare-protobuf",
+        "method": "get",
+        "route": "/fw/stats/",
+        "status": "green",
+        "tags": [
+            "Faction Warfare"
+        ]
+    },
+    {
+        "endpoint": "esi-factionalwarfare-protobuf",
+        "method": "get",
+        "route": "/fw/systems/",
+        "status": "green",
+        "tags": [
+            "Faction Warfare"
+        ]
+    },
+    {
+        "endpoint": "esi-factionalwarfare-protobuf",
+        "method": "get",
+        "route": "/fw/wars/",
+        "status": "green",
+        "tags": [
+            "Faction Warfare"
+        ]
+    },
+    {
+        "endpoint": "esi-location-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/location/",
+        "status": "green",
+        "tags": [
+            "Location"
+        ]
+    },
+    {
+        "endpoint": "esi-location-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/online/",
+        "status": "green",
+        "tags": [
+            "Location"
+        ]
+    },
+    {
+        "endpoint": "esi-location-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/ship/",
+        "status": "green",
+        "tags": [
+            "Location"
+        ]
+    },
+    {
+        "endpoint": "esi-skills-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/attributes/",
+        "status": "green",
+        "tags": [
+            "Skills"
+        ]
+    },
+    {
+        "endpoint": "esi-skills-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/skillqueue/",
+        "status": "green",
+        "tags": [
+            "Skills"
+        ]
+    },
+    {
+        "endpoint": "esi-skills-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/skills/",
+        "status": "green",
+        "tags": [
+            "Skills"
+        ]
+    },
+    {
+        "endpoint": "esi-wallet-json",
+        "method": "get",
+        "route": "/characters/{character_id}/wallet/",
+        "status": "green",
+        "tags": [
+            "Wallet"
+        ]
+    },
+    {
+        "endpoint": "esi-wallet-json",
+        "method": "get",
+        "route": "/characters/{character_id}/wallet/journal/",
+        "status": "green",
+        "tags": [
+            "Wallet"
+        ]
+    },
+    {
+        "endpoint": "esi-wallet-json",
+        "method": "get",
+        "route": "/characters/{character_id}/wallet/transactions/",
+        "status": "green",
+        "tags": [
+            "Wallet"
+        ]
+    },
+    {
+        "endpoint": "esi-wallet-json",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/shareholders/",
+        "status": "green",
+        "tags": [
+            "Corporation"
+        ]
+    },
+    {
+        "endpoint": "esi-wallet-json",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/wallets/",
+        "status": "green",
+        "tags": [
+            "Wallet"
+        ]
+    },
+    {
+        "endpoint": "esi-wallet-json",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/wallets/{division}/journal/",
+        "status": "green",
+        "tags": [
+            "Wallet"
+        ]
+    },
+    {
+        "endpoint": "esi-wallet-json",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/wallets/{division}/transactions/",
+        "status": "green",
+        "tags": [
+            "Wallet"
+        ]
+    },
+    {
+        "endpoint": "esi-fleets",
+        "method": "get",
+        "route": "/characters/{character_id}/fleet/",
+        "status": "green",
+        "tags": [
+            "Fleets"
+        ]
+    },
+    {
+        "endpoint": "esi-fleets",
+        "method": "get",
+        "route": "/fleets/{fleet_id}/",
+        "status": "green",
+        "tags": [
+            "Fleets"
+        ]
+    },
+    {
+        "endpoint": "esi-fleets",
+        "method": "put",
+        "route": "/fleets/{fleet_id}/",
+        "status": "green",
+        "tags": [
+            "Fleets"
+        ]
+    },
+    {
+        "endpoint": "esi-fleets",
+        "method": "get",
+        "route": "/fleets/{fleet_id}/members/",
+        "status": "green",
+        "tags": [
+            "Fleets"
+        ]
+    },
+    {
+        "endpoint": "esi-fleets",
+        "method": "post",
+        "route": "/fleets/{fleet_id}/members/",
+        "status": "green",
+        "tags": [
+            "Fleets"
+        ]
+    },
+    {
+        "endpoint": "esi-fleets",
+        "method": "delete",
+        "route": "/fleets/{fleet_id}/members/{member_id}/",
+        "status": "green",
+        "tags": [
+            "Fleets"
+        ]
+    },
+    {
+        "endpoint": "esi-fleets",
+        "method": "put",
+        "route": "/fleets/{fleet_id}/members/{member_id}/",
+        "status": "green",
+        "tags": [
+            "Fleets"
+        ]
+    },
+    {
+        "endpoint": "esi-fleets",
+        "method": "delete",
+        "route": "/fleets/{fleet_id}/squads/{squad_id}/",
+        "status": "green",
+        "tags": [
+            "Fleets"
+        ]
+    },
+    {
+        "endpoint": "esi-fleets",
+        "method": "put",
+        "route": "/fleets/{fleet_id}/squads/{squad_id}/",
+        "status": "green",
+        "tags": [
+            "Fleets"
+        ]
+    },
+    {
+        "endpoint": "esi-fleets",
+        "method": "get",
+        "route": "/fleets/{fleet_id}/wings/",
+        "status": "green",
+        "tags": [
+            "Fleets"
+        ]
+    },
+    {
+        "endpoint": "esi-fleets",
+        "method": "post",
+        "route": "/fleets/{fleet_id}/wings/",
+        "status": "green",
+        "tags": [
+            "Fleets"
+        ]
+    },
+    {
+        "endpoint": "esi-fleets",
+        "method": "delete",
+        "route": "/fleets/{fleet_id}/wings/{wing_id}/",
+        "status": "green",
+        "tags": [
+            "Fleets"
+        ]
+    },
+    {
+        "endpoint": "esi-fleets",
+        "method": "put",
+        "route": "/fleets/{fleet_id}/wings/{wing_id}/",
+        "status": "green",
+        "tags": [
+            "Fleets"
+        ]
+    },
+    {
+        "endpoint": "esi-fleets",
+        "method": "post",
+        "route": "/fleets/{fleet_id}/wings/{wing_id}/squads/",
+        "status": "green",
+        "tags": [
+            "Fleets"
+        ]
+    },
+    {
+        "endpoint": "esi-characters-protobuf",
+        "method": "post",
+        "route": "/characters/affiliation/",
+        "status": "green",
+        "tags": [
+            "Character"
+        ]
+    },
+    {
+        "endpoint": "esi-characters-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/",
+        "status": "green",
+        "tags": [
+            "Character"
+        ]
+    },
+    {
+        "endpoint": "esi-characters-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/agents_research/",
+        "status": "green",
+        "tags": [
+            "Character"
+        ]
+    },
+    {
+        "endpoint": "esi-characters-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/blueprints/",
+        "status": "green",
+        "tags": [
+            "Character"
+        ]
+    },
+    {
+        "endpoint": "esi-characters-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/corporationhistory/",
+        "status": "green",
+        "tags": [
+            "Character"
+        ]
+    },
+    {
+        "endpoint": "esi-characters-protobuf",
+        "method": "post",
+        "route": "/characters/{character_id}/cspa/",
+        "status": "green",
+        "tags": [
+            "Character"
+        ]
+    },
+    {
+        "endpoint": "esi-characters-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/fatigue/",
+        "status": "green",
+        "tags": [
+            "Character"
+        ]
+    },
+    {
+        "endpoint": "esi-characters-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/medals/",
+        "status": "green",
+        "tags": [
+            "Character"
+        ]
+    },
+    {
+        "endpoint": "esi-characters-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/notifications/",
+        "status": "green",
+        "tags": [
+            "Character"
+        ]
+    },
+    {
+        "endpoint": "esi-characters-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/notifications/contacts/",
+        "status": "green",
+        "tags": [
+            "Character"
+        ]
+    },
+    {
+        "endpoint": "esi-characters-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/portrait/",
+        "status": "green",
+        "tags": [
+            "Character"
+        ]
+    },
+    {
+        "endpoint": "esi-characters-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/roles/",
+        "status": "green",
+        "tags": [
+            "Character"
+        ]
+    },
+    {
+        "endpoint": "esi-characters-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/standings/",
+        "status": "green",
+        "tags": [
+            "Character"
+        ]
+    },
+    {
+        "endpoint": "esi-characters-protobuf",
+        "method": "get",
+        "route": "/characters/{character_id}/titles/",
+        "status": "green",
+        "tags": [
+            "Character"
+        ]
+    },
+    {
+        "endpoint": "esi-industry-json",
+        "method": "get",
+        "route": "/characters/{character_id}/industry/jobs/",
+        "status": "green",
+        "tags": [
+            "Industry"
+        ]
+    },
+    {
+        "endpoint": "esi-industry-json",
+        "method": "get",
+        "route": "/characters/{character_id}/mining/",
+        "status": "green",
+        "tags": [
+            "Industry"
+        ]
+    },
+    {
+        "endpoint": "esi-industry-json",
+        "method": "get",
+        "route": "/corporation/{corporation_id}/mining/extractions/",
+        "status": "green",
+        "tags": [
+            "Industry"
+        ]
+    },
+    {
+        "endpoint": "esi-industry-json",
+        "method": "get",
+        "route": "/corporation/{corporation_id}/mining/observers/",
+        "status": "green",
+        "tags": [
+            "Industry"
+        ]
+    },
+    {
+        "endpoint": "esi-industry-json",
+        "method": "get",
+        "route": "/corporation/{corporation_id}/mining/observers/{observer_id}/",
+        "status": "green",
+        "tags": [
+            "Industry"
+        ]
+    },
+    {
+        "endpoint": "esi-industry-json",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/industry/jobs/",
+        "status": "green",
+        "tags": [
+            "Industry"
+        ]
+    },
+    {
+        "endpoint": "esi-incursions",
+        "method": "get",
+        "route": "/incursions/",
+        "status": "green",
+        "tags": [
+            "Incursions"
+        ]
+    },
+    {
+        "endpoint": "esi-fittings",
+        "method": "get",
+        "route": "/characters/{character_id}/fittings/",
+        "status": "green",
+        "tags": [
+            "Fittings"
+        ]
+    },
+    {
+        "endpoint": "esi-fittings",
+        "method": "post",
+        "route": "/characters/{character_id}/fittings/",
+        "status": "green",
+        "tags": [
+            "Fittings"
+        ]
+    },
+    {
+        "endpoint": "esi-fittings",
+        "method": "delete",
+        "route": "/characters/{character_id}/fittings/{fitting_id}/",
+        "status": "green",
+        "tags": [
+            "Fittings"
+        ]
+    },
+    {
+        "endpoint": "esi-sovereignty",
+        "method": "get",
+        "route": "/sovereignty/campaigns/",
+        "status": "green",
+        "tags": [
+            "Sovereignty"
+        ]
+    },
+    {
+        "endpoint": "esi-sovereignty",
+        "method": "get",
+        "route": "/sovereignty/map/",
+        "status": "red",
+        "tags": [
+            "Sovereignty"
+        ]
+    },
+    {
+        "endpoint": "esi-sovereignty",
+        "method": "get",
+        "route": "/sovereignty/structures/",
+        "status": "green",
+        "tags": [
+            "Sovereignty"
+        ]
+    },
+    {
+        "endpoint": "esi-status-protobuf",
+        "method": "get",
+        "route": "/status/",
+        "status": "red",
+        "tags": [
+            "Status"
+        ]
+    },
+    {
+        "endpoint": "esi-search",
+        "method": "get",
+        "route": "/characters/{character_id}/search/",
+        "status": "green",
+        "tags": [
+            "Search"
+        ]
+    },
+    {
+        "endpoint": "esi-search",
+        "method": "post",
+        "route": "/universe/ids/",
+        "status": "green",
+        "tags": [
+            "Universe"
+        ]
+    },
+    {
+        "endpoint": "esi-markets",
+        "method": "get",
+        "route": "/characters/{character_id}/orders/",
+        "status": "green",
+        "tags": [
+            "Market"
+        ]
+    },
+    {
+        "endpoint": "esi-markets",
+        "method": "get",
+        "route": "/characters/{character_id}/orders/history/",
+        "status": "green",
+        "tags": [
+            "Market"
+        ]
+    },
+    {
+        "endpoint": "esi-markets",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/orders/",
+        "status": "green",
+        "tags": [
+            "Market"
+        ]
+    },
+    {
+        "endpoint": "esi-markets",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/orders/history/",
+        "status": "green",
+        "tags": [
+            "Market"
+        ]
+    },
+    {
+        "endpoint": "esi-markets",
+        "method": "get",
+        "route": "/markets/groups/",
+        "status": "green",
+        "tags": [
+            "Market"
+        ]
+    },
+    {
+        "endpoint": "esi-markets",
+        "method": "get",
+        "route": "/markets/groups/{market_group_id}/",
+        "status": "green",
+        "tags": [
+            "Market"
+        ]
+    },
+    {
+        "endpoint": "esi-markets",
+        "method": "get",
+        "route": "/markets/prices/",
+        "status": "green",
+        "tags": [
+            "Market"
+        ]
+    },
+    {
+        "endpoint": "esi-markets",
+        "method": "get",
+        "route": "/markets/structures/{structure_id}/",
+        "status": "green",
+        "tags": [
+            "Market"
+        ]
+    },
+    {
+        "endpoint": "esi-markets",
+        "method": "get",
+        "route": "/markets/{region_id}/history/",
+        "status": "green",
+        "tags": [
+            "Market"
+        ]
+    },
+    {
+        "endpoint": "esi-markets",
+        "method": "get",
+        "route": "/markets/{region_id}/orders/",
+        "status": "green",
+        "tags": [
+            "Market"
+        ]
+    },
+    {
+        "endpoint": "esi-markets",
+        "method": "get",
+        "route": "/markets/{region_id}/types/",
+        "status": "green",
+        "tags": [
+            "Market"
+        ]
+    },
+    {
+        "endpoint": "esi-assets",
+        "method": "get",
+        "route": "/characters/{character_id}/assets/",
+        "status": "green",
+        "tags": [
+            "Assets"
+        ]
+    },
+    {
+        "endpoint": "esi-assets",
+        "method": "post",
+        "route": "/characters/{character_id}/assets/locations/",
+        "status": "green",
+        "tags": [
+            "Assets"
+        ]
+    },
+    {
+        "endpoint": "esi-assets",
+        "method": "post",
+        "route": "/characters/{character_id}/assets/names/",
+        "status": "green",
+        "tags": [
+            "Assets"
+        ]
+    },
+    {
+        "endpoint": "esi-assets",
+        "method": "get",
+        "route": "/corporations/{corporation_id}/assets/",
+        "status": "green",
+        "tags": [
+            "Assets"
+        ]
+    },
+    {
+        "endpoint": "esi-assets",
+        "method": "post",
+        "route": "/corporations/{corporation_id}/assets/locations/",
+        "status": "green",
+        "tags": [
+            "Assets"
+        ]
+    },
+    {
+        "endpoint": "esi-assets",
+        "method": "post",
+        "route": "/corporations/{corporation_id}/assets/names/",
+        "status": "green",
+        "tags": [
+            "Assets"
+        ]
+    }
+]
