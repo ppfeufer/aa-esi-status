@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+### Added
+
+- ESI logo to dashboard widget header
+
 ## [2.8.1] - 2025-07-22
 
 ### Changed
