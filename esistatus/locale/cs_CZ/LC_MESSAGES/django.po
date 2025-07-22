@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-07-21 10:57+0200\n"
+"POT-Creation-Date: 2025-07-22 19:06+0200\n"
 "PO-Revision-Date: 2024-07-10 14:26+0000\n"
 "Last-Translator: Dadas Aideron <dadas.aideron@gmail.com>\n"
 "Language-Team: Czech <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/cs/>\n"
@@ -18,7 +18,6 @@ msgstr ""
 "X-Generator: Weblate 5.6.2\n"
 
 #: esistatus/__init__.py:12 esistatus/templates/esistatus/base.html:6
-#: esistatus/templates/esistatus/base.html:10
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:5
 msgid "ESI Status"
 msgstr ""
@@ -32,11 +31,11 @@ msgstr ""
 msgid "Can access this app"
 msgstr "Má přístup k této aplikaci"
 
-#: esistatus/templates/esistatus/index.html:10
-msgid "Loading …"
+#: esistatus/templates/esistatus/base.html:11
+msgid "Status"
 msgstr ""
 
-#: esistatus/templates/esistatus/index.html:12
+#: esistatus/templates/esistatus/index.html:11
 msgid "Loading ESI status …"
 msgstr ""
 

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-07-21 10:57+0200\n"
-"PO-Revision-Date: 2025-07-21 09:03+0000\n"
+"POT-Creation-Date: 2025-07-22 19:06+0200\n"
+"PO-Revision-Date: 2025-07-22 17:13+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/de/>\n"
 "Language: de\n"
@@ -18,7 +18,6 @@ msgstr ""
 "X-Generator: Weblate 5.12.2\n"
 
 #: esistatus/__init__.py:12 esistatus/templates/esistatus/base.html:6
-#: esistatus/templates/esistatus/base.html:10
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:5
 msgid "ESI Status"
 msgstr "ESI Status"
@@ -32,11 +31,11 @@ msgstr "ESI Status v{__version__}"
 msgid "Can access this app"
 msgstr "Kann auf diese App zugreifen"
 
-#: esistatus/templates/esistatus/index.html:10
-msgid "Loading …"
-msgstr "Lade …"
+#: esistatus/templates/esistatus/base.html:11
+msgid "Status"
+msgstr "Status"
 
-#: esistatus/templates/esistatus/index.html:12
+#: esistatus/templates/esistatus/index.html:11
 msgid "Loading ESI status …"
 msgstr "Lade ESI Status …"
 
@@ -93,6 +92,9 @@ msgstr "Der ESI-Status konnte nicht ermittelt werden."
 #: esistatus/templates/esistatus/partials/index/esi-status.html:25
 msgid "Error Message"
 msgstr "Fehlermeldung"
+
+#~ msgid "Loading …"
+#~ msgstr "Lade …"
 
 #~ msgid "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely."
 #~ msgstr "Der ESI-Status konnte nicht gelesen werden. Bitte versuche die Seite neu zu laden. Wenn das nicht hilft, ist es möglich, dass ESI vollständig unerreichbar ist."
