@@ -7,7 +7,9 @@
 {% endblock %}
 
 {% block header_nav_brand %}
-    {% include "esistatus/svg/esi-logo.svg" %}
+    <svg class="svg-sprite svg-esi-logo">
+        <use href="#esi-logo"></use>
+    </svg>
     {% translate "Status" %}
 {% endblock header_nav_brand %}
 
@@ -20,5 +22,7 @@
         <div class="aa-esistatus-footer mt-3 pt-3 border-top border-light">
             {% include "esistatus/partials/footer/app-translation-footer.html" %}
         </div>
+
+        {% include "esistatus/svg/sprite.svg" %}
     </div>
 {% endblock %}

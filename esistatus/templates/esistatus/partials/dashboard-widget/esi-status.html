@@ -2,11 +2,11 @@
 
 <div class="card">
     <div class="card-body">
-{#        {% translate "ESI Status" as widget_title %}#}
-{#        {% include "framework/dashboard/widget-title.html" with title=widget_title %}#}
-
         <div class="text-center">
             <h4 class="ms-auto me-auto mb-3">
+                {% comment %}
+                We can't ise the SVG sprite here, because if someone else does that and by chance has the same IDs, there will be a conflict.
+                {% endcomment %}
                 {% include "esistatus/svg/esi-logo.svg" %}
                 {% translate "Status" %}
             </h4>

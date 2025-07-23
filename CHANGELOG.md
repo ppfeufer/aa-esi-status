@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+### Changed
+
+- Use an SVG sprite for the SVG icons where ever possible
+
 ## [2.8.2] - 2025-07-23
 
 ### Added
