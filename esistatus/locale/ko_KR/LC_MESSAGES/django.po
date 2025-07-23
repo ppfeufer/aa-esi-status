@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-07-22 19:06+0200\n"
+"POT-Creation-Date: 2025-07-23 10:21+0200\n"
 "PO-Revision-Date: 2025-07-22 17:13+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Korean <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/ko/>\n"
@@ -21,7 +21,6 @@ msgstr ""
 "X-Generator: Weblate 5.12.2\n"
 
 #: esistatus/__init__.py:12 esistatus/templates/esistatus/base.html:6
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:5
 msgid "ESI Status"
 msgstr "ESI 상태"
 
@@ -35,6 +34,7 @@ msgid "Can access this app"
 msgstr "서비스에 접근할 수 있습니다"
 
 #: esistatus/templates/esistatus/base.html:11
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:11
 msgid "Status"
 msgstr "상태"
 
@@ -44,43 +44,43 @@ msgstr "상태"
 msgid "Loading ESI status …"
 msgstr "ESI 상태"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:9
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:16
 #: esistatus/templates/esistatus/partials/index/esi-status.html:5
 msgid "Red endpoints"
 msgstr "적색 엔드포인트"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
 #: esistatus/templates/esistatus/partials/index/esi-status.html:6
 msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:13
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:20
 #: esistatus/templates/esistatus/partials/index/esi-status.html:10
 msgid "Yellow endpoints"
 msgstr "황색 엔드포인트"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:14
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:21
 #: esistatus/templates/esistatus/partials/index/esi-status.html:11
 msgid "Yellow endpoints have a good chance of being slow or returning errors."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
 #: esistatus/templates/esistatus/partials/index/esi-status.html:15
 #, fuzzy
 #| msgid "Green Endpoints"
 msgid "Green endpoints"
 msgstr "청색 엔드포인트"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:25
 #: esistatus/templates/esistatus/partials/index/esi-status.html:16
 msgid "Green endpoints are responding as expected."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:31
 msgid "Detailed ESI status"
 msgstr "ESI 상태"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:26
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:33
 msgid "EVE Online status"
 msgstr "EVE Online 상태"
 
