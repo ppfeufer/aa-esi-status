@@ -74,7 +74,7 @@ prepare-release: pot
 #		done; \
 #	fi;
 	@echo "Updated version in $(TEXT_BOLD)$(package)/__init__.py$(TEXT_BOLD_END)"
-	@echo "Updated version in $(TEXT_BOLD)README.md Docker installation instructions$(TEXT_BOLD_END)"
+	@echo "Updated version in $(TEXT_BOLD)README.md$(TEXT_BOLD_END)"
 
 # Help
 .PHONY: help
