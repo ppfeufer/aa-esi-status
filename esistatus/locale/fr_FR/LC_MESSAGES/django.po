@@ -4,13 +4,14 @@
 # erka Ekanon <M6musicT@hotmail.fr>, 2024.
 # Peter Pfeufer <info@ppfeufer.de>, 2024, 2025.
 # Hexo <ghostcig@free.fr>, 2024.
+# The “Devcutter” Guy <mick162534@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-07-27 13:51+0200\n"
-"PO-Revision-Date: 2025-07-22 17:13+0000\n"
-"Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
+"POT-Creation-Date: 2025-08-04 21:43+0200\n"
+"PO-Revision-Date: 2025-08-03 04:24+0000\n"
+"Last-Translator: The “Devcutter” Guy <mick162534@gmail.com>\n"
 "Language-Team: French <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
@@ -38,10 +39,8 @@ msgid "Status"
 msgstr "Statut"
 
 #: esistatus/templates/esistatus/index.html:11
-#, fuzzy
-#| msgid "Detailed ESI status"
 msgid "Loading ESI status …"
-msgstr "Statut ESI détaillé"
+msgstr "Chargement du statut ESI…"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
 #: esistatus/templates/esistatus/partials/index/esi-status.html:5
@@ -51,7 +50,7 @@ msgstr "Points de terminaison rouges"
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
 #: esistatus/templates/esistatus/partials/index/esi-status.html:6
 msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
-msgstr ""
+msgstr "Les points de terminaison rouges ont de fortes chances de ne pas répondre du tout ou d’être complètement indisponibles."
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:21
 #: esistatus/templates/esistatus/partials/index/esi-status.html:10
