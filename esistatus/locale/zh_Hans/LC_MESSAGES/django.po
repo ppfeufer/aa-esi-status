@@ -5,12 +5,13 @@
 # Peter Pfeufer <info@ppfeufer.de>, 2024, 2025.
 # Dehao Wu <wudehao2000@163.com>, 2024.
 # SAM_FPS <sam_fps@163.com>, 2024.
+# yaozhihanyun <qq674070030@163.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-07-27 13:51+0200\n"
-"PO-Revision-Date: 2025-07-22 17:13+0000\n"
+"POT-Creation-Date: 2025-08-04 21:43+0200\n"
+"PO-Revision-Date: 2025-07-29 20:18+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Chinese (Simplified Han script) <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -39,10 +40,8 @@ msgid "Status"
 msgstr "状态"
 
 #: esistatus/templates/esistatus/index.html:11
-#, fuzzy
-#| msgid "Detailed ESI status"
 msgid "Loading ESI status …"
-msgstr "ESI详细状态"
+msgstr "正在加载 ESI 状态 …"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
 #: esistatus/templates/esistatus/partials/index/esi-status.html:5
@@ -52,7 +51,7 @@ msgstr "红色终端"
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
 #: esistatus/templates/esistatus/partials/index/esi-status.html:6
 msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
-msgstr ""
+msgstr "红色终端很有可能根本不响应或完全不可用。"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:21
 #: esistatus/templates/esistatus/partials/index/esi-status.html:10
@@ -62,7 +61,7 @@ msgstr "黄色终端"
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:22
 #: esistatus/templates/esistatus/partials/index/esi-status.html:11
 msgid "Yellow endpoints have a good chance of being slow or returning errors."
-msgstr ""
+msgstr "黄色终端很有可能会变慢或报错。"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:25
 #: esistatus/templates/esistatus/partials/index/esi-status.html:15
@@ -72,7 +71,7 @@ msgstr "绿色终端"
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:26
 #: esistatus/templates/esistatus/partials/index/esi-status.html:16
 msgid "Green endpoints are responding as expected."
-msgstr ""
+msgstr "绿色终端正常运行。"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:32
 msgid "Detailed ESI status"
@@ -92,11 +91,11 @@ msgstr "加入我们的翻译团队吧！"
 
 #: esistatus/templates/esistatus/partials/index/esi-status.html:21
 msgid "Couldn't read the ESI status."
-msgstr ""
+msgstr "无法读取 ESI 状态。"
 
 #: esistatus/templates/esistatus/partials/index/esi-status.html:25
 msgid "Error Message"
-msgstr ""
+msgstr "错误信息"
 
 #~ msgid "Loading …"
 #~ msgstr "加载中…"
