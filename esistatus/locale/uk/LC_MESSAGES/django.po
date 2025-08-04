@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Peter Pfeufer <info@ppfeufer.de>, 2023, 2024, 2025.
 # M <skrypets@gmail.com>, 2025.
+# s0k0l -_- <salarysalo@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-07-27 13:51+0200\n"
-"PO-Revision-Date: 2025-07-22 17:13+0000\n"
-"Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
+"POT-Creation-Date: 2025-08-04 21:43+0200\n"
+"PO-Revision-Date: 2025-07-29 20:18+0000\n"
+"Last-Translator: s0k0l -_- <salarysalo@gmail.com>\n"
 "Language-Team: Ukrainian <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -37,10 +38,8 @@ msgid "Status"
 msgstr "Статус"
 
 #: esistatus/templates/esistatus/index.html:11
-#, fuzzy
-#| msgid "Detailed ESI status"
 msgid "Loading ESI status …"
-msgstr "Детальний статус ESI"
+msgstr "Завантаження статусу ESI …"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
 #: esistatus/templates/esistatus/partials/index/esi-status.html:5
