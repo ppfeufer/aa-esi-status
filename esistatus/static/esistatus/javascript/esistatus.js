@@ -1,31 +1,37 @@
-/* global bootstrap, esistatusSettings */
+/* global bootstrap, esistatusSettings, fetchGet */
 
 $(document).ready(() => {
     'use strict';
 
-    const elementEsiStatusIndex = $('.esi-status-index');
-    const elementLoading = $('.esistatus-loading');
+    /**
+     * Fetch and display the ESI Status Index
+     *
+     * @return {Promise<void>}
+     * @throws {Error} If the fetch request fails
+     */
+    const fetchEsiStatus = async () => {
+        const elementEsiStatusIndex = $('.esi-status-index');
+        const elementLoading = $('.esistatus-loading');
 
-    fetch(esistatusSettings.url.esistatus)
-        .then((response) => {
-            return response.ok ? response.text() : Promise.reject(new Error('Something went wrong'));
-        })
-        .then((responseText) => {
-            if (responseText === '') {
+        try {
+            const data = await fetchGet({
+                url: esistatusSettings.url.esistatus,
+                responseIsJson: false
+            });
+
+            if (!data) {
                 return;
             }
 
             elementLoading.addClass('d-none');
-            elementEsiStatusIndex.html(responseText);
+            elementEsiStatusIndex.html(data);
 
             // Initialize Bootstrap tooltips
-            [].slice.call(document.querySelectorAll(
-                '[data-bs-tooltip="aa-esi-status"]'
-            )).map((tooltipTriggerEl) => {
-                return new bootstrap.Tooltip(tooltipTriggerEl, {html: true});
-            });
-        })
-        .catch((error) => {
+            $('[data-bs-tooltip="aa-esi-status"]').each((_, el) => new bootstrap.Tooltip(el, {html: true}));
+        } catch (error) {
             console.error(error);
-        });
+        }
+    };
+
+    fetchEsiStatus();
 });
