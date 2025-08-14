@@ -1,43 +1,5 @@
-<svg width="0" height="0" class="hidden">
-    <symbol id="loading-spinner" xmlns="http://www.w3.org/2000/svg" width="36" height="36" stroke="currentColor" viewBox="0 0 24 24">
-        <style>
-            <![CDATA[
-            .spinner_QPB9 {
-                transform-origin: center;
-                animation: spinner_4N1C 2s linear infinite;
-            }
-            .spinner_QPB9 circle {
-                stroke-linecap: round;
-                animation: spinner_MX3P 1.5s ease-in-out infinite;
-            }
-            @keyframes spinner_4N1C {
-                100%{
-                  transform: rotate(360deg);
-                }
-            }
-            @keyframes spinner_MX3P {
-                0% {
-                    stroke-dasharray: 0 150;
-                    stroke-dashoffset: 0;
-                }
-                47.5% {
-                    stroke-dasharray: 42 150;
-                    stroke-dashoffset: -16;
-                }
-                95%, 100% {
-                    stroke-dasharray: 42 150;
-                    stroke-dashoffset: -59;
-                }
-            }
-            ]]>
-        </style>
-
-        <g class="spinner_QPB9">
-            <circle cx="12" cy="12" r="9.5" fill="none" stroke-width="3"/>
-        </g>
-    </symbol>
-
-    <symbol id="esi-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 55">
+<svg id="esistatus-svg-sprite" width="0" height="0" display="none" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="esistatus-esi-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 55">
         <defs>
             <clipPath id="clip-s">
                 <path d="M90.3984 1.4473C75.9932 1.4473 69.5742 6.8498 69.5742 16.4004 69.5742 25.5604 75.7576 30.6484 88.9883 30.6484L110.1269 30.6484C119.9122 30.6484 126.5508 31.509 126.5508 38.3984 126.5508 44.6651 121.7124 47.5586 113.6484 47.5586L7.9727 47.5586 4.3379 53.8203 113.0234 53.8203C127.4274 53.8203 133.7695 48.4979 133.7695 38.4766 133.7695 29.0046 127.1942 24.3848 114.4316 24.3848L93.2949 24.3848C83.3522 24.3848 76.7734 23.6019 76.7734 16.9473 76.7734 9.5473 81.7862 7.709 89.7715 7.709L127.2715 7.709 130.8477 1.4473 90.3984 1.4473z" />
