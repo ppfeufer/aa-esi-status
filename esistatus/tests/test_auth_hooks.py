@@ -48,7 +48,7 @@ class TestHooks(TestCase):
         cls.html_header = """
             <div class="navbar-brand">
                 <svg class="svg-sprite svg-esi-logo">
-                    <use href="#esi-logo"></use>
+                    <use href="#esistatus-esi-logo"></use>
                 </svg>
                 Status
             </div>
