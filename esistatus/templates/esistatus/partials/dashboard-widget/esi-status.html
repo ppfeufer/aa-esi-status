@@ -4,10 +4,9 @@
     <div class="card-body">
         <div class="text-center">
             <h4 class="ms-auto me-auto mb-3">
-                {% comment %}
-                We can't ise the SVG sprite here, because if someone else does that and by chance has the same IDs, there will be a conflict.
-                {% endcomment %}
-                {% include "esistatus/svg/esi-logo.svg" %}
+                <svg class="svg-sprite svg-esi-logo">
+                    <use href="#esistatus-esi-logo"></use>
+                </svg>
                 {% translate "Status" %}
             </h4>
         </div>
