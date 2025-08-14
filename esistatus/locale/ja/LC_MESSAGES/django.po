@@ -3,20 +3,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Anata_no_Usiro <yt23542354m@gmail.com>, 2024.
 # Peter Pfeufer <info@ppfeufer.de>, 2024.
+# hin0 <gabrieldaichi1201@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-08-04 21:43+0200\n"
-"PO-Revision-Date: 2024-09-19 13:30+0000\n"
-"Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
+"POT-Creation-Date: 2025-08-14 06:40+0200\n"
+"PO-Revision-Date: 2025-08-14 04:39+0000\n"
+"Last-Translator: hin0 <gabrieldaichi1201@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7.2\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #: esistatus/__init__.py:12 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
@@ -32,51 +33,49 @@ msgid "Can access this app"
 msgstr "このアプリにアクセス可能です"
 
 #: esistatus/templates/esistatus/base.html:13
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:12
-#, fuzzy
-#| msgid "ESI Status"
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
 msgid "Status"
 msgstr "ESIステータス"
 
 #: esistatus/templates/esistatus/index.html:11
 msgid "Loading ESI status …"
-msgstr ""
+msgstr "ESIステータスのロード中…"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:15
 #: esistatus/templates/esistatus/partials/index/esi-status.html:5
 msgid "Red endpoints"
 msgstr "赤いエンドポイント"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:16
 #: esistatus/templates/esistatus/partials/index/esi-status.html:6
 msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
 msgstr "赤のエンドポイントは、反応しないか、利用できない可能性が高いです。"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:21
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:19
 #: esistatus/templates/esistatus/partials/index/esi-status.html:10
 msgid "Yellow endpoints"
 msgstr "黄色のエンドポイント"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:22
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:20
 #: esistatus/templates/esistatus/partials/index/esi-status.html:11
 msgid "Yellow endpoints have a good chance of being slow or returning errors."
 msgstr "黄色のエンドポイントは、反応が遅いかエラーを返す可能性が高いです。"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:25
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:23
 #: esistatus/templates/esistatus/partials/index/esi-status.html:15
 msgid "Green endpoints"
 msgstr "緑色のエンドポイント"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:26
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
 #: esistatus/templates/esistatus/partials/index/esi-status.html:16
 msgid "Green endpoints are responding as expected."
 msgstr "緑色のエンドポイントは正常です。"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:32
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:30
 msgid "Detailed ESI status"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:34
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:32
 msgid "EVE Online status"
 msgstr ""
 
