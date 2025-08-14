@@ -35,6 +35,10 @@ Section Order:
 ### Security
 -->
 
+### Fixed
+
+- SVG sprite
+
 ## [2.9.0] - 2025-08-14
 
 ### Changed
