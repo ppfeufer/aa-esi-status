@@ -1,99 +1,83 @@
-/* global bootstrap, esistatusSettings */
+/* global bootstrap, esistatusSettings, fetchGet */
 
-/**
- * This script refreshed the ESI status dashboard widget
- * regularly so to keep the user apprized about the current status of
- * ESI without having to reload the page.
- */
-
-const elementEsiStatusDashboardWidget = document.getElementById('esi-status-dashboard-panel');
-
-/**
- * Update the ESI status dashboard widget
- */
-const esiStatusDashboardWidget = () => {
+$(document).ready(() => {
     'use strict';
 
-    fetch(esistatusSettings.dashboardWidget.ajaxUrl)
-        .then((response) => {
-            return response.ok ? response.text() : Promise.reject(new Error('Something went wrong'));
-        })
-        .then((responseText) => {
-            if (responseText === '') {
+    /**
+     * ESI Status Dashboard Widget
+     *
+     * @type {{dashboardWidget: HTMLElement, tooltipElements: string, refreshInterval: null}}
+     */
+    const esistatus = {
+        dashboardWidget: $('#esi-status-dashboard-panel'),
+        tooltipElements: '[data-bs-tooltip="aa-esi-status"]',
+        refreshInterval: null
+    };
+
+    /**
+     * Update the ESI Status Dashboard Widget content
+     *
+     * @returns {Promise<void>}
+     * @throws {Error} If the fetch request fails
+     */
+    const updateWidget = async () => {
+        try {
+            const data = await fetchGet({
+                url: esistatusSettings.dashboardWidget.ajaxUrl,
+                responseIsJson: false
+            });
+
+            if (!data) {
                 return;
             }
 
-            console.log('ESI Status Dashboard Widget: Updating widget content');
+            esistatus.dashboardWidget.html(data);
 
-            elementEsiStatusDashboardWidget.innerHTML = responseText;
-
-            if (!elementEsiStatusDashboardWidget.classList.contains('show')) {
-                new bootstrap.Collapse(elementEsiStatusDashboardWidget, { // jshint ignore:line
+            if (!esistatus.dashboardWidget[0].classList.contains('show')) {
+                new bootstrap.Collapse(esistatus.dashboardWidget[0], { // jshint ignore:line
                     show: true
                 });
             }
 
             // Initialize Bootstrap tooltips
-            [].slice.call(document.querySelectorAll(
-                '[data-bs-tooltip="aa-esi-status"]'
-            )).map((tooltipTriggerEl) => {
-                return new bootstrap.Tooltip(tooltipTriggerEl, {html: true});
-            });
-        })
-        .catch((error) => {
+            $(esistatus.tooltipElements).each((_, el) => new bootstrap.Tooltip(el, {html: true}));
+        } catch (error) {
             console.error(error);
-        });
-};
+        }
+    };
 
-let esiStatusDashboardWidgetInterval;
+    /**
+     * Start automatic refresh
+     *
+     * @returns {void}
+     */
+    const startRefresh = () => {
+        console.log('ESI Status Dashboard Widget: Starting automatic refresh');
 
-/**
- * Activate automatic refresh every x seconds
- */
-const activateEsiStatusDashboardWidget = () => {
-    'use strict';
+        updateWidget();
 
-    esiStatusDashboardWidget();
+        esistatus.refreshInterval = setInterval(updateWidget, 60000);
+    };
 
-    console.log('ESI Status Dashboard Widget: Activating automatic refresh');
+    /**
+     * Stop automatic refresh
+     *
+     * @returns {void}
+     */
+    const stopRefresh = () => {
+        if (esistatus.refreshInterval) {
+            console.log('ESI Status Dashboard Widget: Stopping automatic refresh');
 
-    esiStatusDashboardWidgetInterval = setInterval(
-        esiStatusDashboardWidget, 60 * 1000
-    );
-};
+            clearInterval(esistatus.refreshInterval);
 
-/**
- * Deactivate automatic refresh
- */
-const deactivateEsiStatusDashboardWidget = () => {
-    'use strict';
+            esistatus.refreshInterval = null;
+        }
+    };
 
-    if (typeof esiStatusDashboardWidgetInterval !== 'undefined') {
-        console.log('ESI Status Dashboard Widget: Deactivating automatic refresh');
+    // Event listeners for tab focus/blur
+    window.addEventListener('focus', startRefresh);
+    window.addEventListener('blur', stopRefresh);
 
-        clearInterval(esiStatusDashboardWidgetInterval);
-    }
-};
-
-/**
- * Refresh only on active browser tabs
- */
-window.addEventListener('focus', () => {
-    'use strict';
-
-    activateEsiStatusDashboardWidget();
+    // Initialize
+    startRefresh();
 });
-
-/**
- * Deactivate automatic refresh on inactive browser tabs
- */
-window.addEventListener('blur', () => {
-    'use strict';
-
-    deactivateEsiStatusDashboardWidget();
-});
-
-/**
- * Initial start of refreshing on script loading
- */
-activateEsiStatusDashboardWidget();
