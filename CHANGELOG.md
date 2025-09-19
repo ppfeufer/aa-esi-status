@@ -2,8 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to [Semantic Versioning](http://semver.org/).
+The format is based on [Keep a Changelog] and this project adheres to [Semantic Versioning].
 
 <!--
 GitHub MD Syntax:
@@ -34,6 +33,8 @@ Section Order:
 ### Removed
 ### Security
 -->
+
+<!-- Your changes go here -->
 
 ### Changed
 
@@ -500,7 +501,7 @@ Section Order:
 
 - Support for Django 2
 
-## [1.0.3] - 2021-01-11
+## [1.0.2/1.0.3] - 2021-01-11
 
 ### Fixed
 
@@ -545,4 +546,63 @@ Section Order:
 
 <!-- Links -->
 
+[0.1.0-alpha.1]: https://github.com/ppfeufer/aa-esi-status/commits/v0.1.0-alpha.1 "v0.1.0-alpha.1"
+[0.1.0-alpha.2]: https://github.com/ppfeufer/aa-esi-status/compare/v0.1.0-alpha.1...v0.1.0-alpha.2 "v0.1.0-alpha.2"
+[0.1.0-alpha.3]: https://github.com/ppfeufer/aa-esi-status/compare/v0.1.0-alpha.2...v0.1.0-alpha.3 "v0.1.0-alpha.3"
+[1.0.0]: https://github.com/ppfeufer/aa-esi-status/compare/v0.1.0-alpha.3...v1.0.0 "v1.0.0"
+[1.0.1]: https://github.com/ppfeufer/aa-esi-status/compare/v1.0.0...v1.0.1 "v1.0.1"
+[1.0.2/1.0.3]: https://github.com/ppfeufer/aa-esi-status/compare/v1.0.1...v1.0.2 "v1.0.2/1.0.3"
+[1.0.4]: https://github.com/ppfeufer/aa-esi-status/compare/v1.0.2...v1.0.4 "v1.0.4"
+[1.0.5]: https://github.com/ppfeufer/aa-esi-status/compare/v1.0.4...v1.0.5 "v1.0.5"
+[1.1.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.0.5...v1.1.0 "v1.1.0"
+[1.10.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.9.0...v1.10.0 "v1.10.0"
+[1.11.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.10.0...v1.11.0 "v1.11.0"
+[1.11.1]: https://github.com/ppfeufer/aa-esi-status/compare/v1.11.0...v1.11.1 "v1.11.1"
+[1.12.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.11.1...v1.12.0 "v1.12.0"
+[1.12.1]: https://github.com/ppfeufer/aa-esi-status/compare/v1.12.0...v1.12.1 "v1.12.1"
+[1.13.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.12.1...v1.13.0 "v1.13.0"
+[1.14.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.13.0...v1.14.0 "v1.14.0"
+[1.14.1]: https://github.com/ppfeufer/aa-esi-status/compare/v1.14.0...v1.14.1 "v1.14.1"
+[1.14.2]: https://github.com/ppfeufer/aa-esi-status/compare/v1.14.1...v1.14.2 "v1.14.2"
+[1.2.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.1.0...v1.2.0 "v1.2.0"
+[1.3.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.2.0...v1.3.0 "v1.3.0"
+[1.4.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.3.0...v1.4.0 "v1.4.0"
+[1.5.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.4.0...v1.5.0 "v1.5.0"
+[1.5.1]: https://github.com/ppfeufer/aa-esi-status/compare/v1.5.0...v1.5.1 "v1.5.1"
+[1.5.2]: https://github.com/ppfeufer/aa-esi-status/compare/v1.5.1...v1.5.2 "v1.5.2"
+[1.6.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.5.2...v1.6.0 "v1.6.0"
+[1.7.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.6.0...v1.7.0 "v1.7.0"
+[1.7.1]: https://github.com/ppfeufer/aa-esi-status/compare/v1.7.0...v1.7.1 "v1.7.1"
+[1.7.2]: https://github.com/ppfeufer/aa-esi-status/compare/v1.7.1...v1.7.2 "v1.7.2"
+[1.8.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.7.2...v1.8.0 "v1.8.0"
+[1.9.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.8.0...v1.9.0 "v1.9.0"
+[2.0.0]: https://github.com/ppfeufer/aa-esi-status/compare/v1.14.2...v2.0.0 "v2.0.0"
+[2.0.0-beta.1]: https://github.com/ppfeufer/aa-esi-status/compare/v1.14.2...v2.0.0-beta.1 "v2.0.0-beta.1"
+[2.0.0-beta.2]: https://github.com/ppfeufer/aa-esi-status/compare/v2.0.0-beta.1...v2.0.0-beta.2 "v2.0.0-beta.2"
+[2.1.0]: https://github.com/ppfeufer/aa-esi-status/compare/v2.0.0...v2.1.0 "v2.1.0"
+[2.1.1]: https://github.com/ppfeufer/aa-esi-status/compare/v2.1.0...v2.1.1 "v2.1.1"
+[2.2.0]: https://github.com/ppfeufer/aa-esi-status/compare/v2.1.1...v2.2.0 "v2.2.0"
+[2.2.1]: https://github.com/ppfeufer/aa-esi-status/compare/v2.2.0...v2.2.1 "v2.2.1"
+[2.3.0]: https://github.com/ppfeufer/aa-esi-status/compare/v2.2.1...v2.3.0 "v2.3.0"
+[2.4.0]: https://github.com/ppfeufer/aa-esi-status/compare/v2.3.0...v2.4.0 "v2.4.0"
+[2.4.1]: https://github.com/ppfeufer/aa-esi-status/compare/v2.4.0...v2.4.1 "v2.4.1"
+[2.4.2]: https://github.com/ppfeufer/aa-esi-status/compare/v2.4.1...v2.4.2 "v2.4.2"
+[2.4.3]: https://github.com/ppfeufer/aa-esi-status/compare/v2.4.2...v2.4.3 "v2.4.3"
+[2.5.0]: https://github.com/ppfeufer/aa-esi-status/compare/v2.4.3...v2.5.0 "v2.5.0"
+[2.5.1]: https://github.com/ppfeufer/aa-esi-status/compare/v2.5.0...v2.5.1 "v2.5.1"
+[2.5.2]: https://github.com/ppfeufer/aa-esi-status/compare/v2.5.1...v2.5.2 "v2.5.2"
+[2.5.3]: https://github.com/ppfeufer/aa-esi-status/compare/v2.5.2...v2.5.3 "v2.5.3"
+[2.5.4]: https://github.com/ppfeufer/aa-esi-status/compare/v2.5.3...v2.5.4 "v2.5.4"
+[2.6.0]: https://github.com/ppfeufer/aa-esi-status/compare/v2.5.4...v2.6.0 "v2.6.0"
+[2.7.0]: https://github.com/ppfeufer/aa-esi-status/compare/v2.6.0...v2.7.0 "v2.7.0"
+[2.8.0]: https://github.com/ppfeufer/aa-esi-status/compare/v2.7.0...v2.8.0 "v2.8.0"
+[2.8.1]: https://github.com/ppfeufer/aa-esi-status/compare/v2.8.0...v2.8.1 "v2.8.1"
+[2.8.2]: https://github.com/ppfeufer/aa-esi-status/compare/v2.8.1...v2.8.2 "v2.8.2"
+[2.8.3]: https://github.com/ppfeufer/aa-esi-status/compare/v2.8.2...v2.8.3 "v2.8.3"
+[2.8.4]: https://github.com/ppfeufer/aa-esi-status/compare/v2.8.3...v2.8.4 "v2.8.4"
+[2.9.0]: https://github.com/ppfeufer/aa-esi-status/compare/v2.8.4...v2.9.0 "v2.9.0"
+[2.9.1]: https://github.com/ppfeufer/aa-esi-status/compare/v2.9.0...v2.9.1 "v2.9.1"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v2.9.1...HEAD "In Development"
+[keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
+[semantic versioning]: http://semver.org/ "Semantic Versioning"
