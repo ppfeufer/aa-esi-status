@@ -1,5 +1,9 @@
 # Makefile for AA ESI Status
 
+# Specify the shell to be used for executing the commands in this Makefile.
+# In this case, it is set to /bin/bash.
+SHELL := /bin/bash
+
 # Variables
 appname = aa-esi-status
 appname_verbose = AA ESI Status
@@ -9,6 +13,9 @@ translation_template = $(translation_directory)/django.pot
 translation_file_relative_path = LC_MESSAGES/django.po
 git_repository = https://github.com/ppfeufer/$(appname)
 git_repository_issues = $(git_repository)/issues
+
+# Set myauth path or default to ../myauth if config file (.make/myauth-path) does not exist
+myauth_path = $(shell cat .make/myauth-path 2>/dev/null || echo "../myauth")
 
 # Default goal
 .DEFAULT_GOAL := help
@@ -42,10 +49,10 @@ confirm:
 	fi
 
 # Graph models
-.PHONY: graph_models
-graph_models: check-python-venv
+.PHONY: graph-models
+graph-models: check-python-venv
 	@echo "Creating a graph of the models …"
-	@python ../myauth/manage.py \
+	@python $(myauth_path)/manage.py \
 		graph_models \
 		$(package) \
 		--arrow-shape normal \
@@ -54,7 +61,7 @@ graph_models: check-python-venv
 # Prepare a new release
 # Update the graph of the models, translation files and the version in the package
 .PHONY: prepare-release
-prepare-release: pot graph_models
+prepare-release: pot graph-models
 	@echo "Preparing a release …"
 	@read -p "New Version Number: " new_version; \
 	if ! grep -qE "^## \[$$new_version\]" CHANGELOG.md; then \
@@ -91,7 +98,7 @@ help::
 	@echo ""
 	@echo "$(TEXT_BOLD)Commands:$(TEXT_BOLD_END)"
 	@echo "  $(TEXT_UNDERLINE)General:$(TEXT_UNDERLINE_END)"
-	@echo "    graph_models                Create a graph of the models"
+	@echo "    graph-models                Create a graph of the models"
 	@echo "    help                        Show this help message"
 	@echo "    prepare-release             Prepare a release and update the version in '$(package)/__init__.py'."
 	@echo "                                Please make sure to update the 'CHANGELOG.md' file accordingly."
