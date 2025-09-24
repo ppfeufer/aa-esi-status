@@ -12,7 +12,6 @@ import requests
 
 # Django
 from django.http import HttpRequest
-from django.test import TestCase
 from django.urls import reverse
 
 # Alliance Auth (External Libs)
@@ -20,6 +19,7 @@ from app_utils.testing import create_fake_user
 
 # AA ESI Status
 from esistatus import views
+from esistatus.tests import BaseTestCase
 from esistatus.views import (
     _append_value,
     _esi_endpoint_status_from_json,
@@ -28,7 +28,7 @@ from esistatus.views import (
 )
 
 
-class TestAppendValue(TestCase):
+class TestAppendValue(BaseTestCase):
     """
     Test the _append_value function
     """
@@ -99,7 +99,7 @@ class TestAppendValue(TestCase):
         self.assertEqual(dict_obj, {"key1": ["value1", "value2"]})
 
 
-class TestDashboardWidget(TestCase):
+class TestDashboardWidget(BaseTestCase):
     """
     Test the dashboard widget
     """
@@ -161,7 +161,7 @@ class TestDashboardWidget(TestCase):
         self.assertEqual(result, "")
 
 
-class TestAjaxEsiStatus(TestCase):
+class TestAjaxEsiStatus(BaseTestCase):
     """
     Test the AJAX ESI Status view
     """
@@ -199,7 +199,7 @@ class TestAjaxEsiStatus(TestCase):
         self.assertEqual(first=response.status_code, second=HTTPStatus.OK)
 
 
-class TestAjaxEsiStatusDasboardWidget(TestCase):
+class TestAjaxEsiStatusDasboardWidget(BaseTestCase):
     """
     Test the AJAX ESI Status view for the dashboard widget
     """
@@ -258,7 +258,7 @@ class TestAjaxEsiStatusDasboardWidget(TestCase):
         self.assertEqual(first=response.status_code, second=HTTPStatus.NO_CONTENT)
 
 
-class TestIndex(TestCase):
+class TestIndex(BaseTestCase):
     """
     Test the index view
     """
@@ -311,7 +311,7 @@ class TestIndex(TestCase):
         self.assertEqual(first=response.status_code, second=HTTPStatus.OK)
 
 
-class TestEsiStatus(TestCase):
+class TestEsiStatus(BaseTestCase):
     """
     Test the _esi_status function
     """

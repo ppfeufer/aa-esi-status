@@ -13,7 +13,7 @@ __title__ = _("ESI Status")
 
 __package_name__ = "aa-esi-status"
 __package_name_verbose__ = "AA ESI Status"
-__package_name_useragent__ = "AA-ESI-Status"
+__package_name_useragent__ = "AaEsiStatus"
 __app_name__ = "esistatus"
 __github_url__ = f"https://github.com/ppfeufer/{__package_name__}"
 __user_agent__ = (

@@ -180,7 +180,7 @@ Then run the following commands from your AA project directory (the one that
 contains `manage.py`).
 
 ```shell
-pip install -U aa-esi-status
+pip install aa-esi-status==2.9.1
 python manage.py collectstatic
 python manage.py migrate
 ```

@@ -6,7 +6,6 @@ Test auth_hooks
 from http import HTTPStatus
 
 # Django
-from django.test import TestCase
 from django.urls import reverse
 
 # AA ESI Status
@@ -14,11 +13,12 @@ from esistatus.auth_hooks import (
     AaEsiStatusDashboardHook,
     register_esi_status_dashboard_hook,
 )
+from esistatus.tests import BaseTestCase
 from esistatus.tests.utils import create_fake_user
 from esistatus.views import dashboard_widget
 
 
-class TestHooks(TestCase):
+class TestHooks(BaseTestCase):
     """
     Test the app hook into allianceauth
     """
