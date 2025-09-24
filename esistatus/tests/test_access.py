@@ -7,14 +7,14 @@ from http import HTTPStatus
 
 # Django
 from django.contrib.auth.models import Group
-from django.test import TestCase
 from django.urls import reverse
 
 # AA ESI Status
+from esistatus.tests import BaseTestCase
 from esistatus.tests.utils import create_fake_user
 
 
-class TestAccess(TestCase):
+class TestAccess(BaseTestCase):
     """
     Test access to the app
     """
