@@ -36,9 +36,12 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [2.9.2] - 2025-10-07
+
 ### Changed
 
 - Switch to Terser for JavaScript compression
+- Translations updated
 
 ## [2.9.1] - 2025-08-14
 
@@ -602,7 +605,8 @@ Section Order:
 [2.8.4]: https://github.com/ppfeufer/aa-esi-status/compare/v2.8.3...v2.8.4 "v2.8.4"
 [2.9.0]: https://github.com/ppfeufer/aa-esi-status/compare/v2.8.4...v2.9.0 "v2.9.0"
 [2.9.1]: https://github.com/ppfeufer/aa-esi-status/compare/v2.9.0...v2.9.1 "v2.9.1"
-[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v2.9.1...HEAD "In Development"
+[2.9.2]: https://github.com/ppfeufer/aa-esi-status/compare/v2.9.1...v2.9.2 "v2.9.2"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v2.9.2...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
