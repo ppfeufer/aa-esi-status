@@ -4,10 +4,10 @@ App config
 
 # Django
 from django.apps import AppConfig
-from django.utils.translation import gettext_lazy as _
+from django.utils.text import format_lazy
 
 # AA ESI Status
-from esistatus import __app_name__, __version__
+from esistatus import __app_name__, __title_translated__, __version__
 
 
 class AaEsiStatusConfig(AppConfig):
@@ -17,4 +17,6 @@ class AaEsiStatusConfig(AppConfig):
 
     name = __app_name__
     label = __app_name__
-    verbose_name = _(f"ESI Status v{__version__}")
+    verbose_name = format_lazy(
+        "{app_title} v{version}", app_title=__title_translated__, version=__version__
+    )

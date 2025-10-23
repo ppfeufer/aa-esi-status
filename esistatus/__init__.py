@@ -9,7 +9,8 @@ import requests
 from django.utils.translation import gettext_lazy as _
 
 __version__ = "2.9.2"
-__title__ = _("ESI Status")
+__title__ = "ESI Status"
+__title_translated__ = _("ESI Status")
 
 __package_name__ = "aa-esi-status"
 __package_name_verbose__ = "AA ESI Status"

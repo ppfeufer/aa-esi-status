@@ -8,7 +8,7 @@ from allianceauth.hooks import DashboardItemHook
 from allianceauth.services.hooks import MenuItemHook, UrlHook
 
 # AA ESI Status
-from esistatus import __app_name__, __title__, urls
+from esistatus import __app_name__, __title_translated__, urls
 from esistatus.views import dashboard_widget
 
 
@@ -21,7 +21,7 @@ class AaEsiStatusMenuItem(MenuItemHook):  # pylint: disable=too-few-public-metho
         # Setup menu entry for sidebar
         MenuItemHook.__init__(
             self,
-            text=__title__,
+            text=__title_translated__,
             classes="fa-solid fa-signal",
             url_name="esistatus:index",
             navactive=["esistatus:"],
