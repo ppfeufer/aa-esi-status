@@ -47,11 +47,13 @@ optional-dependencies.tests-allianceauth-latest = [
     "django-webtest",
 ]
 urls.Changelog = "https://github.com/ppfeufer/aa-esi-status/blob/master/CHANGELOG.md"
+urls.Codecov = "https://codecov.io/gh/ppfeufer/aa-esi-status"
+urls.Discord = "https://discord.gg/fjnHAmk"
 urls.Documentation = "https://github.com/ppfeufer/aa-esi-status/blob/master/README.md"
-urls.Donations = "https://ko-fi.com/ppfeufer"
-urls.Homepage = "https://github.com/ppfeufer/aa-esi-status"
-urls.Source = "https://github.com/ppfeufer/aa-esi-status.git"
+urls.Donation = "https://ko-fi.com/ppfeufer"
+urls.GitHub = "https://github.com/ppfeufer/aa-esi-status"
 urls.Tracker = "https://github.com/ppfeufer/aa-esi-status/issues"
+urls.Translation = "https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/"
 
 [tool.hatch.build]
 include = [
