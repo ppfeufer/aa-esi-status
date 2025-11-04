@@ -9,7 +9,7 @@ from django.urls import include, path
 from esistatus import __app_name__, views
 from esistatus.constants import INTERNAL_URL_PREFIX
 
-app_name: str = __app_name__
+app_name: str = __app_name__  # pylint: disable=invalid-name
 
 ajax_urls = [
     path(
