@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-08-14 06:40+0200\n"
+"POT-Creation-Date: 2025-11-04 09:56+0100\n"
 "PO-Revision-Date: 2025-07-22 17:13+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Korean <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/ko/>\n"
@@ -20,14 +20,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.12.2\n"
 
-#: esistatus/__init__.py:12 esistatus/templates/esistatus/base.html:6
+#: esistatus/__init__.py:13 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
 msgstr "ESI 상태"
-
-#: esistatus/apps.py:20
-#, python-brace-format
-msgid "ESI Status v{__version__}"
-msgstr "ESI 상태 v{__version__}"
 
 #: esistatus/models.py:22
 msgid "Can access this app"
@@ -99,6 +94,10 @@ msgstr ""
 #: esistatus/templates/esistatus/partials/index/esi-status.html:25
 msgid "Error Message"
 msgstr ""
+
+#, python-brace-format
+#~ msgid "ESI Status v{__version__}"
+#~ msgstr "ESI 상태 v{__version__}"
 
 #~ msgid "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely."
 #~ msgstr "ESI 상태를 읽을 수 없습니다. 페이지를 새로고침 해 보세요. 그래도 읽어올 수 없는 경우, ESI가 완전히 다운됐을 수도 있습니다."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-08-14 06:40+0200\n"
+"POT-Creation-Date: 2025-11-04 09:56+0100\n"
 "PO-Revision-Date: 2024-12-22 21:15+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Italian <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/it/>\n"
@@ -18,14 +18,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.9.2\n"
 
-#: esistatus/__init__.py:12 esistatus/templates/esistatus/base.html:6
+#: esistatus/__init__.py:13 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
 msgstr "Stato ESI"
-
-#: esistatus/apps.py:20
-#, python-brace-format
-msgid "ESI Status v{__version__}"
-msgstr ""
 
 #: esistatus/models.py:22
 msgid "Can access this app"

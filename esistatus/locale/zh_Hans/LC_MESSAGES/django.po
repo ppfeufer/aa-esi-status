@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-08-14 06:40+0200\n"
+"POT-Creation-Date: 2025-11-04 09:56+0100\n"
 "PO-Revision-Date: 2025-07-29 20:18+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Chinese (Simplified Han script) <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/zh_Hans/>\n"
@@ -21,14 +21,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.12.2\n"
 
-#: esistatus/__init__.py:12 esistatus/templates/esistatus/base.html:6
+#: esistatus/__init__.py:13 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
 msgstr "esi状态"
-
-#: esistatus/apps.py:20
-#, python-brace-format
-msgid "ESI Status v{__version__}"
-msgstr "esi 状态 {__version__}"
 
 #: esistatus/models.py:22
 msgid "Can access this app"
@@ -96,6 +91,10 @@ msgstr "无法读取 ESI 状态。"
 #: esistatus/templates/esistatus/partials/index/esi-status.html:25
 msgid "Error Message"
 msgstr "错误信息"
+
+#, python-brace-format
+#~ msgid "ESI Status v{__version__}"
+#~ msgstr "esi 状态 {__version__}"
 
 #~ msgid "Loading …"
 #~ msgstr "加载中…"
