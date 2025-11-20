@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.9.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-11-04 09:56+0100\n"
+"POT-Creation-Date: 2025-11-20 23:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,8 +21,20 @@ msgstr ""
 msgid "ESI Status"
 msgstr ""
 
-#: esistatus/models.py:22
-msgid "Can access this app"
+#: esistatus/models.py:16
+msgid "The ESI compatibility date."
+msgstr ""
+
+#: esistatus/models.py:23
+msgid "The ESI status data."
+msgstr ""
+
+#: esistatus/models.py:34
+msgid "ESI Endpoint Status"
+msgstr ""
+
+#: esistatus/models.py:35
+msgid "ESI Endpoint Statuses"
 msgstr ""
 
 #: esistatus/templates/esistatus/base.html:13
@@ -34,43 +46,55 @@ msgstr ""
 msgid "Loading ESI status …"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:15
-#: esistatus/templates/esistatus/partials/index/esi-status.html:5
-msgid "Red endpoints"
-msgstr ""
-
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:16
-#: esistatus/templates/esistatus/partials/index/esi-status.html:6
-msgid ""
-"Red endpoints have a good chance of not responding at all or being "
-"completely unavailable."
+#: esistatus/templates/esistatus/partials/index/esi-status.html:4
+msgid "OK"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:19
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
+#: esistatus/templates/esistatus/partials/index/esi-status.html:5
+msgid "OK routes are working as expected."
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:21
+#: esistatus/templates/esistatus/partials/index/esi-status.html:9
+msgid "Degraded"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:22
 #: esistatus/templates/esistatus/partials/index/esi-status.html:10
-msgid "Yellow endpoints"
+msgid "Degraded routes have a good chance of being slow or returning errors."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:20
-#: esistatus/templates/esistatus/partials/index/esi-status.html:11
-msgid "Yellow endpoints have a good chance of being slow or returning errors."
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:26
+#: esistatus/templates/esistatus/partials/index/esi-status.html:14
+msgid "Down"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:23
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:27
 #: esistatus/templates/esistatus/partials/index/esi-status.html:15
-msgid "Green endpoints"
+msgid ""
+"Down routes have a good chance of not responding at all or being completely "
+"unavailable."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
-#: esistatus/templates/esistatus/partials/index/esi-status.html:16
-msgid "Green endpoints are responding as expected."
-msgstr ""
-
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:30
-msgid "Detailed ESI status"
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:31
+#: esistatus/templates/esistatus/partials/index/esi-status.html:19
+msgid "Recovering"
 msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:32
+#: esistatus/templates/esistatus/partials/index/esi-status.html:20
+msgid ""
+"Recovering routes are recovering from previous issues and might not (yet) "
+"work as expected or might be slow."
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:38
+msgid "Detailed ESI status"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:40
 msgid "EVE Online status"
 msgstr ""
 
@@ -82,12 +106,4 @@ msgstr ""
 
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:8
 msgid "Join our team of translators!"
-msgstr ""
-
-#: esistatus/templates/esistatus/partials/index/esi-status.html:21
-msgid "Couldn't read the ESI status."
-msgstr ""
-
-#: esistatus/templates/esistatus/partials/index/esi-status.html:25
-msgid "Error Message"
 msgstr ""
