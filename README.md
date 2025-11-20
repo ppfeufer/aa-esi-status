@@ -59,8 +59,6 @@ its superiority and copied it.
 
 ![CCP Stroopwafel Testimonial](https://raw.githubusercontent.com/ppfeufer/aa-esi-status/master/docs/images/ccp-stroopwafel-testimonial.jpg "CCP Stroopwafel Testimonial")
 
-And "yoink" the idea they did! » [CCP ESI Status Page](https://developers.eveonline.com/status)
-
 ## Screenshots<a name="screenshots"></a>
 
 ### ESI Status Page<a name="esi-status-page"></a>
@@ -99,6 +97,22 @@ Configure your AA settings (`local.py`) as follows:
 
 - Add `"esistatus",` to `INSTALLED_APPS`
 
+```python
+INSTALLED_APPS += [
+    "esistatus",  # https://github.com/ppfeufer/aa-esi-status
+]
+```
+
+- Add the scheduled task
+
+```python
+# AA ESI Status - https://github.com/ppfeufer/aa-esi-status
+CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
+    "task": "esistatus.tasks.update_esi_status",
+    "schedule": 60,
+}
+```
+
 #### Step 3: Finalizing the Installation<a name="step-3-finalizing-the-installation"></a>
 
 Run migrations & copy static files.
@@ -125,6 +139,22 @@ aa-esi-status==2.9.3
 Configure your AA settings (`conf/local.py`) as follows:
 
 - Add `"esistatus",` to `INSTALLED_APPS`
+
+```python
+INSTALLED_APPS += [
+    "esistatus",  # https://github.com/ppfeufer/aa-esi-status
+]
+```
+
+- Add the scheduled task
+
+```python
+# AA ESI Status - https://github.com/ppfeufer/aa-esi-status
+CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
+    "task": "esistatus.tasks.update_esi_status",
+    "schedule": 60,
+}
+```
 
 #### Step 3: Build Auth and Restart Your Containers<a name="step-3-build-auth-and-restart-your-containers"></a>
 

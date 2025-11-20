@@ -38,7 +38,20 @@ Section Order:
 
 ### Changed
 
-- Track the status of the OpenAPI routes now, instead of the Swagger endpoints
+- Track the status of the new OpenAPI routes now, instead of the old Swagger endpoints
+
+### Update Information
+
+Add the following scheduled task to your AA settings (`local.py` or `conf/local.py` for
+Docker installations)
+
+```python
+# AA ESI Status - https://github.com/ppfeufer/aa-esi-status
+CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
+    "task": "esistatus.tasks.update_esi_status",
+    "schedule": 60,
+}
+```
 
 ## [2.9.3] - 2025-11-04
 
