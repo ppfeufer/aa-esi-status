@@ -1,5 +1,6 @@
 # Standard Library
 import json
+from unittest import mock
 from unittest.mock import Mock, patch
 
 # Third Party
@@ -7,6 +8,7 @@ import requests
 
 # AA ESI Status
 from esistatus.tasks import (
+    _enrich_routes_with_tags,
     _get_esi_status_json,
     _get_latest_compatibility_date,
     _get_openapi_specs_json,
@@ -333,51 +335,194 @@ class TestHelperGetOpenAPISpecsJson(BaseTestCase):
             )
 
 
+class TestHelperEnrichRoutesWithTags(BaseTestCase):
+    """
+    Test the _enrich_routes_with_tags function.
+    """
+
+    def test_returns_tags_for_exact_path(self):
+        """
+        Test returning tags for an exact path.
+
+        :return:
+        :rtype:
+        """
+
+        openapi = {
+            "paths": {
+                "/alliances": {"get": {"tags": ["alliances"]}},
+            }
+        }
+        routes = {"routes": [{"method": "GET", "path": "/alliances"}]}
+
+        enriched = _enrich_routes_with_tags(routes, openapi)
+
+        self.assertEqual(len(enriched), 1)
+        self.assertEqual(enriched[0]["tags"], ["alliances"])
+
+    def test_returns_tags_for_path_with_params(self):
+        """
+        Test returning tags for a path with parameters.
+
+        :return:
+        :rtype:
+        """
+
+        openapi = {
+            "paths": {
+                "/alliances/{alliance_id}": {"get": {"tags": ["alliance-details"]}},
+            }
+        }
+        routes = {"routes": [{"method": "GET", "path": "/alliances/12345"}]}
+
+        enriched = _enrich_routes_with_tags(routes, openapi)
+
+        self.assertEqual(len(enriched), 1)
+        self.assertEqual(enriched[0]["tags"], ["alliance-details"])
+
+    def test_returns_empty_tags_for_unmatched_path(self):
+        """
+        Test returning empty tags for an unmatched path.
+
+        :return:
+        :rtype:
+        """
+
+        openapi = {
+            "paths": {
+                "/alliances": {"get": {"tags": ["alliances"]}},
+            }
+        }
+        routes = {"routes": [{"method": "GET", "path": "/unknown/path"}]}
+
+        enriched = _enrich_routes_with_tags(routes, openapi)
+
+        self.assertEqual(len(enriched), 1)
+        self.assertEqual(enriched[0]["tags"], [])
+
+    def test_handles_case_insensitive_methods(self):
+        """
+        Test handling case-insensitive methods.
+
+        :return:
+        :rtype:
+        """
+
+        openapi = {
+            "paths": {
+                "/alliances": {"get": {"tags": ["alliances"]}},
+            }
+        }
+        routes = {"routes": [{"method": "get", "path": "/alliances"}]}
+
+        enriched = _enrich_routes_with_tags(routes, openapi)
+
+        self.assertEqual(len(enriched), 1)
+        self.assertEqual(enriched[0]["tags"], ["alliances"])
+
+    def test_handles_empty_routes_returns_empty_list(self):
+        """
+        Test handling empty routes returns an empty list.
+
+        :return:
+        :rtype:
+        """
+
+        openapi = {"paths": {"/alliances": {"get": {"tags": ["alliances"]}}}}
+        routes = {"routes": []}
+
+        enriched = _enrich_routes_with_tags(routes, openapi)
+
+        self.assertEqual(enriched, [])
+
+    def test_handles_empty_openapi_paths(self):
+        """
+        Test handling empty OpenAPI paths.
+
+        :return:
+        :rtype:
+        """
+
+        openapi = {"paths": {}}
+        routes = {
+            "routes": [
+                {"method": "GET", "path": "/alliances"},
+                {"method": "GET", "path": "/alliances/123"},
+            ]
+        }
+        enriched = _enrich_routes_with_tags(routes, openapi)
+
+        self.assertEqual(len(enriched), 2)
+
+        for r in enriched:
+            self.assertEqual(r["tags"], [])
+
+
 class TestUpdateESIStatus(BaseTestCase):
     """
     Test the update_esi_status task.
     """
 
-    def test_updates_esi_status_successfully(self):
+    def test_updates_status_in_database_when_all_data_is_valid(self):
         """
-        Test updating the ESI status successfully.
+        Test updating the status in the database when all data is valid.
 
         :return:
         :rtype:
         """
 
         with (
-            patch(
+            mock.patch(
                 "esistatus.tasks._get_latest_compatibility_date",
                 return_value="2023-10-01",
-            ) as mock_latest,
-            patch(
-                "esistatus.tasks._get_esi_status_json", return_value={"status": "ok"}
-            ) as mock_status,
-            patch(
+            ),
+            mock.patch(
+                "esistatus.tasks._get_esi_status_json",
+                return_value={"routes": [{"method": "GET", "path": "/alliances"}]},
+            ),
+            mock.patch(
                 "esistatus.tasks._get_openapi_specs_json",
-                return_value={"openapi": "3.0.0"},
-            ) as mock_specs,
-            patch("esistatus.tasks.logger.debug") as mock_debug,
+                return_value={
+                    "paths": {"/alliances": {"get": {"tags": ["alliances"]}}}
+                },
+            ),
+            mock.patch(
+                "esistatus.tasks.EsiStatus.objects.update_or_create"
+            ) as mock_update,
         ):
             update_esi_status()
 
-            mock_debug.assert_any_call("Starting ESI status update task.")
-            mock_latest.assert_called_once()
-            mock_status.assert_called_once_with(compatibility_date="2023-10-01")
-            mock_specs.assert_called_once_with(compatibility_date="2023-10-01")
+            mock_update.assert_called_once_with(
+                pk=1,
+                defaults={
+                    "compatibility_date": "2023-10-01",
+                    "status_data": [
+                        {"method": "GET", "path": "/alliances", "tags": ["alliances"]}
+                    ],
+                },
+            )
 
-    def test_logs_error_when_compatibility_date_is_none(self):
+    def test_skips_status_update_when_compatibility_date_is_none(self):
+        """
+        Test skipping the status update when the compatibility date is None.
+
+        :return:
+        :rtype:
+        """
+
         with (
-            patch("esistatus.tasks._get_latest_compatibility_date", return_value=None),
-            patch("esistatus.tasks.logger.error") as mock_error,
+            mock.patch(
+                "esistatus.tasks._get_latest_compatibility_date", return_value=None
+            ),
+            mock.patch("esistatus.tasks.logger.error") as mock_logger,
         ):
             update_esi_status()
-            mock_error.assert_called_once_with(
+
+            mock_logger.assert_called_with(
                 "Failed to retrieve latest compatibility date."
             )
 
-    def logs_error_when_esi_status_is_none(self):
+    def test_logs_error_when_esi_status_is_none(self):
         """
         Test logging an error when ESI status is None.
 
@@ -426,4 +571,35 @@ class TestUpdateESIStatus(BaseTestCase):
 
             mock_error.assert_called_once_with(
                 "Failed to retrieve ESI status or OpenAPI specs."
+            )
+
+    def test_skips_status_update_when_enriched_status_is_empty(self):
+        """
+        Test skipping the status update when the enriched status is empty.
+
+        :return:
+        :rtype:
+        """
+
+        with (
+            mock.patch(
+                "esistatus.tasks._get_latest_compatibility_date",
+                return_value="2023-10-01",
+            ),
+            mock.patch(
+                "esistatus.tasks._get_esi_status_json",
+                return_value={"routes": [{"method": "GET", "path": "/unknown"}]},
+            ),
+            mock.patch(
+                "esistatus.tasks._get_openapi_specs_json",
+                return_value={
+                    "paths": {"/alliances": {"get": {"tags": ["alliances"]}}}
+                },
+            ),
+            mock.patch("esistatus.tasks.logger.debug") as mock_logger,
+        ):
+            update_esi_status()
+
+            mock_logger.assert_called_with(
+                "Enriched OpenAPI status is empty; skipping database update."
             )
