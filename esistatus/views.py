@@ -3,11 +3,7 @@ The views
 """
 
 # Standard Library
-import json
 from typing import Any
-
-# Third Party
-import requests
 
 # Django
 from django.core.handlers.wsgi import WSGIRequest
@@ -22,7 +18,8 @@ from allianceauth.services.hooks import get_extension_logger
 from app_utils.logging import LoggerAddTag
 
 # AA ESI Status
-from esistatus import __title__, __user_agent__
+from esistatus import __title__
+from esistatus.models import EsiStatus
 
 logger = LoggerAddTag(my_logger=get_extension_logger(__name__), prefix=__title__)
 
@@ -49,20 +46,22 @@ def _append_value(dict_obj: dict, key: str, value: Any) -> None:
     dict_obj[key].append(value)
 
 
-def _esi_endpoint_status_from_json(esi_endpoint_json: json) -> tuple:
+def _esi_endpoint_status_from_json(esi_endpoint_json: list) -> dict:
     """
     Get the ESI endpoint status from the ESI json
 
     :param esi_endpoint_json: The ESI endpoint json
-    :type esi_endpoint_json: json
+    :type esi_endpoint_json: dict
     :return: The ESI endpoint status
-    :rtype: Tuple[(bool) Has Status Results, (dict) Endpoint Status]
+    :rtype: dict
     """
 
     esi_endpoint_status = {
-        "green": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
-        "yellow": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
-        "red": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+        "Unknown": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+        "OK": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+        "Degraded": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+        "Down": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+        "Recovering": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
     }
 
     for esi_endpoint in esi_endpoint_json:
@@ -71,7 +70,7 @@ def _esi_endpoint_status_from_json(esi_endpoint_json: json) -> tuple:
             dict_obj=esi_endpoint_status[status]["endpoints"],
             key=esi_endpoint["tags"][0],
             value={
-                "route": esi_endpoint["route"],
+                "path": esi_endpoint["path"],
                 "method": esi_endpoint["method"].upper(),
             },
         )
@@ -95,45 +94,21 @@ def _esi_endpoint_status_from_json(esi_endpoint_json: json) -> tuple:
         )
         status_data["percentage"] = f"{percentage:.2f}%"
 
-    # Return the whole jazz (Tuple[(bool) Has Status Results, (dict) Endpoint Status])
-    return True, esi_endpoint_status
+    # Return the whole jazz
+    return esi_endpoint_status
 
 
-def _esi_status() -> tuple:
+def _esi_status() -> dict:
     """
     Get the ESI status
 
     :return: The ESI status
-    :rtype: Tuple (Tuple[(bool) Has Status Results, (dict) Endpoint Status])
+    :rtype: dict
     """
 
-    request_headers = {"User-Agent": __user_agent__}
-    esi_status_json_url = "https://esi.evetech.net/status.json?version=latest"
+    esi_endpoint_json = EsiStatus.objects.get(pk=1).status_data
 
-    try:
-        response = requests.get(
-            url=esi_status_json_url, headers=request_headers, timeout=10
-        )
-        response.raise_for_status()
-        esi_endpoint_json = response.json()
-
-        return _esi_endpoint_status_from_json(esi_endpoint_json=esi_endpoint_json)
-    except requests.exceptions.RequestException as exc:
-        error_str = (
-            f"{exc.response.status_code} - {exc.response.reason}"
-            if exc.response is not None
-            else str(exc)
-        )
-
-        logger.info(msg=f"Unable to get ESI status. Error: {error_str}")
-
-        return False, error_str
-    except json.JSONDecodeError:
-        logger.info(
-            msg="Unable to get ESI status. ESI returning gibberish, I can't understand …"
-        )
-
-        return False, {}
+    return _esi_endpoint_status_from_json(esi_endpoint_json=esi_endpoint_json)
 
 
 def index(request: WSGIRequest) -> HttpResponse:
@@ -159,12 +134,9 @@ def ajax_esi_status(request: WSGIRequest) -> HttpResponse:
     :rtype: HttpResponse
     """
 
-    has_status_result, esi_endpoint_status = _esi_status()
+    esi_endpoint_status = _esi_status()
 
-    context = {
-        "has_status_result": has_status_result,
-        "esi_endpoint_status": esi_endpoint_status,
-    }
+    context = {"esi_endpoint_status": esi_endpoint_status}
 
     return render(
         request=request,
@@ -183,21 +155,14 @@ def ajax_dashboard_widget(request: WSGIRequest) -> HttpResponse:
     :rtype: HttpResponse
     """
 
-    has_status_result, esi_endpoint_status = _esi_status()
+    esi_endpoint_status = _esi_status()
 
-    context = {
-        "has_status_result": has_status_result,
-        "esi_endpoint_status": esi_endpoint_status,
-    }
+    context = {"esi_endpoint_status": esi_endpoint_status}
 
-    return (
-        render(
-            request=request,
-            template_name="esistatus/partials/dashboard-widget/esi-status.html",
-            context=context,
-        )
-        if has_status_result
-        else HttpResponse(status=204)
+    return render(
+        request=request,
+        template_name="esistatus/partials/dashboard-widget/esi-status.html",
+        context=context,
     )
 
 

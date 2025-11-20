@@ -3,28 +3,19 @@ Test the apps' views
 """
 
 # Standard Library
-import json
-from http import HTTPStatus
-from unittest.mock import MagicMock, Mock, patch
-
-# Third Party
-import requests
-
-# Django
-from django.http import HttpRequest
-from django.urls import reverse
-
-# Alliance Auth (External Libs)
-from app_utils.testing import create_fake_user
+from unittest import mock
 
 # AA ESI Status
-from esistatus import views
+from esistatus.models import EsiStatus
 from esistatus.tests import BaseTestCase
 from esistatus.views import (
     _append_value,
     _esi_endpoint_status_from_json,
     _esi_status,
+    ajax_dashboard_widget,
+    ajax_esi_status,
     dashboard_widget,
+    index,
 )
 
 
@@ -104,46 +95,25 @@ class TestDashboardWidget(BaseTestCase):
     Test the dashboard widget
     """
 
-    def setUp(self):
-        """
-        Set up the test case
-
-        :return:
-        :rtype:
-        """
-
-        self.superuser = create_fake_user(
-            character_id=1002, character_name="Clark Kent"
-        )
-        self.superuser.is_superuser = True
-        self.superuser.is_staff = True
-
-        self.normal_user = create_fake_user(
-            character_id=1001, character_name="Peter Parker"
-        )
-
-        self.widget_wrapper = '<div id="esi-status-dashboard-panel" class="aa-esistatus col-12 mb-3 collapse"></div>'
-
-    def test_dashboard_widget_with_superuser(self):
+    def test_renders_dashboard_widget_for_superuser(self):
         """
         Test that a superuser sees the ESI status widget
 
-        :param mock_render_to_string:
-        :type mock_render_to_string:
         :return:
         :rtype:
         """
 
-        request = MagicMock(spec=HttpRequest)
-        request.user = MagicMock()
+        request = mock.Mock()
         request.user.is_superuser = True
-        request.META = {}
 
-        result = dashboard_widget(request)
+        with mock.patch("esistatus.views.render_to_string") as mock_render:
+            dashboard_widget(request)
 
-        self.assertInHTML(self.widget_wrapper, result)
+            mock_render.assert_called_once_with(
+                template_name="esistatus/dashboard-widget.html", request=request
+            )
 
-    def test_dashboard_widget_with_normal_user(self):
+    def test_returns_empty_string_for_non_superuser(self):
         """
         Test that a normal user does not see the ESI status widget
 
@@ -151,10 +121,8 @@ class TestDashboardWidget(BaseTestCase):
         :rtype:
         """
 
-        request = MagicMock(spec=HttpRequest)
-        request.user = MagicMock()
+        request = mock.Mock()
         request.user.is_superuser = False
-        request.META = {}
 
         result = dashboard_widget(request)
 
@@ -166,37 +134,49 @@ class TestAjaxEsiStatus(BaseTestCase):
     Test the AJAX ESI Status view
     """
 
-    def setUp(self):
+    def test_renders_esi_status_view_with_valid_data(self):
         """
-        Set up users
+        Test that the AJAX ESI status view renders with valid data
 
         :return:
         :rtype:
         """
 
-        self.superuser = create_fake_user(
-            character_id=1002, character_name="Clark Kent"
-        )
-        self.superuser.is_superuser = True
+        request = mock.Mock()
 
-        self.client.force_login(user=self.superuser)
+        with (
+            mock.patch("esistatus.views._esi_status", return_value={"status": "OK"}),
+            mock.patch("esistatus.views.render") as mock_render,
+        ):
+            ajax_esi_status(request)
 
-    @patch("esistatus.views._esi_status")
-    def test_ajax_esi_status_with_status_result(self, mock_esi_status):
+            mock_render.assert_called_once_with(
+                request=request,
+                template_name="esistatus/partials/index/esi-status.html",
+                context={"esi_endpoint_status": {"status": "OK"}},
+            )
+
+    def test_handles_esi_status_view_with_no_data(self):
         """
-        Test the AJAX ESI Status view with HTTPStatus.OK
+        Test that the AJAX ESI status view handles no data gracefully
 
-        :param mock_esi_status:
-        :type mock_esi_status:
         :return:
         :rtype:
         """
 
-        mock_esi_status.return_value = (True, {})
+        request = mock.Mock()
 
-        response = self.client.get(path=reverse(viewname="esistatus:ajax_esi_status"))
+        with (
+            mock.patch("esistatus.views._esi_status", return_value=None),
+            mock.patch("esistatus.views.render") as mock_render,
+        ):
+            ajax_esi_status(request)
 
-        self.assertEqual(first=response.status_code, second=HTTPStatus.OK)
+            mock_render.assert_called_once_with(
+                request=request,
+                template_name="esistatus/partials/index/esi-status.html",
+                context={"esi_endpoint_status": None},
+            )
 
 
 class TestAjaxEsiStatusDasboardWidget(BaseTestCase):
@@ -204,58 +184,40 @@ class TestAjaxEsiStatusDasboardWidget(BaseTestCase):
     Test the AJAX ESI Status view for the dashboard widget
     """
 
-    def setUp(self):
+    def test_renders_dashboard_widget_with_esi_status(self):
         """
-        Set up users
+        Test that the AJAX dashboard widget renders with ESI status
 
         :return:
         :rtype:
         """
 
-        self.superuser = create_fake_user(
-            character_id=1002, character_name="Clark Kent"
-        )
-        self.superuser.is_superuser = True
+        request = mock.Mock()
 
-        self.client.force_login(user=self.superuser)
+        with (
+            mock.patch("esistatus.views._esi_status", return_value={"status": "OK"}),
+            mock.patch("esistatus.views.render") as mock_render,
+        ):
+            ajax_dashboard_widget(request)
 
-    @patch("esistatus.views._esi_status")
-    def test_ajax_esi_status_with_status_result(self, mock_esi_status):
-        """
-        Test the AJAX ESI Status view with HTTPStatus.OK
+            mock_render.assert_called_once_with(
+                request=request,
+                template_name="esistatus/partials/dashboard-widget/esi-status.html",
+                context={"esi_endpoint_status": {"status": "OK"}},
+            )
 
-        :param mock_esi_status:
-        :type mock_esi_status:
-        :return:
-        :rtype:
-        """
-
-        mock_esi_status.return_value = (True, {})
-
-        response = self.client.get(
-            path=reverse(viewname="esistatus:ajax_dashboard_widget")
-        )
-
-        self.assertEqual(first=response.status_code, second=HTTPStatus.OK)
-
-    @patch("esistatus.views._esi_status")
-    def test_ajax_esi_status_without_status_result(self, mock_esi_status):
-        """
-        Test the AJAX ESI Status view with HTTPStatus.NO_CONTENT
-
-        :param mock_esi_status:
-        :type mock_esi_status:
-        :return:
-        :rtype:
-        """
-
-        mock_esi_status.return_value = (False, {})
-
-        response = self.client.get(
-            path=reverse(viewname="esistatus:ajax_dashboard_widget")
-        )
-
-        self.assertEqual(first=response.status_code, second=HTTPStatus.NO_CONTENT)
+    def test_handles_missing_esi_status_gracefully(self):
+        request = mock.Mock()
+        with (
+            mock.patch("esistatus.views._esi_status", return_value=None),
+            mock.patch("esistatus.views.render") as mock_render,
+        ):
+            ajax_dashboard_widget(request)
+            mock_render.assert_called_once_with(
+                request=request,
+                template_name="esistatus/partials/dashboard-widget/esi-status.html",
+                context={"esi_endpoint_status": None},
+            )
 
 
 class TestIndex(BaseTestCase):
@@ -263,52 +225,13 @@ class TestIndex(BaseTestCase):
     Test the index view
     """
 
-    def setUp(self):
-        """
-        Set up users
-
-        :return:
-        :rtype:
-        """
-
-        self.superuser = create_fake_user(
-            character_id=1002, character_name="Clark Kent"
-        )
-        self.superuser.is_superuser = True
-
-        self.client.force_login(user=self.superuser)
-
-    @patch("esistatus.views._esi_status")
-    def test_index_with_status_result(self, mock_esi_status):
-        """
-        Test the index view with a status result
-
-        :param mock_esi_status:
-        :type mock_esi_status:
-        :return:
-        :rtype:
-        """
-
-        mock_esi_status.return_value = (True, {})
-        response = self.client.get(path=reverse(viewname="esistatus:index"))
-
-        self.assertEqual(first=response.status_code, second=HTTPStatus.OK)
-
-    @patch("esistatus.views._esi_status")
-    def test_index_without_status_result(self, mock_esi_status):
-        """
-        Test the index view without a status result
-
-        :param mock_esi_status:
-        :type mock_esi_status:
-        :return:
-        :rtype:
-        """
-
-        mock_esi_status.return_value = (False, {})
-        response = self.client.get(path=reverse(viewname="esistatus:index"))
-
-        self.assertEqual(first=response.status_code, second=HTTPStatus.OK)
+    def test_renders_index_view_successfully(self):
+        request = mock.Mock()
+        with mock.patch("esistatus.views.render") as mock_render:
+            index(request)
+            mock_render.assert_called_once_with(
+                request=request, template_name="esistatus/index.html"
+            )
 
 
 class TestEsiStatus(BaseTestCase):
@@ -316,155 +239,135 @@ class TestEsiStatus(BaseTestCase):
     Test the _esi_status function
     """
 
-    @patch("requests.get")
-    def test_esi_status_with_valid_response(self, mock_get):
+    def test_returns_esi_status_with_valid_data(self):
         """
-        Test the _esi_status function with a valid response
+        Test that the _esi_status function returns processed status with valid data
 
-        :param mock_get:
-        :type mock_get:
         :return:
         :rtype:
         """
 
-        mock_get.return_value.json.return_value = []
-        mock_get.return_value.raise_for_status.return_value = None
-        has_status_result, esi_endpoint_status = views._esi_status()
+        with (
+            mock.patch("esistatus.views.EsiStatus.objects.get") as mock_get,
+            mock.patch(
+                "esistatus.views._esi_endpoint_status_from_json"
+            ) as mock_status_from_json,
+        ):
+            mock_get.return_value.status_data = {"status": "OK"}
+            mock_status_from_json.return_value = {"processed_status": "OK"}
 
-        self.assertTrue(has_status_result)
-        self.assertEqual(
-            first=esi_endpoint_status,
-            second={
-                "green": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
-                "yellow": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
-                "red": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
-            },
-        )
+            result = _esi_status()
 
-    @patch("esistatus.views.requests.get")
-    def test_esi_status_request_exception(self, mock_get):
+            self.assertEqual(result, {"processed_status": "OK"})
+
+    def test_raises_exception_when_esi_status_does_not_exist(self):
         """
-        Test the _esi_status function with a request exception
+        Test that the _esi_status function raises an exception when EsiStatus does not exist
 
-        :param mock_get:
-        :type mock_get:
         :return:
         :rtype:
         """
 
-        mock_get.side_effect = requests.exceptions.RequestException("Error")
+        with mock.patch(
+            "esistatus.views.EsiStatus.objects.get", side_effect=EsiStatus.DoesNotExist
+        ):
+            with self.assertRaises(EsiStatus.DoesNotExist):
+                _esi_status()
 
-        has_status_result, error_str = _esi_status()
-
-        self.assertFalse(has_status_result)
-        self.assertIn("Error", error_str)
-
-    @patch("esistatus.views.requests.get")
-    def test_esi_status_request_exception_with_response(self, mock_get):
+    def test_processes_empty_esi_status_data(self):
         """
-        Test the _esi_status function with a request exception that has a response
+        Test that the _esi_status function processes empty ESI status data
 
-        :param mock_get:
-        :type mock_get:
         :return:
         :rtype:
         """
 
-        mock_response = Mock()
-        mock_response.status_code = 500
-        mock_response.reason = "Internal Server Error"
-        mock_get.side_effect = requests.exceptions.RequestException(
-            response=mock_response
-        )
+        with (
+            mock.patch("esistatus.views.EsiStatus.objects.get") as mock_get,
+            mock.patch(
+                "esistatus.views._esi_endpoint_status_from_json"
+            ) as mock_status_from_json,
+        ):
+            mock_get.return_value.status_data = {}
+            mock_status_from_json.return_value = {}
+            result = _esi_status()
+            self.assertEqual(result, {})
 
-        has_status_result, error_str = _esi_status()
 
-        self.assertFalse(has_status_result)
-        self.assertEqual(error_str, "500 - Internal Server Error")
+class TestEsiEndpointStatusFromJson(BaseTestCase):
+    """
+    Test the _esi_endpoint_status_from_json function
+    """
 
-    @patch("esistatus.views.requests.get")
-    def test_esi_status_request_exception_without_response(self, mock_get):
+    def test_processes_valid_esi_endpoint_json(self):
         """
-        Test the _esi_status function with a request exception that does not have a response
+        Test that the _esi_endpoint_status_from_json function processes valid ESI endpoint JSON
 
-        :param mock_get:
-        :type mock_get:
         :return:
         :rtype:
-        """
-
-        mock_get.side_effect = requests.exceptions.RequestException("Network Error")
-
-        has_status_result, error_str = _esi_status()
-
-        self.assertFalse(has_status_result)
-        self.assertEqual(error_str, "Network Error")
-
-    @patch("esistatus.views.requests.get")
-    def test_esi_status_json_decode_error(self, mock_get):
-        """
-        Test the _esi_status function with a JSON decode error
-
-        :param mock_get:
-        :type mock_get:
-        :return:
-        :rtype:
-        """
-
-        mock_response = Mock()
-        mock_response.json.side_effect = json.JSONDecodeError("Error", "", 0)
-        mock_response.raise_for_status.return_value = None
-        mock_get.return_value = mock_response
-
-        has_status_result, esi_endpoint_status = _esi_status()
-
-        self.assertFalse(has_status_result)
-        self.assertEqual(esi_endpoint_status, {})
-
-    def test_returns_correct_status_counts_and_percentages(self):
-        """
-        Test the _esi_endpoint_status_from_json function with a sample ESI endpoint JSON
-
-        :return:
         """
 
         esi_endpoint_json = [
-            {"status": "green", "tags": ["tag1"], "route": "/route1", "method": "get"},
-            {
-                "status": "yellow",
-                "tags": ["tag2"],
-                "route": "/route2",
-                "method": "post",
-            },
-            {"status": "red", "tags": ["tag3"], "route": "/route3", "method": "put"},
-            {"status": "green", "tags": ["tag1"], "route": "/route4", "method": "get"},
+            {"status": "OK", "tags": ["tag1"], "path": "/path1", "method": "get"},
+            {"status": "Down", "tags": ["tag2"], "path": "/path2", "method": "post"},
         ]
-        has_status_result, esi_endpoint_status = _esi_endpoint_status_from_json(
-            esi_endpoint_json
-        )
-        self.assertTrue(has_status_result)
-        self.assertEqual(esi_endpoint_status["green"]["count"], 2)
-        self.assertEqual(esi_endpoint_status["yellow"]["count"], 1)
-        self.assertEqual(esi_endpoint_status["red"]["count"], 1)
-        self.assertEqual(esi_endpoint_status["green"]["percentage"], "50.00%")
-        self.assertEqual(esi_endpoint_status["yellow"]["percentage"], "25.00%")
-        self.assertEqual(esi_endpoint_status["red"]["percentage"], "25.00%")
+
+        result = _esi_endpoint_status_from_json(esi_endpoint_json)
+
+        self.assertEqual(result["OK"]["count"], 1)
+        self.assertEqual(result["Down"]["count"], 1)
+        self.assertEqual(result["OK"]["endpoints"]["tag1"][0]["path"], "/path1")
+        self.assertEqual(result["Down"]["endpoints"]["tag2"][0]["method"], "POST")
 
     def test_handles_empty_esi_endpoint_json(self):
         """
-        Test the _esi_endpoint_status_from_json function with an empty ESI endpoint JSON
+        Test that the _esi_endpoint_status_from_json function handles empty ESI endpoint JSON
 
         :return:
+        :rtype:
         """
 
         esi_endpoint_json = []
-        has_status_result, esi_endpoint_status = _esi_endpoint_status_from_json(
-            esi_endpoint_json
-        )
-        self.assertTrue(has_status_result)
-        self.assertEqual(esi_endpoint_status["green"]["count"], 0)
-        self.assertEqual(esi_endpoint_status["yellow"]["count"], 0)
-        self.assertEqual(esi_endpoint_status["red"]["count"], 0)
-        self.assertEqual(esi_endpoint_status["green"]["percentage"], "0.00%")
-        self.assertEqual(esi_endpoint_status["yellow"]["percentage"], "0.00%")
-        self.assertEqual(esi_endpoint_status["red"]["percentage"], "0.00%")
+
+        result = _esi_endpoint_status_from_json(esi_endpoint_json)
+
+        self.assertEqual(result["OK"]["count"], 0)
+        self.assertEqual(result["Down"]["count"], 0)
+        self.assertEqual(result["OK"]["percentage"], "0.00%")
+        self.assertEqual(result["Down"]["percentage"], "0.00%")
+
+    def test_calculates_percentages_correctly(self):
+        """
+        Test that the _esi_endpoint_status_from_json function calculates percentages correctly
+
+        :return:
+        :rtype:
+        """
+
+        esi_endpoint_json = [
+            {"status": "OK", "tags": ["tag1"], "path": "/path1", "method": "get"},
+            {"status": "OK", "tags": ["tag2"], "path": "/path2", "method": "post"},
+            {"status": "Down", "tags": ["tag3"], "path": "/path3", "method": "get"},
+        ]
+
+        result = _esi_endpoint_status_from_json(esi_endpoint_json)
+
+        self.assertEqual(result["OK"]["percentage"], "66.67%")
+        self.assertEqual(result["Down"]["percentage"], "33.33%")
+
+    def test_sorts_endpoints_alphabetically_by_tag(self):
+        """
+        Test that the _esi_endpoint_status_from_json function sorts endpoints alphabetically by tag
+
+        :return:
+        :rtype:
+        """
+
+        esi_endpoint_json = [
+            {"status": "OK", "tags": ["tagB"], "path": "/pathB", "method": "get"},
+            {"status": "OK", "tags": ["tagA"], "path": "/pathA", "method": "post"},
+        ]
+
+        result = _esi_endpoint_status_from_json(esi_endpoint_json)
+
+        self.assertEqual(list(result["OK"]["endpoints"].keys()), ["tagA", "tagB"])
