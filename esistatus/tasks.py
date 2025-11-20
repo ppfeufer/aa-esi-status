@@ -3,9 +3,7 @@ Tasks for ESI status monitoring.
 """
 
 # Standard Library
-import copy
 import json
-import re
 from typing import Any
 
 # Third Party
@@ -191,122 +189,27 @@ def _get_openapi_specs_json(compatibility_date: str) -> dict | None:
         return None
 
 
-def _enrich_routes_with_tags(
-    routes: dict[str, Any], openapi: dict[str, Any]
-) -> list[Any]:
+def _add_tags_to_status(status: dict[str, Any], openapi: dict[str, Any]) -> list[Any]:
     """
-    Enrich ESI routes with OpenAPI tags.
+    Enrich ESI status routes with tags from OpenAPI specs.
 
-    :param routes:
-    :type routes:
+    Inspired by this script by CCP Pinky:
+    https://gist.github.com/ccp-pinky/28e60a5a79df5f7db4f7f46704c9f818
+
+    :param status:
+    :type status:
     :param openapi:
     :type openapi:
     :return:
     :rtype:
     """
 
-    routes_copy = copy.deepcopy(routes)
-    paths = openapi.get("paths") or {}
+    for route in status["routes"]:
+        spec = openapi["paths"].get(route["path"], {}).get(route["method"].lower(), {})
+        tags = spec.get("tags", ["Deprecated"])
+        route["tags"] = tags
 
-    def normalize_template(p: str) -> str:
-        """
-        Normalize a path template by replacing path parameters with "{}".
-
-        :param p:
-        :type p:
-        :return:
-        :rtype:
-        """
-
-        return re.sub(r"\{[^/}]+\}", "{}", p)
-
-    def path_to_regex(p: str) -> re.Pattern:
-        """
-        Convert a path template to a regex pattern.
-
-        :param p:
-        :type p:
-        :return:
-        :rtype:
-        """
-
-        parts = re.split(r"(\{[^}]+\})", p)
-        pattern = "".join(
-            "[^/]+" if part.startswith("{") else re.escape(part) for part in parts
-        )
-
-        return re.compile("^" + pattern + "$")
-
-    # Build normalized map for faster candidate lookup
-    normalized_map = {}
-    for p in paths.keys():
-        normalized_map.setdefault(normalize_template(p), []).append(p)
-
-    def find_matching_path(route_path: str):
-        """
-        Find the matching OpenAPI path for a given route path.
-
-        :param route_path:
-        :type route_path:
-        :return:
-        :rtype:
-        """
-
-        if route_path in paths:
-            return route_path
-
-        normalized = normalize_template(route_path)
-        candidates = normalized_map.get(normalized, [])
-
-        if len(candidates) == 1:
-            return candidates[0]
-
-        for cand in candidates:
-            if path_to_regex(cand).match(route_path):
-                return cand
-
-        for cand in paths.keys():
-            if path_to_regex(cand).match(route_path):
-                return cand
-
-        return None
-
-    def extract_tags_for(route: dict[str, Any]):
-        """
-        Extract tags for a given route from OpenAPI specs.
-
-        :param route:
-        :type route:
-        :return:
-        :rtype:
-        """
-
-        match = find_matching_path(route.get("path", ""))
-
-        if not match:
-            return []
-
-        path_item = paths.get(match) or {}
-        method = route.get("method", "").lower()
-        op = path_item.get(method)
-
-        if isinstance(op, dict) and "tags" in op:
-            return op.get("tags", [])
-
-        for op_def in path_item.values():
-            if isinstance(op_def, dict) and "tags" in op_def:
-                return op_def.get("tags", [])
-
-        return []
-
-    for r in routes_copy.get("routes", []):
-        r["tags"] = extract_tags_for(r)
-
-    routes_with_tags = routes_copy.get("routes", [])
-
-    logger.debug(f"Enriched {len(routes_with_tags)} routes with OpenAPI tags.")
-
-    return routes_with_tags
+    return status["routes"]
 
 
 @shared_task()
@@ -334,11 +237,10 @@ def update_esi_status():
 
         return
 
-    enriched_status = _enrich_routes_with_tags(routes=esi_status, openapi=openapi_specs)
+    enriched_status = _add_tags_to_status(status=esi_status, openapi=openapi_specs)
 
-    # Consider enriched status empty if there are no entries or none of the entries have tags
-    if not enriched_status or not any(route.get("tags") for route in enriched_status):
-        logger.debug("Enriched OpenAPI status is empty; skipping database update.")
+    if not any(route.get("tags") for route in enriched_status):
+        logger.debug("Enriched ESI status has no tags. Skipping database update.")
 
         return
 

@@ -8,7 +8,7 @@ import requests
 
 # AA ESI Status
 from esistatus.tasks import (
-    _enrich_routes_with_tags,
+    _add_tags_to_status,
     _get_esi_status_json,
     _get_latest_compatibility_date,
     _get_openapi_specs_json,
@@ -335,127 +335,96 @@ class TestHelperGetOpenAPISpecsJson(BaseTestCase):
             )
 
 
-class TestHelperEnrichRoutesWithTags(BaseTestCase):
+class TestHelperAddTagsToStatus(BaseTestCase):
     """
-    Test the _enrich_routes_with_tags function.
+    Test the _add_tags_to_status function.
     """
 
-    def test_returns_tags_for_exact_path(self):
+    def test_adds_tags_to_routes_with_matching_openapi_specs(self):
         """
-        Test returning tags for an exact path.
+        Test adding tags to routes with matching OpenAPI specs.
 
         :return:
         :rtype:
         """
 
-        openapi = {
-            "paths": {
-                "/alliances": {"get": {"tags": ["alliances"]}},
-            }
-        }
-        routes = {"routes": [{"method": "GET", "path": "/alliances"}]}
+        status = {"routes": [{"path": "/path1", "method": "GET"}]}
+        openapi = {"paths": {"/path1": {"get": {"tags": ["Public"]}}}}
 
-        enriched = _enrich_routes_with_tags(routes, openapi)
+        result = _add_tags_to_status(status, openapi)
 
-        self.assertEqual(len(enriched), 1)
-        self.assertEqual(enriched[0]["tags"], ["alliances"])
+        self.assertEqual(result[0]["tags"], ["Public"])
 
-    def test_returns_tags_for_path_with_params(self):
+    def test_assigns_deprecated_tag_when_no_matching_openapi_specs(self):
         """
-        Test returning tags for a path with parameters.
+        Test assigning the "Deprecated" tag when there are no matching OpenAPI specs.
 
         :return:
         :rtype:
         """
 
-        openapi = {
-            "paths": {
-                "/alliances/{alliance_id}": {"get": {"tags": ["alliance-details"]}},
-            }
-        }
-        routes = {"routes": [{"method": "GET", "path": "/alliances/12345"}]}
-
-        enriched = _enrich_routes_with_tags(routes, openapi)
-
-        self.assertEqual(len(enriched), 1)
-        self.assertEqual(enriched[0]["tags"], ["alliance-details"])
-
-    def test_returns_empty_tags_for_unmatched_path(self):
-        """
-        Test returning empty tags for an unmatched path.
-
-        :return:
-        :rtype:
-        """
-
-        openapi = {
-            "paths": {
-                "/alliances": {"get": {"tags": ["alliances"]}},
-            }
-        }
-        routes = {"routes": [{"method": "GET", "path": "/unknown/path"}]}
-
-        enriched = _enrich_routes_with_tags(routes, openapi)
-
-        self.assertEqual(len(enriched), 1)
-        self.assertEqual(enriched[0]["tags"], [])
-
-    def test_handles_case_insensitive_methods(self):
-        """
-        Test handling case-insensitive methods.
-
-        :return:
-        :rtype:
-        """
-
-        openapi = {
-            "paths": {
-                "/alliances": {"get": {"tags": ["alliances"]}},
-            }
-        }
-        routes = {"routes": [{"method": "get", "path": "/alliances"}]}
-
-        enriched = _enrich_routes_with_tags(routes, openapi)
-
-        self.assertEqual(len(enriched), 1)
-        self.assertEqual(enriched[0]["tags"], ["alliances"])
-
-    def test_handles_empty_routes_returns_empty_list(self):
-        """
-        Test handling empty routes returns an empty list.
-
-        :return:
-        :rtype:
-        """
-
-        openapi = {"paths": {"/alliances": {"get": {"tags": ["alliances"]}}}}
-        routes = {"routes": []}
-
-        enriched = _enrich_routes_with_tags(routes, openapi)
-
-        self.assertEqual(enriched, [])
-
-    def test_handles_empty_openapi_paths(self):
-        """
-        Test handling empty OpenAPI paths.
-
-        :return:
-        :rtype:
-        """
-
+        status = {"routes": [{"path": "/path1", "method": "GET"}]}
         openapi = {"paths": {}}
-        routes = {
+
+        result = _add_tags_to_status(status, openapi)
+
+        self.assertEqual(result[0]["tags"], ["Deprecated"])
+
+    def test_handles_multiple_routes_with_different_tags(self):
+        """
+        Test handling multiple routes with different tags.
+
+        :return:
+        :rtype:
+        """
+
+        status = {
             "routes": [
-                {"method": "GET", "path": "/alliances"},
-                {"method": "GET", "path": "/alliances/123"},
+                {"path": "/path1", "method": "GET"},
+                {"path": "/path2", "method": "POST"},
             ]
         }
-        enriched = _enrich_routes_with_tags(routes, openapi)
+        openapi = {
+            "paths": {
+                "/path1": {"get": {"tags": ["Public"]}},
+                "/path2": {"post": {"tags": ["Private"]}},
+            }
+        }
 
-        self.assertEqual(len(enriched), 2)
+        result = _add_tags_to_status(status, openapi)
 
-        for r in enriched:
-            self.assertEqual(r["tags"], [])
+        self.assertEqual(result[0]["tags"], ["Public"])
+        self.assertEqual(result[1]["tags"], ["Private"])
+
+    def test_handles_empty_routes_list(self):
+        """
+        Test handling an empty routes list.
+
+        :return:
+        :rtype:
+        """
+
+        status = {"routes": []}
+        openapi = {"paths": {"/path1": {"get": {"tags": ["Public"]}}}}
+
+        result = _add_tags_to_status(status, openapi)
+
+        self.assertEqual(result, [])
+
+    def test_assigns_deprecated_tag_when_method_is_missing_in_openapi(self):
+        """
+        Test assigning the "Deprecated" tag when the method is missing in OpenAPI specs.
+
+        :return:
+        :rtype:
+        """
+
+        status = {"routes": [{"path": "/path1", "method": "GET"}]}
+        openapi = {"paths": {"/path1": {}}}
+
+        result = _add_tags_to_status(status, openapi)
+
+        self.assertEqual(result[0]["tags"], ["Deprecated"])
 
 
 class TestUpdateESIStatus(BaseTestCase):
@@ -573,14 +542,8 @@ class TestUpdateESIStatus(BaseTestCase):
                 "Failed to retrieve ESI status or OpenAPI specs."
             )
 
-    def test_skips_status_update_when_enriched_status_is_empty(self):
-        """
-        Test skipping the status update when the enriched status is empty.
-
-        :return:
-        :rtype:
-        """
-
+    def test_skips_database_update_when_no_tags_in_enriched_status(self):
+        enriched_status = [{"path": "/path1", "method": "GET", "tags": []}]
         with (
             mock.patch(
                 "esistatus.tasks._get_latest_compatibility_date",
@@ -588,18 +551,22 @@ class TestUpdateESIStatus(BaseTestCase):
             ),
             mock.patch(
                 "esistatus.tasks._get_esi_status_json",
-                return_value={"routes": [{"method": "GET", "path": "/unknown"}]},
+                return_value={"routes": [{"path": "/path1", "method": "GET"}]},
             ),
             mock.patch(
                 "esistatus.tasks._get_openapi_specs_json",
-                return_value={
-                    "paths": {"/alliances": {"get": {"tags": ["alliances"]}}}
-                },
+                return_value={"paths": {}},
             ),
-            mock.patch("esistatus.tasks.logger.debug") as mock_logger,
+            mock.patch(
+                "esistatus.tasks._add_tags_to_status", return_value=enriched_status
+            ),
+            mock.patch("esistatus.tasks.logger.debug") as mock_debug,
+            mock.patch(
+                "esistatus.tasks.EsiStatus.objects.update_or_create"
+            ) as mock_update,
         ):
             update_esi_status()
-
-            mock_logger.assert_called_with(
-                "Enriched OpenAPI status is empty; skipping database update."
+            mock_debug.assert_any_call(
+                "Enriched ESI status has no tags. Skipping database update."
             )
+            mock_update.assert_not_called()
