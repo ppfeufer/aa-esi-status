@@ -13,16 +13,11 @@ class EsiStatus(models.Model):
     """
 
     compatibility_date = models.CharField(
-        help_text=_("The ESI compatibility date."),
-        max_length=10,
-        blank=False,
-        null=False,
+        help_text=_("The ESI compatibility date."), max_length=10
     )
 
     status_data = models.JSONField(
-        help_text=_("The ESI status data."),
-        null=True,
-        blank=True,
+        help_text=_("The ESI status data."), null=True, blank=True
     )
 
     class Meta:
