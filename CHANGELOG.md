@@ -36,6 +36,10 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Changed
+
+- Track the status of the OpenAPI routes now, instead of the Swagger endpoints
+
 ## [2.9.3] - 2025-11-04
 
 ### Fixed
