@@ -7,6 +7,7 @@ from unittest.mock import Mock, patch
 import requests
 
 # AA ESI Status
+from esistatus.constants import ESIMetaUrl
 from esistatus.tasks import (
     _add_tags_to_status,
     _get_esi_status_json,
@@ -37,117 +38,165 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
         }
         cls.latest_date = "2025-11-06"
 
-    def test_returns_latest_date_from_cache(self):
+    def test_retrieves_cached_compatibility_date(self):
         """
-        Test returning the latest compatibility date from cache.
+        Test retrieving the cached compatibility date.
 
         :return:
         :rtype:
         """
 
-        with patch(
-            "esistatus.tasks.cache_handler._get_cache", return_value=self.latest_date
+        with mock.patch(
+            "esistatus.tasks.cache_handler._get_cache", return_value="2023-10-01"
         ) as mock_cache:
             result = _get_latest_compatibility_date()
 
-            self.assertEqual(result, self.latest_date)
+            self.assertEqual(result, "2023-10-01")
             mock_cache.assert_called_once()
 
-    def test_fetches_latest_date_and_caches_when_cache_is_empty(self):
+    def test_retrieves_latest_compatibility_date_from_api(self):
         """
-        Test fetching the latest compatibility date and caching it when the cache is empty.
+        Test retrieving the latest compatibility date from the API.
 
         :return:
         :rtype:
         """
 
-        with (
-            patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
-            patch("esistatus.tasks.requests.get") as mock_get,
-            patch("esistatus.tasks.cache_handler._set_cache") as mock_set_cache,
-        ):
-            mock_response = Mock()
-            mock_response.json.return_value = self.compatibility_date_json
-            mock_response.raise_for_status = Mock()
-            mock_get.return_value = mock_response
+        mock_response = mock.Mock()
+        mock_response.json.return_value = self.compatibility_date_json
 
+        with (
+            mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            mock.patch(
+                "esistatus.tasks.requests.get", return_value=mock_response
+            ) as mock_get,
+            mock.patch("esistatus.tasks.cache_handler._set_cache") as mock_set_cache,
+        ):
             result = _get_latest_compatibility_date()
 
             self.assertEqual(result, self.latest_date)
             mock_get.assert_called_once()
-            mock_set_cache.assert_called_once()
+            mock_set_cache.assert_called_once_with(
+                ESIMetaUrl.COMPATIBILITY_DATES.value, self.latest_date
+            )
 
-    def test_returns_none_when_no_valid_dates_are_present(self):
+    def test_skips_invalid_dates_in_api_response(self):
         """
-        Test returning None when no valid compatibility dates are present.
+        Test skipping invalid dates in the API response.
 
         :return:
         :rtype:
         """
 
-        with (
-            patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
-            patch("esistatus.tasks.requests.get") as mock_get,
-        ):
-            mock_response = Mock()
-            mock_response.json.return_value = {
-                "compatibility_dates": ["", "not-a-date"]
-            }
-            mock_response.raise_for_status = Mock()
-            mock_get.return_value = mock_response
+        mock_response = mock.Mock()
+        mock_response.json.return_value = {
+            "compatibility_dates": ["invalid-date", "2023-10-01"]
+        }
 
+        with (
+            mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            mock.patch("esistatus.tasks.requests.get", return_value=mock_response),
+        ):
             result = _get_latest_compatibility_date()
+
+            self.assertEqual(result, "2023-10-01")
+
+    def test_returns_none_when_no_valid_dates_found(self):
+        """
+        Test returning None when no valid dates are found.
+
+        :return:
+        :rtype:
+        """
+
+        mock_response = mock.Mock()
+        mock_response.json.return_value = {"compatibility_dates": ["invalid-date"]}
+
+        with (
+            mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            mock.patch("esistatus.tasks.requests.get", return_value=mock_response),
+        ):
+            result = _get_latest_compatibility_date()
+
             self.assertIsNone(result)
 
-    def test_handles_request_exception_and_logs_error(self):
+    def test_handles_request_exception(self):
         """
-        Test handling a RequestException and logging the error.
+        Test handling a RequestException.
 
         :return:
         :rtype:
         """
 
         with (
-            patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
-            patch(
+            mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            mock.patch(
                 "esistatus.tasks.requests.get",
-                side_effect=requests.exceptions.RequestException("Request failed"),
+                side_effect=requests.exceptions.RequestException,
             ),
-            patch("esistatus.tasks.logger.debug") as mock_logger,
         ):
             result = _get_latest_compatibility_date()
 
             self.assertIsNone(result)
-            mock_logger.assert_called_with(
-                msg="Unable to get ESI compatibility dates. Error: Request failed"
-            )
 
-    def test_handles_json_decode_error_and_logs_message(self):
+    def test_skips_non_string_dates(self):
         """
-        Test handling a JSONDecodeError and logging the message.
+        Test skipping non-string dates in the API response.
 
         :return:
         :rtype:
         """
 
-        with (
-            patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
-            patch("esistatus.tasks.requests.get") as mock_get,
-            patch("esistatus.tasks.logger.debug") as mock_logger,
-        ):
-            mock_response = Mock()
-            mock_response.json.side_effect = json.JSONDecodeError(
-                "Expecting value", "", 0
-            )
-            mock_response.raise_for_status = Mock()
-            mock_get.return_value = mock_response
+        mock_response = mock.Mock()
+        mock_response.json.return_value = {
+            "compatibility_dates": [123, None, "2023-10-01"]
+        }
 
+        with (
+            mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            mock.patch("esistatus.tasks.requests.get", return_value=mock_response),
+        ):
+            result = _get_latest_compatibility_date()
+
+            self.assertEqual(result, "2023-10-01")
+
+    def test_handles_empty_dates_list(self):
+        """
+        Test handling an empty dates list.
+
+        :return:
+        :rtype:
+        """
+
+        mock_response = mock.Mock()
+        mock_response.json.return_value = {"compatibility_dates": []}
+
+        with (
+            mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            mock.patch("esistatus.tasks.requests.get", return_value=mock_response),
+        ):
             result = _get_latest_compatibility_date()
 
             self.assertIsNone(result)
-            mock_logger.assert_called_with(
-                msg="Unable to get ESI status. ESI returning gibberish, I can't understand …"
-            )
+
+    def test_handles_invalid_json_response(self):
+        """
+        Test handling an invalid JSON response.
+
+        :return:
+        :rtype:
+        """
+
+        mock_response = mock.Mock()
+        mock_response.json.side_effect = json.JSONDecodeError("Expecting value", "", 0)
+
+        with (
+            mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            mock.patch("esistatus.tasks.requests.get", return_value=mock_response),
+        ):
+            result = _get_latest_compatibility_date()
+
+            self.assertIsNone(result)
 
 
 class TestHelperGetESIStatusJson(BaseTestCase):

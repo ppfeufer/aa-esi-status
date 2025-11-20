@@ -11,7 +11,7 @@ import requests
 from celery import shared_task
 
 # Django
-from django.utils.datetime_safe import date, datetime
+from django.utils.datetime_safe import datetime
 
 # Alliance Auth
 from allianceauth.services.hooks import get_extension_logger
@@ -38,67 +38,52 @@ def _get_latest_compatibility_date() -> str | None:
     :rtype:
     """
 
-    logger.debug(msg="Retrieving latest ESI compatibility date.")
+    logger.debug("Retrieving latest ESI compatibility date.")
 
     url = ESIMetaUrl.COMPATIBILITY_DATES.value
 
     cached = cache_handler._get_cache(url)
+
     if cached:
-        logger.debug(msg=f"Using cached ESI compatibility date: {cached}")
+        logger.debug(f"Using cached ESI compatibility date: {cached}")
 
         return cached
 
     try:
-        response = requests.get(url=url, headers=request_headers, timeout=10)
+        response = requests.get(url, headers=request_headers, timeout=10)
         response.raise_for_status()
 
-        compatibility_dates = response.json()
-        dates = compatibility_dates.get("compatibility_dates", [])
+        dates = response.json().get("compatibility_dates", [])
 
-        logger.debug(msg=f"ESI compatibility dates response: {compatibility_dates}")
+        logger.debug(f"ESI compatibility dates response: {dates}")
 
-        def _parse_date(s: str) -> date | None:
-            """
-            Parse a date string in YYYY-MM-DD format.
+        valid_dates = []
 
-            :param s:
-            :type s:
-            :return:
-            :rtype:
-            """
+        for d in dates:
+            if not isinstance(d, str):
+                continue
 
             try:
-                return datetime.strptime(s, "%Y-%m-%d").date()
-            except (TypeError, ValueError):
-                return None
+                valid_dates.append(datetime.strptime(d, "%Y-%m-%d").date())
+            except ValueError:
+                logger.debug(f"Skipping invalid compatibility date: {d}")
 
-        date_objs = [d for d in (_parse_date(s) for s in dates) if d]
+                continue
 
-        if not date_objs:
-            logger.debug(msg="No valid ESI compatibility dates found.")
+        if not valid_dates:
+            logger.debug("No valid ESI compatibility dates found.")
 
             return None
 
-        latest = max(date_objs).isoformat()
+        latest = max(valid_dates).isoformat()
 
-        logger.debug(msg=f"Latest ESI compatibility date: {latest}")
+        logger.debug(f"Latest ESI compatibility date: {latest}")
 
         cache_handler._set_cache(url, latest)
 
         return latest
-    except requests.exceptions.RequestException as exc:
-        resp = getattr(exc, "response", None)
-        error_str = (
-            f"{resp.status_code} - {resp.reason}" if resp is not None else str(exc)
-        )
-
-        logger.debug(msg=f"Unable to get ESI compatibility dates. Error: {error_str}")
-
-        return None
-    except json.JSONDecodeError:
-        logger.debug(
-            msg="Unable to get ESI status. ESI returning gibberish, I can't understand …"
-        )
+    except (requests.exceptions.RequestException, json.JSONDecodeError) as exc:
+        logger.debug(f"Error retrieving ESI compatibility dates: {exc}")
 
         return None
 
