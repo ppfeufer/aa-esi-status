@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-11-21 02:17+0100\n"
+"POT-Creation-Date: 2025-11-21 14:58+0100\n"
 "PO-Revision-Date: 2024-05-10 14:01+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Polish <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/pl/>\n"
@@ -46,52 +46,57 @@ msgstr ""
 msgid "Loading ESI status …"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:16
-#: esistatus/templates/esistatus/partials/index/esi-status.html:4
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
+#: esistatus/templates/esistatus/partials/index/esi-status.html:6
 msgid "OK"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
-#: esistatus/templates/esistatus/partials/index/esi-status.html:5
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
+#: esistatus/templates/esistatus/partials/index/esi-status.html:7
 msgid "These routes are working as expected."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:21
-#: esistatus/templates/esistatus/partials/index/esi-status.html:9
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:22
+#: esistatus/templates/esistatus/partials/index/esi-status.html:11
 msgid "Degraded"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:22
-#: esistatus/templates/esistatus/partials/index/esi-status.html:10
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:23
+#: esistatus/templates/esistatus/partials/index/esi-status.html:12
 msgid "These routes have a good chance of being slow or returning errors."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:26
-#: esistatus/templates/esistatus/partials/index/esi-status.html:14
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:27
+#: esistatus/templates/esistatus/partials/index/esi-status.html:16
 msgid "Down"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:27
-#: esistatus/templates/esistatus/partials/index/esi-status.html:15
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:28
+#: esistatus/templates/esistatus/partials/index/esi-status.html:17
 msgid "These routes have a good chance of not responding at all or being completely unavailable."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:31
-#: esistatus/templates/esistatus/partials/index/esi-status.html:19
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:32
+#: esistatus/templates/esistatus/partials/index/esi-status.html:21
 msgid "Recovering"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:32
-#: esistatus/templates/esistatus/partials/index/esi-status.html:20
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:33
+#: esistatus/templates/esistatus/partials/index/esi-status.html:22
 msgid "These routes are recovering from previous issues and might not (yet) work as expected or might be slow."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:38
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:39
 msgid "Detailed ESI status"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:40
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:41
 msgid "EVE Online status"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:46
+#: esistatus/templates/esistatus/partials/index/esi-status.html:27
+msgid "No ESI status data is available at this time."
 msgstr ""
 
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:5
@@ -101,3 +106,7 @@ msgstr "Chciałbyś pomóc w tłumaczeniu tej apki na Twój język bądź popraw
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:8
 msgid "Join our team of translators!"
 msgstr "Dołącz do naszego zespołu tłumaczy!"
+
+#: esistatus/templates/esistatus/partials/index/esi-status.html:28
+msgid "Please try again later."
+msgstr ""
