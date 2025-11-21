@@ -54,9 +54,9 @@ $(document).ready(() => {
     const startRefresh = () => {
         console.log('ESI Status Dashboard Widget: Starting automatic refresh');
 
-        updateWidget();
+        updateWidget().then(() => console.log('ESI Status Dashboard Widget: Initial update complete'));
 
-        esistatus.refreshInterval = setInterval(updateWidget, 60000);
+        esistatus.refreshInterval = setInterval(updateWidget, 30000);
     };
 
     /**
@@ -64,19 +64,19 @@ $(document).ready(() => {
      *
      * @returns {void}
      */
-    const stopRefresh = () => {
-        if (esistatus.refreshInterval) {
-            console.log('ESI Status Dashboard Widget: Stopping automatic refresh');
-
-            clearInterval(esistatus.refreshInterval);
-
-            esistatus.refreshInterval = null;
-        }
-    };
+    // const stopRefresh = () => {
+    //     if (esistatus.refreshInterval) {
+    //         console.log('ESI Status Dashboard Widget: Stopping automatic refresh');
+    //
+    //         clearInterval(esistatus.refreshInterval);
+    //
+    //         esistatus.refreshInterval = null;
+    //     }
+    // };
 
     // Event listeners for tab focus/blur
-    window.addEventListener('focus', startRefresh);
-    window.addEventListener('blur', stopRefresh);
+    // window.addEventListener('focus', startRefresh);
+    // window.addEventListener('blur', stopRefresh);
 
     // Initialize
     startRefresh();
