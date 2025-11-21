@@ -36,6 +36,11 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Removed
+
+- Window active check in dashboard widget auto-update, its not needed anymore since
+  we run the updates in the background via a Celery task now
+
 ## [3.0.0] - 2025-11-21
 
 ### Changed
