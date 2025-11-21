@@ -8,7 +8,7 @@ import requests
 # Django
 from django.utils.translation import gettext_lazy as _
 
-__version__ = "2.9.3"
+__version__ = "3.0.0"
 __title__ = "ESI Status"
 __title_translated__ = _("ESI Status")
 
