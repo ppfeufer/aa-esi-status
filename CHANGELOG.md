@@ -36,9 +36,12 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [3.0.0] - 2025-11-21
+
 ### Changed
 
 - Track the status of the new OpenAPI routes now, instead of the old Swagger endpoints
+- Translations updated
 
 ### Update Information
 
@@ -634,7 +637,8 @@ CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
 [2.9.1]: https://github.com/ppfeufer/aa-esi-status/compare/v2.9.0...v2.9.1 "v2.9.1"
 [2.9.2]: https://github.com/ppfeufer/aa-esi-status/compare/v2.9.1...v2.9.2 "v2.9.2"
 [2.9.3]: https://github.com/ppfeufer/aa-esi-status/compare/v2.9.2...v2.9.3 "v2.9.3"
-[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v2.9.3...HEAD "In Development"
+[3.0.0]: https://github.com/ppfeufer/aa-esi-status/compare/v2.9.3...v3.0.0 "v3.0.0"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v3.0.0...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
