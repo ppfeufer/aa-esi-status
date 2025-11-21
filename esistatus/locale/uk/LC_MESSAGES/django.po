@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-11-04 09:56+0100\n"
+"POT-Creation-Date: 2025-11-21 02:17+0100\n"
 "PO-Revision-Date: 2025-08-27 20:43+0000\n"
 "Last-Translator: s0k0l -_- <salarysalo@gmail.com>\n"
 "Language-Team: Ukrainian <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/uk/>\n"
@@ -23,9 +23,27 @@ msgstr ""
 msgid "ESI Status"
 msgstr "Статус ESI"
 
-#: esistatus/models.py:22
-msgid "Can access this app"
-msgstr "Має доступ до цього додатку"
+#: esistatus/models.py:16
+msgid "The ESI compatibility date."
+msgstr ""
+
+#: esistatus/models.py:20
+#, fuzzy
+#| msgid "Detailed ESI status"
+msgid "The ESI status data."
+msgstr "Детальний статус ESI"
+
+#: esistatus/models.py:29
+#, fuzzy
+#| msgid "ESI Status"
+msgid "ESI Endpoint Status"
+msgstr "Статус ESI"
+
+#: esistatus/models.py:30
+#, fuzzy
+#| msgid "ESI Status"
+msgid "ESI Endpoint Statuses"
+msgstr "Статус ESI"
 
 #: esistatus/templates/esistatus/base.html:13
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
@@ -36,41 +54,57 @@ msgstr "Статус"
 msgid "Loading ESI status …"
 msgstr "Завантаження статусу ESI …"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:15
-#: esistatus/templates/esistatus/partials/index/esi-status.html:5
-msgid "Red endpoints"
-msgstr "Червоні лінії"
-
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:16
-#: esistatus/templates/esistatus/partials/index/esi-status.html:6
-msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
-msgstr "Червоні лінії, скоріш за усе, не перетнути..."
+#: esistatus/templates/esistatus/partials/index/esi-status.html:4
+msgid "OK"
+msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:19
-#: esistatus/templates/esistatus/partials/index/esi-status.html:10
-msgid "Yellow endpoints"
-msgstr "Жовті кінцеві точки"
-
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:20
-#: esistatus/templates/esistatus/partials/index/esi-status.html:11
-msgid "Yellow endpoints have a good chance of being slow or returning errors."
-msgstr "Жовті кінцеві точки мають високу ймовірність працювати повільно або повертати помилки."
-
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:23
-#: esistatus/templates/esistatus/partials/index/esi-status.html:15
-msgid "Green endpoints"
-msgstr "Зелені кінцеві точки"
-
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
-#: esistatus/templates/esistatus/partials/index/esi-status.html:16
-msgid "Green endpoints are responding as expected."
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
+#: esistatus/templates/esistatus/partials/index/esi-status.html:5
+#, fuzzy
+#| msgid "Green endpoints are responding as expected."
+msgid "These routes are working as expected."
 msgstr "Зелені кінцеві точки реагують відповідно до очікувань."
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:30
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:21
+#: esistatus/templates/esistatus/partials/index/esi-status.html:9
+msgid "Degraded"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:22
+#: esistatus/templates/esistatus/partials/index/esi-status.html:10
+#, fuzzy
+#| msgid "Yellow endpoints have a good chance of being slow or returning errors."
+msgid "These routes have a good chance of being slow or returning errors."
+msgstr "Жовті кінцеві точки мають високу ймовірність працювати повільно або повертати помилки."
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:26
+#: esistatus/templates/esistatus/partials/index/esi-status.html:14
+msgid "Down"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:27
+#: esistatus/templates/esistatus/partials/index/esi-status.html:15
+#, fuzzy
+#| msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
+msgid "These routes have a good chance of not responding at all or being completely unavailable."
+msgstr "Червоні лінії, скоріш за усе, не перетнути..."
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:31
+#: esistatus/templates/esistatus/partials/index/esi-status.html:19
+msgid "Recovering"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:32
+#: esistatus/templates/esistatus/partials/index/esi-status.html:20
+msgid "These routes are recovering from previous issues and might not (yet) work as expected or might be slow."
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:38
 msgid "Detailed ESI status"
 msgstr "Детальний статус ESI"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:32
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:40
 msgid "EVE Online status"
 msgstr "Статус EVE Online"
 
@@ -82,13 +116,23 @@ msgstr "Хочете допомогти перекласти цю програм
 msgid "Join our team of translators!"
 msgstr "Приєднуйтесь до нашої команди перекладачів!"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:21
-msgid "Couldn't read the ESI status."
-msgstr "Не вдалося прочитати статус ESI."
+#~ msgid "Can access this app"
+#~ msgstr "Має доступ до цього додатку"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:25
-msgid "Error Message"
-msgstr "Помилка"
+#~ msgid "Red endpoints"
+#~ msgstr "Червоні лінії"
+
+#~ msgid "Yellow endpoints"
+#~ msgstr "Жовті кінцеві точки"
+
+#~ msgid "Green endpoints"
+#~ msgstr "Зелені кінцеві точки"
+
+#~ msgid "Couldn't read the ESI status."
+#~ msgstr "Не вдалося прочитати статус ESI."
+
+#~ msgid "Error Message"
+#~ msgstr "Помилка"
 
 #, python-brace-format
 #~ msgid "ESI Status v{__version__}"
