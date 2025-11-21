@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.9.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-11-20 23:35+0100\n"
+"POT-Creation-Date: 2025-11-21 01:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,15 +25,15 @@ msgstr ""
 msgid "The ESI compatibility date."
 msgstr ""
 
-#: esistatus/models.py:23
+#: esistatus/models.py:20
 msgid "The ESI status data."
 msgstr ""
 
-#: esistatus/models.py:34
+#: esistatus/models.py:29
 msgid "ESI Endpoint Status"
 msgstr ""
 
-#: esistatus/models.py:35
+#: esistatus/models.py:30
 msgid "ESI Endpoint Statuses"
 msgstr ""
 
