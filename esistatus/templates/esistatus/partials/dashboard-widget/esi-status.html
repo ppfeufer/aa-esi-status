@@ -12,17 +12,25 @@
         </div>
 
         <div class="row mb-3">
-            {% translate "Red endpoints" as translated_header_red %}
-            {% translate "Red endpoints have a good chance of not responding at all or being completely unavailable." as translated_header_red_explanation %}
-            {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="red" explanation=translated_header_red_explanation data=esi_endpoint_status.red with_details=False %}
+            <!-- OK Routes -->
+            {% translate "OK" as translated_header_green %}
+            {% translate "These routes are working as expected." as translated_header_green_explanation %}
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_green status="OK" explanation=translated_header_green_explanation data=esi_endpoint_status.OK with_details=False %}
 
-            {% translate "Yellow endpoints" as translated_header_yellow %}
-            {% translate "Yellow endpoints have a good chance of being slow or returning errors." as translated_header_yellow_explanation %}
-            {% include 'esistatus/partials/endpoints.html' with title=translated_header_yellow status="yellow" explanation=translated_header_yellow_explanation data=esi_endpoint_status.yellow with_details=False %}
+            <!-- Degraded Routes -->
+            {% translate "Degraded" as translated_header_yellow %}
+            {% translate "These routes have a good chance of being slow or returning errors." as translated_header_yellow_explanation %}
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_yellow status="Degraded" explanation=translated_header_yellow_explanation data=esi_endpoint_status.Degraded with_details=False %}
 
-            {% translate "Green endpoints" as translated_header_green %}
-            {% translate "Green endpoints are responding as expected." as translated_header_green_explanation %}
-            {% include 'esistatus/partials/endpoints.html' with title=translated_header_green status="green" explanation=translated_header_green_explanation data=esi_endpoint_status.green with_details=False %}
+            <!-- Down Routes -->
+            {% translate "Down" as translated_header_red %}
+            {% translate "These routes have a good chance of not responding at all or being completely unavailable." as translated_header_red_explanation %}
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="Down" explanation=translated_header_red_explanation data=esi_endpoint_status.Down with_details=False %}
+
+            <!-- Recovering Routes -->
+            {% translate "Recovering" as translated_header_red %}
+            {% translate "These routes are recovering from previous issues and might not (yet) work as expected or might be slow." as translated_header_red_explanation %}
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="Recovering" explanation=translated_header_red_explanation data=esi_endpoint_status.Recovering with_details=False %}
         </div>
 
         <div class="text-end">

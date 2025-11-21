@@ -9,14 +9,22 @@ from django.utils.translation import gettext_lazy as _
 
 class EsiStatus(models.Model):
     """
-    Meta model for app permissions
+    Model to store ESI endpoint status
     """
 
-    class Meta:  # pylint: disable=too-few-public-methods
+    compatibility_date = models.CharField(
+        help_text=_("The ESI compatibility date."), max_length=10
+    )
+
+    status_data = models.JSONField(
+        help_text=_("The ESI status data."), null=True, blank=True
+    )
+
+    class Meta:
         """
         Meta definitions
         """
 
-        managed = False
         default_permissions = ()
-        permissions = (("basic_access", _("Can access this app")),)
+        verbose_name = _("ESI Endpoint Status")
+        verbose_name_plural = _("ESI Endpoint Statuses")

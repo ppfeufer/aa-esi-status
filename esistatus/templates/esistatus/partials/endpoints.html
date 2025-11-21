@@ -1,6 +1,6 @@
-<div class="col-md-4 mb-3 mb-md-0">
+<div class="col-md-3 mb-3 mb-md-0">
     <div class="card card-{{ status }}-esi-endpoints">
-        <div class="card-header text-bg-{% if status == 'red' %}danger{% elif status == 'yellow' %}warning{% else %}success{% endif %}">
+        <div class="card-header text-bg-{% if status == 'Down' %}danger{% elif status == 'Degraded' %}warning{% elif status == 'Recovering' %}info{% else %}success{% endif %}">
             <div class="card-title text-center mb-0">
                 {{ title|title }}
 
@@ -42,8 +42,8 @@
                             <div id="{{ category|slugify }}-{{ status }}" class="card-body collapse">
                                 {% for endpoint in endpoints %}
                                     <p class="small">
-                                        {{ endpoint.method }}
-                                        {{ endpoint.route }}
+                                        {{ endpoint.method }}<br>
+                                        {{ endpoint.path }}
                                     </p>
                                 {% endfor %}
                             </div>
