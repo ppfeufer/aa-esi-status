@@ -106,7 +106,12 @@ def _esi_status() -> dict:
     :rtype: dict
     """
 
-    esi_endpoint_json = EsiStatus.objects.get(pk=1).status_data
+    try:
+        esi_endpoint_json = EsiStatus.objects.get(pk=1).status_data
+    except EsiStatus.DoesNotExist:
+        logger.debug("ESI Status data does not exist.")
+
+        return {}
 
     return _esi_endpoint_status_from_json(esi_endpoint_json=esi_endpoint_json)
 

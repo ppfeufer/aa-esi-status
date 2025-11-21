@@ -36,6 +36,10 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Fixed
+
+- Uncaught exception when ESI status data is missing in the database
+
 ### Removed
 
 - Window active check in dashboard widget auto-update, its not needed anymore since

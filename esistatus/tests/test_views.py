@@ -260,19 +260,24 @@ class TestEsiStatus(BaseTestCase):
 
             self.assertEqual(result, {"processed_status": "OK"})
 
-    def test_raises_exception_when_esi_status_does_not_exist(self):
+    def test_returns_empty_dict_when_esi_status_does_not_exist(self):
         """
-        Test that the _esi_status function raises an exception when EsiStatus does not exist
+        Test that the _esi_status function returns an empty dict when ESI status does not exist
 
         :return:
         :rtype:
         """
 
-        with mock.patch(
-            "esistatus.views.EsiStatus.objects.get", side_effect=EsiStatus.DoesNotExist
+        with (
+            mock.patch("esistatus.views.EsiStatus.objects.get") as mock_get,
+            mock.patch("esistatus.views.logger") as mock_logger,
         ):
-            with self.assertRaises(EsiStatus.DoesNotExist):
-                _esi_status()
+            mock_get.side_effect = EsiStatus.DoesNotExist
+
+            result = _esi_status()
+
+            self.assertEqual(result, {})
+            mock_logger.debug.assert_called_once_with("ESI Status data does not exist.")
 
     def test_processes_empty_esi_status_data(self):
         """
