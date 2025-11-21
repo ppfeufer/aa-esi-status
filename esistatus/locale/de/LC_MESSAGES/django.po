@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-11-04 09:56+0100\n"
-"PO-Revision-Date: 2025-10-25 12:27+0000\n"
+"POT-Creation-Date: 2025-11-21 02:17+0100\n"
+"PO-Revision-Date: 2025-11-21 01:32+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/de/>\n"
 "Language: de\n"
@@ -15,15 +15,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14\n"
+"X-Generator: Weblate 5.14.3\n"
 
 #: esistatus/__init__.py:13 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
 msgstr "ESI Status"
 
-#: esistatus/models.py:22
-msgid "Can access this app"
-msgstr "Kann auf diese App zugreifen"
+#: esistatus/models.py:16
+msgid "The ESI compatibility date."
+msgstr "Das ESI-Kompatibilitätsdatum."
+
+#: esistatus/models.py:20
+msgid "The ESI status data."
+msgstr "Die ESI-Statusdaten."
+
+#: esistatus/models.py:29
+msgid "ESI Endpoint Status"
+msgstr "ESI-Endpunktstatus"
+
+#: esistatus/models.py:30
+msgid "ESI Endpoint Statuses"
+msgstr "ESI-Endpunktstatusse"
 
 #: esistatus/templates/esistatus/base.html:13
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
@@ -34,41 +46,51 @@ msgstr "Status"
 msgid "Loading ESI status …"
 msgstr "Lade ESI Status …"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:15
-#: esistatus/templates/esistatus/partials/index/esi-status.html:5
-msgid "Red endpoints"
-msgstr "Rote Endpunkte"
-
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:16
-#: esistatus/templates/esistatus/partials/index/esi-status.html:6
-msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
-msgstr "Rote Endpunkte haben eine gute Chance nicht zu antworten oder überhaupt nicht erreichbar zu sein."
+#: esistatus/templates/esistatus/partials/index/esi-status.html:4
+msgid "OK"
+msgstr "OK"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:19
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
+#: esistatus/templates/esistatus/partials/index/esi-status.html:5
+msgid "These routes are working as expected."
+msgstr "Diese Routen funktionieren wie erwartet."
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:21
+#: esistatus/templates/esistatus/partials/index/esi-status.html:9
+msgid "Degraded"
+msgstr "Vermindert"
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:22
 #: esistatus/templates/esistatus/partials/index/esi-status.html:10
-msgid "Yellow endpoints"
-msgstr "Gelbe Endpunkte"
+msgid "These routes have a good chance of being slow or returning errors."
+msgstr "Bei diesen Routen besteht eine hohe Wahrscheinlichkeit, dass sie langsam sind oder Fehler zurückgeben."
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:20
-#: esistatus/templates/esistatus/partials/index/esi-status.html:11
-msgid "Yellow endpoints have a good chance of being slow or returning errors."
-msgstr "Gelbe Endpunkte haben eine gute Chance langsam zu sein oder Fehler zurückzugeben."
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:26
+#: esistatus/templates/esistatus/partials/index/esi-status.html:14
+msgid "Down"
+msgstr "Unerreichbar"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:23
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:27
 #: esistatus/templates/esistatus/partials/index/esi-status.html:15
-msgid "Green endpoints"
-msgstr "Grüne Endpunkte"
+msgid "These routes have a good chance of not responding at all or being completely unavailable."
+msgstr "Bei diesen Routen besteht eine gute Chance, dass sie gar nicht reagieren oder komplett nicht verfügbar sind."
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:24
-#: esistatus/templates/esistatus/partials/index/esi-status.html:16
-msgid "Green endpoints are responding as expected."
-msgstr "Grüne Endpunkte antworten wie erwartet."
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:31
+#: esistatus/templates/esistatus/partials/index/esi-status.html:19
+msgid "Recovering"
+msgstr "Erholend"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:30
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:32
+#: esistatus/templates/esistatus/partials/index/esi-status.html:20
+msgid "These routes are recovering from previous issues and might not (yet) work as expected or might be slow."
+msgstr "Diese Routen erholen sich derzeit von früheren Problemen und funktionieren möglicherweise (noch) nicht wie erwartet oder sind langsam."
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:38
 msgid "Detailed ESI status"
 msgstr "Detaillierter ESI Status"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:32
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:40
 msgid "EVE Online status"
 msgstr "EVE Online Status"
 
@@ -80,13 +102,23 @@ msgstr "Du möchtest helfen diese App in Deine Sprache zu übersetzen oder die b
 msgid "Join our team of translators!"
 msgstr "Tritt unserm Team von Übersetzern bei!"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:21
-msgid "Couldn't read the ESI status."
-msgstr "Der ESI-Status konnte nicht ermittelt werden."
+#~ msgid "Can access this app"
+#~ msgstr "Kann auf diese App zugreifen"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:25
-msgid "Error Message"
-msgstr "Fehlermeldung"
+#~ msgid "Red endpoints"
+#~ msgstr "Rote Endpunkte"
+
+#~ msgid "Yellow endpoints"
+#~ msgstr "Gelbe Endpunkte"
+
+#~ msgid "Green endpoints"
+#~ msgstr "Grüne Endpunkte"
+
+#~ msgid "Couldn't read the ESI status."
+#~ msgstr "Der ESI-Status konnte nicht ermittelt werden."
+
+#~ msgid "Error Message"
+#~ msgstr "Fehlermeldung"
 
 #, python-brace-format
 #~ msgid "ESI Status v{__version__}"
