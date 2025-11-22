@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-11-21 14:58+0100\n"
-"PO-Revision-Date: 2025-11-21 13:47+0000\n"
+"POT-Creation-Date: 2025-11-23 00:21+0100\n"
+"PO-Revision-Date: 2025-11-22 14:04+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/de/>\n"
 "Language: de\n"
@@ -86,16 +86,26 @@ msgstr "Erholend"
 msgid "These routes are recovering from previous issues and might not (yet) work as expected or might be slow."
 msgstr "Diese Routen erholen sich derzeit von früheren Problemen und funktionieren möglicherweise (noch) nicht wie erwartet oder sind langsam."
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:39
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:37
+#: esistatus/templates/esistatus/partials/index/esi-status.html:26
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:38
+#: esistatus/templates/esistatus/partials/index/esi-status.html:27
+msgid "These routes have an unknown status."
+msgstr "Diese Routen haben einen unbekannten Status."
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:44
 msgid "Detailed ESI status"
 msgstr "Detaillierter ESI Status"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:41
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:46
 msgid "EVE Online status"
 msgstr "EVE Online Status"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:46
-#: esistatus/templates/esistatus/partials/index/esi-status.html:27
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:51
+#: esistatus/templates/esistatus/partials/index/esi-status.html:32
 msgid "No ESI status data is available at this time."
 msgstr "Derzeit sind keine ESI-Statusdaten verfügbar."
 
@@ -107,7 +117,7 @@ msgstr "Du möchtest helfen diese App in Deine Sprache zu übersetzen oder die b
 msgid "Join our team of translators!"
 msgstr "Tritt unserm Team von Übersetzern bei!"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:28
+#: esistatus/templates/esistatus/partials/index/esi-status.html:33
 msgid "Please try again later."
 msgstr "Bitte versuche es später noch einmal."
 

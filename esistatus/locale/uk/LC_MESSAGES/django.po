@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-11-21 14:58+0100\n"
+"POT-Creation-Date: 2025-11-23 00:21+0100\n"
 "PO-Revision-Date: 2025-08-27 20:43+0000\n"
 "Last-Translator: s0k0l -_- <salarysalo@gmail.com>\n"
 "Language-Team: Ukrainian <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/uk/>\n"
@@ -100,16 +100,28 @@ msgstr ""
 msgid "These routes are recovering from previous issues and might not (yet) work as expected or might be slow."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:39
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:37
+#: esistatus/templates/esistatus/partials/index/esi-status.html:26
+msgid "Unknown"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:38
+#: esistatus/templates/esistatus/partials/index/esi-status.html:27
+#, fuzzy
+#| msgid "Green endpoints are responding as expected."
+msgid "These routes have an unknown status."
+msgstr "Зелені кінцеві точки реагують відповідно до очікувань."
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:44
 msgid "Detailed ESI status"
 msgstr "Детальний статус ESI"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:41
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:46
 msgid "EVE Online status"
 msgstr "Статус EVE Online"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:46
-#: esistatus/templates/esistatus/partials/index/esi-status.html:27
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:51
+#: esistatus/templates/esistatus/partials/index/esi-status.html:32
 msgid "No ESI status data is available at this time."
 msgstr ""
 
@@ -121,7 +133,7 @@ msgstr "Хочете допомогти перекласти цю програм
 msgid "Join our team of translators!"
 msgstr "Приєднуйтесь до нашої команди перекладачів!"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:28
+#: esistatus/templates/esistatus/partials/index/esi-status.html:33
 msgid "Please try again later."
 msgstr ""
 
