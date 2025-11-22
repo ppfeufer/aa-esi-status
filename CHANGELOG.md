@@ -36,6 +36,10 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Added
+
+- Panel for routes with unknown status
+
 ## [3.0.1] - 2025-11-21
 
 ### Fixed
