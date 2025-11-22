@@ -47,11 +47,11 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
         """
 
         with mock.patch(
-            "esistatus.tasks.cache_handler._get_cache", return_value="2023-10-01"
+            "esistatus.tasks.cache_handler._get_cache", return_value=self.latest_date
         ) as mock_cache:
             result = _get_latest_compatibility_date()
 
-            self.assertEqual(result, "2023-10-01")
+            self.assertEqual(result, self.latest_date)
             mock_cache.assert_called_once()
 
     def test_retrieves_latest_compatibility_date_from_api(self):
@@ -95,11 +95,15 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
 
         with (
             mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            mock.patch("esistatus.tasks.cache_handler._set_cache") as mock_set_cache,
             mock.patch("esistatus.tasks.requests.get", return_value=mock_response),
         ):
             result = _get_latest_compatibility_date()
 
             self.assertEqual(result, "2023-10-01")
+            mock_set_cache.assert_called_once_with(
+                ESIMetaUrl.COMPATIBILITY_DATES.value, "2023-10-01"
+            )
 
     def test_returns_none_when_no_valid_dates_found(self):
         """
@@ -154,11 +158,15 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
 
         with (
             mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            mock.patch("esistatus.tasks.cache_handler._set_cache") as mock_set_cache,
             mock.patch("esistatus.tasks.requests.get", return_value=mock_response),
         ):
             result = _get_latest_compatibility_date()
 
             self.assertEqual(result, "2023-10-01")
+            mock_set_cache.assert_called_once_with(
+                ESIMetaUrl.COMPATIBILITY_DATES.value, "2023-10-01"
+            )
 
     def test_handles_empty_dates_list(self):
         """
