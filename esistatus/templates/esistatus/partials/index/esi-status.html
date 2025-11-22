@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if esi_endpoint_status %}
-    <div class="row">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5">
         <!-- OK Routes -->
         {% translate "OK" as translated_header_green %}
         {% translate "These routes are working as expected." as translated_header_green_explanation %}
@@ -21,6 +21,11 @@
         {% translate "Recovering" as translated_header_red %}
         {% translate "These routes are recovering from previous issues and might not (yet) work as expected or might be slow." as translated_header_red_explanation %}
         {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="Recovering" explanation=translated_header_red_explanation data=esi_endpoint_status.Recovering with_details=True %}
+
+        <!-- Unknown Routes -->
+        {% translate "Unknown" as translated_header_red %}
+        {% translate "These routes have an unknown status." as translated_header_red_explanation %}
+        {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="Unknown" explanation=translated_header_red_explanation data=esi_endpoint_status.Unknown with_details=True %}
     </div>
 {% else %}
     <div class="aa-callout aa-callout-info">

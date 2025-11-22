@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 3.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-11-21 14:58+0100\n"
+"POT-Creation-Date: 2025-11-22 14:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,16 +90,26 @@ msgid ""
 "expected or might be slow."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:39
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:37
+#: esistatus/templates/esistatus/partials/index/esi-status.html:26
+msgid "Unknown"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:38
+#: esistatus/templates/esistatus/partials/index/esi-status.html:27
+msgid "These routes have an unknown status."
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:44
 msgid "Detailed ESI status"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:41
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:46
 msgid "EVE Online status"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:46
-#: esistatus/templates/esistatus/partials/index/esi-status.html:27
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:51
+#: esistatus/templates/esistatus/partials/index/esi-status.html:32
 msgid "No ESI status data is available at this time."
 msgstr ""
 
@@ -113,6 +123,6 @@ msgstr ""
 msgid "Join our team of translators!"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:28
+#: esistatus/templates/esistatus/partials/index/esi-status.html:33
 msgid "Please try again later."
 msgstr ""
