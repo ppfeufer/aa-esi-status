@@ -245,7 +245,7 @@ auth migrate
 ### Common Steps<a name="common-steps-1"></a>
 
 It is possible that some versions need some more changes. Always read the
-[release notes](https://github.com/ppfeufer/allianceauth-afat/releases) to find out more.
+[release notes](https://github.com/ppfeufer/aa-esi-status/releases) to find out more.
 
 ## Changelog<a name="changelog"></a>
 
