@@ -40,7 +40,6 @@ dynamic = [
 ]
 dependencies = [
     "allianceauth>=4.9,<5",
-    "allianceauth-app-utils>=1.12",
 ]
 optional-dependencies.tests-allianceauth-latest = [
     "coverage",

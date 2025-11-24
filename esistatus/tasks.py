@@ -16,16 +16,14 @@ from django.utils.datetime_safe import datetime
 # Alliance Auth
 from allianceauth.services.hooks import get_extension_logger
 
-# Alliance Auth (External Libs)
-from app_utils.logging import LoggerAddTag
-
 # AA ESI Status
 from esistatus import __title__, __user_agent__
 from esistatus.constants import ESIMetaUrl
 from esistatus.handler import cache as cache_handler
 from esistatus.models import EsiStatus
+from esistatus.providers import AppLogger
 
-logger = LoggerAddTag(my_logger=get_extension_logger(__name__), prefix=__title__)
+logger = AppLogger(my_logger=get_extension_logger(__name__), prefix=__title__)
 
 request_headers = {"User-Agent": __user_agent__}
 

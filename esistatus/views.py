@@ -14,14 +14,12 @@ from django.template.loader import render_to_string
 # Alliance Auth
 from allianceauth.services.hooks import get_extension_logger
 
-# Alliance Auth (External Libs)
-from app_utils.logging import LoggerAddTag
-
 # AA ESI Status
 from esistatus import __title__
 from esistatus.models import EsiStatus
+from esistatus.providers import AppLogger
 
-logger = LoggerAddTag(my_logger=get_extension_logger(__name__), prefix=__title__)
+logger = AppLogger(my_logger=get_extension_logger(__name__), prefix=__title__)
 
 
 def _append_value(dict_obj: dict, key: str, value: Any) -> None:
