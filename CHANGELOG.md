@@ -40,6 +40,10 @@ Section Order:
 
 - Link in README.md pointing to the wrong apps releases page
 
+### Removed
+
+- Dependency to `allianceauth-app-utils`
+
 ## [3.1.0] - 2025-11-23
 
 ### Added
