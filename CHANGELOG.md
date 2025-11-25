@@ -40,6 +40,10 @@ Section Order:
 
 - Link in README.md pointing to the wrong apps releases page
 
+### Changed
+
+- Ajax template render simplified
+
 ### Removed
 
 - Dependency to `allianceauth-app-utils`

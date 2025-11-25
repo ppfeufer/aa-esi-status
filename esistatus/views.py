@@ -127,45 +127,53 @@ def index(request: WSGIRequest) -> HttpResponse:
     return render(request=request, template_name="esistatus/index.html")
 
 
-def ajax_esi_status(request: WSGIRequest) -> HttpResponse:
+def _render_esi_status(request: WSGIRequest, template_name: str) -> HttpResponse:
     """
-    AJAX ESI Status view
+    Render the ESI status template with the ESI status context data
 
-    :param request: The request
-    :type request: WSGIRequest
-    :return: The response
-    :rtype: HttpResponse
+    :param request:
+    :type request:
+    :param template_name:
+    :type template_name:
+    :return:
+    :rtype:
     """
-
-    esi_endpoint_status = _esi_status()
-
-    context = {"esi_endpoint_status": esi_endpoint_status}
 
     return render(
         request=request,
-        template_name="esistatus/partials/index/esi-status.html",
-        context=context,
+        template_name=template_name,
+        context={"esi_endpoint_status": _esi_status()},
+    )
+
+
+def ajax_esi_status(request: WSGIRequest) -> HttpResponse:
+    """
+    AJAX ESI Status view for the main index page
+
+    :param request:
+    :type request:
+    :return:
+    :rtype:
+    """
+
+    return _render_esi_status(
+        request=request, template_name="esistatus/partials/index/esi-status.html"
     )
 
 
 def ajax_dashboard_widget(request: WSGIRequest) -> HttpResponse:
     """
-    AJAX ESI Status view
+    AJAX ESI Status view for the dashboard widget
 
-    :param request: The request
-    :type request: WSGIRequest
-    :return: The response
-    :rtype: HttpResponse
+    :param request:
+    :type request:
+    :return:
+    :rtype:
     """
 
-    esi_endpoint_status = _esi_status()
-
-    context = {"esi_endpoint_status": esi_endpoint_status}
-
-    return render(
+    return _render_esi_status(
         request=request,
         template_name="esistatus/partials/dashboard-widget/esi-status.html",
-        context=context,
     )
 
 
