@@ -3,13 +3,13 @@ Cache handler for AA ESI Status component.
 """
 
 # Standard Library
-import datetime as dt
+from datetime import timedelta
 from hashlib import md5
 from typing import Any
 
 # Django
 from django.core.cache import cache
-from django.utils import timezone
+from django.utils.timezone import now
 
 
 def _get_max_cache_time() -> int:
@@ -20,14 +20,14 @@ def _get_max_cache_time() -> int:
     :rtype:
     """
 
-    expire_time = timezone.now()
+    expire_time = now()
 
     if expire_time.hour > 11:
-        expire_time += dt.timedelta(hours=24)
+        expire_time += timedelta(days=1)
 
     expire_time = expire_time.replace(hour=11, minute=30, second=0)
 
-    return int((expire_time - timezone.now()).total_seconds())
+    return int((expire_time - now()).total_seconds())
 
 
 def _get_cache_key(url: str) -> str:
@@ -40,7 +40,7 @@ def _get_cache_key(url: str) -> str:
     :rtype:
     """
 
-    return f"ESI_META_CACHE_{md5(f'{url}'.encode()).hexdigest()}"
+    return "ESI_META_CACHE_" + md5(url.encode("utf-8")).hexdigest()
 
 
 def _set_cache(url: str, value: Any) -> None:
