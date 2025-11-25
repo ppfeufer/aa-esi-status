@@ -193,7 +193,7 @@ class TestHelperGetMaxCacheTime(BaseTestCase):
         expected_expiry = current_time.replace(hour=11, minute=30, second=0)
 
         with patch(
-            "esistatus.handler.cache.timezone.now",
+            "esistatus.handler.cache.now",
             return_value=current_time,
         ):
             result = _get_max_cache_time()
@@ -216,7 +216,7 @@ class TestHelperGetMaxCacheTime(BaseTestCase):
         )
 
         with patch(
-            "esistatus.handler.cache.timezone.now",
+            "esistatus.handler.cache.now",
             return_value=current_time,
         ):
             result = _get_max_cache_time()
@@ -237,7 +237,7 @@ class TestHelperGetMaxCacheTime(BaseTestCase):
         expected_expiry = current_time.replace(hour=11, minute=30, second=0)
 
         with patch(
-            "esistatus.handler.cache.timezone.now",
+            "esistatus.handler.cache.now",
             return_value=current_time,
         ):
             result = _get_max_cache_time()
