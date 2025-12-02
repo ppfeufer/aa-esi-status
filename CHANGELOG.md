@@ -36,6 +36,8 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [3.2.0] - 2025-12-02
+
 ### Fixed
 
 - Link in README.md pointing to the wrong apps releases page
@@ -43,6 +45,7 @@ Section Order:
 ### Changed
 
 - Ajax template render simplified
+- Translations updated
 
 ### Removed
 
@@ -673,7 +676,8 @@ CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
 [3.0.0]: https://github.com/ppfeufer/aa-esi-status/compare/v2.9.3...v3.0.0 "v3.0.0"
 [3.0.1]: https://github.com/ppfeufer/aa-esi-status/compare/v3.0.0...v3.0.1 "v3.0.1"
 [3.1.0]: https://github.com/ppfeufer/aa-esi-status/compare/v3.0.1...v3.1.0 "v3.1.0"
-[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v3.1.0...HEAD "In Development"
+[3.2.0]: https://github.com/ppfeufer/aa-esi-status/compare/v3.1.0...v3.2.0 "v3.2.0"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v3.2.0...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
