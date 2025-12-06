@@ -40,7 +40,20 @@ $(document).ready(() => {
             }
 
             // Initialize Bootstrap tooltips
-            $(esistatus.tooltipElements).each((_, el) => new bootstrap.Tooltip(el, {html: true}));
+            $(esistatus.tooltipElements).each((_, el) => {
+                // Dispose existing tooltip instance if it exists
+                const existing = bootstrap.Tooltip.getInstance(el);
+
+                if (existing) {
+                    existing.dispose();
+                }
+
+                // Remove any leftover tooltip elements
+                $('.bs-tooltip-auto').remove();
+
+                // Create new tooltip instance
+                return new bootstrap.Tooltip(el, {html: true});
+            });
         } catch (error) {
             console.error(error);
         }

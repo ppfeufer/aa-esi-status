@@ -3,6 +3,12 @@
 $(document).ready(() => {
     'use strict';
 
+    const esistatus = {
+        esiStatusIndex: $('.esi-status-index'),
+        loading: $('.esistatus-loading'),
+        tooltip: '[data-bs-tooltip="aa-esi-status"]',
+    };
+
     /**
      * Fetch and display the ESI Status Index
      *
@@ -10,9 +16,6 @@ $(document).ready(() => {
      * @throws {Error} If the fetch request fails
      */
     const fetchEsiStatus = async () => {
-        const elementEsiStatusIndex = $('.esi-status-index');
-        const elementLoading = $('.esistatus-loading');
-
         try {
             const data = await fetchGet({
                 url: esistatusSettings.url.esistatus,
@@ -23,11 +26,26 @@ $(document).ready(() => {
                 return;
             }
 
-            elementLoading.addClass('d-none');
-            elementEsiStatusIndex.html(data);
+            esistatus.loading.addClass('d-none');
+            esistatus.esiStatusIndex.html(data);
 
             // Initialize Bootstrap tooltips
-            $('[data-bs-tooltip="aa-esi-status"]').each((_, el) => new bootstrap.Tooltip(el, {html: true}));
+            $(esistatus.tooltip).each((_, el) => {
+                // new bootstrap.Tooltip(el, {html: true});
+
+                // Dispose existing tooltip instance if it exists
+                const existing = bootstrap.Tooltip.getInstance(el);
+
+                if (existing) {
+                    existing.dispose();
+                }
+
+                // Remove any leftover tooltip elements
+                $('.bs-tooltip-auto').remove();
+
+                // Create new tooltip instance
+                return new bootstrap.Tooltip(el, {html: true});
+            });
         } catch (error) {
             console.error(error);
         }
