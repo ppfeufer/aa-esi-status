@@ -36,6 +36,11 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Changed
+
+- Destroy Bootstrap tooltip instance before re-initializing it to avoid
+  multiple instances causing issues
+
 ## [3.2.0] - 2025-12-02
 
 ### Fixed
