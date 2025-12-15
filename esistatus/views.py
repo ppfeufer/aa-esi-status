@@ -105,13 +105,18 @@ def _esi_status() -> dict:
     """
 
     try:
-        esi_endpoint_json = EsiStatus.objects.get(pk=1).status_data
+        esi_status = EsiStatus.objects.get(pk=1)
     except EsiStatus.DoesNotExist:
         logger.debug("ESI Status data does not exist.")
 
         return {}
 
-    return _esi_endpoint_status_from_json(esi_endpoint_json=esi_endpoint_json)
+    return {
+        "esi_status": _esi_endpoint_status_from_json(
+            esi_endpoint_json=esi_status.status_data
+        ),
+        "compatibility_date": esi_status.compatibility_date,
+    }
 
 
 def index(request: WSGIRequest) -> HttpResponse:
@@ -127,7 +132,9 @@ def index(request: WSGIRequest) -> HttpResponse:
     return render(request=request, template_name="esistatus/index.html")
 
 
-def _render_esi_status(request: WSGIRequest, template_name: str) -> HttpResponse:
+def _render_esi_status(
+    request: WSGIRequest, template_name: str, with_compat_date: bool = False
+) -> HttpResponse:
     """
     Render the ESI status template with the ESI status context data
 
@@ -139,10 +146,16 @@ def _render_esi_status(request: WSGIRequest, template_name: str) -> HttpResponse
     :rtype:
     """
 
+    esi_status = _esi_status() or {}
+    context = {"esi_endpoint_status": esi_status.get("esi_status")}
+
+    if with_compat_date:
+        context["compatibility_date"] = esi_status.get("compatibility_date")
+
     return render(
         request=request,
         template_name=template_name,
-        context={"esi_endpoint_status": _esi_status()},
+        context=context,
     )
 
 
@@ -157,7 +170,9 @@ def ajax_esi_status(request: WSGIRequest) -> HttpResponse:
     """
 
     return _render_esi_status(
-        request=request, template_name="esistatus/partials/index/esi-status.html"
+        request=request,
+        template_name="esistatus/partials/index/esi-status.html",
+        with_compat_date=True,
     )
 
 
@@ -174,6 +189,7 @@ def ajax_dashboard_widget(request: WSGIRequest) -> HttpResponse:
     return _render_esi_status(
         request=request,
         template_name="esistatus/partials/dashboard-widget/esi-status.html",
+        with_compat_date=True,
     )
 
 

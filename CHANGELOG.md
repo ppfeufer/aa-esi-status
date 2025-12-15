@@ -36,6 +36,10 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Added
+
+- ESI compatibility date as additional information
+
 ### Changed
 
 - Destroy Bootstrap tooltip instance before re-initializing it to avoid

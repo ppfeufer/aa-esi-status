@@ -12,6 +12,7 @@ from esistatus.views import (
     _append_value,
     _esi_endpoint_status_from_json,
     _esi_status,
+    _render_esi_status,
     ajax_dashboard_widget,
     ajax_esi_status,
     dashboard_widget,
@@ -145,7 +146,13 @@ class TestAjaxEsiStatus(BaseTestCase):
         request = mock.Mock()
 
         with (
-            mock.patch("esistatus.views._esi_status", return_value={"status": "OK"}),
+            mock.patch(
+                "esistatus.views._esi_status",
+                return_value={
+                    "esi_status": {"status": "OK"},
+                    "compatibility_date": "2023-01-01",
+                },
+            ),
             mock.patch("esistatus.views.render") as mock_render,
         ):
             ajax_esi_status(request)
@@ -153,7 +160,10 @@ class TestAjaxEsiStatus(BaseTestCase):
             mock_render.assert_called_once_with(
                 request=request,
                 template_name="esistatus/partials/index/esi-status.html",
-                context={"esi_endpoint_status": {"status": "OK"}},
+                context={
+                    "esi_endpoint_status": {"status": "OK"},
+                    "compatibility_date": "2023-01-01",
+                },
             )
 
     def test_handles_esi_status_view_with_no_data(self):
@@ -167,7 +177,10 @@ class TestAjaxEsiStatus(BaseTestCase):
         request = mock.Mock()
 
         with (
-            mock.patch("esistatus.views._esi_status", return_value=None),
+            mock.patch(
+                "esistatus.views._esi_status",
+                return_value={"esi_status": None, "compatibility_date": None},
+            ),
             mock.patch("esistatus.views.render") as mock_render,
         ):
             ajax_esi_status(request)
@@ -175,8 +188,114 @@ class TestAjaxEsiStatus(BaseTestCase):
             mock_render.assert_called_once_with(
                 request=request,
                 template_name="esistatus/partials/index/esi-status.html",
-                context={"esi_endpoint_status": None},
+                context={"esi_endpoint_status": None, "compatibility_date": None},
             )
+
+    def test_renders_dashboard_widget_with_esi_status(self):
+        """
+        Test that the AJAX dashboard widget renders with ESI status
+
+        :return:
+        :rtype:
+        """
+
+        request = mock.Mock()
+
+        with (
+            mock.patch(
+                "esistatus.views._esi_status",
+                return_value={
+                    "esi_status": {"status": "OK"},
+                    "compatibility_date": "2023-01-01",
+                },
+            ),
+            mock.patch("esistatus.views.render") as mock_render,
+        ):
+            ajax_dashboard_widget(request)
+
+            mock_render.assert_called_once_with(
+                request=request,
+                template_name="esistatus/partials/dashboard-widget/esi-status.html",
+                context={
+                    "esi_endpoint_status": {"status": "OK"},
+                    "compatibility_date": "2023-01-01",
+                },
+            )
+
+    def test_handles_missing_esi_status_gracefully(self):
+        """
+        Test that the AJAX dashboard widget handles missing ESI status gracefully
+
+        :return:
+        :rtype:
+        """
+
+        request = mock.Mock()
+
+        with (
+            mock.patch(
+                "esistatus.views._esi_status",
+                return_value={"esi_status": None, "compatibility_date": None},
+            ),
+            mock.patch("esistatus.views.render") as mock_render,
+        ):
+            ajax_dashboard_widget(request)
+
+            mock_render.assert_called_once_with(
+                request=request,
+                template_name="esistatus/partials/dashboard-widget/esi-status.html",
+                context={"esi_endpoint_status": None, "compatibility_date": None},
+            )
+
+    def test_returns_esi_status_with_valid_data(self):
+        """
+        Test that the _esi_status function returns ESI status with valid data
+
+        :return:
+        :rtype:
+        """
+
+        with (
+            mock.patch("esistatus.views.EsiStatus.objects.get") as mock_get,
+            mock.patch(
+                "esistatus.views._esi_endpoint_status_from_json"
+            ) as mock_status_from_json,
+        ):
+            mock_get.return_value.status_data = [{"dummy": "data"}]
+            mock_get.return_value.compatibility_date = "2023-01-01"
+            mock_status_from_json.return_value = {"processed_status": "OK"}
+
+            result = _esi_status()
+
+            self.assertEqual(
+                result,
+                {
+                    "esi_status": {"processed_status": "OK"},
+                    "compatibility_date": "2023-01-01",
+                },
+            )
+
+    def test_processes_empty_esi_status_data(self):
+        """
+        Test that the _esi_status function processes empty ESI status data
+
+        :return:
+        :rtype:
+        """
+
+        with (
+            mock.patch("esistatus.views.EsiStatus.objects.get") as mock_get,
+            mock.patch(
+                "esistatus.views._esi_endpoint_status_from_json"
+            ) as mock_status_from_json,
+        ):
+            mock_get.return_value.status_data = []
+            mock_get.return_value.compatibility_date = None
+            mock_status_from_json.return_value = {}
+
+            result = _esi_status()
+
+            self.assertEqual(result, {"esi_status": {}, "compatibility_date": None})
 
 
 class TestAjaxEsiStatusDasboardWidget(BaseTestCase):
@@ -195,7 +314,13 @@ class TestAjaxEsiStatusDasboardWidget(BaseTestCase):
         request = mock.Mock()
 
         with (
-            mock.patch("esistatus.views._esi_status", return_value={"status": "OK"}),
+            mock.patch(
+                "esistatus.views._esi_status",
+                return_value={
+                    "esi_status": {"status": "OK"},
+                    "compatibility_date": "2023-01-01",
+                },
+            ),
             mock.patch("esistatus.views.render") as mock_render,
         ):
             ajax_dashboard_widget(request)
@@ -203,20 +328,34 @@ class TestAjaxEsiStatusDasboardWidget(BaseTestCase):
             mock_render.assert_called_once_with(
                 request=request,
                 template_name="esistatus/partials/dashboard-widget/esi-status.html",
-                context={"esi_endpoint_status": {"status": "OK"}},
+                context={
+                    "esi_endpoint_status": {"status": "OK"},
+                    "compatibility_date": "2023-01-01",
+                },
             )
 
     def test_handles_missing_esi_status_gracefully(self):
+        """
+        Test that the AJAX dashboard widget handles missing ESI status gracefully
+
+        :return:
+        :rtype:
+        """
+
         request = mock.Mock()
+
         with (
-            mock.patch("esistatus.views._esi_status", return_value=None),
+            mock.patch(
+                "esistatus.views._esi_status",
+                return_value={"esi_status": None, "compatibility_date": None},
+            ),
             mock.patch("esistatus.views.render") as mock_render,
         ):
             ajax_dashboard_widget(request)
             mock_render.assert_called_once_with(
                 request=request,
                 template_name="esistatus/partials/dashboard-widget/esi-status.html",
-                context={"esi_endpoint_status": None},
+                context={"esi_endpoint_status": None, "compatibility_date": None},
             )
 
 
@@ -226,7 +365,15 @@ class TestIndex(BaseTestCase):
     """
 
     def test_renders_index_view_successfully(self):
+        """
+        Test that the index view renders successfully
+
+        :return:
+        :rtype:
+        """
+
         request = mock.Mock()
+
         with mock.patch("esistatus.views.render") as mock_render:
             index(request)
             mock_render.assert_called_once_with(
@@ -241,7 +388,7 @@ class TestEsiStatus(BaseTestCase):
 
     def test_returns_esi_status_with_valid_data(self):
         """
-        Test that the _esi_status function returns processed status with valid data
+        Test that the _esi_status function returns ESI status with valid data
 
         :return:
         :rtype:
@@ -253,12 +400,19 @@ class TestEsiStatus(BaseTestCase):
                 "esistatus.views._esi_endpoint_status_from_json"
             ) as mock_status_from_json,
         ):
-            mock_get.return_value.status_data = {"status": "OK"}
+            mock_get.return_value.status_data = [{"dummy": "data"}]
+            mock_get.return_value.compatibility_date = "2023-01-01"
             mock_status_from_json.return_value = {"processed_status": "OK"}
 
             result = _esi_status()
 
-            self.assertEqual(result, {"processed_status": "OK"})
+            self.assertEqual(
+                result,
+                {
+                    "esi_status": {"processed_status": "OK"},
+                    "compatibility_date": "2023-01-01",
+                },
+            )
 
     def test_returns_empty_dict_when_esi_status_does_not_exist(self):
         """
@@ -293,10 +447,13 @@ class TestEsiStatus(BaseTestCase):
                 "esistatus.views._esi_endpoint_status_from_json"
             ) as mock_status_from_json,
         ):
-            mock_get.return_value.status_data = {}
+            mock_get.return_value.status_data = []
+            mock_get.return_value.compatibility_date = None
             mock_status_from_json.return_value = {}
+
             result = _esi_status()
-            self.assertEqual(result, {})
+
+            self.assertEqual(result, {"esi_status": {}, "compatibility_date": None})
 
 
 class TestEsiEndpointStatusFromJson(BaseTestCase):
@@ -376,3 +533,105 @@ class TestEsiEndpointStatusFromJson(BaseTestCase):
         result = _esi_endpoint_status_from_json(esi_endpoint_json)
 
         self.assertEqual(list(result["OK"]["endpoints"].keys()), ["tagA", "tagB"])
+
+
+class TestRenderEsiStatus(BaseTestCase):
+    """
+    Test the rendering of ESI status in views
+    """
+
+    def test_renders_context_with_compat_date_when_flag_is_true(self):
+        """
+        Test that the context includes compatibility date when the flag is true
+
+        :return:
+        :rtype:
+        """
+
+        request = mock.Mock()
+
+        with (
+            mock.patch(
+                "esistatus.views._esi_status",
+                return_value={
+                    "esi_status": {"status": "OK"},
+                    "compatibility_date": "2023-01-01",
+                },
+            ),
+            mock.patch("esistatus.views.render") as mock_render,
+        ):
+            _render_esi_status(
+                request=request,
+                template_name="esistatus/partials/index/esi-status.html",
+                with_compat_date=True,
+            )
+            mock_render.assert_called_once_with(
+                request=request,
+                template_name="esistatus/partials/index/esi-status.html",
+                context={
+                    "esi_endpoint_status": {"status": "OK"},
+                    "compatibility_date": "2023-01-01",
+                },
+            )
+
+    def test_excludes_compat_date_from_context_when_flag_is_false(self):
+        """
+        Test that the context excludes compatibility date when the flag is false
+
+        :return:
+        :rtype:
+        """
+
+        request = mock.Mock()
+
+        with (
+            mock.patch(
+                "esistatus.views._esi_status",
+                return_value={
+                    "esi_status": {"status": "OK"},
+                    "compatibility_date": "2023-01-01",
+                },
+            ),
+            mock.patch("esistatus.views.render") as mock_render,
+        ):
+            _render_esi_status(
+                request=request,
+                template_name="esistatus/partials/index/esi-status.html",
+                with_compat_date=False,
+            )
+            mock_render.assert_called_once_with(
+                request=request,
+                template_name="esistatus/partials/index/esi-status.html",
+                context={"esi_endpoint_status": {"status": "OK"}},
+            )
+
+    def test_handles_missing_esi_status_gracefully(self):
+        """
+        Test that the rendering handles missing ESI status gracefully
+
+        :return:
+        :rtype:
+        """
+
+        request = mock.Mock()
+
+        with (
+            mock.patch(
+                "esistatus.views._esi_status",
+                return_value={},
+            ),
+            mock.patch("esistatus.views.render") as mock_render,
+        ):
+            _render_esi_status(
+                request=request,
+                template_name="esistatus/partials/index/esi-status.html",
+                with_compat_date=True,
+            )
+            mock_render.assert_called_once_with(
+                request=request,
+                template_name="esistatus/partials/index/esi-status.html",
+                context={
+                    "esi_endpoint_status": None,
+                    "compatibility_date": None,
+                },
+            )

@@ -39,7 +39,22 @@
                 {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="Unknown" explanation=translated_header_red_explanation data=esi_endpoint_status.Unknown with_details=False %}
             </div>
 
-            <div class="text-end">
+            {% if compatibility_date %}
+                <div class="text-start float-start">
+                    <p class="small mb-0">
+                        {% translate "ESI compatibility date" %}:
+                        <a
+                            href="https://esi.evetech.net/meta/compatibility-dates"
+                            target="_blank"
+                            rel="noopener noreferer"
+                        >
+                            {{ compatibility_date }}
+                        </a>
+                    </p>
+                </div>
+            {% endif %}
+
+            <div class="text-end float-end">
                 <p class="small mb-0">
                     <a href="{% url 'esistatus:index' %}">{% translate "Detailed ESI status" %}</a>
                     |
