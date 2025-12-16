@@ -21,13 +21,12 @@ def _get_max_cache_time() -> int:
     """
 
     expire_time = now()
+    target = expire_time.replace(hour=11, minute=30, second=0, microsecond=0)
 
-    if expire_time.hour > 11:
-        expire_time += timedelta(days=1)
+    if expire_time >= target:
+        target += timedelta(days=1)
 
-    expire_time = expire_time.replace(hour=11, minute=30, second=0)
-
-    return int((expire_time - now()).total_seconds())
+    return int((target - expire_time).total_seconds())
 
 
 def _get_cache_key(url: str) -> str:

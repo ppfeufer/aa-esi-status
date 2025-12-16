@@ -1,9 +1,9 @@
 # Standard Library
-import datetime as dt
 from unittest.mock import patch
 
 # Django
-from django.utils.timezone import now
+from django.utils.datetime_safe import datetime
+from django.utils.timezone import make_aware, now
 
 # AA ESI Status
 from esistatus.handler.cache import (
@@ -181,49 +181,69 @@ class TestHelperGetCacheKey(BaseTestCase):
 
 
 class TestHelperGetMaxCacheTime(BaseTestCase):
-    def test_calculates_correct_cache_time_before_1130_am(self):
+    """
+    Test the _get_max_cache_time function.
+    """
+
+    def test_returns_seconds_until_1130_am_next_day(self):
         """
-        Test that the correct cache time is calculated before 11:30 AM.
+        Test that the function returns the correct number of seconds until 11:30 AM the next day.
 
         :return:
         :rtype:
         """
 
-        current_time = now().replace(hour=10, minute=0, second=0, microsecond=0)
-        expected_expiry = current_time.replace(hour=11, minute=30, second=0)
+        with patch("esistatus.handler.cache.now") as mock_now:
+            mock_now.return_value = make_aware(datetime(2023, 10, 1, 10, 0, 0))
 
-        with patch(
-            "esistatus.handler.cache.now",
-            return_value=current_time,
-        ):
             result = _get_max_cache_time()
 
-            self.assertEqual(
-                result, int((expected_expiry - current_time).total_seconds())
-            )
+            self.assertEqual(result, 5400)
 
-    def test_calculates_correct_cache_time_after_1130_am(self):
+    def test_returns_seconds_until_1130_am_same_day(self):
         """
-        Test that the correct cache time is calculated after 11:30 AM.
+        Test that the function returns the correct number of seconds until 11:30 AM the same day.
 
         :return:
         :rtype:
         """
 
-        current_time = now().replace(hour=12, minute=0, second=0, microsecond=0)
-        expected_expiry = (current_time + dt.timedelta(days=1)).replace(
-            hour=11, minute=30, second=0
-        )
+        with patch("esistatus.handler.cache.now") as mock_now:
+            mock_now.return_value = make_aware(datetime(2023, 10, 1, 9, 0, 0))
 
-        with patch(
-            "esistatus.handler.cache.now",
-            return_value=current_time,
-        ):
             result = _get_max_cache_time()
 
-            self.assertEqual(
-                result, int((expected_expiry - current_time).total_seconds())
-            )
+            self.assertEqual(result, 9000)
+
+    def test_handles_time_after_1130_am_next_day_interval(self):
+        """
+        Test that times after 11:30 AM return the correct interval until 11:30 AM the next day.
+
+        :return:
+        :rtype:
+        """
+
+        with patch("esistatus.handler.cache.now") as mock_now:
+            mock_now.return_value = make_aware(datetime(2023, 10, 1, 12, 0, 0))
+
+            result = _get_max_cache_time()
+
+            self.assertEqual(result, 84600)
+
+    def test_handles_time_exactly_at_1130_am_results_in_full_day(self):
+        """
+        Test that exactly 11:30 AM returns a full day's seconds until the next 11:30 AM.
+
+        :return:
+        :rtype:
+        """
+
+        with patch("esistatus.handler.cache.now") as mock_now:
+            mock_now.return_value = make_aware(datetime(2023, 10, 1, 11, 30, 0))
+
+            result = _get_max_cache_time()
+
+            self.assertEqual(result, 86400)
 
     def test_handles_midnight_boundary_correctly(self):
         """
@@ -236,10 +256,7 @@ class TestHelperGetMaxCacheTime(BaseTestCase):
         current_time = now().replace(hour=0, minute=0, second=0, microsecond=0)
         expected_expiry = current_time.replace(hour=11, minute=30, second=0)
 
-        with patch(
-            "esistatus.handler.cache.now",
-            return_value=current_time,
-        ):
+        with patch("esistatus.handler.cache.now", return_value=current_time):
             result = _get_max_cache_time()
 
             self.assertEqual(
