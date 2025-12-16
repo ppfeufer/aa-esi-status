@@ -9,7 +9,7 @@ import requests
 # AA ESI Status
 from esistatus.constants import ESIMetaUrl
 from esistatus.tasks import (
-    _add_tags_to_status,
+    _enrich_status_json,
     _get_esi_status_json,
     _get_latest_compatibility_date,
     _get_openapi_specs_json,
@@ -394,7 +394,7 @@ class TestHelperGetOpenAPISpecsJson(BaseTestCase):
 
 class TestHelperAddTagsToStatus(BaseTestCase):
     """
-    Test the _add_tags_to_status function.
+    Test the _enrich_status_json function.
     """
 
     def test_adds_tags_to_routes_with_matching_openapi_specs(self):
@@ -408,7 +408,7 @@ class TestHelperAddTagsToStatus(BaseTestCase):
         status = {"routes": [{"path": "/path1", "method": "GET"}]}
         openapi = {"paths": {"/path1": {"get": {"tags": ["Public"]}}}}
 
-        result = _add_tags_to_status(status, openapi)
+        result = _enrich_status_json(status, openapi)
 
         self.assertEqual(result[0]["tags"], ["Public"])
 
@@ -423,7 +423,7 @@ class TestHelperAddTagsToStatus(BaseTestCase):
         status = {"routes": [{"path": "/path1", "method": "GET"}]}
         openapi = {"paths": {}}
 
-        result = _add_tags_to_status(status, openapi)
+        result = _enrich_status_json(status, openapi)
 
         self.assertEqual(result[0]["tags"], ["Deprecated"])
 
@@ -448,7 +448,7 @@ class TestHelperAddTagsToStatus(BaseTestCase):
             }
         }
 
-        result = _add_tags_to_status(status, openapi)
+        result = _enrich_status_json(status, openapi)
 
         self.assertEqual(result[0]["tags"], ["Public"])
         self.assertEqual(result[1]["tags"], ["Private"])
@@ -464,7 +464,7 @@ class TestHelperAddTagsToStatus(BaseTestCase):
         status = {"routes": []}
         openapi = {"paths": {"/path1": {"get": {"tags": ["Public"]}}}}
 
-        result = _add_tags_to_status(status, openapi)
+        result = _enrich_status_json(status, openapi)
 
         self.assertEqual(result, [])
 
@@ -479,7 +479,7 @@ class TestHelperAddTagsToStatus(BaseTestCase):
         status = {"routes": [{"path": "/path1", "method": "GET"}]}
         openapi = {"paths": {"/path1": {}}}
 
-        result = _add_tags_to_status(status, openapi)
+        result = _enrich_status_json(status, openapi)
 
         self.assertEqual(result[0]["tags"], ["Deprecated"])
 
@@ -523,7 +523,14 @@ class TestUpdateESIStatus(BaseTestCase):
                 defaults={
                     "compatibility_date": "2023-10-01",
                     "status_data": [
-                        {"method": "GET", "path": "/alliances", "tags": ["alliances"]}
+                        {
+                            "method": "GET",
+                            "path": "/alliances",
+                            "description": None,
+                            "operation_id": None,
+                            "summary": None,
+                            "tags": ["alliances"],
+                        }
                     ],
                 },
             )
@@ -615,7 +622,7 @@ class TestUpdateESIStatus(BaseTestCase):
                 return_value={"paths": {}},
             ),
             mock.patch(
-                "esistatus.tasks._add_tags_to_status", return_value=enriched_status
+                "esistatus.tasks._enrich_status_json", return_value=enriched_status
             ),
             mock.patch("esistatus.tasks.logger.debug") as mock_debug,
             mock.patch(

@@ -470,8 +470,24 @@ class TestEsiEndpointStatusFromJson(BaseTestCase):
         """
 
         esi_endpoint_json = [
-            {"status": "OK", "tags": ["tag1"], "path": "/path1", "method": "get"},
-            {"status": "Down", "tags": ["tag2"], "path": "/path2", "method": "post"},
+            {
+                "status": "OK",
+                "tags": ["tag1"],
+                "path": "/path1",
+                "method": "get",
+                "operation_id": None,
+                "summary": None,
+                "description": None,
+            },
+            {
+                "status": "Down",
+                "tags": ["tag2"],
+                "path": "/path2",
+                "method": "post",
+                "operation_id": None,
+                "summary": None,
+                "description": None,
+            },
         ]
 
         result = _esi_endpoint_status_from_json(esi_endpoint_json)
@@ -507,9 +523,33 @@ class TestEsiEndpointStatusFromJson(BaseTestCase):
         """
 
         esi_endpoint_json = [
-            {"status": "OK", "tags": ["tag1"], "path": "/path1", "method": "get"},
-            {"status": "OK", "tags": ["tag2"], "path": "/path2", "method": "post"},
-            {"status": "Down", "tags": ["tag3"], "path": "/path3", "method": "get"},
+            {
+                "status": "OK",
+                "tags": ["tag1"],
+                "path": "/path1",
+                "method": "get",
+                "operation_id": None,
+                "summary": None,
+                "description": None,
+            },
+            {
+                "status": "OK",
+                "tags": ["tag2"],
+                "path": "/path2",
+                "method": "post",
+                "operation_id": None,
+                "summary": None,
+                "description": None,
+            },
+            {
+                "status": "Down",
+                "tags": ["tag3"],
+                "path": "/path3",
+                "method": "get",
+                "operation_id": None,
+                "summary": None,
+                "description": None,
+            },
         ]
 
         result = _esi_endpoint_status_from_json(esi_endpoint_json)
@@ -526,8 +566,24 @@ class TestEsiEndpointStatusFromJson(BaseTestCase):
         """
 
         esi_endpoint_json = [
-            {"status": "OK", "tags": ["tagB"], "path": "/pathB", "method": "get"},
-            {"status": "OK", "tags": ["tagA"], "path": "/pathA", "method": "post"},
+            {
+                "status": "OK",
+                "tags": ["tagB"],
+                "path": "/pathB",
+                "method": "get",
+                "operation_id": None,
+                "summary": None,
+                "description": None,
+            },
+            {
+                "status": "OK",
+                "tags": ["tagA"],
+                "path": "/pathA",
+                "method": "post",
+                "operation_id": None,
+                "summary": None,
+                "description": None,
+            },
         ]
 
         result = _esi_endpoint_status_from_json(esi_endpoint_json)
