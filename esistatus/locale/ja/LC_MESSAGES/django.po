@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-12-02 03:29+0100\n"
+"POT-Creation-Date: 2025-12-16 14:59+0100\n"
 "PO-Revision-Date: 2025-11-25 07:17+0000\n"
 "Last-Translator: Dexsar <dexsar.paf@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/ja/>\n"
@@ -99,18 +99,29 @@ msgstr "不明"
 msgid "These routes have an unknown status."
 msgstr "これらのルートの状況は不明です。"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:44
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:45
+#: esistatus/templates/esistatus/partials/index/esi-status.html:34
+#, fuzzy
+#| msgid "The ESI compatibility date."
+msgid "ESI compatibility date"
+msgstr "ESI互換性保証日。"
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:59
 msgid "Detailed ESI status"
 msgstr "詳細なESIステータス"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:46
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:61
 msgid "EVE Online status"
 msgstr "EVE Onlineのステータス"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:51
-#: esistatus/templates/esistatus/partials/index/esi-status.html:32
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:66
+#: esistatus/templates/esistatus/partials/index/esi-status.html:47
 msgid "No ESI status data is available at this time."
 msgstr "現在ESIステータスデータは利用できません。"
+
+#: esistatus/templates/esistatus/partials/endpoints.html:64
+msgid "View in ESI API Explorer"
+msgstr ""
 
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:5
 msgid "Do you want to help translate this app into your language or improve the existing translation?"
@@ -120,7 +131,7 @@ msgstr "このアプリをあなたの言語に翻訳するお手伝いをした
 msgid "Join our team of translators!"
 msgstr "翻訳者チームに参加しましょう！"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:33
+#: esistatus/templates/esistatus/partials/index/esi-status.html:48
 msgid "Please try again later."
 msgstr "後ほど再度試してください。"
 

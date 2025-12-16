@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-12-02 03:29+0100\n"
-"PO-Revision-Date: 2025-08-27 20:43+0000\n"
+"POT-Creation-Date: 2025-12-16 14:59+0100\n"
+"PO-Revision-Date: 2025-12-08 07:00+0000\n"
 "Last-Translator: s0k0l -_- <salarysalo@gmail.com>\n"
 "Language-Team: Ukrainian <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/uk/>\n"
 "Language: uk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : (n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13\n"
+"X-Generator: Weblate 5.14.3\n"
 
 #: esistatus/__init__.py:13 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
@@ -25,25 +25,19 @@ msgstr "Статус ESI"
 
 #: esistatus/models.py:16
 msgid "The ESI compatibility date."
-msgstr ""
+msgstr "Дата сумісності ESI."
 
 #: esistatus/models.py:20
-#, fuzzy
-#| msgid "Detailed ESI status"
 msgid "The ESI status data."
-msgstr "Детальний статус ESI"
+msgstr "Дані статусу ESI."
 
 #: esistatus/models.py:29
-#, fuzzy
-#| msgid "ESI Status"
 msgid "ESI Endpoint Status"
-msgstr "Статус ESI"
+msgstr "Статус ендпойнта ESI"
 
 #: esistatus/models.py:30
-#, fuzzy
-#| msgid "ESI Status"
 msgid "ESI Endpoint Statuses"
-msgstr "Статус ESI"
+msgstr "Статуси ендпойнтів ESI"
 
 #: esistatus/templates/esistatus/base.html:13
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
@@ -57,72 +51,75 @@ msgstr "Завантаження статусу ESI …"
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
 #: esistatus/templates/esistatus/partials/index/esi-status.html:6
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
 #: esistatus/templates/esistatus/partials/index/esi-status.html:7
-#, fuzzy
-#| msgid "Green endpoints are responding as expected."
 msgid "These routes are working as expected."
-msgstr "Зелені кінцеві точки реагують відповідно до очікувань."
+msgstr "Ці маршрути працюють як треба."
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:22
 #: esistatus/templates/esistatus/partials/index/esi-status.html:11
 msgid "Degraded"
-msgstr ""
+msgstr "Прокачка знизилась"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:23
 #: esistatus/templates/esistatus/partials/index/esi-status.html:12
-#, fuzzy
-#| msgid "Yellow endpoints have a good chance of being slow or returning errors."
 msgid "These routes have a good chance of being slow or returning errors."
-msgstr "Жовті кінцеві точки мають високу ймовірність працювати повільно або повертати помилки."
+msgstr "Ці маршрути, скоріш за все, уповільнені або мають помилки."
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:27
 #: esistatus/templates/esistatus/partials/index/esi-status.html:16
 msgid "Down"
-msgstr ""
+msgstr "Прокачка впала"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:28
 #: esistatus/templates/esistatus/partials/index/esi-status.html:17
-#, fuzzy
-#| msgid "Red endpoints have a good chance of not responding at all or being completely unavailable."
 msgid "These routes have a good chance of not responding at all or being completely unavailable."
-msgstr "Червоні лінії, скоріш за усе, не перетнути..."
+msgstr "Ці маршрути не відповвідають зовсім або повністю недоступні."
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:32
 #: esistatus/templates/esistatus/partials/index/esi-status.html:21
 msgid "Recovering"
-msgstr ""
+msgstr "Відновлення"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:33
 #: esistatus/templates/esistatus/partials/index/esi-status.html:22
 msgid "These routes are recovering from previous issues and might not (yet) work as expected or might be slow."
-msgstr ""
+msgstr "Ці маршрути відновлюються від попередніх складношів та можуть ще не працювати або бути уповільнені."
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:37
 #: esistatus/templates/esistatus/partials/index/esi-status.html:26
 msgid "Unknown"
-msgstr ""
+msgstr "Невідомо"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:38
 #: esistatus/templates/esistatus/partials/index/esi-status.html:27
-#, fuzzy
-#| msgid "Green endpoints are responding as expected."
 msgid "These routes have an unknown status."
-msgstr "Зелені кінцеві точки реагують відповідно до очікувань."
+msgstr "Ці маршрути мають невідомий статус."
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:44
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:45
+#: esistatus/templates/esistatus/partials/index/esi-status.html:34
+#, fuzzy
+#| msgid "The ESI compatibility date."
+msgid "ESI compatibility date"
+msgstr "Дата сумісності ESI."
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:59
 msgid "Detailed ESI status"
 msgstr "Детальний статус ESI"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:46
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:61
 msgid "EVE Online status"
 msgstr "Статус EVE Online"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:51
-#: esistatus/templates/esistatus/partials/index/esi-status.html:32
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:66
+#: esistatus/templates/esistatus/partials/index/esi-status.html:47
 msgid "No ESI status data is available at this time."
+msgstr "Нема даних від ESI."
+
+#: esistatus/templates/esistatus/partials/endpoints.html:64
+msgid "View in ESI API Explorer"
 msgstr ""
 
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:5
@@ -133,9 +130,9 @@ msgstr "Хочете допомогти перекласти цю програм
 msgid "Join our team of translators!"
 msgstr "Приєднуйтесь до нашої команди перекладачів!"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:33
+#: esistatus/templates/esistatus/partials/index/esi-status.html:48
 msgid "Please try again later."
-msgstr ""
+msgstr "Будь ласка спробуйте пізніше."
 
 #~ msgid "Can access this app"
 #~ msgstr "Має доступ до цього додатку"
