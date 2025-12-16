@@ -64,14 +64,19 @@ def _esi_endpoint_status_from_json(esi_endpoint_json: list) -> dict:
 
     for esi_endpoint in esi_endpoint_json:
         status = esi_endpoint["status"]
+
         _append_value(
             dict_obj=esi_endpoint_status[status]["endpoints"],
             key=esi_endpoint["tags"][0],
             value={
                 "path": esi_endpoint["path"],
                 "method": esi_endpoint["method"].upper(),
+                "operation_id": esi_endpoint["operation_id"],
+                "summary": esi_endpoint["summary"],
+                "description": esi_endpoint["description"],
             },
         )
+
         esi_endpoint_status[status]["count"] += 1
 
     # Sort endpoints alphabetically by tag (key)

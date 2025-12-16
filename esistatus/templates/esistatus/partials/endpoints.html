@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div class="col mb-4 mb-xl-0">
     <div class="card card-{{ status }}-esi-endpoints">
         <div class="card-header text-bg-{% if status == 'Down' %}danger{% elif status == 'Degraded' %}warning{% elif status == 'Recovering' %}info{% elif status == 'Unknown' %}default{% else %}success{% endif %}">
@@ -44,6 +46,27 @@
                                     <p class="small">
                                         {{ endpoint.method }}<br>
                                         {{ endpoint.path }}
+
+                                        <sup>
+                                            {% if endpoint.summary %}
+                                                <i
+                                                    class="fa-solid fa-circle-info cursor-pointer"
+                                                    data-bs-tooltip="aa-esi-status" title="<b>{{ endpoint.summary|linebreaks }}</b>{{ endpoint.description|linebreaks }}"
+                                                ></i>
+                                            {% endif %}
+
+                                            {% if endpoint.operation_id %}
+                                                <a
+                                                    href="https://developers.eveonline.com/api-explorer#/operations/{{ endpoint.operation_id }}"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    data-bs-tooltip="aa-esi-status"
+                                                    title="{% translate "View in ESI API Explorer" %}"
+                                                >
+                                                    <i class="fa-solid fa-up-right-from-square"></i>
+                                                </a>
+                                            {% endif %}
+                                        </sup>
                                     </p>
                                 {% endfor %}
                             </div>

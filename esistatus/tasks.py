@@ -172,9 +172,9 @@ def _get_openapi_specs_json(compatibility_date: str) -> dict | None:
         return None
 
 
-def _add_tags_to_status(status: dict[str, Any], openapi: dict[str, Any]) -> list[Any]:
+def _enrich_status_json(status: dict[str, Any], openapi: dict[str, Any]) -> list[Any]:
     """
-    Enrich ESI status routes with tags from OpenAPI specs.
+    Enrich ESI status routes with description, operation_id, summary and tags from OpenAPI specs.
 
     Inspired by this script by CCP Pinky:
     https://gist.github.com/ccp-pinky/28e60a5a79df5f7db4f7f46704c9f818
@@ -189,8 +189,11 @@ def _add_tags_to_status(status: dict[str, Any], openapi: dict[str, Any]) -> list
 
     for route in status["routes"]:
         spec = openapi["paths"].get(route["path"], {}).get(route["method"].lower(), {})
-        tags = spec.get("tags", ["Deprecated"])
-        route["tags"] = tags
+
+        route["description"] = spec.get("description", None)
+        route["operation_id"] = spec.get("operationId", None)
+        route["summary"] = spec.get("summary", None)
+        route["tags"] = spec.get("tags", ["Deprecated"])
 
     return status["routes"]
 
@@ -220,7 +223,7 @@ def update_esi_status():
 
         return
 
-    enriched_status = _add_tags_to_status(status=esi_status, openapi=openapi_specs)
+    enriched_status = _enrich_status_json(status=esi_status, openapi=openapi_specs)
 
     if not any(route.get("tags") for route in enriched_status):
         logger.debug("Enriched ESI status has no tags. Skipping database update.")

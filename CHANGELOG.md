@@ -38,6 +38,7 @@ Section Order:
 
 ### Added
 
+- Some more information to the endpoints in the details view
 - ESI compatibility date as additional information
 
 ### Changed
