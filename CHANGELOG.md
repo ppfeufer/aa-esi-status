@@ -41,6 +41,11 @@ Section Order:
 - Some more information to the endpoints in the details view
 - ESI compatibility date as additional information
 
+### Fixed
+
+- `_get_max_cache_time` to not have a window of about an hour where nothing gets
+  cached around downtime
+
 ### Changed
 
 - Destroy Bootstrap tooltip instance before re-initializing it to avoid
