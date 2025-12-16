@@ -27,6 +27,21 @@
         {% translate "These routes have an unknown status." as translated_header_red_explanation %}
         {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="Unknown" explanation=translated_header_red_explanation data=esi_endpoint_status.Unknown with_details=True %}
     </div>
+
+    {% if compatibility_date %}
+        <div class="text-end">
+            <p class="small mb-0">
+                {% translate "ESI compatibility date" %}:
+                <a
+                    href="https://esi.evetech.net/meta/compatibility-dates"
+                    target="_blank"
+                    rel="noopener noreferer"
+                >
+                    {{ compatibility_date }}
+                </a>
+            </p>
+        </div>
+    {% endif %}
 {% else %}
     <div class="aa-callout aa-callout-info">
         <p>{% translate "No ESI status data is available at this time." %}</p>
