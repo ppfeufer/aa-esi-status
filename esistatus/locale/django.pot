@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 3.2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-12-16 13:41+0100\n"
+"POT-Creation-Date: 2025-12-16 14:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,7 +118,7 @@ msgstr ""
 msgid "No ESI status data is available at this time."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/endpoints.html:61
+#: esistatus/templates/esistatus/partials/endpoints.html:64
 msgid "View in ESI API Explorer"
 msgstr ""
 
