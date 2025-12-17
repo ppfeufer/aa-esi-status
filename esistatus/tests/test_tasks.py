@@ -47,7 +47,7 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
         """
 
         with mock.patch(
-            "esistatus.tasks.cache_handler._get_cache", return_value=self.latest_date
+            "esistatus.handler.cache.Cache.get", return_value=self.latest_date
         ) as mock_cache:
             result = _get_latest_compatibility_date()
 
@@ -66,18 +66,18 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
         mock_response.json.return_value = self.compatibility_date_json
 
         with (
-            mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            mock.patch("esistatus.handler.cache.Cache.get", return_value=None),
             mock.patch(
                 "esistatus.tasks.requests.get", return_value=mock_response
             ) as mock_get,
-            mock.patch("esistatus.tasks.cache_handler._set_cache") as mock_set_cache,
+            mock.patch("esistatus.handler.cache.Cache.set") as mock_set_cache,
         ):
             result = _get_latest_compatibility_date()
 
             self.assertEqual(result, self.latest_date)
             mock_get.assert_called_once()
             mock_set_cache.assert_called_once_with(
-                ESIMetaUrl.COMPATIBILITY_DATES.value, self.latest_date
+                url=ESIMetaUrl.COMPATIBILITY_DATES.value, value=self.latest_date
             )
 
     def test_skips_invalid_dates_in_api_response(self):
@@ -94,15 +94,15 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
         }
 
         with (
-            mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
-            mock.patch("esistatus.tasks.cache_handler._set_cache") as mock_set_cache,
+            mock.patch("esistatus.handler.cache.Cache.get", return_value=None),
+            mock.patch("esistatus.handler.cache.Cache.set") as mock_set_cache,
             mock.patch("esistatus.tasks.requests.get", return_value=mock_response),
         ):
             result = _get_latest_compatibility_date()
 
             self.assertEqual(result, "2023-10-01")
             mock_set_cache.assert_called_once_with(
-                ESIMetaUrl.COMPATIBILITY_DATES.value, "2023-10-01"
+                url=ESIMetaUrl.COMPATIBILITY_DATES.value, value="2023-10-01"
             )
 
     def test_returns_none_when_no_valid_dates_found(self):
@@ -117,7 +117,7 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
         mock_response.json.return_value = {"compatibility_dates": ["invalid-date"]}
 
         with (
-            mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            mock.patch("esistatus.handler.cache.Cache.get", return_value=None),
             mock.patch("esistatus.tasks.requests.get", return_value=mock_response),
         ):
             result = _get_latest_compatibility_date()
@@ -133,7 +133,7 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
         """
 
         with (
-            mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            mock.patch("esistatus.handler.cache.Cache.get", return_value=None),
             mock.patch(
                 "esistatus.tasks.requests.get",
                 side_effect=requests.exceptions.RequestException,
@@ -157,15 +157,15 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
         }
 
         with (
-            mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
-            mock.patch("esistatus.tasks.cache_handler._set_cache") as mock_set_cache,
+            mock.patch("esistatus.handler.cache.Cache.get", return_value=None),
+            mock.patch("esistatus.handler.cache.Cache.set") as mock_set_cache,
             mock.patch("esistatus.tasks.requests.get", return_value=mock_response),
         ):
             result = _get_latest_compatibility_date()
 
             self.assertEqual(result, "2023-10-01")
             mock_set_cache.assert_called_once_with(
-                ESIMetaUrl.COMPATIBILITY_DATES.value, "2023-10-01"
+                url=ESIMetaUrl.COMPATIBILITY_DATES.value, value="2023-10-01"
             )
 
     def test_handles_empty_dates_list(self):
@@ -180,7 +180,7 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
         mock_response.json.return_value = {"compatibility_dates": []}
 
         with (
-            mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            mock.patch("esistatus.handler.cache.Cache.get", return_value=None),
             mock.patch("esistatus.tasks.requests.get", return_value=mock_response),
         ):
             result = _get_latest_compatibility_date()
@@ -199,7 +199,7 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
         mock_response.json.side_effect = json.JSONDecodeError("Expecting value", "", 0)
 
         with (
-            mock.patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            mock.patch("esistatus.handler.cache.Cache.get", return_value=None),
             mock.patch("esistatus.tasks.requests.get", return_value=mock_response),
         ):
             result = _get_latest_compatibility_date()
@@ -299,9 +299,9 @@ class TestHelperGetOpenAPISpecsJson(BaseTestCase):
         """
 
         with (
-            patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            patch("esistatus.handler.cache.Cache.get", return_value=None),
             patch("esistatus.tasks.requests.get") as mock_get,
-            patch("esistatus.tasks.cache_handler._set_cache") as mock_set_cache,
+            patch("esistatus.handler.cache.Cache.set") as mock_set_cache,
             patch("esistatus.tasks.logger.info") as mock_logger,
         ):
             mock_response = Mock()
@@ -316,8 +316,8 @@ class TestHelperGetOpenAPISpecsJson(BaseTestCase):
                 "ESI OpenAPI specs fetched successfully for compatibility date: 2023-10-01."
             )
             mock_set_cache.assert_called_once_with(
-                "https://esi.evetech.net/meta/openapi.json?compatibility_date=2023-10-01",
-                {"openapi": "3.0.0"},
+                url="https://esi.evetech.net/meta/openapi.json?compatibility_date=2023-10-01",
+                value={"openapi": "3.0.0"},
             )
 
     def test_uses_cached_openapi_specs_if_available(self):
@@ -330,8 +330,7 @@ class TestHelperGetOpenAPISpecsJson(BaseTestCase):
 
         with (
             patch(
-                "esistatus.tasks.cache_handler._get_cache",
-                return_value={"openapi": "3.0.0"},
+                "esistatus.handler.cache.Cache.get", return_value={"openapi": "3.0.0"}
             ),
             patch("esistatus.tasks.logger.debug") as mock_logger,
         ):
@@ -351,7 +350,7 @@ class TestHelperGetOpenAPISpecsJson(BaseTestCase):
         """
 
         with (
-            patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            patch("esistatus.handler.cache.Cache.get", return_value=None),
             patch(
                 "esistatus.tasks.requests.get",
                 side_effect=requests.exceptions.RequestException("Request failed"),
@@ -374,7 +373,7 @@ class TestHelperGetOpenAPISpecsJson(BaseTestCase):
         """
 
         with (
-            patch("esistatus.tasks.cache_handler._get_cache", return_value=None),
+            patch("esistatus.handler.cache.Cache.get", return_value=None),
             patch("esistatus.tasks.requests.get") as mock_get,
             patch("esistatus.tasks.logger.error") as mock_logger,
         ):
