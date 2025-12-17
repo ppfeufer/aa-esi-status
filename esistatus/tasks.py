@@ -19,7 +19,7 @@ from allianceauth.services.hooks import get_extension_logger
 # AA ESI Status
 from esistatus import __title__, __user_agent__
 from esistatus.constants import ESIMetaUrl
-from esistatus.handler import cache as cache_handler
+from esistatus.handler.cache import Cache
 from esistatus.models import EsiStatus
 from esistatus.providers import AppLogger
 
@@ -40,7 +40,7 @@ def _get_latest_compatibility_date() -> str | None:
 
     url = ESIMetaUrl.COMPATIBILITY_DATES.value
 
-    cached = cache_handler._get_cache(url)
+    cached = Cache(subkey="compatibility_date:latest").get(url=url)
 
     if cached:
         logger.debug(f"Using cached ESI compatibility date: {cached}")
@@ -77,7 +77,7 @@ def _get_latest_compatibility_date() -> str | None:
 
         logger.debug(f"Latest ESI compatibility date: {latest}")
 
-        cache_handler._set_cache(url, latest)
+        Cache(subkey="compatibility_date:latest").set(url=url, value=latest)
 
         return latest
     except (requests.exceptions.RequestException, json.JSONDecodeError) as exc:
@@ -137,7 +137,7 @@ def _get_openapi_specs_json(compatibility_date: str) -> dict | None:
         compatibility_date=compatibility_date
     )
 
-    cached = cache_handler._get_cache(openapi_url)
+    cached = Cache(subkey=f"openapi:{compatibility_date}").get(url=openapi_url)
     if cached:
         logger.debug(
             msg=f"Using cached ESI OpenAPI specs for compatibility date: {compatibility_date}."
@@ -154,7 +154,9 @@ def _get_openapi_specs_json(compatibility_date: str) -> dict | None:
             f"ESI OpenAPI specs fetched successfully for compatibility date: {compatibility_date}."
         )
 
-        cache_handler._set_cache(openapi_url, openapi_specs)
+        Cache(subkey=f"openapi:{compatibility_date}").set(
+            url=openapi_url, value=openapi_specs
+        )
 
         return openapi_specs
     except requests.exceptions.RequestException as exc:

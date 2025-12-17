@@ -36,6 +36,12 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Changed
+
+- Redis cache handling refactored
+  - Moved cache handling to a separate class
+  - Improved cache key naming
+
 ## [3.3.0] - 2025-12-16
 
 ### Added
