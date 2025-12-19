@@ -39,8 +39,8 @@ def _get_latest_compatibility_date() -> str | None:
     logger.debug("Retrieving latest ESI compatibility date.")
 
     url = ESIMetaUrl.COMPATIBILITY_DATES.value
-
-    cached = Cache(subkey="compatibility_date:latest").get(url=url)
+    cache_subkey = "compatibility-dates:latest"
+    cached = Cache(subkey=cache_subkey).get()
 
     if cached:
         logger.debug(f"Using cached ESI compatibility date: {cached}")
@@ -77,7 +77,7 @@ def _get_latest_compatibility_date() -> str | None:
 
         logger.debug(f"Latest ESI compatibility date: {latest}")
 
-        Cache(subkey="compatibility_date:latest").set(url=url, value=latest)
+        Cache(subkey=cache_subkey).set(value=latest)
 
         return latest
     except (requests.exceptions.RequestException, json.JSONDecodeError) as exc:
@@ -136,8 +136,9 @@ def _get_openapi_specs_json(compatibility_date: str) -> dict | None:
     openapi_url = ESIMetaUrl.OPENAPI_SPECS.value.format(
         compatibility_date=compatibility_date
     )
+    cacke_subkey = f"openapi:{compatibility_date}"
+    cached = Cache(subkey=cacke_subkey).get()
 
-    cached = Cache(subkey=f"openapi:{compatibility_date}").get(url=openapi_url)
     if cached:
         logger.debug(
             msg=f"Using cached ESI OpenAPI specs for compatibility date: {compatibility_date}."
@@ -154,9 +155,7 @@ def _get_openapi_specs_json(compatibility_date: str) -> dict | None:
             f"ESI OpenAPI specs fetched successfully for compatibility date: {compatibility_date}."
         )
 
-        Cache(subkey=f"openapi:{compatibility_date}").set(
-            url=openapi_url, value=openapi_specs
-        )
+        Cache(subkey=cacke_subkey).set(value=openapi_specs)
 
         return openapi_specs
     except requests.exceptions.RequestException as exc:

@@ -8,7 +8,6 @@ from typing import Any
 
 # Django
 from django.core.cache import cache
-from django.utils.crypto import md5
 from django.utils.timezone import now
 
 # Alliance Auth
@@ -44,7 +43,7 @@ class Cache:
 
         self.subkey = subkey
 
-    def _get_cache_key(self, url: str) -> str:
+    def _get_cache_key(self) -> str:
         """
         Generate a cache key based on the URL.
 
@@ -54,9 +53,11 @@ class Cache:
         :rtype:
         """
 
-        logger.debug(f"Generating cache key for URL: {url}")
+        cache_key = f"{self.redis_key_base}:{self.subkey}"
 
-        return f"{self.redis_key_base}:{self.subkey}:{md5(url.encode()).hexdigest()}"
+        logger.debug(f"Generating cache key for: {cache_key}")
+
+        return cache_key
 
     @staticmethod
     def _get_max_cache_time() -> int:
@@ -75,7 +76,7 @@ class Cache:
 
         return int((target - expire_time).total_seconds())
 
-    def set(self, url: str, value: Any) -> None:
+    def set(self, value: Any) -> None:
         """
         Set a specific cache value for a URL.
 
@@ -87,21 +88,17 @@ class Cache:
         :rtype:
         """
 
-        logger.debug(f"Setting cache for URL: {url}")
+        cache_key = self._get_cache_key()
 
-        if not isinstance(url, str):
-            raise TypeError("Argument 'url' must be a string")
-
-        if not url.strip():
-            raise ValueError("Argument 'url' must be a non-empty string")
+        logger.debug(f"Setting cache for: {cache_key}")
 
         cache.set(
-            key=self._get_cache_key(url),
+            key=cache_key,
             value=value,
             timeout=self._get_max_cache_time(),
         )
 
-    def get(self, url: str) -> Any:
+    def get(self) -> Any:
         """
         Get a specific cache value for a URL.
 
@@ -111,12 +108,8 @@ class Cache:
         :rtype:
         """
 
-        logger.debug(f"Getting cache for URL: {url}")
+        cache_key = self._get_cache_key()
 
-        if not isinstance(url, str):
-            raise TypeError("Argument 'url' must be a string")
+        logger.debug(f"Getting cache for: {cache_key}")
 
-        if not url.strip():
-            raise ValueError("Argument 'url' must be a non-empty string")
-
-        return cache.get(key=self._get_cache_key(url=url), default=False)
+        return cache.get(key=cache_key, default=False)

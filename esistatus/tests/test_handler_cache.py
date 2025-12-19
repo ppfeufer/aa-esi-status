@@ -2,7 +2,6 @@
 from unittest import mock
 
 # Django
-from django.utils.crypto import md5
 from django.utils.datetime_safe import datetime
 
 # AA ESI Status
@@ -84,203 +83,142 @@ class TestCacheClassInit(BaseTestCase):
             Cache()
 
 
-class TestHelperGetCache(BaseTestCase):
+class TestCacheGet(BaseTestCase):
     """
     Test the Cache.get function.
     """
 
-    def test_retrieves_cached_value_for_valid_url(self):
+    def test_retrieves_value_from_cache(self):
         """
-        Test retrieving a cached value for a valid URL.
+        Test that the function retrieves the correct value from the cache.
 
         :return:
         :rtype:
         """
 
-        cache_instance = Cache(subkey="test_subkey")
-        url = "https://example.com/resource"
-        expected_value = {"data": "test_value"}
+        cache_instance = Cache(subkey="test_key")
+        mock_cache_key = cache_instance._get_cache_key()
+        mock_value = "test_value"
 
         with mock.patch(
-            "esistatus.handler.cache.cache.get", return_value=expected_value
+            "django.core.cache.cache.get", return_value=mock_value
         ) as mock_get:
-            result = cache_instance.get(url)
+            result = cache_instance.get()
 
-            self.assertEqual(result, expected_value)
-            mock_get.assert_called_once_with(
-                key=cache_instance._get_cache_key(url=url), default=False
-            )
+            mock_get.assert_called_once_with(key=mock_cache_key, default=False)
+            self.assertEqual(result, mock_value)
 
-    def test_returns_false_for_nonexistent_cache_key(self):
+    def test_returns_false_when_cache_is_empty(self):
         """
-        Test returning False for a nonexistent cache key.
+        Test that the function returns False when the cache is empty.
 
         :return:
         :rtype:
         """
 
-        cache_instance = Cache(subkey="test_subkey")
-        url = "https://example.com/nonexistent"
+        cache_instance = Cache(subkey="test_key")
+        mock_cache_key = cache_instance._get_cache_key()
 
-        with mock.patch(
-            "esistatus.handler.cache.cache.get", return_value=False
-        ) as mock_get:
-            result = cache_instance.get(url)
+        with mock.patch("django.core.cache.cache.get", return_value=False) as mock_get:
+            result = cache_instance.get()
 
+            mock_get.assert_called_once_with(key=mock_cache_key, default=False)
             self.assertFalse(result)
-            mock_get.assert_called_once_with(
-                key=cache_instance._get_cache_key(url=url), default=False
-            )
-
-    def test_raises_value_error_when_getting_cache_with_empty_url(self):
-        """
-        Test that getting a cache with an empty URL raises a ValueError.
-
-        :return:
-        :rtype:
-        """
-
-        cache_instance = Cache(subkey="test_subkey")
-
-        with self.assertRaises(ValueError):
-            cache_instance.get("")
-
-    def test_raises_type_error_when_getting_cache_with_non_string_url(self):
-        """
-        Test that getting a cache with a non-string URL raises a TypeError.
-
-        :return:
-        :rtype:
-        """
-
-        cache_instance = Cache(subkey="test_subkey")
-
-        with self.assertRaises(TypeError):
-            cache_instance.get(12345)
 
 
-class TestHelperSetCache(BaseTestCase):
+class TestCacheSet(BaseTestCase):
     """
     Test the Cache.set function.
     """
 
-    def test_sets_cache_with_correct_key_and_value(self):
+    def test_sets_cache_value_with_correct_key_and_timeout(self):
         """
-        Test setting a cache value with the correct key and value.
+        Test that the function sets the cache value with the correct key and timeout.
 
         :return:
         :rtype:
         """
 
-        cache_instance = Cache(subkey="test_subkey")
-        url = "https://example.com/resource"
-        value = {"data": "test_value"}
+        cache_instance = Cache(subkey="test_key")
+        mock_cache_key = cache_instance._get_cache_key()
+        mock_value = "test_value"
+        mock_timeout = 3600
 
-        with mock.patch("esistatus.handler.cache.cache.set") as mock_set:
-            cache_instance.set(url, value)
+        with (
+            mock.patch("django.core.cache.cache.set") as mock_set,
+            mock.patch.object(Cache, "_get_max_cache_time", return_value=mock_timeout),
+        ):
+            cache_instance.set(mock_value)
 
             mock_set.assert_called_once_with(
-                key=cache_instance._get_cache_key(url),
-                value=value,
-                timeout=cache_instance._get_max_cache_time(),
+                key=mock_cache_key, value=mock_value, timeout=mock_timeout
             )
 
-    def test_raises_value_error_when_setting_cache_with_empty_url(self):
+    def test_raises_type_error_when_subkey_is_not_string(self):
         """
-        Test that setting a cache with an empty URL raises a ValueError.
+        Test that providing a non-string subkey raises a TypeError.
 
         :return:
         :rtype:
         """
-
-        cache_instance = Cache(subkey="test_subkey")
-
-        with self.assertRaises(ValueError):
-            cache_instance.set("", {"data": "test_value"})
-
-    def test_raises_type_error_when_setting_cache_with_non_string_url(self):
-        """
-        Test that setting a cache with a non-string URL raises a TypeError.
-
-        :return:
-        :rtype:
-        """
-
-        cache_instance = Cache(subkey="test_subkey")
 
         with self.assertRaises(TypeError):
-            cache_instance.set(12345, {"data": "test_value"})
+            Cache(subkey=123)
+
+    def test_raises_value_error_when_subkey_is_empty(self):
+        """
+        Test that providing an empty subkey raises a ValueError.
+
+        :return:
+        :rtype:
+        """
+
+        with self.assertRaises(ValueError):
+            Cache(subkey="   ")
 
 
-class TestHelperGetCacheKey(BaseTestCase):
+class TestCacheHelperGetCacheKey(BaseTestCase):
     """
     Test the Cache._get_cache_key function.
     """
 
-    def test_generates_correct_cache_key_with_valid_url(self):
+    def test_generates_cache_key_with_valid_subkey(self):
         """
-        Test that a valid URL generates the correct cache key.
+        Test that a valid subkey generates the correct cache key.
 
         :return:
         :rtype:
         """
 
-        cache_instance = Cache(subkey="test_subkey")
-        url = "https://example.com/resource"
+        cache_instance = Cache(subkey="valid-subkey")
+        result = cache_instance._get_cache_key()
 
-        expected_key = f"esi:meta:test_subkey:{md5(url.encode()).hexdigest()}"
+        self.assertEqual(result, "esi:meta:valid-subkey")
 
-        self.assertEqual(cache_instance._get_cache_key(url), expected_key)
-
-    def test_raises_attribute_error_with_non_string_url(self):
+    def test_raises_type_error_when_subkey_is_not_string_in_key_generation(self):
         """
-        Test that providing a non-string URL raises an AttributeError.
+        Test that providing a non-string subkey raises a TypeError.
 
         :return:
         :rtype:
         """
 
-        cache_instance = Cache(subkey="test_subkey")
+        with self.assertRaises(TypeError):
+            Cache(subkey=123)._get_cache_key()
 
-        with self.assertRaises(AttributeError):
-            cache_instance._get_cache_key(12345)
-
-    def test_generates_different_keys_for_different_urls(self):
+    def test_raises_value_error_when_subkey_is_empty_in_key_generation(self):
         """
-        Test that different URLs generate different cache keys.
+        Test that providing an empty subkey raises a ValueError.
 
         :return:
         :rtype:
         """
 
-        cache_instance = Cache(subkey="test_subkey")
-
-        url1 = "https://example.com/resource1"
-        url2 = "https://example.com/resource2"
-
-        self.assertNotEqual(
-            cache_instance._get_cache_key(url1), cache_instance._get_cache_key(url2)
-        )
-
-    def test_generates_different_keys_for_different_subkeys(self):
-        """
-        Test that different subkeys generate different cache keys for the same URL.
-
-        :return:
-        :rtype:
-        """
-
-        cache_instance1 = Cache(subkey="subkey1")
-        cache_instance2 = Cache(subkey="subkey2")
-
-        url = "https://example.com/resource"
-
-        self.assertNotEqual(
-            cache_instance1._get_cache_key(url), cache_instance2._get_cache_key(url)
-        )
+        with self.assertRaises(ValueError):
+            Cache(subkey="   ")._get_cache_key()
 
 
-class TestHelperGetMaxCacheTime(BaseTestCase):
+class TestCacheHelperGetMaxCacheTime(BaseTestCase):
     """
     Test the Cache._get_max_cache_time function.
     """

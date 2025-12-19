@@ -42,6 +42,10 @@ Section Order:
   - Moved cache handling to a separate class
   - Improved cache key naming
 
+### Removed
+
+- URL hashes from Redis cache keys, as they are not needed
+
 ## [3.3.0] - 2025-12-16
 
 ### Added
