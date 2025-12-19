@@ -7,7 +7,6 @@ from unittest.mock import Mock, patch
 import requests
 
 # AA ESI Status
-from esistatus.constants import ESIMetaUrl
 from esistatus.tasks import (
     _enrich_status_json,
     _get_esi_status_json,
@@ -76,9 +75,7 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
 
             self.assertEqual(result, self.latest_date)
             mock_get.assert_called_once()
-            mock_set_cache.assert_called_once_with(
-                url=ESIMetaUrl.COMPATIBILITY_DATES.value, value=self.latest_date
-            )
+            mock_set_cache.assert_called_once_with(value=self.latest_date)
 
     def test_skips_invalid_dates_in_api_response(self):
         """
@@ -101,9 +98,7 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
             result = _get_latest_compatibility_date()
 
             self.assertEqual(result, "2023-10-01")
-            mock_set_cache.assert_called_once_with(
-                url=ESIMetaUrl.COMPATIBILITY_DATES.value, value="2023-10-01"
-            )
+            mock_set_cache.assert_called_once_with(value="2023-10-01")
 
     def test_returns_none_when_no_valid_dates_found(self):
         """
@@ -164,9 +159,7 @@ class TestHelperGetLatestCompatibilityDate(BaseTestCase):
             result = _get_latest_compatibility_date()
 
             self.assertEqual(result, "2023-10-01")
-            mock_set_cache.assert_called_once_with(
-                url=ESIMetaUrl.COMPATIBILITY_DATES.value, value="2023-10-01"
-            )
+            mock_set_cache.assert_called_once_with(value="2023-10-01")
 
     def test_handles_empty_dates_list(self):
         """
@@ -315,10 +308,7 @@ class TestHelperGetOpenAPISpecsJson(BaseTestCase):
             mock_logger.assert_called_once_with(
                 "ESI OpenAPI specs fetched successfully for compatibility date: 2023-10-01."
             )
-            mock_set_cache.assert_called_once_with(
-                url="https://esi.evetech.net/meta/openapi.json?compatibility_date=2023-10-01",
-                value={"openapi": "3.0.0"},
-            )
+            mock_set_cache.assert_called_once_with(value={"openapi": "3.0.0"})
 
     def test_uses_cached_openapi_specs_if_available(self):
         """
