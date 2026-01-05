@@ -8,20 +8,21 @@
 # yaozhihanyun <qq674070030@163.com>, 2025.
 # Karl Yin <yinxiangbo@me.com>, 2025.
 # AKA Patrick <hsc844766246@gmail.com>, 2025.
+# LichenKass <yuanchengwei_sz@163.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2025-12-16 14:59+0100\n"
-"PO-Revision-Date: 2025-12-08 07:00+0000\n"
-"Last-Translator: AKA Patrick <hsc844766246@gmail.com>\n"
+"POT-Creation-Date: 2026-01-05 19:49+0100\n"
+"PO-Revision-Date: 2025-12-21 13:32+0000\n"
+"Last-Translator: LichenKass <yuanchengwei_sz@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.14.3\n"
+"X-Generator: Weblate 5.15.1\n"
 
 #: esistatus/__init__.py:13 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
@@ -33,7 +34,7 @@ msgstr "ESI匹配日期。"
 
 #: esistatus/models.py:20
 msgid "The ESI status data."
-msgstr "ESI状态数据"
+msgstr "ESI状态数据。"
 
 #: esistatus/models.py:29
 msgid "ESI Endpoint Status"
@@ -95,21 +96,17 @@ msgstr ""
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:37
 #: esistatus/templates/esistatus/partials/index/esi-status.html:26
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:38
 #: esistatus/templates/esistatus/partials/index/esi-status.html:27
-#, fuzzy
-#| msgid "Green endpoints are responding as expected."
 msgid "These routes have an unknown status."
-msgstr "绿色终端正常运行。"
+msgstr "这些路径状态未知。"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:45
 #: esistatus/templates/esistatus/partials/index/esi-status.html:34
-#, fuzzy
-#| msgid "The ESI compatibility date."
 msgid "ESI compatibility date"
-msgstr "ESI匹配日期。"
+msgstr "ESI匹配日期"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:59
 msgid "Detailed ESI status"
@@ -122,11 +119,11 @@ msgstr "EVE Online状态"
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:66
 #: esistatus/templates/esistatus/partials/index/esi-status.html:47
 msgid "No ESI status data is available at this time."
-msgstr ""
+msgstr "当前ESI状态数据无法使用。"
 
 #: esistatus/templates/esistatus/partials/endpoints.html:64
 msgid "View in ESI API Explorer"
-msgstr ""
+msgstr "在 ESI API Explorer 中查看"
 
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:5
 msgid "Do you want to help translate this app into your language or improve the existing translation?"
@@ -138,7 +135,7 @@ msgstr "加入我们的翻译团队吧！"
 
 #: esistatus/templates/esistatus/partials/index/esi-status.html:48
 msgid "Please try again later."
-msgstr ""
+msgstr "请在稍后再试。"
 
 #~ msgid "Can access this app"
 #~ msgstr "能够访问此应用程序"
