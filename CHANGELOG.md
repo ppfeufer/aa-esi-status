@@ -36,11 +36,14 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [3.3.1] - 2026-01-05
+
 ### Changed
 
 - Redis cache handling refactored
   - Moved cache handling to a separate class
   - Improved cache key naming
+- Translations updated
 
 ### Removed
 
@@ -705,7 +708,8 @@ CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
 [3.1.0]: https://github.com/ppfeufer/aa-esi-status/compare/v3.0.1...v3.1.0 "v3.1.0"
 [3.2.0]: https://github.com/ppfeufer/aa-esi-status/compare/v3.1.0...v3.2.0 "v3.2.0"
 [3.3.0]: https://github.com/ppfeufer/aa-esi-status/compare/v3.2.0...v3.3.0 "v3.3.0"
-[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.0...HEAD "In Development"
+[3.3.1]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.0...v3.3.1 "v3.3.1"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.1...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
