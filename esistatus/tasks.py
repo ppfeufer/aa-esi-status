@@ -199,6 +199,81 @@ def _enrich_status_json(status: dict[str, Any], openapi: dict[str, Any]) -> list
     return status["routes"]
 
 
+def _append_value(dict_obj: dict, key: str, value: Any) -> None:
+    """
+    Append a value to a key in a dictionary
+
+    :param dict_obj: The dictionary
+    :type dict_obj: Dict
+    :param key: The key
+    :type key: str
+    :param value: The value
+    :type value: Any
+    :return: None
+    :rtype: None
+    """
+
+    dict_obj.setdefault(key, [])
+
+    if not isinstance(dict_obj[key], list):
+        dict_obj[key] = [dict_obj[key]]
+
+    dict_obj[key].append(value)
+
+
+def _esi_endpoint_status_from_json(esi_endpoint_json: list) -> dict:
+    """
+    Get the ESI endpoint status from the ESI json
+
+    :param esi_endpoint_json: The ESI endpoint json
+    :type esi_endpoint_json: dict
+    :return: The ESI endpoint status
+    :rtype: dict
+    """
+
+    esi_endpoint_status = {
+        "Unknown": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+        "OK": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+        "Degraded": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+        "Down": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+        "Recovering": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+    }
+
+    for esi_endpoint in esi_endpoint_json:
+        status = esi_endpoint["status"]
+
+        _append_value(
+            dict_obj=esi_endpoint_status[status]["endpoints"],
+            key=esi_endpoint["tags"][0],
+            value={
+                "path": esi_endpoint["path"],
+                "method": esi_endpoint["method"].upper(),
+                "operation_id": esi_endpoint["operation_id"],
+                "summary": esi_endpoint["summary"],
+                "description": esi_endpoint["description"],
+            },
+        )
+
+        esi_endpoint_status[status]["count"] += 1
+
+    # Compute total endpoints, then sort endpoints and calculate percentages in one pass
+    endpoints_total = sum(
+        status_data.get("count", 0) for status_data in esi_endpoint_status.values()
+    )
+
+    for status_data in esi_endpoint_status.values():
+        status_data["endpoints"] = dict(sorted(status_data["endpoints"].items()))
+        percentage = (
+            (status_data["count"] / endpoints_total * 100)
+            if endpoints_total > 0 and status_data["count"] > 0
+            else 0
+        )
+        status_data["percentage"] = f"{percentage:.2f}%"
+
+    # Return the whole jazz
+    return {"total_endpoints": endpoints_total, "esi_status": esi_endpoint_status}
+
+
 @shared_task()
 def update_esi_status():
     """
@@ -231,11 +306,14 @@ def update_esi_status():
 
         return
 
+    esi_status_data = _esi_endpoint_status_from_json(esi_endpoint_json=enriched_status)
+
     EsiStatus.objects.update_or_create(
         pk=1,
         defaults={
             "compatibility_date": latest_compatibility_date,
-            "status_data": enriched_status,
+            "status_data": esi_status_data.get("esi_status", {}),
+            "total_endpoints": esi_status_data.get("total_endpoints", 0),
         },
     )
 

@@ -8,7 +8,9 @@ import requests
 
 # AA ESI Status
 from esistatus.tasks import (
+    _append_value,
     _enrich_status_json,
+    _esi_endpoint_status_from_json,
     _get_esi_status_json,
     _get_latest_compatibility_date,
     _get_openapi_specs_json,
@@ -473,6 +475,218 @@ class TestHelperAddTagsToStatus(BaseTestCase):
         self.assertEqual(result[0]["tags"], ["Deprecated"])
 
 
+class TestHelperAppendValue(BaseTestCase):
+    """
+    Test the _append_value function
+    """
+
+    def test_append_value_to_existing_key_with_list(self):
+        """
+        Test the _append_value function with an existing key that has a list value
+
+        :return:
+        :rtype:
+        """
+
+        dict_obj = {"key1": [1, 2]}
+        _append_value(dict_obj, "key1", 3)
+
+        self.assertEqual(dict_obj, {"key1": [1, 2, 3]})
+
+    def test_append_value_to_existing_key_without_list(self):
+        """
+        Test the _append_value function with an existing key that has a non-list value
+
+        :return:
+        :rtype:
+        """
+
+        dict_obj = {"key1": 1}
+        _append_value(dict_obj, "key1", 2)
+
+        self.assertEqual(dict_obj, {"key1": [1, 2]})
+
+    def test_append_value_to_non_existing_key(self):
+        """
+        Test the _append_value function with a non-existing key
+
+        :return:
+        :rtype:
+        """
+
+        dict_obj = {}
+        _append_value(dict_obj, "key1", 1)
+
+        self.assertEqual(dict_obj, {"key1": [1]})
+
+    def test_append_value_to_existing_key_with_empty_list(self):
+        """
+        Test the _append_value function with an existing key that has an empty list value
+
+        :return:
+        :rtype:
+        """
+
+        dict_obj = {"key1": []}
+        _append_value(dict_obj, "key1", 1)
+
+        self.assertEqual(dict_obj, {"key1": [1]})
+
+    def test_append_value_to_existing_key_with_non_list_value(self):
+        """
+        Test the _append_value function with an existing key that has a non-list value
+
+        :return:
+        :rtype:
+        """
+
+        dict_obj = {"key1": "value1"}
+        _append_value(dict_obj, "key1", "value2")
+
+        self.assertEqual(dict_obj, {"key1": ["value1", "value2"]})
+
+
+class TestHelperEsiEndpointStatusFromJson(BaseTestCase):
+    """
+    Test the _esi_endpoint_status_from_json function
+    """
+
+    def test_processes_valid_esi_endpoint_json(self):
+        """
+        Test that the _esi_endpoint_status_from_json function processes valid ESI endpoint JSON
+
+        :return:
+        :rtype:
+        """
+
+        esi_endpoint_json = [
+            {
+                "status": "OK",
+                "tags": ["tag1"],
+                "path": "/path1",
+                "method": "get",
+                "operation_id": None,
+                "summary": None,
+                "description": None,
+            },
+            {
+                "status": "Down",
+                "tags": ["tag2"],
+                "path": "/path2",
+                "method": "post",
+                "operation_id": None,
+                "summary": None,
+                "description": None,
+            },
+        ]
+
+        result = _esi_endpoint_status_from_json(esi_endpoint_json)
+
+        self.assertEqual(result["esi_status"]["OK"]["count"], 1)
+        self.assertEqual(result["esi_status"]["Down"]["count"], 1)
+        self.assertEqual(
+            result["esi_status"]["OK"]["endpoints"]["tag1"][0]["path"], "/path1"
+        )
+        self.assertEqual(
+            result["esi_status"]["Down"]["endpoints"]["tag2"][0]["method"], "POST"
+        )
+
+    def test_handles_empty_esi_endpoint_json(self):
+        """
+        Test that the _esi_endpoint_status_from_json function handles empty ESI endpoint JSON
+
+        :return:
+        :rtype:
+        """
+
+        esi_endpoint_json = []
+
+        result = _esi_endpoint_status_from_json(esi_endpoint_json)
+
+        self.assertEqual(result["esi_status"]["OK"]["count"], 0)
+        self.assertEqual(result["esi_status"]["Down"]["count"], 0)
+        self.assertEqual(result["esi_status"]["OK"]["percentage"], "0.00%")
+        self.assertEqual(result["esi_status"]["Down"]["percentage"], "0.00%")
+
+    def test_calculates_percentages_correctly(self):
+        """
+        Test that the _esi_endpoint_status_from_json function calculates percentages correctly
+
+        :return:
+        :rtype:
+        """
+
+        esi_endpoint_json = [
+            {
+                "status": "OK",
+                "tags": ["tag1"],
+                "path": "/path1",
+                "method": "get",
+                "operation_id": None,
+                "summary": None,
+                "description": None,
+            },
+            {
+                "status": "OK",
+                "tags": ["tag2"],
+                "path": "/path2",
+                "method": "post",
+                "operation_id": None,
+                "summary": None,
+                "description": None,
+            },
+            {
+                "status": "Down",
+                "tags": ["tag3"],
+                "path": "/path3",
+                "method": "get",
+                "operation_id": None,
+                "summary": None,
+                "description": None,
+            },
+        ]
+
+        result = _esi_endpoint_status_from_json(esi_endpoint_json)
+
+        self.assertEqual(result["esi_status"]["OK"]["percentage"], "66.67%")
+        self.assertEqual(result["esi_status"]["Down"]["percentage"], "33.33%")
+
+    def test_sorts_endpoints_alphabetically_by_tag(self):
+        """
+        Test that the _esi_endpoint_status_from_json function sorts endpoints alphabetically by tag
+
+        :return:
+        :rtype:
+        """
+
+        esi_endpoint_json = [
+            {
+                "status": "OK",
+                "tags": ["tagB"],
+                "path": "/pathB",
+                "method": "get",
+                "operation_id": None,
+                "summary": None,
+                "description": None,
+            },
+            {
+                "status": "OK",
+                "tags": ["tagA"],
+                "path": "/pathA",
+                "method": "post",
+                "operation_id": None,
+                "summary": None,
+                "description": None,
+            },
+        ]
+
+        result = _esi_endpoint_status_from_json(esi_endpoint_json)
+
+        self.assertEqual(
+            list(result["esi_status"]["OK"]["endpoints"].keys()), ["tagA", "tagB"]
+        )
+
+
 class TestUpdateESIStatus(BaseTestCase):
     """
     Test the update_esi_status task.
@@ -493,7 +707,9 @@ class TestUpdateESIStatus(BaseTestCase):
             ),
             mock.patch(
                 "esistatus.tasks._get_esi_status_json",
-                return_value={"routes": [{"method": "GET", "path": "/alliances"}]},
+                return_value={
+                    "routes": [{"method": "GET", "path": "/alliances", "status": "OK"}]
+                },
             ),
             mock.patch(
                 "esistatus.tasks._get_openapi_specs_json",
@@ -507,20 +723,34 @@ class TestUpdateESIStatus(BaseTestCase):
         ):
             update_esi_status()
 
+            expected_status_data = {
+                "Unknown": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+                "OK": {
+                    "endpoints": {
+                        "alliances": [
+                            {
+                                "path": "/alliances",
+                                "method": "GET",
+                                "operation_id": None,
+                                "summary": None,
+                                "description": None,
+                            }
+                        ]
+                    },
+                    "count": 1,
+                    "percentage": "100.00%",
+                },
+                "Degraded": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+                "Down": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+                "Recovering": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
+            }
+
             mock_update.assert_called_once_with(
                 pk=1,
                 defaults={
                     "compatibility_date": "2023-10-01",
-                    "status_data": [
-                        {
-                            "method": "GET",
-                            "path": "/alliances",
-                            "description": None,
-                            "operation_id": None,
-                            "summary": None,
-                            "tags": ["alliances"],
-                        }
-                    ],
+                    "status_data": expected_status_data,
+                    "total_endpoints": 1,
                 },
             )
 
@@ -596,7 +826,15 @@ class TestUpdateESIStatus(BaseTestCase):
             )
 
     def test_skips_database_update_when_no_tags_in_enriched_status(self):
+        """
+        Test skipping the database update when there are no tags in the enriched status.
+
+        :return:
+        :rtype:
+        """
+
         enriched_status = [{"path": "/path1", "method": "GET", "tags": []}]
+
         with (
             mock.patch(
                 "esistatus.tasks._get_latest_compatibility_date",
@@ -619,6 +857,7 @@ class TestUpdateESIStatus(BaseTestCase):
             ) as mock_update,
         ):
             update_esi_status()
+
             mock_debug.assert_any_call(
                 "Enriched ESI status has no tags. Skipping database update."
             )
