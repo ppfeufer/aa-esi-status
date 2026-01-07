@@ -20,6 +20,10 @@ class EsiStatus(models.Model):
         help_text=_("The ESI status data."), null=True, blank=True
     )
 
+    total_endpoints = models.PositiveIntegerField(
+        help_text=_("Total number of ESI endpoints."), default=0
+    )
+
     class Meta:
         """
         Meta definitions

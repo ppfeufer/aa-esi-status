@@ -36,6 +36,10 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Changed
+
+- Move status calculation to the task that updates the ESI status data
+
 ## [3.3.1] - 2026-01-05
 
 ### Changed
