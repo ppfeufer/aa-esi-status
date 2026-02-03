@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-01-05 19:49+0100\n"
+"POT-Creation-Date: 2026-02-03 01:53+0100\n"
 "PO-Revision-Date: 2024-05-10 14:01+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Polish <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/pl/>\n"
@@ -29,11 +29,15 @@ msgstr ""
 msgid "The ESI status data."
 msgstr ""
 
-#: esistatus/models.py:29
+#: esistatus/models.py:24
+msgid "Total number of ESI endpoints."
+msgstr ""
+
+#: esistatus/models.py:33
 msgid "ESI Endpoint Status"
 msgstr ""
 
-#: esistatus/models.py:30
+#: esistatus/models.py:34
 msgid "ESI Endpoint Statuses"
 msgstr ""
 

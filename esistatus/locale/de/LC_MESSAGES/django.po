@@ -1,13 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# "H. Peter Pfeufer" <info@ppfeufer.de>, 2023, 2024, 2025.
+# "H. Peter Pfeufer" <info@ppfeufer.de>, 2023, 2024, 2025, 2026.
+# Tobi Jacobs <jacobstobi800@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-01-05 19:49+0100\n"
-"PO-Revision-Date: 2025-12-16 13:35+0000\n"
+"POT-Creation-Date: 2026-02-03 01:53+0100\n"
+"PO-Revision-Date: 2026-02-02 16:23+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/de/>\n"
 "Language: de\n"
@@ -15,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14.3\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #: esistatus/__init__.py:13 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
@@ -23,17 +24,21 @@ msgstr "ESI Status"
 
 #: esistatus/models.py:16
 msgid "The ESI compatibility date."
-msgstr "Das ESI Kompatibilitätsdatum."
+msgstr "Das ESI-Kompatibilitätsdatum."
 
 #: esistatus/models.py:20
 msgid "The ESI status data."
 msgstr "Die ESI-Statusdaten."
 
-#: esistatus/models.py:29
+#: esistatus/models.py:24
+msgid "Total number of ESI endpoints."
+msgstr "Gesamtzahl der ESI-Endpunkte."
+
+#: esistatus/models.py:33
 msgid "ESI Endpoint Status"
 msgstr "ESI-Endpunktstatus"
 
-#: esistatus/models.py:30
+#: esistatus/models.py:34
 msgid "ESI Endpoint Statuses"
 msgstr "ESI-Endpunktstatusse"
 
@@ -120,7 +125,7 @@ msgstr "Im ESI API Explorer anzeigen"
 
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:5
 msgid "Do you want to help translate this app into your language or improve the existing translation?"
-msgstr "Du möchtest helfen diese App in Deine Sprache zu übersetzen oder die bestehende Übersetzung verbessern?"
+msgstr "Du möchtest helfen diese App in Deine Sprache zu übersetzen oder die bestehende Übersetzung zu verbessern?"
 
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:8
 msgid "Join our team of translators!"

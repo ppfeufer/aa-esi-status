@@ -9,20 +9,21 @@
 # Karl Yin <yinxiangbo@me.com>, 2025.
 # AKA Patrick <hsc844766246@gmail.com>, 2025.
 # LichenKass <yuanchengwei_sz@163.com>, 2025.
+# nm l <mmttyyluo@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-01-05 19:49+0100\n"
-"PO-Revision-Date: 2025-12-21 13:32+0000\n"
-"Last-Translator: LichenKass <yuanchengwei_sz@163.com>\n"
+"POT-Creation-Date: 2026-02-03 01:53+0100\n"
+"PO-Revision-Date: 2026-01-26 05:17+0000\n"
+"Last-Translator: nm l <mmttyyluo@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #: esistatus/__init__.py:13 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
@@ -36,11 +37,15 @@ msgstr "ESI匹配日期。"
 msgid "The ESI status data."
 msgstr "ESI状态数据。"
 
-#: esistatus/models.py:29
+#: esistatus/models.py:24
+msgid "Total number of ESI endpoints."
+msgstr "ESI端点的总数。"
+
+#: esistatus/models.py:33
 msgid "ESI Endpoint Status"
 msgstr "esi状态"
 
-#: esistatus/models.py:30
+#: esistatus/models.py:34
 msgid "ESI Endpoint Statuses"
 msgstr "esi状态"
 
