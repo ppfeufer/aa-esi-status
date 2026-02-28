@@ -10,13 +10,14 @@
 # AKA Patrick <hsc844766246@gmail.com>, 2025.
 # LichenKass <yuanchengwei_sz@163.com>, 2025.
 # nm l <mmttyyluo@gmail.com>, 2026.
+# shkno <l13244536339@163.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
 "POT-Creation-Date: 2026-02-03 01:53+0100\n"
-"PO-Revision-Date: 2026-01-26 05:17+0000\n"
-"Last-Translator: nm l <mmttyyluo@gmail.com>\n"
+"PO-Revision-Date: 2026-02-12 05:23+0000\n"
+"Last-Translator: shkno <l13244536339@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +72,7 @@ msgstr "这些节点正常工作"
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:22
 #: esistatus/templates/esistatus/partials/index/esi-status.html:11
 msgid "Degraded"
-msgstr ""
+msgstr "降级"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:23
 #: esistatus/templates/esistatus/partials/index/esi-status.html:12
