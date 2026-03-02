@@ -36,6 +36,12 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [3.3.3] - 2026-03-02
+
+### Changed
+
+- Translations updated
+
 ## [3.3.2] - 2026-02-03
 
 ### Changed
@@ -717,7 +723,8 @@ CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
 [3.3.0]: https://github.com/ppfeufer/aa-esi-status/compare/v3.2.0...v3.3.0 "v3.3.0"
 [3.3.1]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.0...v3.3.1 "v3.3.1"
 [3.3.2]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.1...v3.3.2 "v3.3.2"
-[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.2...HEAD "In Development"
+[3.3.3]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.2...v3.3.3 "v3.3.3"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.3...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
