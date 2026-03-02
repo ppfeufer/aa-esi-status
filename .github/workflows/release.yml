@@ -46,7 +46,6 @@ jobs:
       - name: Package
         run: |
           python -m build
-            dist/*
 
       # Publish to PyPI using Trusted Publishing
       - name: Upload to PyPI
