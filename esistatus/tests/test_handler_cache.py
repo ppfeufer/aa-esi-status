@@ -1,8 +1,6 @@
 # Standard Library
+import datetime
 from unittest import mock
-
-# Django
-from django.utils.datetime_safe import datetime
 
 # AA ESI Status
 from esistatus.handler.cache import Cache
@@ -232,7 +230,7 @@ class TestCacheHelperGetMaxCacheTime(BaseTestCase):
         """
 
         with mock.patch("esistatus.handler.cache.now") as mock_now:
-            mock_now.return_value = datetime(2023, 10, 1, 10, 0, 0)
+            mock_now.return_value = datetime.datetime(2023, 10, 1, 10, 0, 0)
 
             result = Cache._get_max_cache_time()
 
@@ -247,7 +245,7 @@ class TestCacheHelperGetMaxCacheTime(BaseTestCase):
         """
 
         with mock.patch("esistatus.handler.cache.now") as mock_now:
-            mock_now.return_value = datetime(2023, 10, 1, 12, 0, 0)
+            mock_now.return_value = datetime.datetime(2023, 10, 1, 12, 0, 0)
 
             result = Cache._get_max_cache_time()
 
@@ -262,7 +260,7 @@ class TestCacheHelperGetMaxCacheTime(BaseTestCase):
         """
 
         with mock.patch("esistatus.handler.cache.now") as mock_now:
-            mock_now.return_value = datetime(2023, 10, 1, 11, 30, 0)
+            mock_now.return_value = datetime.datetime(2023, 10, 1, 11, 30, 0)
 
             result = Cache._get_max_cache_time()
 

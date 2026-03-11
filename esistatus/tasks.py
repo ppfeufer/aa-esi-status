@@ -3,15 +3,13 @@ Tasks for ESI status monitoring.
 """
 
 # Standard Library
+import datetime
 import json
 from typing import Any
 
 # Third Party
 import requests
 from celery import shared_task
-
-# Django
-from django.utils.datetime_safe import datetime
 
 # Alliance Auth
 from allianceauth.services.hooks import get_extension_logger
@@ -62,7 +60,7 @@ def _get_latest_compatibility_date() -> str | None:
                 continue
 
             try:
-                valid_dates.append(datetime.strptime(d, "%Y-%m-%d").date())
+                valid_dates.append(datetime.datetime.strptime(d, "%Y-%m-%d").date())
             except ValueError:
                 logger.debug(f"Skipping invalid compatibility date: {d}")
 
