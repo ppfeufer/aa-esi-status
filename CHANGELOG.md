@@ -36,9 +36,11 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [3.3.4] - 2026-03-11
+
 ### Changed
 
-- Move away from `django.utils.datetime_safe` in preparation for Django 5
+- Move away from `django.utils.datetime_safe` in preparation for Alliance Auth v5
 
 ## [3.3.3] - 2026-03-02
 
@@ -728,7 +730,8 @@ CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
 [3.3.1]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.0...v3.3.1 "v3.3.1"
 [3.3.2]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.1...v3.3.2 "v3.3.2"
 [3.3.3]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.2...v3.3.3 "v3.3.3"
-[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.3...HEAD "In Development"
+[3.3.4]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.3...v3.3.4 "v3.3.4"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.4...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
