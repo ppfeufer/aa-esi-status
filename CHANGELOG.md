@@ -36,6 +36,10 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Changed
+
+- Use headers for requests to ESI instead of query parameters to submit the ESI compatibility date
+
 ## [3.3.4] - 2026-03-11
 
 ### Changed

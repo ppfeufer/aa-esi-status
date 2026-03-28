@@ -18,10 +18,8 @@ class ESIMetaUrl(Enum):
     COMPATIBILITY_DATES = "https://esi.evetech.net/meta/compatibility-dates"
     """ESI Compatibility Dates URL"""
 
-    STATUS = (
-        "https://esi.evetech.net/meta/status?compatibility_date={compatibility_date}"
-    )
+    STATUS = "https://esi.evetech.net/meta/status"
     """ESI Status URL"""
 
-    OPENAPI_SPECS = "https://esi.evetech.net/meta/openapi.json?compatibility_date={compatibility_date}"
+    OPENAPI_SPECS = "https://esi.evetech.net/meta/openapi.json"
     """ESI OpenAPI Specs URL"""

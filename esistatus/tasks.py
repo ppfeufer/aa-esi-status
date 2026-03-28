@@ -46,7 +46,7 @@ def _get_latest_compatibility_date() -> str | None:
         return cached
 
     try:
-        response = requests.get(url, headers=request_headers, timeout=10)
+        response = requests.get(url=url, headers=request_headers, timeout=10)
         response.raise_for_status()
 
         dates = response.json().get("compatibility_dates", [])
@@ -94,10 +94,12 @@ def _get_esi_status_json(compatibility_date: str) -> dict | None:
     :rtype:
     """
 
-    status_url = ESIMetaUrl.STATUS.value.format(compatibility_date=compatibility_date)
-
     try:
-        response = requests.get(url=status_url, headers=request_headers, timeout=10)
+        # Use a copy of the base headers and add X-Compatibility-Date without mutating the module-level dict
+        headers = {**request_headers, "X-Compatibility-Date": compatibility_date}
+        response = requests.get(
+            url=ESIMetaUrl.STATUS.value, headers=headers, timeout=10
+        )
         response.raise_for_status()
         esi_status = response.json()
 
@@ -131,9 +133,6 @@ def _get_openapi_specs_json(compatibility_date: str) -> dict | None:
     :rtype:
     """
 
-    openapi_url = ESIMetaUrl.OPENAPI_SPECS.value.format(
-        compatibility_date=compatibility_date
-    )
     cacke_subkey = f"openapi:{compatibility_date}"
     cached = Cache(subkey=cacke_subkey).get()
 
@@ -145,7 +144,11 @@ def _get_openapi_specs_json(compatibility_date: str) -> dict | None:
         return cached
 
     try:
-        response = requests.get(url=openapi_url, headers=request_headers, timeout=10)
+        # Use a copy of the base headers and add X-Compatibility-Date without mutating the module-level dict
+        headers = {**request_headers, "X-Compatibility-Date": compatibility_date}
+        response = requests.get(
+            url=ESIMetaUrl.OPENAPI_SPECS.value, headers=headers, timeout=10
+        )
         response.raise_for_status()
         openapi_specs = response.json()
 
