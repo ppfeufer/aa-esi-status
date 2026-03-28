@@ -41,6 +41,11 @@ dynamic = [
 dependencies = [
     "allianceauth>=4.9",
 ]
+optional-dependencies.tests-allianceauth-development = [
+    "allianceauth @ git+https://gitlab.com/allianceauth/allianceauth#egg=master",
+    "coverage",
+    "django-webtest",
+]
 optional-dependencies.tests-allianceauth-latest = [
     "coverage",
     "django-webtest",
@@ -59,3 +64,4 @@ build.include = [
     "/esistatus",
 ]
 version.path = "esistatus/__init__.py"
+metadata.allow-direct-references = true
