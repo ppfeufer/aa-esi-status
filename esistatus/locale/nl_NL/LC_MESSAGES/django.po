@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
 "POT-Creation-Date: 2026-03-11 12:49+0100\n"
-"PO-Revision-Date: 2026-01-30 22:55+0000\n"
+"PO-Revision-Date: 2026-04-18 04:23+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Dutch <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/nl/>\n"
 "Language: nl_NL\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16.2\n"
 
 #: esistatus/__init__.py:13 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
@@ -128,7 +128,7 @@ msgstr ""
 
 #: esistatus/templates/esistatus/partials/footer/app-translation-footer.html:8
 msgid "Join our team of translators!"
-msgstr ""
+msgstr "Kom ons team van vertalers versterken!"
 
 #: esistatus/templates/esistatus/partials/index/esi-status.html:48
 msgid "Please try again later."
