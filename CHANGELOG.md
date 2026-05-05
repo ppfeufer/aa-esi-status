@@ -32,13 +32,21 @@ Section Order:
 ### Deprecated
 ### Removed
 ### Security
+### Miscellaneous
 -->
 
 <!-- Your changes go here -->
 
+## [3.3.5] - 2026-05-05
+
 ### Changed
 
 - Use headers for requests to ESI instead of query parameters to submit the ESI compatibility date
+- Translations updated
+
+### Miscellaneous
+
+- Ready for Alliance Auth v5
 
 ## [3.3.4] - 2026-03-11
 
@@ -735,7 +743,8 @@ CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
 [3.3.2]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.1...v3.3.2 "v3.3.2"
 [3.3.3]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.2...v3.3.3 "v3.3.3"
 [3.3.4]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.3...v3.3.4 "v3.3.4"
-[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.4...HEAD "In Development"
+[3.3.5]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.4...v3.3.5 "v3.3.5"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.5...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
