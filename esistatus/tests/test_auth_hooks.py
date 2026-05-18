@@ -14,7 +14,7 @@ from esistatus.auth_hooks import (
     register_esi_status_dashboard_hook,
 )
 from esistatus.tests import BaseTestCase
-from esistatus.tests.utils import create_fake_user
+from esistatus.tests.utils import create_fake_user, random_id
 from esistatus.views import dashboard_widget
 
 
@@ -31,8 +31,8 @@ class TestHooks(BaseTestCase):
 
         super().setUpClass()
 
-        cls.user_1001 = create_fake_user(
-            character_id=1001, character_name="Peter Parker"
+        cls.user_1 = create_fake_user(
+            character_id=random_id(), character_name="Peter Parker"
         )
 
         cls.html_menu = f"""
@@ -62,7 +62,7 @@ class TestHooks(BaseTestCase):
         :rtype:
         """
 
-        self.client.force_login(user=self.user_1001)
+        self.client.force_login(user=self.user_1)
 
         response = self.client.get(path=reverse(viewname="esistatus:index"))
 

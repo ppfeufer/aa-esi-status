@@ -15,7 +15,7 @@ from allianceauth.services.hooks import get_extension_logger
 
 # AA ESI Status
 from esistatus import __title__
-from esistatus.providers import AppLogger
+from esistatus.providers.applogger import AppLogger
 
 logger = AppLogger(my_logger=get_extension_logger(__name__), prefix=__title__)
 
@@ -31,8 +31,8 @@ class Cache:
         """
         Initialize the Cache with a subkey.
 
-        :param subkey:
-        :type subkey:
+        :param subkey: The subkey to use for caching.
+        :type subkey: string
         """
 
         if not isinstance(subkey, str):
@@ -47,10 +47,8 @@ class Cache:
         """
         Generate a cache key based on the URL.
 
-        :param url:
-        :type url:
-        :return:
-        :rtype:
+        :return: The full cache key.
+        :rtype: string
         """
 
         cache_key = f"{self.redis_key_base}:{self.subkey}"
@@ -62,10 +60,10 @@ class Cache:
     @staticmethod
     def _get_max_cache_time() -> int:
         """
-        Get the maximum cache time until 11:30 AM the next day.
+        Get the maximum cache time until 11:30 AM (UTC) the next day.
 
-        :return:
-        :rtype:
+        :return: The maximum cache time until 11:30 AM (UTC) the next day.
+        :rtype: integer
         """
 
         expire_time = now()
@@ -80,12 +78,10 @@ class Cache:
         """
         Set a specific cache value for a URL.
 
-        :param url:
-        :type url:
-        :param value:
-        :type value:
-        :return:
-        :rtype:
+        :param value: The value to cache.
+        :type value: Any
+        :return: None
+        :rtype: None
         """
 
         cache_key = self._get_cache_key()
@@ -102,10 +98,8 @@ class Cache:
         """
         Get a specific cache value for a URL.
 
-        :param url:
-        :type url:
-        :return:
-        :rtype:
+        :return: The cached value for a cache key, or False if not found.
+        :rtype: Any
         """
 
         cache_key = self._get_cache_key()

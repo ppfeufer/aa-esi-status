@@ -37,6 +37,11 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Changed
+
+- (Internal) Cache handler into Cache provider
+- (Internal) Split providers into modules
+
 ## [3.3.5] - 2026-05-05
 
 ### Changed
