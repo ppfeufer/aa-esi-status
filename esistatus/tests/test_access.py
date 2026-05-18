@@ -11,7 +11,7 @@ from django.urls import reverse
 
 # AA ESI Status
 from esistatus.tests import BaseTestCase
-from esistatus.tests.utils import create_fake_user
+from esistatus.tests.utils import create_fake_user, random_id
 
 
 class TestAccess(BaseTestCase):
@@ -29,15 +29,17 @@ class TestAccess(BaseTestCase):
 
         cls.group = Group.objects.create(name="Superhero")
 
-        cls.user_1001 = create_fake_user(
-            character_id=1001, character_name="Peter Parker"
+        cls.user_1 = create_fake_user(
+            character_id=random_id(), character_name="Peter Parker"
         )
-        cls.user_1002 = create_fake_user(character_id=1002, character_name="Clark Kent")
-        cls.user_1002.is_superuser = True
-        cls.user_1003 = create_fake_user(
-            character_id=1003, character_name="Bruce Wayne"
+        cls.user_2 = create_fake_user(
+            character_id=random_id(), character_name="Clark Kent"
         )
-        cls.user_1003.is_staff = True
+        cls.user_2.is_superuser = True
+        cls.user_3 = create_fake_user(
+            character_id=random_id(), character_name="Bruce Wayne"
+        )
+        cls.user_3.is_staff = True
 
     def test_has_access(self):
         """
@@ -56,7 +58,7 @@ class TestAccess(BaseTestCase):
         """
 
         # given
-        self.client.force_login(user=self.user_1001)
+        self.client.force_login(user=self.user_1)
 
         # when
         res = self.client.get(path=reverse(viewname="esistatus:index"))
@@ -70,7 +72,7 @@ class TestAccess(BaseTestCase):
         """
 
         # given
-        self.client.force_login(user=self.user_1002)
+        self.client.force_login(user=self.user_2)
 
         # when
         res = self.client.get(path=reverse(viewname="esistatus:index"))
@@ -84,7 +86,7 @@ class TestAccess(BaseTestCase):
         """
 
         # given
-        self.client.force_login(user=self.user_1003)
+        self.client.force_login(user=self.user_3)
 
         # when
         res = self.client.get(path=reverse(viewname="esistatus:index"))
@@ -98,7 +100,7 @@ class TestAccess(BaseTestCase):
         """
 
         # given
-        self.client.force_login(user=self.user_1001)
+        self.client.force_login(user=self.user_1)
 
         # when
         res = self.client.get(path=reverse(viewname="esistatus:index"))

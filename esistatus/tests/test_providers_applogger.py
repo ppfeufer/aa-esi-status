@@ -6,7 +6,7 @@ Test for the providers module.
 import logging
 
 # AA ESI Status
-from esistatus.providers import AppLogger
+from esistatus.providers.applogger import AppLogger
 from esistatus.tests import BaseTestCase
 
 

@@ -3,7 +3,7 @@ import datetime
 from unittest import mock
 
 # AA ESI Status
-from esistatus.handler.cache import Cache
+from esistatus.providers.cache import Cache
 from esistatus.tests import BaseTestCase
 
 
@@ -20,7 +20,7 @@ class TestCacheClassInit(BaseTestCase):
         :rtype:
         """
 
-        with mock.patch("esistatus.handler.cache.cache"):
+        with mock.patch("esistatus.providers.cache.cache"):
             cache_instance = Cache(subkey="test_subkey")
 
             self.assertEqual(cache_instance.subkey, "test_subkey")
@@ -229,7 +229,7 @@ class TestCacheHelperGetMaxCacheTime(BaseTestCase):
         :rtype:
         """
 
-        with mock.patch("esistatus.handler.cache.now") as mock_now:
+        with mock.patch("esistatus.providers.cache.now") as mock_now:
             mock_now.return_value = datetime.datetime(2023, 10, 1, 10, 0, 0)
 
             result = Cache._get_max_cache_time()
@@ -244,7 +244,7 @@ class TestCacheHelperGetMaxCacheTime(BaseTestCase):
         :rtype:
         """
 
-        with mock.patch("esistatus.handler.cache.now") as mock_now:
+        with mock.patch("esistatus.providers.cache.now") as mock_now:
             mock_now.return_value = datetime.datetime(2023, 10, 1, 12, 0, 0)
 
             result = Cache._get_max_cache_time()
@@ -259,7 +259,7 @@ class TestCacheHelperGetMaxCacheTime(BaseTestCase):
         :rtype:
         """
 
-        with mock.patch("esistatus.handler.cache.now") as mock_now:
+        with mock.patch("esistatus.providers.cache.now") as mock_now:
             mock_now.return_value = datetime.datetime(2023, 10, 1, 11, 30, 0)
 
             result = Cache._get_max_cache_time()
