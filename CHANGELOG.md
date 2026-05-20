@@ -39,6 +39,7 @@ Section Order:
 
 ### Changed
 
+- (Internal) AppLogger simplified
 - (Internal) Cache handler into Cache provider
 - (Internal) Split providers into modules
 
