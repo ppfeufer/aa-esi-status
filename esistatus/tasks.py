@@ -15,13 +15,13 @@ from celery import shared_task
 from allianceauth.services.hooks import get_extension_logger
 
 # AA ESI Status
-from esistatus import __title__, __user_agent__
+from esistatus import __user_agent__
 from esistatus.constants import ESIMetaUrl
 from esistatus.models import EsiStatus
 from esistatus.providers.applogger import AppLogger
 from esistatus.providers.cache import Cache
 
-logger = AppLogger(my_logger=get_extension_logger(__name__), prefix=__title__)
+logger = AppLogger(my_logger=get_extension_logger(__name__))
 
 request_headers = {"User-Agent": __user_agent__}
 

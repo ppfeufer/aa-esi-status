@@ -14,10 +14,9 @@ from django.utils.timezone import now
 from allianceauth.services.hooks import get_extension_logger
 
 # AA ESI Status
-from esistatus import __title__
 from esistatus.providers.applogger import AppLogger
 
-logger = AppLogger(my_logger=get_extension_logger(__name__), prefix=__title__)
+logger = AppLogger(my_logger=get_extension_logger(__name__))
 
 
 class Cache:
