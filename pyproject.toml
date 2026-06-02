@@ -56,7 +56,7 @@ urls.Tracker = "https://github.com/ppfeufer/aa-esi-status/issues"
 urls.Translation = "https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/"
 
 [tool.hatch]
+version.path = "esistatus/__init__.py"
 build.include = [
     "/esistatus",
 ]
-version.path = "esistatus/__init__.py"
