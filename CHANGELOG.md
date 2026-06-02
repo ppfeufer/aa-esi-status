@@ -37,11 +37,14 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [3.4.0] - 2026-06-02
+
 ### Changed
 
 - (Internal) AppLogger simplified
 - (Internal) Cache handler into Cache provider
 - (Internal) Split providers into modules
+- Translations updated
 
 ## [3.3.5] - 2026-05-05
 
@@ -750,7 +753,8 @@ CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
 [3.3.3]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.2...v3.3.3 "v3.3.3"
 [3.3.4]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.3...v3.3.4 "v3.3.4"
 [3.3.5]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.4...v3.3.5 "v3.3.5"
-[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.5...HEAD "In Development"
+[3.4.0]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.5...v3.4.0 "v3.4.0"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v3.4.0...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
