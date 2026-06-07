@@ -37,6 +37,8 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [4.0.0] - 2026-06-07
+
 > [!IMPORTANT]
 >
 > **This version needs Alliance Auth v5!**
@@ -765,7 +767,8 @@ CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
 [3.3.4]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.3...v3.3.4 "v3.3.4"
 [3.3.5]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.4...v3.3.5 "v3.3.5"
 [3.4.0]: https://github.com/ppfeufer/aa-esi-status/compare/v3.3.5...v3.4.0 "v3.4.0"
-[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v3.4.0...HEAD "In Development"
+[4.0.0]: https://github.com/ppfeufer/aa-esi-status/compare/v3.4.0...v4.0.0 "v4.0.0"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v4.0.0...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
