@@ -37,6 +37,17 @@ Section Order:
 
 <!-- Your changes go here -->
 
+> [!IMPORTANT]
+>
+> **This version needs Alliance Auth v5!**
+>
+> Please make sure to update your Alliance Auth instance **before** you install this
+> version, otherwise an update to Alliance Auth will be pulled in unsupervised.
+
+### Removed
+
+- Support for Alliance Auth v4
+
 ## [3.4.0] - 2026-06-02
 
 ### Changed
