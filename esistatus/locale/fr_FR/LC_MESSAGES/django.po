@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
-"Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-06-02 10:27+0200\n"
-"PO-Revision-Date: 2026-05-22 10:23+0000\n"
+"Report-Msgid-Bugs-To: https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/\n"
+"POT-Creation-Date: 2026-07-01 09:45+0000\n"
+"PO-Revision-Date: 2026-06-26 17:57+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: French <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/fr/>\n"
 "Language: fr_FR\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2026.5\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: esistatus/__init__.py:13 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
@@ -29,10 +29,8 @@ msgid "The ESI compatibility date."
 msgstr ""
 
 #: esistatus/models.py:20
-#, fuzzy
-#| msgid "Detailed ESI status"
 msgid "The ESI status data."
-msgstr "Statut ESI détaillé"
+msgstr ""
 
 #: esistatus/models.py:24
 msgid "Total number of ESI endpoints."
