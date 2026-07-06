@@ -1,24 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Author50CO <tkddlschry@gmail.com>, 2023, 2024.
-# Peter Pfeufer <info@ppfeufer.de>, 2023, 2024, 2025.
-# Mind of the Raven <okanieva@gmail.com>, 2024.
-# SiO4 <hohoit0078@gmail.com>, 2025.
+# Author50CO <tkddlschry@gmail.com>, 2023, 2024, 2026.
+# Peter Pfeufer <info@ppfeufer.de>, 2023, 2024, 2025, 2026.
+# Mind of the Raven <okanieva@gmail.com>, 2024, 2026.
+# SiO4 <hohoit0078@gmail.com>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-06-02 10:27+0200\n"
-"PO-Revision-Date: 2025-07-22 17:13+0000\n"
-"Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
+"POT-Creation-Date: 2026-07-06 21:12+0200\n"
+"PO-Revision-Date: 2026-07-06 19:19+0000\n"
+"Last-Translator: SiO4 <hohoit0078@gmail.com>\n"
 "Language-Team: Korean <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/ko/>\n"
 "Language: ko_KR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.12.2\n"
+"X-Generator: Weblate 2026.7\n"
 
 #: esistatus/__init__.py:13 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
@@ -29,10 +29,8 @@ msgid "The ESI compatibility date."
 msgstr ""
 
 #: esistatus/models.py:20
-#, fuzzy
-#| msgid "Detailed ESI status"
 msgid "The ESI status data."
-msgstr "ESI 상태"
+msgstr ""
 
 #: esistatus/models.py:24
 msgid "Total number of ESI endpoints."
@@ -56,10 +54,8 @@ msgid "Status"
 msgstr "상태"
 
 #: esistatus/templates/esistatus/index.html:11
-#, fuzzy
-#| msgid "Detailed ESI status"
 msgid "Loading ESI status…"
-msgstr "ESI 상태"
+msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
 #: esistatus/templates/esistatus/partials/index/esi-status.html:6
