@@ -6,10 +6,8 @@ Test utilities
 import re
 import secrets
 
-# Django
-from django.contrib.auth.models import User
-
 # Alliance Auth
+from allianceauth.authentication.models import User
 from allianceauth.tests.auth_utils import AuthUtils
 
 
