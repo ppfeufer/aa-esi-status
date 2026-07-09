@@ -6,8 +6,10 @@ Test checks for access to fleetpings
 from http import HTTPStatus
 
 # Django
-from django.contrib.auth.models import Group
 from django.urls import reverse
+
+# Alliance Auth
+from allianceauth.groupmanagement.models import Group
 
 # AA ESI Status
 from esistatus.tests import BaseTestCase
