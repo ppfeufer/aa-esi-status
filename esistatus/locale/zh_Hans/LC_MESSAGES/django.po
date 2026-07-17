@@ -15,16 +15,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-07-06 21:12+0200\n"
-"PO-Revision-Date: 2026-07-06 19:19+0000\n"
-"Last-Translator: Karl Yin <yinxiangbo@me.com>\n"
+"POT-Creation-Date: 2026-07-17 17:15+0200\n"
+"PO-Revision-Date: 2026-07-17 15:21+0000\n"
+"Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Chinese (Simplified Han script) <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.7\n"
+"X-Generator: Weblate 2026.7.1\n"
 
 #: esistatus/__init__.py:13 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
@@ -34,19 +34,23 @@ msgstr "esi状态"
 msgid "The ESI compatibility date."
 msgstr "ESI匹配日期。"
 
-#: esistatus/models.py:20
+#: esistatus/models.py:21
+msgid "The name ESI is currently going by. The three letters have never once meant the same thing twice."
+msgstr ""
+
+#: esistatus/models.py:30
 msgid "The ESI status data."
 msgstr "ESI状态数据。"
 
-#: esistatus/models.py:24
+#: esistatus/models.py:34
 msgid "Total number of ESI endpoints."
 msgstr "ESI端点的总数。"
 
-#: esistatus/models.py:33
+#: esistatus/models.py:43
 msgid "ESI Endpoint Status"
 msgstr "esi状态"
 
-#: esistatus/models.py:34
+#: esistatus/models.py:44
 msgid "ESI Endpoint Statuses"
 msgstr "esi状态"
 
@@ -111,8 +115,9 @@ msgstr "这些路径状态未知。"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:45
 #: esistatus/templates/esistatus/partials/index/esi-status.html:34
-msgid "ESI compatibility date"
-msgstr "ESI匹配日期"
+#, python-format
+msgid "%(esi_name)s compatibility date"
+msgstr "%(esi_name)s 匹配日期"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:59
 msgid "Detailed ESI status"
@@ -142,31 +147,3 @@ msgstr "加入我们的翻译团队吧！"
 #: esistatus/templates/esistatus/partials/index/esi-status.html:48
 msgid "Please try again later."
 msgstr "请在稍后再试。"
-
-#~ msgid "Can access this app"
-#~ msgstr "能够访问此应用程序"
-
-#~ msgid "Red endpoints"
-#~ msgstr "红色终端"
-
-#~ msgid "Yellow endpoints"
-#~ msgstr "黄色终端"
-
-#~ msgid "Green endpoints"
-#~ msgstr "绿色终端"
-
-#~ msgid "Couldn't read the ESI status."
-#~ msgstr "无法读取 ESI 状态。"
-
-#~ msgid "Error Message"
-#~ msgstr "错误信息"
-
-#, python-brace-format
-#~ msgid "ESI Status v{__version__}"
-#~ msgstr "esi 状态 {__version__}"
-
-#~ msgid "Loading …"
-#~ msgstr "加载中…"
-
-#~ msgid "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely."
-#~ msgstr "无法读取 ESI 状态。 请尝试重新加载页面。 如果这没有解决，ESI 可能完全失效了。"

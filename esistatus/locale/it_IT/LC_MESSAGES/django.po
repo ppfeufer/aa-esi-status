@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-07-06 21:12+0200\n"
+"POT-Creation-Date: 2026-07-17 17:15+0200\n"
 "PO-Revision-Date: 2026-07-06 19:19+0000\n"
 "Last-Translator: Alexander <alex301298@live.it>\n"
 "Language-Team: Italian <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/it/>\n"
@@ -27,21 +27,25 @@ msgstr "Stato ESI"
 msgid "The ESI compatibility date."
 msgstr ""
 
-#: esistatus/models.py:20
+#: esistatus/models.py:21
+msgid "The name ESI is currently going by. The three letters have never once meant the same thing twice."
+msgstr ""
+
+#: esistatus/models.py:30
 msgid "The ESI status data."
 msgstr ""
 
-#: esistatus/models.py:24
+#: esistatus/models.py:34
 msgid "Total number of ESI endpoints."
 msgstr ""
 
-#: esistatus/models.py:33
+#: esistatus/models.py:43
 #, fuzzy
 #| msgid "ESI Status"
 msgid "ESI Endpoint Status"
 msgstr "Stato ESI"
 
-#: esistatus/models.py:34
+#: esistatus/models.py:44
 #, fuzzy
 #| msgid "ESI Status"
 msgid "ESI Endpoint Statuses"
@@ -108,7 +112,8 @@ msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:45
 #: esistatus/templates/esistatus/partials/index/esi-status.html:34
-msgid "ESI compatibility date"
+#, python-format
+msgid "%(esi_name)s compatibility date"
 msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:59
@@ -139,6 +144,3 @@ msgstr "Unisciti al nostro team di traduttori!"
 #: esistatus/templates/esistatus/partials/index/esi-status.html:48
 msgid "Please try again later."
 msgstr ""
-
-#~ msgid "Can access this app"
-#~ msgstr "Ha accesso a questa applicazione"
