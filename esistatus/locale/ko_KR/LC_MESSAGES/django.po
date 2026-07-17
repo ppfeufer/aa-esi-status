@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-07-06 21:12+0200\n"
+"POT-Creation-Date: 2026-07-17 17:15+0200\n"
 "PO-Revision-Date: 2026-07-06 19:19+0000\n"
 "Last-Translator: SiO4 <hohoit0078@gmail.com>\n"
 "Language-Team: Korean <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/ko/>\n"
@@ -28,21 +28,25 @@ msgstr "ESI 상태"
 msgid "The ESI compatibility date."
 msgstr ""
 
-#: esistatus/models.py:20
+#: esistatus/models.py:21
+msgid "The name ESI is currently going by. The three letters have never once meant the same thing twice."
+msgstr ""
+
+#: esistatus/models.py:30
 msgid "The ESI status data."
 msgstr ""
 
-#: esistatus/models.py:24
+#: esistatus/models.py:34
 msgid "Total number of ESI endpoints."
 msgstr ""
 
-#: esistatus/models.py:33
+#: esistatus/models.py:43
 #, fuzzy
 #| msgid "ESI Status"
 msgid "ESI Endpoint Status"
 msgstr "ESI 상태"
 
-#: esistatus/models.py:34
+#: esistatus/models.py:44
 #, fuzzy
 #| msgid "ESI Status"
 msgid "ESI Endpoint Statuses"
@@ -109,7 +113,8 @@ msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:45
 #: esistatus/templates/esistatus/partials/index/esi-status.html:34
-msgid "ESI compatibility date"
+#, python-format
+msgid "%(esi_name)s compatibility date"
 msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:59
@@ -140,24 +145,3 @@ msgstr "번역가 팀에 참여하세요!"
 #: esistatus/templates/esistatus/partials/index/esi-status.html:48
 msgid "Please try again later."
 msgstr ""
-
-#~ msgid "Can access this app"
-#~ msgstr "서비스에 접근할 수 있습니다"
-
-#~ msgid "Red endpoints"
-#~ msgstr "적색 엔드포인트"
-
-#~ msgid "Yellow endpoints"
-#~ msgstr "황색 엔드포인트"
-
-#, fuzzy
-#~| msgid "Green Endpoints"
-#~ msgid "Green endpoints"
-#~ msgstr "청색 엔드포인트"
-
-#, python-brace-format
-#~ msgid "ESI Status v{__version__}"
-#~ msgstr "ESI 상태 v{__version__}"
-
-#~ msgid "Couldn't read the ESI status. Please try and reload the page. If that doesn't help, it is possible that ESI might be down entirely."
-#~ msgstr "ESI 상태를 읽을 수 없습니다. 페이지를 새로고침 해 보세요. 그래도 읽어올 수 없는 경우, ESI가 완전히 다운됐을 수도 있습니다."
