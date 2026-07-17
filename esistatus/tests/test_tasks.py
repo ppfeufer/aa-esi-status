@@ -11,6 +11,8 @@ from esistatus.tasks import (
     _append_value,
     _enrich_status_json,
     _esi_endpoint_status_from_json,
+    _get_esi_name_for_compatibility_date,
+    _get_esi_names_json,
     _get_esi_status_json,
     _get_latest_compatibility_date,
     _get_openapi_specs_json,
@@ -718,6 +720,10 @@ class TestUpdateESIStatus(BaseTestCase):
                 },
             ),
             mock.patch(
+                "esistatus.tasks._get_esi_name_for_compatibility_date",
+                return_value="EVE Swagger interface",
+            ),
+            mock.patch(
                 "esistatus.tasks.EsiStatus.objects.update_or_create"
             ) as mock_update,
         ):
@@ -751,6 +757,7 @@ class TestUpdateESIStatus(BaseTestCase):
                     "compatibility_date": "2023-10-01",
                     "status_data": expected_status_data,
                     "total_endpoints": 1,
+                    "esi_name": "EVE Swagger interface",
                 },
             )
 
@@ -862,3 +869,237 @@ class TestUpdateESIStatus(BaseTestCase):
                 "Enriched ESI status has no tags. Skipping database update."
             )
             mock_update.assert_not_called()
+
+
+class TestGetEsiNamesJson(BaseTestCase):
+    """
+    Tests for _get_esi_names_json
+    """
+
+    def test_returns_cached_value_and_skips_network_call(self):
+        """
+        Test returning cached value and skips network call.
+
+        :return:
+        :rtype:
+        """
+
+        cached_value = {"history": [{"date": "2026-07-14", "name": "Cached (ESI)"}]}
+
+        with (
+            mock.patch(
+                "esistatus.tasks.Cache.get", return_value=cached_value
+            ) as mock_cache_get,
+            mock.patch("esistatus.tasks.requests.get") as mock_requests_get,
+        ):
+
+            result = _get_esi_names_json("2026-07-14")
+
+            mock_cache_get.assert_called_once()
+            mock_requests_get.assert_not_called()
+            self.assertEqual(result, cached_value)
+
+    def test_returns_none_on_requests_exception(self):
+        """
+        Test returning none on network exception.
+
+        :return:
+        :rtype:
+        """
+
+        with (
+            mock.patch("esistatus.tasks.Cache.get", return_value=False),
+            mock.patch(
+                "esistatus.tasks.requests.get",
+                side_effect=requests.exceptions.RequestException("boom"),
+            ),
+        ):
+
+            result = _get_esi_names_json("2026-07-14")
+
+            self.assertIsNone(result)
+
+    def test_returns_none_on_invalid_json(self):
+        """
+        Test returning none on invalid json.
+
+        :return:
+        :rtype:
+        """
+
+        mock_resp = mock.Mock()
+        mock_resp.raise_for_status.return_value = None
+        mock_resp.json.side_effect = json.JSONDecodeError("msg", "doc", 0)
+
+        with (
+            mock.patch("esistatus.tasks.Cache.get", return_value=False),
+            mock.patch("esistatus.tasks.requests.get", return_value=mock_resp),
+        ):
+
+            result = _get_esi_names_json("2026-07-14")
+
+            self.assertIsNone(result)
+
+    def test_fetches_and_caches_response_on_success(self):
+        """
+        Test fetching and caching response on success.
+
+        :return:
+        :rtype:
+        """
+
+        response_json = {"history": [{"date": "2026-07-14", "name": "Fetched (ESI)"}]}
+        mock_resp = mock.Mock()
+        mock_resp.raise_for_status.return_value = None
+        mock_resp.json.return_value = response_json
+
+        with (
+            mock.patch("esistatus.tasks.Cache.get", return_value=False),
+            mock.patch(
+                "esistatus.tasks.requests.get", return_value=mock_resp
+            ) as mock_get,
+            mock.patch("esistatus.tasks.Cache.set") as mock_cache_set,
+        ):
+
+            result = _get_esi_names_json("2026-07-14")
+
+            mock_get.assert_called_once()
+            mock_cache_set.assert_called_once_with(value=response_json)
+            self.assertEqual(result, response_json)
+
+
+class TestGetEsiNameForCompatibilityDate(BaseTestCase):
+    """
+    Tests for _get_esi_name_for_compatibility_date
+    """
+
+    def test_returns_name_for_exact_compatibility_date(self):
+        """
+        Test retruning name for exact compatibility date.
+
+        :return:
+        :rtype:
+        """
+
+        history = [
+            {"date": "2026-07-14", "name": "EVE Swagger Incineration (ESI)"},
+            {"date": "2026-06-09", "name": "EVE Showcase Insignia (ESI)"},
+        ]
+
+        with mock.patch(
+            "esistatus.tasks._get_esi_names_json", return_value={"history": history}
+        ):
+            result = _get_esi_name_for_compatibility_date("2026-07-14")
+
+            self.assertEqual(result, "EVE Swagger Incineration (ESI)")
+
+    def test_returns_closest_past_name_when_no_exact_match(self):
+        """
+        Test returns closest past name when no exact match.
+
+        :return:
+        :rtype:
+        """
+
+        history = [
+            {"date": "2026-07-14", "name": "EVE Swagger Incineration (ESI)"},
+            {"date": "2026-06-09", "name": "EVE Showcase Insignia (ESI)"},
+        ]
+
+        with mock.patch(
+            "esistatus.tasks._get_esi_names_json", return_value={"history": history}
+        ):
+            result = _get_esi_name_for_compatibility_date("2026-07-15")
+
+            self.assertEqual(result, "EVE Swagger Incineration (ESI)")
+
+    def test_returns_none_when_compat_date_before_all_entries(self):
+        """
+        Test returns none when compat date before all entries.
+
+        :return:
+        :rtype:
+        """
+
+        history = [
+            {"date": "2025-06-25", "name": "EVE Service Interface (ESI)"},
+        ]
+
+        with mock.patch(
+            "esistatus.tasks._get_esi_names_json", return_value={"history": history}
+        ):
+            result = _get_esi_name_for_compatibility_date("2025-06-01")
+
+            self.assertIsNone(result)
+
+    def test_returns_none_when_esi_names_missing(self):
+        """
+        Test returns none when esi names missing.
+
+        :return:
+        :rtype:
+        """
+
+        with mock.patch("esistatus.tasks._get_esi_names_json", return_value=None):
+            result = _get_esi_name_for_compatibility_date("2026-07-15")
+
+            self.assertIsNone(result)
+
+    def test_skips_invalid_entry_dates_and_selects_valid(self):
+        """
+        Test skips invalid entry dates and selects valid.
+
+        :return:
+        :rtype:
+        """
+
+        history = [
+            {"date": "not-a-date", "name": "Bad Entry (ESI)"},
+            {"date": "2026-06-09", "name": "Good Entry (ESI)"},
+        ]
+
+        with mock.patch(
+            "esistatus.tasks._get_esi_names_json", return_value={"history": history}
+        ):
+            result = _get_esi_name_for_compatibility_date("2026-07-01")
+
+            self.assertEqual(result, "Good Entry (ESI)")
+
+    def test_returns_none_for_invalid_compatibility_date_format(self):
+        """
+        Test returns none for invalid compatibility date format.
+
+        :return:
+        :rtype:
+        """
+
+        history = [
+            {"date": "2026-06-09", "name": "EVE Showcase Insignia (ESI)"},
+        ]
+
+        with mock.patch(
+            "esistatus.tasks._get_esi_names_json", return_value={"history": history}
+        ):
+            result = _get_esi_name_for_compatibility_date("July 1 2026")
+
+            self.assertIsNone(result)
+
+    def test_ignores_numeric_date_values_and_selects_valid(self):
+        """
+        Test ignores numeric date and selects valid.
+
+        :return:
+        :rtype:
+        """
+
+        history = [
+            {"date": 20260609, "name": "Numeric Date (ESI)"},
+            {"date": "2026-06-09", "name": "Good Entry (ESI)"},
+        ]
+
+        with mock.patch(
+            "esistatus.tasks._get_esi_names_json", return_value={"history": history}
+        ):
+            result = _get_esi_name_for_compatibility_date("2026-07-01")
+
+            self.assertEqual(result, "Good Entry (ESI)")

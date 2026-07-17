@@ -37,6 +37,7 @@ def _esi_status() -> dict:
         "total_endpoints": esi_status.total_endpoints,
         "esi_status": esi_status.status_data,
         "compatibility_date": esi_status.compatibility_date,
+        "esi_name": esi_status.esi_name,
     }
 
 
@@ -71,6 +72,7 @@ def _render_esi_status(
     context = {
         "esi_endpoint_status": esi_status.get("esi_status"),
         "total_endpoints": esi_status.get("total_endpoints"),
+        "esi_name": esi_status.get("esi_name"),
     }
 
     if with_compat_date:

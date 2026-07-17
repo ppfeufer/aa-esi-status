@@ -21,5 +21,8 @@ class ESIMetaUrl(Enum):
     STATUS = "https://esi.evetech.net/meta/status"
     """ESI Status URL"""
 
+    NAME = "https://esi.evetech.net/meta/name"
+    """ESI Name URL"""
+
     OPENAPI_SPECS = "https://esi.evetech.net/meta/openapi.json"
     """ESI OpenAPI Specs URL"""
