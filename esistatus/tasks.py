@@ -174,6 +174,122 @@ def _get_openapi_specs_json(compatibility_date: str) -> dict | None:
         return None
 
 
+def _get_esi_names_json(compatibility_date: str):
+    """
+    Get the current name ESI is going by.
+    The three letters have never once meant the same thing twice.
+
+    :param compatibility_date:
+    :type compatibility_date:
+    :return:
+    :rtype:
+    """
+
+    cacke_subkey = f"name:{compatibility_date}"
+    cached = Cache(subkey=cacke_subkey).get()
+
+    if cached:
+        logger.debug(
+            msg=f"Using cached ESI names for compatibility date: {compatibility_date}."
+        )
+
+        return cached
+
+    try:
+        # Use a copy of the base headers and add X-Compatibility-Date without mutating the module-level dict
+        headers = {**request_headers, "X-Compatibility-Date": compatibility_date}
+        response = requests.get(url=ESIMetaUrl.NAME.value, headers=headers, timeout=10)
+        response.raise_for_status()
+        esi_names = response.json()
+
+        logger.info(
+            f"ESI names fetched successfully for compatibility date: {compatibility_date}."
+        )
+
+        Cache(subkey=cacke_subkey).set(value=esi_names)
+
+        return esi_names
+    except requests.exceptions.RequestException as exc:
+        resp = getattr(exc, "response", None)
+        error_str = (
+            f"{resp.status_code} - {resp.reason}" if resp is not None else str(exc)
+        )
+
+        logger.error(f"Unable to fetch ESI names. Error: {error_str}")
+
+        return None
+    except json.JSONDecodeError:
+        logger.error("Unable to fetch ESI names. ESI returned invalid JSON.")
+
+        return None
+
+
+def _get_esi_name_for_compatibility_date(compatibility_date: str):
+    """
+    Get the ESI Name for compatibility date.
+
+    :param compatibility_date:
+    :type compatibility_date:
+    :return:
+    :rtype:
+    """
+
+    logger.debug(f"Getting ESI Name for compatibility date: {compatibility_date}")
+
+    esi_names = _get_esi_names_json(compatibility_date=compatibility_date)
+
+    # Return early
+    if not esi_names:
+        logger.debug(f"No ESI Names found for compatibility date: {compatibility_date}")
+
+        return None
+
+    logger.debug(f"ESI Names found: {esi_names.get('history')}")
+
+    # Parse compatibility_date
+    try:
+        compat_date_obj = datetime.datetime.strptime(
+            compatibility_date, "%Y-%m-%d"
+        ).date()
+    except Exception:  # pylint: disable=broad-exception-caught
+        logger.debug(f"Invalid compatibility_date format: {compatibility_date}")
+
+        return None
+
+    esi_name = None
+    closest_date = None
+
+    for entry in esi_names.get("history", []):
+        entry_date_str = entry.get("date")
+        entry_name = entry.get("name")
+
+        if not isinstance(entry_date_str, str):
+            continue
+
+        try:
+            entry_date_obj = datetime.datetime.strptime(
+                entry_date_str, "%Y-%m-%d"
+            ).date()
+        except ValueError:
+            logger.debug(f"Skipping invalid entry date: {entry_date_str}")
+
+            continue
+
+        # Only consider entries that are <= compatibility date (past or equal)
+        if entry_date_obj <= compat_date_obj:
+            if closest_date is None or entry_date_obj > closest_date:
+                closest_date = entry_date_obj
+                esi_name = entry_name
+
+    # Clean the entry name by removing the literal suffix " (ESI)" if present
+    # if isinstance(esi_name, str):
+    #     esi_name = esi_name.replace(" (ESI)", "")
+
+    logger.debug(f"ESI Name: {esi_name}")
+
+    return esi_name
+
+
 def _enrich_status_json(status: dict[str, Any], openapi: dict[str, Any]) -> list[Any]:
     """
     Enrich ESI status routes with description, operation_id, summary and tags from OpenAPI specs.
@@ -308,6 +424,9 @@ def update_esi_status():
         return
 
     esi_status_data = _esi_endpoint_status_from_json(esi_endpoint_json=enriched_status)
+    esi_name = _get_esi_name_for_compatibility_date(
+        compatibility_date=latest_compatibility_date
+    )
 
     EsiStatus.objects.update_or_create(
         pk=1,
@@ -315,6 +434,7 @@ def update_esi_status():
             "compatibility_date": latest_compatibility_date,
             "status_data": esi_status_data.get("esi_status", {}),
             "total_endpoints": esi_status_data.get("total_endpoints", 0),
+            "esi_name": esi_name,
         },
     )
 

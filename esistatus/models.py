@@ -16,6 +16,16 @@ class EsiStatus(models.Model):
         help_text=_("The ESI compatibility date."), max_length=10
     )
 
+    esi_name = models.CharField(
+        help_text=_(
+            "The name ESI is currently going by. "
+            "The three letters have never once meant the same thing twice."
+        ),
+        max_length=250,
+        null=True,
+        blank=True,
+    )
+
     status_data = models.JSONField(
         help_text=_("The ESI status data."), null=True, blank=True
     )

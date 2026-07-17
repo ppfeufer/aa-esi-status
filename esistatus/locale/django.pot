@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 4.0.1\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-07-06 21:12+0200\n"
+"POT-Creation-Date: 2026-07-17 16:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,19 +25,25 @@ msgstr ""
 msgid "The ESI compatibility date."
 msgstr ""
 
-#: esistatus/models.py:20
+#: esistatus/models.py:21
+msgid ""
+"The name ESI is currently going by. The three letters have never once meant "
+"the same thing twice."
+msgstr ""
+
+#: esistatus/models.py:30
 msgid "The ESI status data."
 msgstr ""
 
-#: esistatus/models.py:24
+#: esistatus/models.py:34
 msgid "Total number of ESI endpoints."
 msgstr ""
 
-#: esistatus/models.py:33
+#: esistatus/models.py:43
 msgid "ESI Endpoint Status"
 msgstr ""
 
-#: esistatus/models.py:34
+#: esistatus/models.py:44
 msgid "ESI Endpoint Statuses"
 msgstr ""
 
@@ -106,7 +112,8 @@ msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:45
 #: esistatus/templates/esistatus/partials/index/esi-status.html:34
-msgid "ESI compatibility date"
+#, python-format
+msgid "%(esi_name)s compatibility date"
 msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:59

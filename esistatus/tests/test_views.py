@@ -78,6 +78,7 @@ class TestAjaxEsiStatus(BaseTestCase):
                 "esi_status": {"key": "value"},
                 "total_endpoints": 5,
                 "compatibility_date": "2023-10-01",
+                "esi_name": "EVE Swagger Interface",
             }
 
             response = ajax_esi_status(request=mock.Mock())
@@ -89,6 +90,7 @@ class TestAjaxEsiStatus(BaseTestCase):
                     "esi_endpoint_status": {"key": "value"},
                     "total_endpoints": 5,
                     "compatibility_date": "2023-10-01",
+                    "esi_name": "EVE Swagger Interface",
                 },
             )
             self.assertEqual(response, mock_render.return_value)
@@ -116,6 +118,7 @@ class TestAjaxEsiStatus(BaseTestCase):
                     "esi_endpoint_status": None,
                     "total_endpoints": None,
                     "compatibility_date": None,
+                    "esi_name": None,
                 },
             )
             self.assertEqual(response, mock_render.return_value)
@@ -142,6 +145,7 @@ class TestAjaxEsiStatusDasboardWidget(BaseTestCase):
                 "esi_status": {"status": "OK"},
                 "total_endpoints": 5,
                 "compatibility_date": "2023-10-01",
+                "esi_name": "EVE Swagger Interface",
             }
 
             ajax_dashboard_widget(request=mock.Mock())
@@ -153,6 +157,7 @@ class TestAjaxEsiStatusDasboardWidget(BaseTestCase):
                     "esi_endpoint_status": {"status": "OK"},
                     "total_endpoints": 5,
                     "compatibility_date": "2023-10-01",
+                    "esi_name": "EVE Swagger Interface",
                 },
             )
 
@@ -179,6 +184,7 @@ class TestAjaxEsiStatusDasboardWidget(BaseTestCase):
                     "esi_endpoint_status": None,
                     "total_endpoints": None,
                     "compatibility_date": None,
+                    "esi_name": None,
                 },
             )
 
@@ -222,6 +228,7 @@ class TestHelperEsiStatus(BaseTestCase):
             mock_get.return_value.total_endpoints = 5
             mock_get.return_value.status_data = {"key": "value"}
             mock_get.return_value.compatibility_date = "2023-10-01"
+            mock_get.return_value.esi_name = "EVE Swagger Interface"
 
             result = _esi_status()
 
@@ -231,6 +238,7 @@ class TestHelperEsiStatus(BaseTestCase):
                     "total_endpoints": 5,
                     "esi_status": {"key": "value"},
                     "compatibility_date": "2023-10-01",
+                    "esi_name": "EVE Swagger Interface",
                 },
             )
 
@@ -266,12 +274,18 @@ class TestHelperEsiStatus(BaseTestCase):
             mock_get.return_value.total_endpoints = 0
             mock_get.return_value.status_data = []
             mock_get.return_value.compatibility_date = None
+            mock_get.return_value.esi_name = "EVE Swagger Interface"
 
             result = _esi_status()
 
             self.assertEqual(
                 result,
-                {"total_endpoints": 0, "esi_status": [], "compatibility_date": None},
+                {
+                    "total_endpoints": 0,
+                    "esi_status": [],
+                    "compatibility_date": None,
+                    "esi_name": "EVE Swagger Interface",
+                },
             )
 
 
@@ -296,6 +310,7 @@ class TestHelperRenderEsiStatus(BaseTestCase):
                 "esi_status": {"status": "OK"},
                 "total_endpoints": 5,
                 "compatibility_date": "2023-10-01",
+                "esi_name": "EVE Swagger Interface",
             }
 
             _render_esi_status(
@@ -311,6 +326,7 @@ class TestHelperRenderEsiStatus(BaseTestCase):
                     "esi_endpoint_status": {"status": "OK"},
                     "total_endpoints": 5,
                     "compatibility_date": "2023-10-01",
+                    "esi_name": "EVE Swagger Interface",
                 },
             )
 
@@ -330,6 +346,7 @@ class TestHelperRenderEsiStatus(BaseTestCase):
                 "esi_status": {"status": "OK"},
                 "total_endpoints": 5,
                 "compatibility_date": "2023-10-01",
+                "esi_name": "EVE Swagger Interface",
             }
 
             _render_esi_status(
@@ -344,6 +361,7 @@ class TestHelperRenderEsiStatus(BaseTestCase):
                 context={
                     "esi_endpoint_status": {"status": "OK"},
                     "total_endpoints": 5,
+                    "esi_name": "EVE Swagger Interface",
                 },
             )
 
@@ -374,5 +392,6 @@ class TestHelperRenderEsiStatus(BaseTestCase):
                     "esi_endpoint_status": None,
                     "total_endpoints": None,
                     "compatibility_date": None,
+                    "esi_name": None,
                 },
             )
