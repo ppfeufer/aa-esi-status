@@ -1,18 +1,25 @@
 @media all {
-    .aa-esistatus .card-footer .card-default,
-    .aa-esistatus .card-footer .card-default .card-body p:last-child {
-        margin-bottom: 0;
+    .aa-esistatus {
+        .card-footer .card-default,
+        .card-footer .card-default .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        svg.svg-esi-logo {
+            height: 1rem;
+            margin-bottom: 0.25rem;
+            width: 3rem;
+        }
+
+        svg.svg-loading-spinner {
+            height: 2.5rem;
+            width: 2.5rem;
+        }
     }
 
-    .aa-esistatus svg.svg-esi-logo,
     .navbar-brand svg.svg-esi-logo {
         height: 1rem;
         margin-bottom: 0.25rem;
         width: 3rem;
-    }
-
-    .aa-esistatus svg.svg-loading-spinner {
-        height: 2.5rem;
-        width: 2.5rem;
     }
 }
