@@ -37,9 +37,12 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [4.1.1] - 2026-08-03
+
 ### Changed
 
-- CSS modernized
+- CSS modernized (If you have an older browser that can't handle the new CSS, update your browser…)
+- Translations updated
 
 ## [4.1.0] - 2026-07-17
 
@@ -801,7 +804,8 @@ CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
 [4.0.0]: https://github.com/ppfeufer/aa-esi-status/compare/v3.4.0...v4.0.0 "v4.0.0"
 [4.0.1]: https://github.com/ppfeufer/aa-esi-status/compare/v4.0.0...v4.0.1 "v4.0.1"
 [4.1.0]: https://github.com/ppfeufer/aa-esi-status/compare/v4.0.1...v4.1.0 "v4.1.0"
-[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v4.1.0...HEAD "In Development"
+[4.1.1]: https://github.com/ppfeufer/aa-esi-status/compare/v4.1.0...v4.1.1 "v4.1.1"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v4.1.1...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
