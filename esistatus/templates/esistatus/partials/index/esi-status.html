@@ -31,14 +31,21 @@
     {% if compatibility_date %}
         <div class="text-end">
             <p class="small mb-0">
-                {% blocktranslate %}{{ esi_name }} compatibility date{% endblocktranslate %}:
+                <a
+                    href="https://esi.evetech.net/meta/name?compatibility_date={{ compatibility_date }}"
+                    target="_blank"
+                    rel="noopener noreferer"
+                    referrerpolicy="no-referrer"
+                >{{ esi_name }}</a>
+
+                {% blocktranslate %}compatibility date{% endblocktranslate %}:
+
                 <a
                     href="https://esi.evetech.net/meta/compatibility-dates"
                     target="_blank"
                     rel="noopener noreferer"
-                >
-                    {{ compatibility_date }}
-                </a>
+                    referrerpolicy="no-referrer"
+                >{{ compatibility_date }}</a>
             </p>
         </div>
     {% endif %}
