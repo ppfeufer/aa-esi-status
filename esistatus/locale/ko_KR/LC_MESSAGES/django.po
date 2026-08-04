@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-08-03 21:12+0200\n"
+"POT-Creation-Date: 2026-08-04 14:04+0200\n"
 "PO-Revision-Date: 2026-07-06 19:19+0000\n"
 "Last-Translator: SiO4 <hohoit0078@gmail.com>\n"
 "Language-Team: Korean <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/ko/>\n"
@@ -111,22 +111,21 @@ msgstr ""
 msgid "These routes have an unknown status."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:45
-#: esistatus/templates/esistatus/partials/index/esi-status.html:34
-#, python-format
-msgid "%(esi_name)s compatibility date"
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:52
+#: esistatus/templates/esistatus/partials/index/esi-status.html:41
+msgid "compatibility date"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:59
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:66
 msgid "Detailed ESI status"
 msgstr "ESI 상태"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:61
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:68
 msgid "EVE Online status"
 msgstr "EVE Online 상태"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:66
-#: esistatus/templates/esistatus/partials/index/esi-status.html:47
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:73
+#: esistatus/templates/esistatus/partials/index/esi-status.html:54
 msgid "No ESI status data is available at this time."
 msgstr ""
 
@@ -142,6 +141,6 @@ msgstr "이 앱을 번역하거나 기존 번역을 개선하고 싶으신가요
 msgid "Join our team of translators!"
 msgstr "번역가 팀에 참여하세요!"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:48
+#: esistatus/templates/esistatus/partials/index/esi-status.html:55
 msgid "Please try again later."
 msgstr ""
