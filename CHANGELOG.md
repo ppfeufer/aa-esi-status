@@ -37,6 +37,10 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Added
+
+- Link to ESI naming history
+
 ## [4.1.1] - 2026-08-03
 
 ### Changed
