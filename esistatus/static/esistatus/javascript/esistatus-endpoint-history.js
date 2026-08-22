@@ -28,7 +28,7 @@
      * Convert a hex color code to an rgba(...) string with the specified alpha value.
      *
      * @param {string} hex - Hex color code (e.g., "#RRGGBB" or "#RGB")
-     * @param {number} alpha - Alpha value (0 to 1)
+     * @param {float|string} alpha - Alpha value (0 to 1 as factor or percentage string)
      * @returns {string} - RGBA color string (e.g., "rgb(r g b / alpha)")
      */
     const hexToRgba = (hex, alpha) => {
@@ -46,7 +46,7 @@
      * Convert a hex, rgb(...) or rgba(...) CSS value to an rgba(...) string with the specified alpha value.
      *
      * @param {string} cssColor - CSS color value (hex, rgb(...), or rgba(...))
-     * @param {number} alpha - Alpha value (0 to 1)
+     * @param {float|string} alpha - Alpha value (0 to 1 as factor or percentage string)
      * @returns {string|null} - RGBA color string (e.g., "rgb(r g b / alpha)") or null if input is invalid
      */
     const rgbAlpha = (cssColor, alpha) => {
@@ -103,7 +103,7 @@
 
     // Resolve colors using the Bootstrap utility classes.
     const color = {
-        backgroundAlpha: 0.25,
+        backgroundAlpha: '25%',
         danger: getBgColorFromClasses(['text-bg-danger', 'bg-danger']),
         default: getBgColorFromClasses(['text-bg-default', 'bg-secondary']),
         info: getBgColorFromClasses(['text-bg-info', 'bg-info']),
