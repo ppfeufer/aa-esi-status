@@ -347,12 +347,12 @@ def _esi_endpoint_status_from_json(esi_endpoint_json: list) -> dict:
     Get the ESI endpoint status from the ESI json
 
     :param esi_endpoint_json: The ESI endpoint json
-    :type esi_endpoint_json: dict
+    :type esi_endpoint_json: list
     :return: The ESI endpoint status
     :rtype: dict
     """
 
-    esi_endpoint_status = {
+    esi_endpoint_status: dict[Any, Any] = {
         "Unknown": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
         "OK": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
         "Degraded": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
