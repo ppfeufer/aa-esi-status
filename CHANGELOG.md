@@ -39,6 +39,7 @@ Section Order:
 
 ### Added
 
+- ESI endpoint status history graph
 - Link to ESI naming history
 
 ### Changed
