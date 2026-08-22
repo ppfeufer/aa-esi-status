@@ -7,6 +7,7 @@
                 <svg class="svg-sprite svg-esi-logo">
                     <use href="#esistatus-esi-logo"></use>
                 </svg>
+
                 {% translate "Status" %}
             </h4>
         </div>
@@ -14,30 +15,70 @@
         {% if esi_endpoint_status %}
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 g-sm-4 mb-3 mb-sm-4">
                 <!-- OK Routes -->
-                {% translate "OK" as translated_header_green %}
-                {% translate "These routes are working as expected." as translated_header_green_explanation %}
-                {% include 'esistatus/partials/endpoints.html' with title=translated_header_green status="OK" explanation=translated_header_green_explanation data=esi_endpoint_status.OK with_details=False %}
+                {% translate "OK" as translated_header_ok %}
+                {% translate "These routes are working as expected." as translated_header_ok_explanation %}
+                {% include 'esistatus/partials/endpoints.html' with title=translated_header_ok status="OK" explanation=translated_header_ok_explanation data=esi_endpoint_status.OK with_details=False %}
 
                 <!-- Degraded Routes -->
-                {% translate "Degraded" as translated_header_yellow %}
-                {% translate "These routes have a good chance of being slow or returning errors." as translated_header_yellow_explanation %}
-                {% include 'esistatus/partials/endpoints.html' with title=translated_header_yellow status="Degraded" explanation=translated_header_yellow_explanation data=esi_endpoint_status.Degraded with_details=False %}
+                {% translate "Degraded" as translated_header_degraded %}
+                {% translate "These routes have a good chance of being slow or returning errors." as translated_header_degraded_explanation %}
+                {% include 'esistatus/partials/endpoints.html' with title=translated_header_degraded status="Degraded" explanation=translated_header_degraded_explanation data=esi_endpoint_status.Degraded with_details=False %}
 
                 <!-- Down Routes -->
-                {% translate "Down" as translated_header_red %}
-                {% translate "These routes have a good chance of not responding at all or being completely unavailable." as translated_header_red_explanation %}
-                {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="Down" explanation=translated_header_red_explanation data=esi_endpoint_status.Down with_details=False %}
+                {% translate "Down" as translated_header_down %}
+                {% translate "These routes have a good chance of not responding at all or being completely unavailable." as translated_header_down_explanation %}
+                {% include 'esistatus/partials/endpoints.html' with title=translated_header_down status="Down" explanation=translated_header_down_explanation data=esi_endpoint_status.Down with_details=False %}
 
                 <!-- Recovering Routes -->
-                {% translate "Recovering" as translated_header_red %}
-                {% translate "These routes are recovering from previous issues and might not (yet) work as expected or might be slow." as translated_header_red_explanation %}
-                {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="Recovering" explanation=translated_header_red_explanation data=esi_endpoint_status.Recovering with_details=False %}
+                {% translate "Recovering" as translated_header_recovering %}
+                {% translate "These routes are recovering from previous issues and might not (yet) work as expected or might be slow." as translated_header_recovering_explanation %}
+                {% include 'esistatus/partials/endpoints.html' with title=translated_header_recovering status="Recovering" explanation=translated_header_recovering_explanation data=esi_endpoint_status.Recovering with_details=False %}
 
                 <!-- Unknown Routes -->
-                {% translate "Unknown" as translated_header_red %}
-                {% translate "These routes have an unknown status." as translated_header_red_explanation %}
-                {% include 'esistatus/partials/endpoints.html' with title=translated_header_red status="Unknown" explanation=translated_header_red_explanation data=esi_endpoint_status.Unknown with_details=False %}
+                {% translate "Unknown" as translated_header_unknown %}
+                {% translate "These routes have an unknown status." as translated_header_unknown_explanation %}
+                {% include 'esistatus/partials/endpoints.html' with title=translated_header_unknown status="Unknown" explanation=translated_header_unknown_explanation data=esi_endpoint_status.Unknown with_details=False %}
             </div>
+
+            {% if esi_endpoint_history %}
+                <div class="esi-status-history mb-3 mb-sm-4">
+                    <div class="text-center">
+                        <h5 class="ms-auto me-auto mb-3">
+                            {% translate "ESI endpoint status history" %}
+                        </h5>
+                    </div>
+
+                    <!-- Chart.js canvas: shows history of endpoint statuses over time -->
+                    <div style="position: relative; height: 220px;">
+                        <canvas id="esiStatusChart" aria-label="{% translate "ESI status history chart" %}" role="img"></canvas>
+                    </div>
+
+                    <script>
+                        // Use window property to avoid "Identifier ... has already been declared" when
+                        // this partial is reloaded via AJAX
+                        window.esistatusDashboardWidgetData = {
+                            chartData: {
+                                labels: [{% for entry in esi_endpoint_history %}"{{ entry.timestamp|date:"SHORT_DATETIME_FORMAT" }}" {% if not forloop.last %}, {% endif %}{% endfor %}],
+                                okData: [{% for entry in esi_endpoint_history %}{{ entry.ok }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                                degradedData: [{% for entry in esi_endpoint_history %}{{ entry.degraded }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                                downData: [{% for entry in esi_endpoint_history %}{{ entry.down }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                                recoveringData: [{% for entry in esi_endpoint_history %}{{ entry.recovering }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                                unknownData: [{% for entry in esi_endpoint_history %}{{ entry.unknown }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                            },
+                            translations: {
+                                ok: '{{ translated_header_ok|escapejs }}',
+                                degraded: "{{ translated_header_degraded|escapejs }}",
+                                down: "{{ translated_header_down|escapejs }}",
+                                recovering: "{{ translated_header_recovering|escapejs }}",
+                                unknown: "{{ translated_header_unknown|escapejs }}",
+                            }
+                        };
+                    </script>
+
+                    {% include "bundles/chart-js.html" %}
+                    {% include "esistatus/bundles/esistatus-endpoint-history-js.html" %}
+                </div>
+            {% endif %}
 
             {% if compatibility_date %}
                 <div class="text-start float-start">

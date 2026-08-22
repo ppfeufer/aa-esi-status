@@ -6,10 +6,8 @@ Test the apps' views
 from unittest import mock
 
 # AA ESI Status
-from esistatus.models import EsiStatus
 from esistatus.tests import BaseTestCase
 from esistatus.views import (
-    _esi_status,
     _render_esi_status,
     ajax_dashboard_widget,
     ajax_esi_status,
@@ -208,84 +206,6 @@ class TestIndex(BaseTestCase):
             index(request)
             mock_render.assert_called_once_with(
                 request=request, template_name="esistatus/index.html"
-            )
-
-
-class TestHelperEsiStatus(BaseTestCase):
-    """
-    Test the _esi_status function
-    """
-
-    def test_returns_esi_status_with_valid_data(self):
-        """
-        Test that the _esi_status function returns ESI status with valid data
-
-        :return:
-        :rtype:
-        """
-
-        with mock.patch("esistatus.views.EsiStatus.objects.get") as mock_get:
-            mock_get.return_value.total_endpoints = 5
-            mock_get.return_value.status_data = {"key": "value"}
-            mock_get.return_value.compatibility_date = "2023-10-01"
-            mock_get.return_value.esi_name = "EVE Swagger Interface"
-
-            result = _esi_status()
-
-            self.assertEqual(
-                result,
-                {
-                    "total_endpoints": 5,
-                    "esi_status": {"key": "value"},
-                    "compatibility_date": "2023-10-01",
-                    "esi_name": "EVE Swagger Interface",
-                },
-            )
-
-    def test_returns_empty_dict_when_esi_status_does_not_exist(self):
-        """
-        Test that the _esi_status function returns an empty dict when ESI status does not exist
-
-        :return:
-        :rtype:
-        """
-
-        with (
-            mock.patch(
-                "esistatus.views.EsiStatus.objects.get",
-                side_effect=EsiStatus.DoesNotExist,
-            ),
-            mock.patch("esistatus.views.logger.debug") as mock_debug,
-        ):
-            result = _esi_status()
-
-            self.assertEqual(result, {})
-            mock_debug.assert_called_with("ESI Status data does not exist.")
-
-    def test_processes_empty_esi_status_data(self):
-        """
-        Test that the _esi_status function processes empty ESI status data
-
-        :return:
-        :rtype:
-        """
-
-        with mock.patch("esistatus.views.EsiStatus.objects.get") as mock_get:
-            mock_get.return_value.total_endpoints = 0
-            mock_get.return_value.status_data = []
-            mock_get.return_value.compatibility_date = None
-            mock_get.return_value.esi_name = "EVE Swagger Interface"
-
-            result = _esi_status()
-
-            self.assertEqual(
-                result,
-                {
-                    "total_endpoints": 0,
-                    "esi_status": [],
-                    "compatibility_date": None,
-                    "esi_name": "EVE Swagger Interface",
-                },
             )
 
 
