@@ -25,7 +25,7 @@ class EsiStatus(models.Model):
 
     # Timestamp of the snapshot
     timestamp = models.DateTimeField(
-        help_text=_("The timestamp of the history entry."),
+        help_text=_("The timestamp of the status entry."),
         auto_now_add=True,
         # default=timezone.now,
         db_index=True,

@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             field=models.DateTimeField(
                 db_index=True,
                 default=django.utils.timezone.now,
-                help_text="The timestamp of the history entry.",
+                help_text="The timestamp of the status entry.",
             ),
         ),
         migrations.AddField(
@@ -61,7 +61,7 @@ class Migration(migrations.Migration):
             field=models.DateTimeField(
                 auto_now_add=True,
                 db_index=True,
-                help_text="The timestamp of the history entry.",
+                help_text="The timestamp of the status entry.",
             ),
         ),
     ]
