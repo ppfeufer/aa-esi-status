@@ -9,6 +9,8 @@
         return;
     }
 
+    console.log('esiStatusChart: ctx', ctx);
+
     // Flip data so the latest timestamp is on the right side of the chart.
     // The template emits entries in the same order as `esi_endpoint_history`.
     // Calling reverse() here ensures the most recent entry appears at the end (right).
@@ -18,6 +20,13 @@
     const downData = esistatusDashboardWidgetData.chartData.downData.reverse();
     const recoveringData = esistatusDashboardWidgetData.chartData.recoveringData.reverse();
     const unknownData = esistatusDashboardWidgetData.chartData.unknownData.reverse();
+
+    console.log('Labels:', labels);
+    console.log('OK Data:', okData);
+    console.log('Degraded Data:', degradedData);
+    console.log('Down Data:', downData);
+    console.log('Recovering Data:', recoveringData);
+    console.log('Unknown Data:', unknownData);
 
     const elementBody = document.querySelector('body');
     const elementBodyCss = getComputedStyle(elementBody);
