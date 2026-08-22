@@ -41,6 +41,10 @@ Section Order:
 
 - Link to ESI naming history
 
+### Changed
+
+- Use Bootstraps native gutter classes
+
 ## [4.1.1] - 2026-08-03
 
 ### Changed
