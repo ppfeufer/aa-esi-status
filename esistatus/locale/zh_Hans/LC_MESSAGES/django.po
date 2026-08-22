@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-08-03 21:12+0200\n"
-"PO-Revision-Date: 2026-07-17 15:21+0000\n"
+"POT-Creation-Date: 2026-08-04 14:04+0200\n"
+"PO-Revision-Date: 2026-08-04 14:53+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Chinese (Simplified Han script) <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -113,22 +113,21 @@ msgstr "未知"
 msgid "These routes have an unknown status."
 msgstr "这些路径状态未知。"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:45
-#: esistatus/templates/esistatus/partials/index/esi-status.html:34
-#, python-format
-msgid "%(esi_name)s compatibility date"
-msgstr "%(esi_name)s 匹配日期"
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:52
+#: esistatus/templates/esistatus/partials/index/esi-status.html:41
+msgid "compatibility date"
+msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:59
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:66
 msgid "Detailed ESI status"
 msgstr "ESI详细状态"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:61
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:68
 msgid "EVE Online status"
 msgstr "EVE Online状态"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:66
-#: esistatus/templates/esistatus/partials/index/esi-status.html:47
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:73
+#: esistatus/templates/esistatus/partials/index/esi-status.html:54
 msgid "No ESI status data is available at this time."
 msgstr "当前ESI状态数据无法使用。"
 
@@ -144,6 +143,6 @@ msgstr "您想帮助将此应用程序翻译成您的母语或改进现有的翻
 msgid "Join our team of translators!"
 msgstr "加入我们的翻译团队吧！"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:48
+#: esistatus/templates/esistatus/partials/index/esi-status.html:55
 msgid "Please try again later."
 msgstr "请在稍后再试。"

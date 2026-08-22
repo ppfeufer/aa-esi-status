@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-08-03 21:12+0200\n"
+"POT-Creation-Date: 2026-08-04 14:04+0200\n"
 "PO-Revision-Date: 2026-07-06 19:19+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Czech <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/cs/>\n"
@@ -105,22 +105,21 @@ msgstr ""
 msgid "These routes have an unknown status."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:45
-#: esistatus/templates/esistatus/partials/index/esi-status.html:34
-#, python-format
-msgid "%(esi_name)s compatibility date"
-msgstr ""
-
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:59
-msgid "Detailed ESI status"
-msgstr ""
-
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:61
-msgid "EVE Online status"
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:52
+#: esistatus/templates/esistatus/partials/index/esi-status.html:41
+msgid "compatibility date"
 msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:66
-#: esistatus/templates/esistatus/partials/index/esi-status.html:47
+msgid "Detailed ESI status"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:68
+msgid "EVE Online status"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:73
+#: esistatus/templates/esistatus/partials/index/esi-status.html:54
 msgid "No ESI status data is available at this time."
 msgstr ""
 
@@ -136,6 +135,6 @@ msgstr "Chceš pomoc s překladem této aplikace do tvého jazyka, nebo vylepši
 msgid "Join our team of translators!"
 msgstr "Připoj se k našemu týmu překladatelů!"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:48
+#: esistatus/templates/esistatus/partials/index/esi-status.html:55
 msgid "Please try again later."
 msgstr ""

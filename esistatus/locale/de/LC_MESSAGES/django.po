@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-08-03 21:12+0200\n"
-"PO-Revision-Date: 2026-07-17 15:20+0000\n"
+"POT-Creation-Date: 2026-08-04 14:04+0200\n"
+"PO-Revision-Date: 2026-08-04 14:53+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/de/>\n"
 "Language: de\n"
@@ -105,22 +105,21 @@ msgstr "Unbekannt"
 msgid "These routes have an unknown status."
 msgstr "Diese Routen haben einen unbekannten Status."
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:45
-#: esistatus/templates/esistatus/partials/index/esi-status.html:34
-#, python-format
-msgid "%(esi_name)s compatibility date"
-msgstr "%(esi_name)s Kompatibilitätsdatum"
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:52
+#: esistatus/templates/esistatus/partials/index/esi-status.html:41
+msgid "compatibility date"
+msgstr "Kompatibilitätsdatum"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:59
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:66
 msgid "Detailed ESI status"
 msgstr "Detaillierter ESI Status"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:61
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:68
 msgid "EVE Online status"
 msgstr "EVE Online Status"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:66
-#: esistatus/templates/esistatus/partials/index/esi-status.html:47
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:73
+#: esistatus/templates/esistatus/partials/index/esi-status.html:54
 msgid "No ESI status data is available at this time."
 msgstr "Derzeit sind keine ESI-Statusdaten verfügbar."
 
@@ -136,6 +135,6 @@ msgstr "Du möchtest helfen diese App in Deine Sprache zu übersetzen oder die b
 msgid "Join our team of translators!"
 msgstr "Tritt unserm Team von Übersetzern bei!"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:48
+#: esistatus/templates/esistatus/partials/index/esi-status.html:55
 msgid "Please try again later."
 msgstr "Bitte versuche es später noch einmal."

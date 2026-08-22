@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-08-03 21:12+0200\n"
-"PO-Revision-Date: 2026-07-20 10:25+0000\n"
-"Last-Translator: Hugo REGIBO <hugo@hugoregibo.be>\n"
+"POT-Creation-Date: 2026-08-04 14:04+0200\n"
+"PO-Revision-Date: 2026-08-04 14:53+0000\n"
+"Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: French <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/fr/>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
@@ -108,22 +108,21 @@ msgstr "Inconnu"
 msgid "These routes have an unknown status."
 msgstr "Ces routes ont un statut inconnu."
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:45
-#: esistatus/templates/esistatus/partials/index/esi-status.html:34
-#, python-format
-msgid "%(esi_name)s compatibility date"
-msgstr "Date de compatibilité %(esi_name)s"
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:52
+#: esistatus/templates/esistatus/partials/index/esi-status.html:41
+msgid "compatibility date"
+msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:59
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:66
 msgid "Detailed ESI status"
 msgstr "Statut ESI détaillé"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:61
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:68
 msgid "EVE Online status"
 msgstr "Statut EVE Online"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:66
-#: esistatus/templates/esistatus/partials/index/esi-status.html:47
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:73
+#: esistatus/templates/esistatus/partials/index/esi-status.html:54
 msgid "No ESI status data is available at this time."
 msgstr "Aucune donnée de statut ESI n'est disponible actuellement."
 
@@ -139,6 +138,6 @@ msgstr "Voulez-vous aider à traduire cette application dans votre langue ou am�
 msgid "Join our team of translators!"
 msgstr "Rejoignez notre équipe de traducteurs !"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:48
+#: esistatus/templates/esistatus/partials/index/esi-status.html:55
 msgid "Please try again later."
 msgstr "Veuillez réessayer plus tard."
