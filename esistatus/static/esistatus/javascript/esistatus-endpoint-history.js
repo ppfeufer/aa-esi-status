@@ -9,8 +9,6 @@
         return;
     }
 
-    console.log('esiStatusChart: ctx', ctx);
-
     // Flip data so the latest timestamp is on the right side of the chart.
     // The template emits entries in the same order as `esi_endpoint_history`.
     // Calling reverse() here ensures the most recent entry appears at the end (right).
@@ -20,13 +18,6 @@
     const downData = esistatusDashboardWidgetData.chartData.downData.reverse();
     const recoveringData = esistatusDashboardWidgetData.chartData.recoveringData.reverse();
     const unknownData = esistatusDashboardWidgetData.chartData.unknownData.reverse();
-
-    console.log('Labels:', labels);
-    console.log('OK Data:', okData);
-    console.log('Degraded Data:', degradedData);
-    console.log('Down Data:', downData);
-    console.log('Recovering Data:', recoveringData);
-    console.log('Unknown Data:', unknownData);
 
     const elementBody = document.querySelector('body');
     const elementBodyCss = getComputedStyle(elementBody);
@@ -111,11 +102,20 @@
     };
 
     // Resolve colors using the Bootstrap utility classes.
-    const colorBsSuccess = getBgColorFromClasses(['text-bg-success','bg-success']);
-    const colorBsWarning = getBgColorFromClasses(['text-bg-warning','bg-warning']);
-    const colorBsDanger = getBgColorFromClasses(['text-bg-danger','bg-danger']);
-    const colorBsInfo = getBgColorFromClasses(['text-bg-info','bg-info']);
-    const colorBsDefault = getBgColorFromClasses(['text-bg-default','bg-secondary']);
+    const color = {
+        danger: getBgColorFromClasses(['text-bg-danger', 'bg-danger']),
+        default: getBgColorFromClasses(['text-bg-default', 'bg-secondary']),
+        info: getBgColorFromClasses(['text-bg-info', 'bg-info']),
+        success: getBgColorFromClasses(['text-bg-success', 'bg-success']),
+        warning: getBgColorFromClasses(['text-bg-warning', 'bg-warning']),
+    };
+
+    // Common dataset options for all datasets
+    const dataset = {
+        fill: true,
+        pointRadius: 1,
+        tension: 0.1
+    };
 
     // Responsive chart with multiple datasets (line chart with filled areas)
     new Chart(ctx.getContext('2d'), { // jshint ignore:line
@@ -124,49 +124,39 @@
             labels: labels,
             datasets: [
                 {
+                    ...dataset,
                     label: esistatusDashboardWidgetData.translations.ok,
                     data: okData,
-                    borderColor: colorBsSuccess,
-                    backgroundColor: rgbAlpha(colorBsSuccess, 0.25),
-                    tension: 0.25,
-                    fill: true,
-                    pointRadius: 2,
+                    borderColor: color.success,
+                    backgroundColor: rgbAlpha(color.success, 0.25)
                 },
                 {
+                    ...dataset,
                     label: esistatusDashboardWidgetData.translations.degraded,
                     data: degradedData,
-                    borderColor: colorBsWarning,
-                    backgroundColor: rgbAlpha(colorBsWarning, 0.25),
-                    tension: 0.25,
-                    fill: true,
-                    pointRadius: 2,
+                    borderColor: color.warning,
+                    backgroundColor: rgbAlpha(color.warning, 0.25)
                 },
                 {
+                    ...dataset,
                     label: esistatusDashboardWidgetData.translations.down,
                     data: downData,
-                    borderColor: colorBsDanger,
-                    backgroundColor: rgbAlpha(colorBsDanger, 0.25),
-                    tension: 0.25,
-                    fill: true,
-                    pointRadius: 2,
+                    borderColor: color.danger,
+                    backgroundColor: rgbAlpha(color.danger, 0.25)
                 },
                 {
+                    ...dataset,
                     label: esistatusDashboardWidgetData.translations.recovering,
                     data: recoveringData,
-                    borderColor: colorBsInfo,
-                    backgroundColor: rgbAlpha(colorBsInfo, 0.25),
-                    tension: 0.25,
-                    fill: true,
-                    pointRadius: 2,
+                    borderColor: color.info,
+                    backgroundColor: rgbAlpha(color.info, 0.25)
                 },
                 {
+                    ...dataset,
                     label: esistatusDashboardWidgetData.translations.unknown,
                     data: unknownData,
-                    borderColor: colorBsDefault,
-                    backgroundColor: rgbAlpha(colorBsDefault, 0.25),
-                    tension: 0.25,
-                    fill: true,
-                    pointRadius: 2,
+                    borderColor: color.default,
+                    backgroundColor: rgbAlpha(color.default, 0.25)
                 }
             ]
         },
@@ -175,9 +165,9 @@
             animation: false,
             transitions: {
                 // disable show/hide/resize animations
-                show: { animation: false },
-                hide: { animation: false },
-                resize: { animation: false }
+                show: {animation: false},
+                hide: {animation: false},
+                resize: {animation: false}
             },
             responsive: true,
             maintainAspectRatio: false,
@@ -197,10 +187,10 @@
                 }
             },
             plugins: {
-                legend: { position: 'top' },
-                tooltip: { mode: 'index', intersect: false }
+                legend: {position: 'top'},
+                tooltip: {mode: 'index', intersect: false}
             },
-            interaction: { mode: 'index', intersect: false }
+            interaction: {mode: 'index', intersect: false}
         }
     });
 })();
