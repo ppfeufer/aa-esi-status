@@ -103,6 +103,7 @@
 
     // Resolve colors using the Bootstrap utility classes.
     const color = {
+        backgroundAlpha: 0.25,
         danger: getBgColorFromClasses(['text-bg-danger', 'bg-danger']),
         default: getBgColorFromClasses(['text-bg-default', 'bg-secondary']),
         info: getBgColorFromClasses(['text-bg-info', 'bg-info']),
@@ -128,35 +129,35 @@
                     label: esistatusDashboardWidgetData.translations.ok,
                     data: okData,
                     borderColor: color.success,
-                    backgroundColor: rgbAlpha(color.success, 0.25)
+                    backgroundColor: rgbAlpha(color.success, color.backgroundAlpha)
                 },
                 {
                     ...dataset,
                     label: esistatusDashboardWidgetData.translations.degraded,
                     data: degradedData,
                     borderColor: color.warning,
-                    backgroundColor: rgbAlpha(color.warning, 0.25)
+                    backgroundColor: rgbAlpha(color.warning, color.backgroundAlpha)
                 },
                 {
                     ...dataset,
                     label: esistatusDashboardWidgetData.translations.down,
                     data: downData,
                     borderColor: color.danger,
-                    backgroundColor: rgbAlpha(color.danger, 0.25)
+                    backgroundColor: rgbAlpha(color.danger, color.backgroundAlpha)
                 },
                 {
                     ...dataset,
                     label: esistatusDashboardWidgetData.translations.recovering,
                     data: recoveringData,
                     borderColor: color.info,
-                    backgroundColor: rgbAlpha(color.info, 0.25)
+                    backgroundColor: rgbAlpha(color.info, color.backgroundAlpha)
                 },
                 {
                     ...dataset,
                     label: esistatusDashboardWidgetData.translations.unknown,
                     data: unknownData,
                     borderColor: color.default,
-                    backgroundColor: rgbAlpha(color.default, 0.25)
+                    backgroundColor: rgbAlpha(color.default, color.backgroundAlpha)
                 }
             ]
         },
