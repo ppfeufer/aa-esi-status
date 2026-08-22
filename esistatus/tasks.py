@@ -432,16 +432,6 @@ def update_esi_status():
         compatibility_date=latest_compatibility_date
     )
 
-    # EsiStatus.objects.update_or_create(
-    #     pk=1,
-    #     defaults={
-    #         "compatibility_date": latest_compatibility_date,
-    #         "status_data": esi_status_data.get("esi_status", {}),
-    #         "total_endpoints": esi_status_data.get("total_endpoints", 0),
-    #         "esi_name": esi_name,
-    #     },
-    # )
-
     EsiStatus(
         compatibility_date=latest_compatibility_date,
         status_data=esi_status_data.get("esi_status", {}),
