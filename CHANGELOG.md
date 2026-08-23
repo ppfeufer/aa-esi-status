@@ -37,12 +37,18 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Fixed
+
+- Timing issue with loading Chart.js from cdnjs, which sometimes caused the ESI
+  status graph to not load at all, so we don't need to provide our own Chart.js
+  anymore, and we can use the one provided by Alliance Auth again
+
 ## [4.2.1] - 2026-08-23
 
 ### Changed
 
 - Serve our own Chart.js, since the one provided by Alliance Auth is from cdnjs and
-  doesn't load fast enough half the time.
+  doesn't load fast enough half the time
 
 ## [4.2.0] - 2026-08-23
 
