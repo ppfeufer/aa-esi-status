@@ -112,48 +112,50 @@
     };
 
     // Common dataset options for all datasets
-    const dataset = {
-        fill: true,
-        pointRadius: 1,
-        tension: 0.1
+    const datasetDefaults = {
+        fill: {target: 'origin'},
+        pointRadius: 0.85,
+        borderWidth: 0.75,
+        tension: 1,
+        spanGaps: false
     };
 
-    // Responsive chart with multiple datasets (line chart with filled areas)
+    // Create the Chart.js line chart
     new Chart(ctx.getContext('2d'), { // jshint ignore:line
         type: 'line',
         data: {
             labels: labels,
             datasets: [
                 {
-                    ...dataset,
+                    ...datasetDefaults,
                     label: esistatusDashboardWidgetData.translations.ok,
                     data: okData,
                     borderColor: color.success,
                     backgroundColor: rgbAlpha(color.success, color.backgroundAlpha)
                 },
                 {
-                    ...dataset,
+                    ...datasetDefaults,
                     label: esistatusDashboardWidgetData.translations.degraded,
                     data: degradedData,
                     borderColor: color.warning,
                     backgroundColor: rgbAlpha(color.warning, color.backgroundAlpha)
                 },
                 {
-                    ...dataset,
+                    ...datasetDefaults,
                     label: esistatusDashboardWidgetData.translations.down,
                     data: downData,
                     borderColor: color.danger,
                     backgroundColor: rgbAlpha(color.danger, color.backgroundAlpha)
                 },
                 {
-                    ...dataset,
+                    ...datasetDefaults,
                     label: esistatusDashboardWidgetData.translations.recovering,
                     data: recoveringData,
                     borderColor: color.info,
                     backgroundColor: rgbAlpha(color.info, color.backgroundAlpha)
                 },
                 {
-                    ...dataset,
+                    ...datasetDefaults,
                     label: esistatusDashboardWidgetData.translations.unknown,
                     data: unknownData,
                     borderColor: color.default,
