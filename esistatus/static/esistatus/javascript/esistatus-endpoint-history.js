@@ -1,6 +1,9 @@
 /* global Chart, esistatusDashboardWidgetData */
 
-(() => {
+/**
+ * Render the ESI Status History Chart using Chart.js
+ */
+const renderStatusHistoryChart = () => { // eslint-disable-line no-unused-vars
     'use strict';
 
     const ctx = document.getElementById('esi-status-chart-canvas');
@@ -196,4 +199,4 @@
             interaction: {mode: 'index', intersect: false}
         }
     });
-})();
+};

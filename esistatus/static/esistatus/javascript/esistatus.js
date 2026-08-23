@@ -1,4 +1,4 @@
-/* global bootstrap, esistatusSettings, fetchGet */
+/* global bootstrap, esistatusSettings, fetchGet, renderStatusHistoryChart */
 
 $(document).ready(() => {
     'use strict';
@@ -16,18 +16,16 @@ $(document).ready(() => {
      * @throws {Error} If the fetch request fails
      */
     const fetchEsiStatus = async () => {
-        try {
-            const data = await fetchGet({
-                url: esistatusSettings.url.esistatus,
-                responseIsJson: false
-            });
-
-            if (!data) {
-                return;
+        await fetchGet({
+            url: esistatusSettings.url.esistatus,
+            responseIsJson: false
+        }).then(response => {
+            if (!response) {
+                throw new Error('ESI Status Dashboard Widget: No response received from the server');
             }
 
             esistatus.loading.addClass('d-none');
-            esistatus.esiStatusIndex.html(data);
+            esistatus.esiStatusIndex.html(response);
 
             // Initialize Bootstrap tooltips
             $(esistatus.tooltip).each((_, el) => {
@@ -46,10 +44,13 @@ $(document).ready(() => {
                 // Create new tooltip instance
                 return new bootstrap.Tooltip(el, {html: true});
             });
-        } catch (error) {
-            console.error(error);
-        }
+
+            // Render the status history chart
+            renderStatusHistoryChart();
+        });
     };
 
-    fetchEsiStatus();
+    fetchEsiStatus()
+        .then(() => console.log('ESI Status page loaded successfully'))
+        .catch(error => console.error('Failed to load ESI Status page', error));
 });

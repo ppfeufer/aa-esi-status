@@ -1,4 +1,4 @@
-/* global bootstrap, esistatusSettings, fetchGet */
+/* global bootstrap, esistatusSettings, fetchGet, renderStatusHistoryChart */
 
 $(document).ready(() => {
     'use strict';
@@ -21,17 +21,17 @@ $(document).ready(() => {
      * @throws {Error} If the fetch request fails
      */
     const updateWidget = async () => {
-        try {
-            const data = await fetchGet({
-                url: esistatusSettings.dashboardWidget.ajaxUrl,
-                responseIsJson: false
-            });
-
-            if (!data) {
-                return;
+        await fetchGet({
+            url: esistatusSettings.dashboardWidget.ajaxUrl,
+            responseIsJson: false
+        }).then(response => {
+            if (!response) {
+                throw new Error('ESI Status Dashboard Widget: No response received from the server');
             }
 
-            esistatus.dashboardWidget.html(data);
+            // console.log('ESI Status Dashboard Widget: Update successful', response);
+
+            esistatus.dashboardWidget.html(response);
 
             if (!esistatus.dashboardWidget[0].classList.contains('show')) {
                 new bootstrap.Collapse(esistatus.dashboardWidget[0], { // jshint ignore:line
@@ -54,9 +54,12 @@ $(document).ready(() => {
                 // Create new tooltip instance
                 return new bootstrap.Tooltip(el, {html: true});
             });
-        } catch (error) {
-            console.error(error);
-        }
+
+            // Render the status history chart
+            renderStatusHistoryChart();
+        }).catch(error => {
+            console.error('ESI Status Dashboard Widget: Failed to update', error);
+        });
     };
 
     /**
@@ -67,7 +70,9 @@ $(document).ready(() => {
     const startRefresh = () => {
         console.log('ESI Status Dashboard Widget: Starting automatic refresh');
 
-        updateWidget().then(() => console.log('ESI Status Dashboard Widget: Initial update complete'));
+        updateWidget()
+            .then(() => console.log('ESI Status Dashboard Widget: Initial update complete'))
+            .catch(error => console.error('ESI Status Dashboard Widget: Initial update failed', error));
 
         esistatus.refreshInterval = setInterval(updateWidget, 30000);
     };
