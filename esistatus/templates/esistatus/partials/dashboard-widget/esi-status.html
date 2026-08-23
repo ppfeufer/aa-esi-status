@@ -49,9 +49,14 @@
             {% if esi_endpoint_history %}
                 <div class="esi-status-history mb-3 mb-sm-4">
                     <div class="text-center">
-                        <h5 class="ms-auto me-auto mb-3">
-                            {% translate "ESI endpoint status history" %}
-                        </h5>
+                        <h4 class="ms-auto me-auto mb-3">
+                            <svg class="svg-sprite svg-esi-logo">
+                                <use href="#esistatus-esi-logo"></use>
+                            </svg>
+
+                            {% translate "Status history" as translated_header_esi_status_history %}
+                            {{ translated_header_esi_status_history|title }}
+                        </h4>
                     </div>
 
                     <!-- Chart.js canvas: shows history of endpoint statuses over time -->
