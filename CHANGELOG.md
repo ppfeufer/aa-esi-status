@@ -37,6 +37,8 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [4.2.1] - 2026-08-23
+
 ### Changed
 
 - Serve our own Chart.js, since the one provided by Alliance Auth is from cdnjs and
@@ -835,7 +837,8 @@ CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
 [4.1.0]: https://github.com/ppfeufer/aa-esi-status/compare/v4.0.1...v4.1.0 "v4.1.0"
 [4.1.1]: https://github.com/ppfeufer/aa-esi-status/compare/v4.1.0...v4.1.1 "v4.1.1"
 [4.2.0]: https://github.com/ppfeufer/aa-esi-status/compare/v4.1.1...v4.2.0 "v4.2.0"
-[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v4.2.0...HEAD "In Development"
+[4.2.1]: https://github.com/ppfeufer/aa-esi-status/compare/v4.2.0...v4.2.1 "v4.2.1"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v4.2.1...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
