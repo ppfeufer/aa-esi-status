@@ -3,7 +3,7 @@
 (() => {
     'use strict';
 
-    const ctx = document.getElementById('esiStatusChart');
+    const ctx = document.getElementById('esi-status-chart-canvas');
 
     if (!ctx) {
         return;
