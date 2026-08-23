@@ -3,18 +3,16 @@
 {% comment %}Translations for ESI endpoint status headers and explanations{% endcomment %}
 {% translate "OK" as translated_header_ok %}
 {% translate "These routes are working as expected." as translated_header_ok_explanation %}
-
 {% translate "Degraded" as translated_header_degraded %}
 {% translate "These routes have a good chance of being slow or returning errors." as translated_header_degraded_explanation %}
-
 {% translate "Down" as translated_header_down %}
 {% translate "These routes have a good chance of not responding at all or being completely unavailable." as translated_header_down_explanation %}
-
 {% translate "Recovering" as translated_header_recovering %}
 {% translate "These routes are recovering from previous issues and might not (yet) work as expected or might be slow." as translated_header_recovering_explanation %}
-
 {% translate "Unknown" as translated_header_unknown %}
 {% translate "These routes have an unknown status." as translated_header_unknown_explanation %}
+{% translate "Status history" as translated_header_esi_status_history %}
+{% translate "EVE time" as translated_eve_time %}
 
 <div class="card">
     <div class="card-body">
@@ -26,6 +24,8 @@
                     </svg>
 
                     {% translate "Status" %}
+                    <br>
+                    <small class="text-muted">{{ timestamp }} {{ translated_eve_time }}</small>
                 </h4>
             </div>
 
@@ -61,7 +61,6 @@
                             <use href="#esistatus-esi-logo"></use>
                         </svg>
 
-                        {% translate "Status history" as translated_header_esi_status_history %}
                         {{ translated_header_esi_status_history|title }}
                         <br>
                         <small class="text-muted">
@@ -79,7 +78,7 @@
                     // this partial is reloaded via AJAX
                     window.esistatusDashboardWidgetData = {
                         chartData: {
-                            labels: [{% for entry in esi_endpoint_history %}"{{ entry.timestamp|date:"SHORT_DATETIME_FORMAT" }}" {% if not forloop.last %}, {% endif %}{% endfor %}],
+                            labels: [{% for entry in esi_endpoint_history %}"{{ entry.timestamp }} {{ translated_eve_time|escapejs }}" {% if not forloop.last %}, {% endif %}{% endfor %}],
                             okData: [{% for entry in esi_endpoint_history %}{{ entry.ok }}{% if not forloop.last %}, {% endif %}{% endfor %}],
                             degradedData: [{% for entry in esi_endpoint_history %}{{ entry.degraded }}{% if not forloop.last %}, {% endif %}{% endfor %}],
                             downData: [{% for entry in esi_endpoint_history %}{{ entry.down }}{% if not forloop.last %}, {% endif %}{% endfor %}],

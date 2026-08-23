@@ -55,6 +55,7 @@ def _render_esi_status(
         "esi_endpoint_history": esi_status_history,
         "total_endpoints": latest_esi_status.get("total_endpoints"),
         "esi_name": latest_esi_status.get("esi_name"),
+        "timestamp": latest_esi_status.get("timestamp"),
         "retention_threshold": ESISTATUS_SHOW_HISTORY_THRESHOLD,
     }
 
