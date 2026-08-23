@@ -255,9 +255,9 @@ The following settings are available for this app. \
 You can add them to your `local.py` file to override the default values.
 
 | Setting                              | Type | Description                                                                                                      | Default |
-| ------------------------------------ | ---- | ---------------------------------------------------------------------------------------------------------------- | ------- |
-| `ESISTATUS_HISTORY_RETENTION_PERIOD` | int  | Retention period for ESI status history in hours. Data older than this period will be removed from the database. | 24      |
-| `ESISTATUS_SHOW_HISTORY_THRESHOLD`   | int  | Display period for ESI status history in hours. Defines the threshold for the ESI history graph.                 | 24      |
+| ------------------------------------ | ---- | ---------------------------------------------------------------------------------------------------------------- | ------: |
+| `ESISTATUS_HISTORY_RETENTION_PERIOD` | int  | Retention period for ESI status history in hours. Data older than this period will be removed from the database. |      24 |
+| `ESISTATUS_SHOW_HISTORY_THRESHOLD`   | int  | Display period for ESI status history in hours. Defines the threshold for the ESI history graph.                 |      24 |
 
 > [!Note]
 >

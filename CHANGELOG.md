@@ -40,19 +40,18 @@ Section Order:
 ### Added
 
 - ESI endpoint status history graph
-
 - New settings to configure the history graph
 
-  | Setting                              | Type | Description                                                                                                      | Default |
-  | ------------------------------------ | ---- | ---------------------------------------------------------------------------------------------------------------- | ------- |
-  | `ESISTATUS_HISTORY_RETENTION_PERIOD` | int  | Retention period for ESI status history in hours. Data older than this period will be removed from the database. | 24      |
-  | `ESISTATUS_SHOW_HISTORY_THRESHOLD`   | int  | Display period for ESI status history in hours. Defines the threshold for the ESI history graph.                 | 24      |
+| Setting                              | Type | Description                                                                                                      | Default |
+| ------------------------------------ | ---- | ---------------------------------------------------------------------------------------------------------------- | ------: |
+| `ESISTATUS_HISTORY_RETENTION_PERIOD` | int  | Retention period for ESI status history in hours. Data older than this period will be removed from the database. |      24 |
+| `ESISTATUS_SHOW_HISTORY_THRESHOLD`   | int  | Display period for ESI status history in hours. Defines the threshold for the ESI history graph.                 |      24 |
 
-  > [!Note]
-  >
-  > Keep `ESISTATUS_SHOW_HISTORY_THRESHOLD` to a sane value. A value too high will result in a very large graph and will cause performance issues.
-  >
-  > Lower this value if you experience performance issues when loading the ESI status page.
+> [!Note]
+>
+> Keep `ESISTATUS_SHOW_HISTORY_THRESHOLD` to a sane value. A value too high will result in a very large graph and will cause performance issues.
+>
+> Lower this value if you experience performance issues when loading the ESI status page.
 
 - Link to ESI naming history
 
