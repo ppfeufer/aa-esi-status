@@ -261,7 +261,7 @@ You can add them to your `local.py` file to override the default values.
 
 > [!Note]
 >
-> Keep `ESISTATUS_SHOW_HISTORY_THRESHOLD` to a sane value. A value too high will result in a very large graph and might cause performance issues.
+> Keep `ESISTATUS_SHOW_HISTORY_THRESHOLD` to a sane value. A value too high will result in a very large graph and will cause performance issues.
 >
 > Lower this value if you experience performance issues when loading the ESI status page.
 
