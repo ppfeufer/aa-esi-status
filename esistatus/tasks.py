@@ -11,11 +11,16 @@ from typing import Any
 import requests
 from celery import shared_task
 
+# Django
+from django.db import transaction
+from django.utils import timezone
+
 # Alliance Auth
 from allianceauth.services.hooks import get_extension_logger
 
 # AA ESI Status
 from esistatus import __user_agent__
+from esistatus.app_settings import ESISTATUS_HISTORY_RETENTION_PERIOD
 from esistatus.constants import ESIMetaUrl
 from esistatus.models import EsiStatus
 from esistatus.providers.applogger import AppLogger
@@ -343,12 +348,12 @@ def _esi_endpoint_status_from_json(esi_endpoint_json: list) -> dict:
     Get the ESI endpoint status from the ESI json
 
     :param esi_endpoint_json: The ESI endpoint json
-    :type esi_endpoint_json: dict
+    :type esi_endpoint_json: list
     :return: The ESI endpoint status
     :rtype: dict
     """
 
-    esi_endpoint_status = {
+    esi_endpoint_status: dict[Any, Any] = {
         "Unknown": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
         "OK": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
         "Degraded": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
@@ -428,16 +433,75 @@ def update_esi_status():
         compatibility_date=latest_compatibility_date
     )
 
-    EsiStatus.objects.update_or_create(
-        pk=1,
-        defaults={
-            "compatibility_date": latest_compatibility_date,
-            "status_data": esi_status_data.get("esi_status", {}),
-            "total_endpoints": esi_status_data.get("total_endpoints", 0),
-            "esi_name": esi_name,
-        },
-    )
+    EsiStatus(
+        compatibility_date=latest_compatibility_date,
+        status_data=esi_status_data.get("esi_status", {}),
+        total_endpoints=esi_status_data.get("total_endpoints", 0),
+        esi_name=esi_name,
+    ).save()
+
+    retain_esi_status_history.delay()
 
     logger.info(
         f"ESI status updated in database for compatibility date: {latest_compatibility_date}."
     )
+
+
+@shared_task(bind=False)
+def retain_esi_status_history(
+    max_age_hours: int = ESISTATUS_HISTORY_RETENTION_PERIOD, batch_size: int = 500
+) -> int:
+    """
+    Retain only EsiStatus rows from the last `max_age_hours` hours.
+
+    This deletes entries older than (now - max_age_hours) in batches to avoid
+    loading many model instances into memory. The default is 24 hours but the
+    window can be adjusted by passing a different `max_age_hours` value.
+
+    :param max_age_hours: Age in hours to keep (default: 24)
+    :param batch_size: Number of rows to delete per DB operation
+    :return: Number of rows deleted
+    """
+
+    qs = EsiStatus.objects
+
+    # Compute cutoff timestamp (use Django timezone-aware now)
+    cutoff = timezone.now() - datetime.timedelta(hours=max_age_hours)
+
+    # Count how many rows are older than cutoff
+    to_delete_total = qs.filter(timestamp__lt=cutoff).count()
+
+    if to_delete_total == 0:
+        logger.debug(
+            "No retention needed: no EsiStatus rows older than %s",
+            cutoff,
+        )
+
+        return 0
+
+    deleted = 0
+
+    # Delete in batches by primary key (uuid) to avoid loading model instances
+    while deleted < to_delete_total:
+        uuids = list(
+            qs.filter(timestamp__lt=cutoff)
+            .order_by("timestamp")
+            .values_list("uuid", flat=True)[:batch_size]
+        )
+
+        if not uuids:
+            break
+
+        with transaction.atomic():
+            deleted_count, _ = qs.filter(uuid__in=uuids).delete()
+
+        deleted += deleted_count
+
+    logger.debug(
+        "Retention task removed %d old EsiStatus rows older than %s (kept last %d hours).",
+        deleted,
+        cutoff,
+        max_age_hours,
+    )
+
+    return deleted

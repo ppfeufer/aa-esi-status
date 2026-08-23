@@ -16,6 +16,7 @@ from esistatus.tasks import (
     _get_esi_status_json,
     _get_latest_compatibility_date,
     _get_openapi_specs_json,
+    retain_esi_status_history,
     update_esi_status,
 )
 from esistatus.tests import BaseTestCase
@@ -696,10 +697,9 @@ class TestUpdateESIStatus(BaseTestCase):
 
     def test_updates_status_in_database_when_all_data_is_valid(self):
         """
-        Test updating the status in the database when all data is valid.
+        Test that the update_esi_status task updates the status in the database when all data is valid.
 
         :return:
-        :rtype:
         """
 
         with (
@@ -720,127 +720,102 @@ class TestUpdateESIStatus(BaseTestCase):
                 },
             ),
             mock.patch(
-                "esistatus.tasks._get_esi_name_for_compatibility_date",
-                return_value="EVE Swagger interface",
-            ),
+                "esistatus.tasks._esi_endpoint_status_from_json",
+                return_value={"esi_status": {"OK": {"count": 1}}, "total_endpoints": 1},
+            ) as mock_converter,
             mock.patch(
-                "esistatus.tasks.EsiStatus.objects.update_or_create"
-            ) as mock_update,
+                "esistatus.tasks._get_esi_name_for_compatibility_date",
+                return_value="EVE Swagger Interface",
+            ),
+            mock.patch("esistatus.tasks.EsiStatus") as mock_model,
+            mock.patch(
+                "esistatus.tasks.retain_esi_status_history.delay"
+            ) as mock_retain_delay,
+            mock.patch("esistatus.tasks.logger.info") as mock_info,
         ):
             update_esi_status()
 
-            expected_status_data = {
-                "Unknown": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
-                "OK": {
-                    "endpoints": {
-                        "alliances": [
-                            {
-                                "path": "/alliances",
-                                "method": "GET",
-                                "operation_id": None,
-                                "summary": None,
-                                "description": None,
-                            }
-                        ]
-                    },
-                    "count": 1,
-                    "percentage": "100.00%",
-                },
-                "Degraded": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
-                "Down": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
-                "Recovering": {"endpoints": {}, "count": 0, "percentage": "0.00%"},
-            }
-
-            mock_update.assert_called_once_with(
-                pk=1,
-                defaults={
-                    "compatibility_date": "2023-10-01",
-                    "status_data": expected_status_data,
-                    "total_endpoints": 1,
-                    "esi_name": "EVE Swagger interface",
-                },
+            mock_converter.assert_called_once()
+            mock_model.assert_called_once_with(
+                compatibility_date="2023-10-01",
+                status_data={"OK": {"count": 1}},
+                total_endpoints=1,
+                esi_name="EVE Swagger Interface",
             )
+            # ensure the instance save() was invoked
+            instance = mock_model.return_value
+            instance.save.assert_called_once()
+            mock_retain_delay.assert_called_once()
+            mock_info.assert_called_once()
 
     def test_skips_status_update_when_compatibility_date_is_none(self):
         """
-        Test skipping the status update when the compatibility date is None.
+        Test that the update_esi_status task skips the status update when the compatibility date is None.
 
         :return:
-        :rtype:
         """
 
         with (
             mock.patch(
                 "esistatus.tasks._get_latest_compatibility_date", return_value=None
             ),
-            mock.patch("esistatus.tasks.logger.error") as mock_logger,
+            mock.patch("esistatus.tasks.logger.error") as mock_error,
         ):
             update_esi_status()
 
-            mock_logger.assert_called_with(
+            mock_error.assert_called_once_with(
                 "Failed to retrieve latest compatibility date."
             )
 
-    def test_logs_error_when_esi_status_is_none(self):
+    def test_logs_error_when_esi_status_or_openapi_is_none(self):
         """
-        Test logging an error when ESI status is None.
+        Test that the update_esi_status task logs an error when either the ESI status or OpenAPI specs are None.
 
         :return:
-        :rtype:
         """
 
+        # case: esi_status is None
         with (
-            patch(
+            mock.patch(
                 "esistatus.tasks._get_latest_compatibility_date",
                 return_value="2023-10-01",
             ),
-            patch("esistatus.tasks._get_esi_status_json", return_value=None),
-            patch(
-                "esistatus.tasks._get_openapi_specs_json",
-                return_value={"openapi": "3.0.0"},
+            mock.patch("esistatus.tasks._get_esi_status_json", return_value=None),
+            mock.patch(
+                "esistatus.tasks._get_openapi_specs_json", return_value={"paths": {}}
             ),
-            patch("esistatus.tasks.logger.error") as mock_error,
+            mock.patch("esistatus.tasks.logger.error") as mock_error,
         ):
             update_esi_status()
-
             mock_error.assert_called_once_with(
                 "Failed to retrieve ESI status or OpenAPI specs."
             )
 
-    def test_logs_error_when_openapi_specs_is_none(self):
-        """
-        Test logging an error when OpenAPI specs is None.
-
-        :return:
-        :rtype:
-        """
-
+        # case: openapi specs is None
         with (
-            patch(
+            mock.patch(
                 "esistatus.tasks._get_latest_compatibility_date",
                 return_value="2023-10-01",
             ),
-            patch(
-                "esistatus.tasks._get_esi_status_json", return_value={"status": "ok"}
+            mock.patch(
+                "esistatus.tasks._get_esi_status_json", return_value={"routes": []}
             ),
-            patch("esistatus.tasks._get_openapi_specs_json", return_value=None),
-            patch("esistatus.tasks.logger.error") as mock_error,
+            mock.patch("esistatus.tasks._get_openapi_specs_json", return_value=None),
+            mock.patch("esistatus.tasks.logger.error") as mock_error2,
         ):
             update_esi_status()
-
-            mock_error.assert_called_once_with(
+            mock_error2.assert_called_once_with(
                 "Failed to retrieve ESI status or OpenAPI specs."
             )
 
     def test_skips_database_update_when_no_tags_in_enriched_status(self):
         """
-        Test skipping the database update when there are no tags in the enriched status.
+        Test that the update_esi_status task skips the database update when the enriched status has no tags.
 
         :return:
-        :rtype:
         """
 
-        enriched_status = [{"path": "/path1", "method": "GET", "tags": []}]
+        enriched_status_no_tags = [{"path": "/path1", "method": "GET", "tags": []}]
 
         with (
             mock.patch(
@@ -852,23 +827,22 @@ class TestUpdateESIStatus(BaseTestCase):
                 return_value={"routes": [{"path": "/path1", "method": "GET"}]},
             ),
             mock.patch(
-                "esistatus.tasks._get_openapi_specs_json",
-                return_value={"paths": {}},
+                "esistatus.tasks._get_openapi_specs_json", return_value={"paths": {}}
             ),
             mock.patch(
-                "esistatus.tasks._enrich_status_json", return_value=enriched_status
+                "esistatus.tasks._enrich_status_json",
+                return_value=enriched_status_no_tags,
             ),
             mock.patch("esistatus.tasks.logger.debug") as mock_debug,
-            mock.patch(
-                "esistatus.tasks.EsiStatus.objects.update_or_create"
-            ) as mock_update,
+            mock.patch("esistatus.tasks.EsiStatus") as mock_model,
         ):
             update_esi_status()
 
+            # ensure we logged the skip and did not attempt to save a model
             mock_debug.assert_any_call(
                 "Enriched ESI status has no tags. Skipping database update."
             )
-            mock_update.assert_not_called()
+            mock_model.assert_not_called()
 
 
 class TestGetEsiNamesJson(BaseTestCase):
@@ -1103,3 +1077,108 @@ class TestGetEsiNameForCompatibilityDate(BaseTestCase):
             result = _get_esi_name_for_compatibility_date("2026-07-01")
 
             self.assertEqual(result, "Good Entry (ESI)")
+
+
+class TestRetainEsiStatusHistory(BaseTestCase):
+    """
+    Tests for retain_esi_status_history
+    """
+
+    def test_no_retention_needed_returns_zero(self):
+        """
+        Test that when no retention is needed, the function returns zero.
+
+        :return:
+        """
+
+        with (
+            mock.patch("esistatus.tasks.EsiStatus.objects") as mock_qs,
+            mock.patch("esistatus.tasks.logger.debug") as mock_debug,
+        ):
+            # Simulate no rows older than cutoff
+            mock_qs.filter.return_value.count.return_value = 0
+
+            result = retain_esi_status_history(max_age_hours=24, batch_size=500)
+
+            self.assertEqual(result, 0)
+            mock_debug.assert_called_once()
+            mock_qs.filter.assert_called()
+
+    def test_deletes_old_rows_in_single_batch_and_returns_deleted_count(self):
+        """
+        Test that when there are old rows to delete, the function deletes them in a single batch and returns the deleted count.
+
+        :return:
+        """
+
+        with (
+            mock.patch("esistatus.tasks.EsiStatus.objects") as mock_qs,
+            mock.patch("esistatus.tasks.transaction.atomic") as mock_atomic,
+            mock.patch("esistatus.tasks.logger.debug") as mock_debug,
+        ):
+            # Simulate there are 2 rows to delete
+            mock_qs.filter.return_value.count.return_value = 2
+
+            # values_list should return a list of uuids that will be sliced by [:batch_size]
+            mock_qs.filter.return_value.order_by.return_value.values_list.return_value = [
+                "uuid1",
+                "uuid2",
+            ]
+
+            # When delete is called on the filter for uuid__in, return (deleted_count, _)
+            mock_qs.filter.return_value.delete.return_value = (2, None)
+
+            result = retain_esi_status_history(max_age_hours=24, batch_size=500)
+
+            self.assertEqual(result, 2)
+            # Ensure values_list -> delete path was executed
+            mock_qs.filter.return_value.order_by.assert_called()
+            mock_qs.filter.return_value.delete.assert_called()
+            mock_atomic.assert_called()
+            mock_debug.assert_called()
+
+    def test_retention_breaks_on_empty_uuids(self):
+        """
+        Test that the retention process breaks when values_list returns an empty list, even if count() indicates there are rows to delete.
+
+        :return:
+        """
+
+        with mock.patch("esistatus.tasks.EsiStatus.objects") as mock_qs:
+            # There are rows to delete according to count(), but values_list() returns empty
+            mock_qs.filter.return_value.count.return_value = 2
+            mock_qs.filter.return_value.order_by.return_value.values_list.return_value = (
+                []
+            )
+            mock_qs.filter.return_value.delete.return_value = (0, None)
+
+            result = retain_esi_status_history(max_age_hours=24, batch_size=500)
+
+            self.assertEqual(result, 0)
+            mock_qs.filter.return_value.order_by.return_value.values_list.assert_called()
+
+    def test_retention_deletes_rows_in_multiple_batches_until_done(self):
+        """
+        Test that the retention process deletes rows in multiple batches until done.
+
+        :return:
+        """
+
+        with mock.patch("esistatus.tasks.EsiStatus.objects") as mock_qs:
+            # Simulate 3 rows older than cutoff and a batch_size of 2 so two iterations occur
+            mock_qs.filter.return_value.count.return_value = 3
+
+            values_list_mock = (
+                mock_qs.filter.return_value.order_by.return_value.values_list
+            )
+            # First call returns two uuids, second returns one uuid
+            values_list_mock.side_effect = [["uuid1", "uuid2"], ["uuid3"], []]
+
+            delete_mock = mock_qs.filter.return_value.delete
+            delete_mock.side_effect = [(2, None), (1, None)]
+
+            result = retain_esi_status_history(max_age_hours=24, batch_size=2)
+
+            self.assertEqual(result, 3)
+            self.assertEqual(delete_mock.call_count, 2)
+            values_list_mock.assert_called()
