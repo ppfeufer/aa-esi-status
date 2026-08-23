@@ -25,7 +25,7 @@
                 {{ translated_header_esi_status_history|title }}
                 <br>
                 <small class="text-muted">
-                    {% blocktranslate with time=retention_threshold %}Last {{ time }} hours{% endblocktranslate %}
+                    {% blocktranslate count counter=retention_threshold %}Last hour{% plural %}Last {{ counter }} hours{% endblocktranslate %}
                 </small>
             </h4>
         </div>
