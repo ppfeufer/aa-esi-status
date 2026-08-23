@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-08-23 19:08+0200\n"
+"POT-Creation-Date: 2026-08-23 23:02+0200\n"
 "PO-Revision-Date: 2026-07-06 19:19+0000\n"
 "Last-Translator: Alexander <alex301298@live.it>\n"
 "Language-Team: Italian <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/it/>\n"
@@ -57,7 +57,7 @@ msgstr "Stato ESI"
 
 #: esistatus/templates/esistatus/base.html:13
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:27
-#: esistatus/templates/esistatus/partials/index/esi-status.html:73
+#: esistatus/templates/esistatus/partials/index/esi-status.html:70
 msgid "Status"
 msgstr ""
 
@@ -126,7 +126,7 @@ msgid "EVE time"
 msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:52
-#: esistatus/templates/esistatus/partials/index/esi-status.html:120
+#: esistatus/templates/esistatus/partials/index/esi-status.html:117
 msgid "No ESI status data is available at this time."
 msgstr ""
 
@@ -143,16 +143,16 @@ msgstr[1] ""
 msgid "ESI status history chart"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:114
-#: esistatus/templates/esistatus/partials/index/esi-status.html:106
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:111
+#: esistatus/templates/esistatus/partials/index/esi-status.html:103
 msgid "compatibility date"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:128
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:125
 msgid "Detailed ESI status"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:130
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:127
 msgid "EVE Online status"
 msgstr ""
 
@@ -168,6 +168,6 @@ msgstr "Vuoi contribuire alla traduzione di questa app nella tua lingua o miglio
 msgid "Join our team of translators!"
 msgstr "Unisciti al nostro team di traduttori!"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:121
+#: esistatus/templates/esistatus/partials/index/esi-status.html:118
 msgid "Please try again later."
 msgstr ""
