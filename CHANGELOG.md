@@ -37,6 +37,11 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Changed
+
+- Serve our own Chart.js, since the one provided by Alliance Auth is from cdnjs and
+  doesn't load fast enough half the time.
+
 ## [4.2.0] - 2026-08-23
 
 ### Added
