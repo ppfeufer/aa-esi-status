@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-08-03 21:12+0200\n"
+"POT-Creation-Date: 2026-08-23 19:08+0200\n"
 "PO-Revision-Date: 2026-07-06 19:19+0000\n"
 "Last-Translator: Alexander <alex301298@live.it>\n"
 "Language-Team: Italian <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/it/>\n"
@@ -23,36 +23,41 @@ msgstr ""
 msgid "ESI Status"
 msgstr "Stato ESI"
 
-#: esistatus/models.py:16
+#: esistatus/models.py:33
+msgid "The timestamp of the status entry."
+msgstr ""
+
+#: esistatus/models.py:41
 msgid "The ESI compatibility date."
 msgstr ""
 
-#: esistatus/models.py:21
+#: esistatus/models.py:46
 msgid "The name ESI is currently going by. The three letters have never once meant the same thing twice."
 msgstr ""
 
-#: esistatus/models.py:30
+#: esistatus/models.py:55
 msgid "The ESI status data."
 msgstr ""
 
-#: esistatus/models.py:34
+#: esistatus/models.py:59
 msgid "Total number of ESI endpoints."
 msgstr ""
 
-#: esistatus/models.py:43
+#: esistatus/models.py:68
 #, fuzzy
 #| msgid "ESI Status"
 msgid "ESI Endpoint Status"
 msgstr "Stato ESI"
 
-#: esistatus/models.py:44
+#: esistatus/models.py:69
 #, fuzzy
 #| msgid "ESI Status"
 msgid "ESI Endpoint Statuses"
 msgstr "Stato ESI"
 
 #: esistatus/templates/esistatus/base.html:13
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:27
+#: esistatus/templates/esistatus/partials/index/esi-status.html:73
 msgid "Status"
 msgstr ""
 
@@ -60,73 +65,95 @@ msgstr ""
 msgid "Loading ESI status…"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:17
-#: esistatus/templates/esistatus/partials/index/esi-status.html:6
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:5
+#: esistatus/templates/esistatus/partials/index/esi-status.html:5
 msgid "OK"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:18
-#: esistatus/templates/esistatus/partials/index/esi-status.html:7
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:6
+#: esistatus/templates/esistatus/partials/index/esi-status.html:6
 msgid "These routes are working as expected."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:22
-#: esistatus/templates/esistatus/partials/index/esi-status.html:11
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:7
+#: esistatus/templates/esistatus/partials/index/esi-status.html:7
 msgid "Degraded"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:23
-#: esistatus/templates/esistatus/partials/index/esi-status.html:12
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:8
+#: esistatus/templates/esistatus/partials/index/esi-status.html:8
 msgid "These routes have a good chance of being slow or returning errors."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:27
-#: esistatus/templates/esistatus/partials/index/esi-status.html:16
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:9
+#: esistatus/templates/esistatus/partials/index/esi-status.html:9
 msgid "Down"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:28
-#: esistatus/templates/esistatus/partials/index/esi-status.html:17
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:10
+#: esistatus/templates/esistatus/partials/index/esi-status.html:10
 msgid "These routes have a good chance of not responding at all or being completely unavailable."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:32
-#: esistatus/templates/esistatus/partials/index/esi-status.html:21
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:11
+#: esistatus/templates/esistatus/partials/index/esi-status.html:11
 msgid "Recovering"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:33
-#: esistatus/templates/esistatus/partials/index/esi-status.html:22
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:12
+#: esistatus/templates/esistatus/partials/index/esi-status.html:12
 msgid "These routes are recovering from previous issues and might not (yet) work as expected or might be slow."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:37
-#: esistatus/templates/esistatus/partials/index/esi-status.html:26
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:13
+#: esistatus/templates/esistatus/partials/index/esi-status.html:13
 msgid "Unknown"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:38
-#: esistatus/templates/esistatus/partials/index/esi-status.html:27
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:14
+#: esistatus/templates/esistatus/partials/index/esi-status.html:14
 msgid "These routes have an unknown status."
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:45
-#: esistatus/templates/esistatus/partials/index/esi-status.html:34
-#, python-format
-msgid "%(esi_name)s compatibility date"
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:15
+#: esistatus/templates/esistatus/partials/index/esi-status.html:25
+msgid "Status history"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:59
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:16
+#: esistatus/templates/esistatus/partials/index/esi-status.html:15
+msgid "EVE time"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:52
+#: esistatus/templates/esistatus/partials/index/esi-status.html:120
+msgid "No ESI status data is available at this time."
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:68
+#: esistatus/templates/esistatus/partials/index/esi-status.html:29
+#, python-format
+msgid "Last hour"
+msgid_plural "Last %(counter)s hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:74
+#: esistatus/templates/esistatus/partials/index/esi-status.html:35
+msgid "ESI status history chart"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:114
+#: esistatus/templates/esistatus/partials/index/esi-status.html:106
+msgid "compatibility date"
+msgstr ""
+
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:128
 msgid "Detailed ESI status"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:61
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:130
 msgid "EVE Online status"
-msgstr ""
-
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:66
-#: esistatus/templates/esistatus/partials/index/esi-status.html:47
-msgid "No ESI status data is available at this time."
 msgstr ""
 
 #: esistatus/templates/esistatus/partials/endpoints.html:64
@@ -141,6 +168,6 @@ msgstr "Vuoi contribuire alla traduzione di questa app nella tua lingua o miglio
 msgid "Join our team of translators!"
 msgstr "Unisciti al nostro team di traduttori!"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:48
+#: esistatus/templates/esistatus/partials/index/esi-status.html:121
 msgid "Please try again later."
 msgstr ""
