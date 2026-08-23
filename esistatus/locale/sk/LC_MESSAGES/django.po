@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-08-23 19:08+0200\n"
+"POT-Creation-Date: 2026-08-23 23:02+0200\n"
 "PO-Revision-Date: 2026-07-06 19:20+0000\n"
 "Last-Translator: Peter Pfeufer <info@ppfeufer.de>\n"
 "Language-Team: Slovak <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/sk/>\n"
@@ -51,7 +51,7 @@ msgstr ""
 
 #: esistatus/templates/esistatus/base.html:13
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:27
-#: esistatus/templates/esistatus/partials/index/esi-status.html:73
+#: esistatus/templates/esistatus/partials/index/esi-status.html:70
 msgid "Status"
 msgstr ""
 
@@ -120,7 +120,7 @@ msgid "EVE time"
 msgstr ""
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:52
-#: esistatus/templates/esistatus/partials/index/esi-status.html:120
+#: esistatus/templates/esistatus/partials/index/esi-status.html:117
 msgid "No ESI status data is available at this time."
 msgstr ""
 
@@ -139,16 +139,16 @@ msgstr[3] ""
 msgid "ESI status history chart"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:114
-#: esistatus/templates/esistatus/partials/index/esi-status.html:106
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:111
+#: esistatus/templates/esistatus/partials/index/esi-status.html:103
 msgid "compatibility date"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:128
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:125
 msgid "Detailed ESI status"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:130
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:127
 msgid "EVE Online status"
 msgstr ""
 
@@ -164,6 +164,6 @@ msgstr ""
 msgid "Join our team of translators!"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:121
+#: esistatus/templates/esistatus/partials/index/esi-status.html:118
 msgid "Please try again later."
 msgstr ""

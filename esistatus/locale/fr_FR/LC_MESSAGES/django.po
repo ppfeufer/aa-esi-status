@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status 2.4.3\n"
 "Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-08-23 19:08+0200\n"
+"POT-Creation-Date: 2026-08-23 23:02+0200\n"
 "PO-Revision-Date: 2026-08-23 17:16+0000\n"
 "Last-Translator: Automatic translation add-on <noreply-addon-autotranslate@weblate.ppfeufer.de>\n"
 "Language-Team: French <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/fr/>\n"
@@ -56,7 +56,7 @@ msgstr "Statuts ESI"
 
 #: esistatus/templates/esistatus/base.html:13
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:27
-#: esistatus/templates/esistatus/partials/index/esi-status.html:73
+#: esistatus/templates/esistatus/partials/index/esi-status.html:70
 msgid "Status"
 msgstr "Statut"
 
@@ -127,7 +127,7 @@ msgid "EVE time"
 msgstr "Heure d'EVE"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:52
-#: esistatus/templates/esistatus/partials/index/esi-status.html:120
+#: esistatus/templates/esistatus/partials/index/esi-status.html:117
 msgid "No ESI status data is available at this time."
 msgstr "Aucune donnée de statut ESI n'est disponible actuellement."
 
@@ -144,16 +144,16 @@ msgstr[1] ""
 msgid "ESI status history chart"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:114
-#: esistatus/templates/esistatus/partials/index/esi-status.html:106
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:111
+#: esistatus/templates/esistatus/partials/index/esi-status.html:103
 msgid "compatibility date"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:128
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:125
 msgid "Detailed ESI status"
 msgstr "Statut ESI détaillé"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:130
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:127
 msgid "EVE Online status"
 msgstr "Statut EVE Online"
 
@@ -169,6 +169,6 @@ msgstr "Voulez-vous aider à traduire cette application dans votre langue ou am�
 msgid "Join our team of translators!"
 msgstr "Rejoignez notre équipe de traducteurs !"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:121
+#: esistatus/templates/esistatus/partials/index/esi-status.html:118
 msgid "Please try again later."
 msgstr "Veuillez réessayer plus tard."
