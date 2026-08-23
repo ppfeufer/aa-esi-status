@@ -20,6 +20,7 @@ from allianceauth.services.hooks import get_extension_logger
 
 # AA ESI Status
 from esistatus import __user_agent__
+from esistatus.app_settings import ESISTATUS_HISTORY_RETENTION_PERIOD
 from esistatus.constants import ESIMetaUrl
 from esistatus.models import EsiStatus
 from esistatus.providers.applogger import AppLogger
@@ -447,7 +448,9 @@ def update_esi_status():
 
 
 @shared_task(bind=False)
-def retain_esi_status_history(max_age_hours: int = 24, batch_size: int = 500) -> int:
+def retain_esi_status_history(
+    max_age_hours: int = ESISTATUS_HISTORY_RETENTION_PERIOD, batch_size: int = 500
+) -> int:
     """
     Retain only EsiStatus rows from the last `max_age_hours` hours.
 

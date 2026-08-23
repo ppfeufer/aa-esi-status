@@ -12,6 +12,7 @@ from django.template.loader import render_to_string
 from allianceauth.services.hooks import get_extension_logger
 
 # AA ESI Status
+from esistatus.app_settings import ESISTATUS_SHOW_HISTORY_THRESHOLD
 from esistatus.models import EsiStatus
 from esistatus.providers.applogger import AppLogger
 
@@ -54,6 +55,7 @@ def _render_esi_status(
         "esi_endpoint_history": esi_status_history,
         "total_endpoints": latest_esi_status.get("total_endpoints"),
         "esi_name": latest_esi_status.get("esi_name"),
+        "retention_threshold": ESISTATUS_SHOW_HISTORY_THRESHOLD,
     }
 
     if with_compat_date:

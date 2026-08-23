@@ -26,6 +26,10 @@
 
                 {% translate "Status history" as translated_header_esi_status_history %}
                 {{ translated_header_esi_status_history|title }}
+                <br>
+                <small class="text-muted">
+                    {% blocktranslate with time=retention_threshold %}Last {{ time }} hours{% endblocktranslate %}
+                </small>
             </h4>
         </div>
 

@@ -4,11 +4,16 @@ The models
 
 # Standard Library
 import uuid
+from datetime import timedelta
 from typing import Any
 
 # Django
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+
+# AA ESI Status
+from esistatus.app_settings import ESISTATUS_SHOW_HISTORY_THRESHOLD
 
 
 class EsiStatus(models.Model):
@@ -92,18 +97,26 @@ class EsiStatus(models.Model):
     @classmethod
     def get_history(cls) -> list[dict[str, Any]]:
         """
-        Get the history of ESI status snapshots.
+        Get the history of ESI status snapshots for the last ESISTATUS_HISTORY_SHOW hours.
 
         :return: A list of dictionaries for historical snapshots (most recent first).
         :rtype: list[dict]
         """
 
-        entries = cls.objects.order_by("-timestamp").values(
-            "timestamp",
-            "total_endpoints",
-            "status_data",
-            "compatibility_date",
-            "esi_name",
+        history_threshold = timezone.now() - timedelta(
+            hours=ESISTATUS_SHOW_HISTORY_THRESHOLD
+        )
+
+        entries = (
+            cls.objects.filter(timestamp__gte=history_threshold)
+            .order_by("-timestamp")
+            .values(
+                "timestamp",
+                "total_endpoints",
+                "status_data",
+                "compatibility_date",
+                "esi_name",
+            )
         )
 
         history_list: list[dict[str, Any]] = []
