@@ -37,6 +37,8 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [4.2.0] - 2026-08-23
+
 ### Added
 
 - ESI endpoint status history graph
@@ -827,7 +829,8 @@ CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
 [4.0.1]: https://github.com/ppfeufer/aa-esi-status/compare/v4.0.0...v4.0.1 "v4.0.1"
 [4.1.0]: https://github.com/ppfeufer/aa-esi-status/compare/v4.0.1...v4.1.0 "v4.1.0"
 [4.1.1]: https://github.com/ppfeufer/aa-esi-status/compare/v4.1.0...v4.1.1 "v4.1.1"
-[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v4.1.1...HEAD "In Development"
+[4.2.0]: https://github.com/ppfeufer/aa-esi-status/compare/v4.1.1...v4.2.0 "v4.2.0"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v4.2.0...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"

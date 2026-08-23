@@ -1,5 +1,6 @@
 {
-    "name": "aa-esi-status",
+    "name": "@ppfeufer/aa-esi-status",
+    "version": "4.2.0",
     "type": "module",
     "devDependencies": {
         "@eslint/js": "^10.0.1",
