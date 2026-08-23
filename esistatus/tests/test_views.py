@@ -3,9 +3,17 @@ Test the apps' views
 """
 
 # Standard Library
+from datetime import timedelta
 from unittest import mock
+from unittest.mock import MagicMock, patch
+
+# Django
+from django.http import HttpResponse
+from django.test import RequestFactory
+from django.utils import timezone
 
 # AA ESI Status
+from esistatus import models as esistatus_models
 from esistatus.tests import BaseTestCase
 from esistatus.views import (
     _render_esi_status,
@@ -14,6 +22,8 @@ from esistatus.views import (
     dashboard_widget,
     index,
 )
+
+MODULE: str = "esistatus.views"
 
 
 class TestDashboardWidget(BaseTestCase):
@@ -32,7 +42,7 @@ class TestDashboardWidget(BaseTestCase):
         request = mock.Mock()
         request.user.is_superuser = True
 
-        with mock.patch("esistatus.views.render_to_string") as mock_render:
+        with mock.patch(MODULE + ".render_to_string") as mock_render:
             dashboard_widget(request)
 
             mock_render.assert_called_once_with(
@@ -68,30 +78,17 @@ class TestAjaxEsiStatus(BaseTestCase):
         :rtype:
         """
 
-        with (
-            mock.patch("esistatus.views._esi_status") as mock_esi_status,
-            mock.patch("esistatus.views.render") as mock_render,
-        ):
-            mock_esi_status.return_value = {
-                "esi_status": {"key": "value"},
-                "total_endpoints": 5,
-                "compatibility_date": "2023-10-01",
-                "esi_name": "EVE Swagger Interface",
-            }
+        with mock.patch(MODULE + "._render_esi_status") as mock_render_esi:
+            mock_render_esi.return_value = HttpResponse()
 
             response = ajax_esi_status(request=mock.Mock())
 
-            mock_render.assert_called_once_with(
+            mock_render_esi.assert_called_once_with(
                 request=mock.ANY,
                 template_name="esistatus/partials/index/esi-status.html",
-                context={
-                    "esi_endpoint_status": {"key": "value"},
-                    "total_endpoints": 5,
-                    "compatibility_date": "2023-10-01",
-                    "esi_name": "EVE Swagger Interface",
-                },
+                with_compat_date=True,
             )
-            self.assertEqual(response, mock_render.return_value)
+            self.assertEqual(response, mock_render_esi.return_value)
 
     def test_handles_empty_esi_status_gracefully(self):
         """
@@ -101,25 +98,17 @@ class TestAjaxEsiStatus(BaseTestCase):
         :rtype:
         """
 
-        with (
-            mock.patch("esistatus.views._esi_status") as mock_esi_status,
-            mock.patch("esistatus.views.render") as mock_render,
-        ):
-            mock_esi_status.return_value = {}
+        with mock.patch(MODULE + "._render_esi_status") as mock_render_esi:
+            mock_render_esi.return_value = HttpResponse()
 
             response = ajax_esi_status(request=mock.Mock())
 
-            mock_render.assert_called_once_with(
+            mock_render_esi.assert_called_once_with(
                 request=mock.ANY,
                 template_name="esistatus/partials/index/esi-status.html",
-                context={
-                    "esi_endpoint_status": None,
-                    "total_endpoints": None,
-                    "compatibility_date": None,
-                    "esi_name": None,
-                },
+                with_compat_date=True,
             )
-            self.assertEqual(response, mock_render.return_value)
+            self.assertEqual(response, mock_render_esi.return_value)
 
 
 class TestAjaxEsiStatusDasboardWidget(BaseTestCase):
@@ -135,29 +124,17 @@ class TestAjaxEsiStatusDasboardWidget(BaseTestCase):
         :rtype:
         """
 
-        with (
-            mock.patch("esistatus.views._esi_status") as mock_esi_status,
-            mock.patch("esistatus.views.render") as mock_render,
-        ):
-            mock_esi_status.return_value = {
-                "esi_status": {"status": "OK"},
-                "total_endpoints": 5,
-                "compatibility_date": "2023-10-01",
-                "esi_name": "EVE Swagger Interface",
-            }
+        with mock.patch(MODULE + "._render_esi_status") as mock_render_esi:
+            mock_render_esi.return_value = HttpResponse()
 
-            ajax_dashboard_widget(request=mock.Mock())
+            response = ajax_dashboard_widget(request=mock.Mock())
 
-            mock_render.assert_called_once_with(
+            mock_render_esi.assert_called_once_with(
                 request=mock.ANY,
                 template_name="esistatus/partials/dashboard-widget/esi-status.html",
-                context={
-                    "esi_endpoint_status": {"status": "OK"},
-                    "total_endpoints": 5,
-                    "compatibility_date": "2023-10-01",
-                    "esi_name": "EVE Swagger Interface",
-                },
+                with_compat_date=True,
             )
+            self.assertEqual(response, mock_render_esi.return_value)
 
     def test_handles_empty_esi_status_for_dashboard_widget(self):
         """
@@ -167,24 +144,17 @@ class TestAjaxEsiStatusDasboardWidget(BaseTestCase):
         :rtype:
         """
 
-        with (
-            mock.patch("esistatus.views._esi_status") as mock_esi_status,
-            mock.patch("esistatus.views.render") as mock_render,
-        ):
-            mock_esi_status.return_value = {}
+        with mock.patch(MODULE + "._render_esi_status") as mock_render_esi:
+            mock_render_esi.return_value = HttpResponse()
 
-            ajax_dashboard_widget(request=mock.Mock())
+            response = ajax_dashboard_widget(request=mock.Mock())
 
-            mock_render.assert_called_once_with(
+            mock_render_esi.assert_called_once_with(
                 request=mock.ANY,
                 template_name="esistatus/partials/dashboard-widget/esi-status.html",
-                context={
-                    "esi_endpoint_status": None,
-                    "total_endpoints": None,
-                    "compatibility_date": None,
-                    "esi_name": None,
-                },
+                with_compat_date=True,
             )
+            self.assertEqual(response, mock_render_esi.return_value)
 
 
 class TestIndex(BaseTestCase):
@@ -202,7 +172,7 @@ class TestIndex(BaseTestCase):
 
         request = mock.Mock()
 
-        with mock.patch("esistatus.views.render") as mock_render:
+        with mock.patch(MODULE + ".render") as mock_render:
             index(request)
             mock_render.assert_called_once_with(
                 request=request, template_name="esistatus/index.html"
@@ -214,104 +184,134 @@ class TestHelperRenderEsiStatus(BaseTestCase):
     Test the _render_esi_status function
     """
 
-    def test_renders_context_with_compat_date_when_flag_is_true(self):
+    def test__render_esi_status_includes_latest_status_history_and_compat_date_when_requested(
+        self,
+    ):
         """
-        Test that the context includes compatibility date when the flag is true
+        Test that _render_esi_status includes the latest status, history, and compatibility date when requested.
 
         :return:
-        :rtype:
         """
 
-        with (
-            mock.patch("esistatus.views._esi_status") as mock_esi_status,
-            mock.patch("esistatus.views.render") as mock_render,
+        with patch.dict(
+            esistatus_models.__dict__, {"ESISTATUS_SHOW_HISTORY_THRESHOLD": 24}
         ):
-            mock_esi_status.return_value = {
-                "esi_status": {"status": "OK"},
-                "total_endpoints": 5,
-                "compatibility_date": "2023-10-01",
-                "esi_name": "EVE Swagger Interface",
-            }
+            with patch(MODULE + ".ESISTATUS_SHOW_HISTORY_THRESHOLD", 24):
+                now = timezone.now()
 
-            _render_esi_status(
-                request=mock.Mock(),
-                template_name="esistatus/partials/index/esi-status.html",
-                with_compat_date=True,
-            )
+                recent = esistatus_models.EsiStatus.objects.create(
+                    compatibility_date="2024-01-01",
+                    esi_name="recent_view",
+                    status_data={"OK": {"count": 2}, "Down": {"count": 1}},
+                    total_endpoints=3,
+                )
+                esistatus_models.EsiStatus.objects.filter(pk=recent.pk).update(
+                    timestamp=now - timedelta(hours=1)
+                )
 
-            mock_render.assert_called_once_with(
-                request=mock.ANY,
-                template_name="esistatus/partials/index/esi-status.html",
-                context={
-                    "esi_endpoint_status": {"status": "OK"},
-                    "total_endpoints": 5,
-                    "compatibility_date": "2023-10-01",
-                    "esi_name": "EVE Swagger Interface",
-                },
-            )
+                rf = RequestFactory()
+                request = rf.get("/")
 
-    def test_renders_context_without_compat_date_when_flag_is_false(self):
+                mock_render = MagicMock(return_value=HttpResponse())
+
+                with patch(MODULE + ".render", mock_render):
+                    _render_esi_status(
+                        request=request,
+                        template_name="esistatus/whatever.html",
+                        with_compat_date=True,
+                    )
+
+                mock_render.assert_called_once()
+                _, kwargs = mock_render.call_args
+                context = kwargs.get("context", {})
+
+                self.assertEqual(context.get("esi_name"), "recent_view")
+                self.assertEqual(context.get("total_endpoints"), 3)
+                self.assertIn("esi_endpoint_history", context)
+                self.assertTrue(
+                    any(
+                        h["esi_name"] == "recent_view"
+                        for h in context["esi_endpoint_history"]
+                    )
+                )
+                self.assertEqual(context.get("compatibility_date"), "2024-01-01")
+                self.assertEqual(context.get("retention_threshold"), 24)
+
+    def test__render_esi_status_omits_compatibility_date_when_flag_not_set(self):
         """
-        Test that the context excludes compatibility date when the flag is false
+        Test that _render_esi_status omits the compatibility date when with_compat_date is False.
 
         :return:
-        :rtype:
         """
 
-        with (
-            mock.patch("esistatus.views._esi_status") as mock_esi_status,
-            mock.patch("esistatus.views.render") as mock_render,
+        with patch.dict(
+            esistatus_models.__dict__, {"ESISTATUS_SHOW_HISTORY_THRESHOLD": 24}
         ):
-            mock_esi_status.return_value = {
-                "esi_status": {"status": "OK"},
-                "total_endpoints": 5,
-                "compatibility_date": "2023-10-01",
-                "esi_name": "EVE Swagger Interface",
-            }
+            with patch(MODULE + ".ESISTATUS_SHOW_HISTORY_THRESHOLD", 24):
+                now = timezone.now()
 
-            _render_esi_status(
-                request=mock.Mock(),
-                template_name="esistatus/partials/index/esi-status.html",
-                with_compat_date=False,
-            )
+                recent = esistatus_models.EsiStatus.objects.create(
+                    compatibility_date="2024-02-02",
+                    esi_name="no_compat_flag",
+                    status_data={"OK": {"count": 1}},
+                    total_endpoints=1,
+                )
+                esistatus_models.EsiStatus.objects.filter(pk=recent.pk).update(
+                    timestamp=now - timedelta(hours=1)
+                )
 
-            mock_render.assert_called_once_with(
-                request=mock.ANY,
-                template_name="esistatus/partials/index/esi-status.html",
-                context={
-                    "esi_endpoint_status": {"status": "OK"},
-                    "total_endpoints": 5,
-                    "esi_name": "EVE Swagger Interface",
-                },
-            )
+                rf = RequestFactory()
+                request = rf.get("/")
 
-    def test_handles_empty_esi_status_gracefully(self):
+                mock_render = MagicMock(return_value=HttpResponse())
+
+                with patch(MODULE + ".render", mock_render):
+                    _ = _render_esi_status(
+                        request=request,
+                        template_name="esistatus/whatever.html",
+                        with_compat_date=False,
+                    )
+
+                mock_render.assert_called_once()
+                _, kwargs = mock_render.call_args
+                context = kwargs.get("context", {})
+
+                self.assertEqual(context.get("esi_name"), "no_compat_flag")
+                self.assertNotIn("compatibility_date", context)
+
+    def test__render_esi_status_handles_no_snapshots_and_returns_empty_history_and_none_latest(
+        self,
+    ):
         """
-        Test that the rendering handles empty ESI status gracefully
+        Test that _render_esi_status handles the case where there are no ESI status snapshots and returns empty history and None for latest status.
 
         :return:
-        :rtype:
         """
 
-        with (
-            mock.patch("esistatus.views._esi_status") as mock_esi_status,
-            mock.patch("esistatus.views.render") as mock_render,
+        # Ensure DB is empty for this test
+        esistatus_models.EsiStatus.objects.all().delete()
+
+        with patch.dict(
+            esistatus_models.__dict__, {"ESISTATUS_SHOW_HISTORY_THRESHOLD": 24}
         ):
-            mock_esi_status.return_value = {}
+            with patch(MODULE + ".ESISTATUS_SHOW_HISTORY_THRESHOLD", 24):
+                rf = RequestFactory()
+                request = rf.get("/")
 
-            _render_esi_status(
-                request=mock.Mock(),
-                template_name="esistatus/partials/index/esi-status.html",
-                with_compat_date=True,
-            )
+                mock_render = MagicMock(return_value=HttpResponse())
 
-            mock_render.assert_called_once_with(
-                request=mock.ANY,
-                template_name="esistatus/partials/index/esi-status.html",
-                context={
-                    "esi_endpoint_status": None,
-                    "total_endpoints": None,
-                    "compatibility_date": None,
-                    "esi_name": None,
-                },
-            )
+                with patch(MODULE + ".render", mock_render):
+                    _ = _render_esi_status(
+                        request=request,
+                        template_name="esistatus/whatever.html",
+                        with_compat_date=True,
+                    )
+
+                mock_render.assert_called_once()
+                _, kwargs = mock_render.call_args
+                context = kwargs.get("context", {})
+
+                self.assertIsNone(context.get("esi_endpoint_status"))
+                self.assertEqual(context.get("esi_endpoint_history"), [])
+                self.assertIsNone(context.get("esi_name"))
+                self.assertEqual(context.get("retention_threshold"), 24)

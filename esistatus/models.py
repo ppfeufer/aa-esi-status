@@ -121,15 +121,39 @@ class EsiStatus(models.Model):
 
         history_list: list[dict[str, Any]] = []
 
-        for entry in entries:
-            status = entry.get("status_data") or {}
+        def safe_count(status_map: dict, key: str) -> int:
+            """
+            Safely retrieve the count for a given status key from the provided status mapping.
 
-            # Use .get with defaults to guard against missing keys / unexpected shapes
-            ok = status.get("OK", {}).get("count", 0)
-            degraded = status.get("Degraded", {}).get("count", 0)
-            down = status.get("Down", {}).get("count", 0)
-            recovering = status.get("Recovering", {}).get("count", 0)
-            unknown = status.get("Unknown", {}).get("count", 0)
+            :param status_map: The status mapping to inspect
+            :param key: The status key (e.g. "OK")
+            :return: The integer count (0 if missing/malformed)
+            """
+
+            val = status_map.get(key)
+
+            if isinstance(val, dict):
+                return int(val.get("count", 0) or 0)
+
+            # If val is None or not a dict, it's malformed -> 0
+            return 0
+
+        for entry in entries:
+            # Ensure status_data is a dict; if it's missing, None, or malformed
+            # (e.g. not a mapping), treat it as an empty mapping so subsequent
+            # .get calls are safe.
+            raw_status = entry.get("status_data")
+
+            if not isinstance(raw_status, dict):
+                status: dict = {}
+            else:
+                status = raw_status
+
+            ok = safe_count(status, "OK")
+            degraded = safe_count(status, "Degraded")
+            down = safe_count(status, "Down")
+            recovering = safe_count(status, "Recovering")
+            unknown = safe_count(status, "Unknown")
 
             history_list.append(
                 {
