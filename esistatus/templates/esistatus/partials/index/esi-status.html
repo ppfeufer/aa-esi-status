@@ -16,100 +16,102 @@
 {% translate "Unknown" as translated_header_unknown %}
 {% translate "These routes have an unknown status." as translated_header_unknown_explanation %}
 
+{% if esi_endpoint_history %}
+    <div class="esi-status-history mb-3 mb-sm-4">
+        <div class="text-center">
+            <h4 class="ms-auto me-auto mb-3">
+                <svg class="svg-sprite svg-esi-logo">
+                    <use href="#esistatus-esi-logo"></use>
+                </svg>
+
+                {% translate "Status history" as translated_header_esi_status_history %}
+                {{ translated_header_esi_status_history|title }}
+            </h4>
+        </div>
+
+        <!-- Chart.js canvas: shows history of endpoint statuses over time -->
+        <div style="position: relative; height: 220px;">
+            <canvas id="esiStatusChart" aria-label="{% translate "ESI status history chart" %}" role="img"></canvas>
+        </div>
+
+        <script>
+            // Use window property to avoid "Identifier ... has already been declared" when
+            // this partial is reloaded via AJAX
+            window.esistatusDashboardWidgetData = {
+                chartData: {
+                    labels: [{% for entry in esi_endpoint_history %}"{{ entry.timestamp|date:"SHORT_DATETIME_FORMAT" }}" {% if not forloop.last %}, {% endif %}{% endfor %}],
+                    okData: [{% for entry in esi_endpoint_history %}{{ entry.ok }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                    degradedData: [{% for entry in esi_endpoint_history %}{{ entry.degraded }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                    downData: [{% for entry in esi_endpoint_history %}{{ entry.down }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                    recoveringData: [{% for entry in esi_endpoint_history %}{{ entry.recovering }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                    unknownData: [{% for entry in esi_endpoint_history %}{{ entry.unknown }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+                },
+                translations: {
+                    ok: '{{ translated_header_ok|escapejs }}',
+                    degraded: "{{ translated_header_degraded|escapejs }}",
+                    down: "{{ translated_header_down|escapejs }}",
+                    recovering: "{{ translated_header_recovering|escapejs }}",
+                    unknown: "{{ translated_header_unknown|escapejs }}",
+                }
+            };
+        </script>
+
+        {% include "bundles/chart-js.html" %}
+        {% include "esistatus/bundles/esistatus-endpoint-history-js.html" %}
+    </div>
+{% endif %}
+
 {% if esi_endpoint_status %}
-    {% if esi_endpoint_history %}
-        <div class="esi-status-history mb-3 mb-sm-4">
-            <div class="text-center">
-                <h4 class="ms-auto me-auto mb-3">
-                    <svg class="svg-sprite svg-esi-logo">
-                        <use href="#esistatus-esi-logo"></use>
-                    </svg>
+    <div class="esi-status mb-3 mb-sm-4">
+        <div class="text-center">
+            <h4 class="ms-auto me-auto mb-3">
+                <svg class="svg-sprite svg-esi-logo">
+                    <use href="#esistatus-esi-logo"></use>
+                </svg>
 
-                    {% translate "Status history" as translated_header_esi_status_history %}
-                    {{ translated_header_esi_status_history|title }}
-                </h4>
-            </div>
-
-            <!-- Chart.js canvas: shows history of endpoint statuses over time -->
-            <div style="position: relative; height: 220px;">
-                <canvas id="esiStatusChart" aria-label="{% translate "ESI status history chart" %}" role="img"></canvas>
-            </div>
-
-            <script>
-                // Use window property to avoid "Identifier ... has already been declared" when
-                // this partial is reloaded via AJAX
-                window.esistatusDashboardWidgetData = {
-                    chartData: {
-                        labels: [{% for entry in esi_endpoint_history %}"{{ entry.timestamp|date:"SHORT_DATETIME_FORMAT" }}" {% if not forloop.last %}, {% endif %}{% endfor %}],
-                        okData: [{% for entry in esi_endpoint_history %}{{ entry.ok }}{% if not forloop.last %}, {% endif %}{% endfor %}],
-                        degradedData: [{% for entry in esi_endpoint_history %}{{ entry.degraded }}{% if not forloop.last %}, {% endif %}{% endfor %}],
-                        downData: [{% for entry in esi_endpoint_history %}{{ entry.down }}{% if not forloop.last %}, {% endif %}{% endfor %}],
-                        recoveringData: [{% for entry in esi_endpoint_history %}{{ entry.recovering }}{% if not forloop.last %}, {% endif %}{% endfor %}],
-                        unknownData: [{% for entry in esi_endpoint_history %}{{ entry.unknown }}{% if not forloop.last %}, {% endif %}{% endfor %}],
-                    },
-                    translations: {
-                        ok: '{{ translated_header_ok|escapejs }}',
-                        degraded: "{{ translated_header_degraded|escapejs }}",
-                        down: "{{ translated_header_down|escapejs }}",
-                        recovering: "{{ translated_header_recovering|escapejs }}",
-                        unknown: "{{ translated_header_unknown|escapejs }}",
-                    }
-                };
-            </script>
-
-            {% include "bundles/chart-js.html" %}
-            {% include "esistatus/bundles/esistatus-endpoint-history-js.html" %}
+                {% translate "Status" %}
+            </h4>
         </div>
-    {% endif %}
 
-    <div class="text-center">
-        <h4 class="ms-auto me-auto mb-3">
-            <svg class="svg-sprite svg-esi-logo">
-                <use href="#esistatus-esi-logo"></use>
-            </svg>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 g-sm-4 mb-3 mb-sm-4">
+            <!-- OK Routes -->
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_ok status="OK" explanation=translated_header_ok_explanation data=esi_endpoint_status.OK with_details=True %}
 
-            {% translate "Status" %}
-        </h4>
-    </div>
+            <!-- Degraded Routes -->
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_degraded status="Degraded" explanation=translated_header_degraded_explanation data=esi_endpoint_status.Degraded with_details=True %}
 
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 g-sm-4 mb-3 mb-sm-4">
-        <!-- OK Routes -->
-        {% include 'esistatus/partials/endpoints.html' with title=translated_header_ok status="OK" explanation=translated_header_ok_explanation data=esi_endpoint_status.OK with_details=True %}
+            <!-- Down Routes -->
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_down status="Down" explanation=translated_header_down_explanation data=esi_endpoint_status.Down with_details=True %}
 
-        <!-- Degraded Routes -->
-        {% include 'esistatus/partials/endpoints.html' with title=translated_header_degraded status="Degraded" explanation=translated_header_degraded_explanation data=esi_endpoint_status.Degraded with_details=True %}
+            <!-- Recovering Routes -->
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_recovering status="Recovering" explanation=translated_header_recovering_explanation data=esi_endpoint_status.Recovering with_details=True %}
 
-        <!-- Down Routes -->
-        {% include 'esistatus/partials/endpoints.html' with title=translated_header_down status="Down" explanation=translated_header_down_explanation data=esi_endpoint_status.Down with_details=True %}
-
-        <!-- Recovering Routes -->
-        {% include 'esistatus/partials/endpoints.html' with title=translated_header_recovering status="Recovering" explanation=translated_header_recovering_explanation data=esi_endpoint_status.Recovering with_details=True %}
-
-        <!-- Unknown Routes -->
-        {% include 'esistatus/partials/endpoints.html' with title=translated_header_unknown status="Unknown" explanation=translated_header_unknown_explanation data=esi_endpoint_status.Unknown with_details=True %}
-    </div>
-
-    {% if compatibility_date %}
-        <div class="text-end">
-            <p class="small mb-0">
-                <a
-                    href="https://esi.evetech.net/meta/name?compatibility_date={{ compatibility_date }}"
-                    target="_blank"
-                    rel="noopener noreferer"
-                    referrerpolicy="no-referrer"
-                >{{ esi_name }}</a>
-
-                {% blocktranslate %}compatibility date{% endblocktranslate %}:
-
-                <a
-                    href="https://esi.evetech.net/meta/compatibility-dates"
-                    target="_blank"
-                    rel="noopener noreferer"
-                    referrerpolicy="no-referrer"
-                >{{ compatibility_date }}</a>
-            </p>
+            <!-- Unknown Routes -->
+            {% include 'esistatus/partials/endpoints.html' with title=translated_header_unknown status="Unknown" explanation=translated_header_unknown_explanation data=esi_endpoint_status.Unknown with_details=True %}
         </div>
-    {% endif %}
+
+        {% if compatibility_date %}
+            <div class="text-end">
+                <p class="small mb-0">
+                    <a
+                        href="https://esi.evetech.net/meta/name?compatibility_date={{ compatibility_date }}"
+                        target="_blank"
+                        rel="noopener noreferer"
+                        referrerpolicy="no-referrer"
+                    >{{ esi_name }}</a>
+
+                    {% blocktranslate %}compatibility date{% endblocktranslate %}:
+
+                    <a
+                        href="https://esi.evetech.net/meta/compatibility-dates"
+                        target="_blank"
+                        rel="noopener noreferer"
+                        referrerpolicy="no-referrer"
+                    >{{ compatibility_date }}</a>
+                </p>
+            </div>
+        {% endif %}
+    </div>
 {% else %}
     <div class="aa-callout aa-callout-info">
         <p>{% translate "No ESI status data is available at this time." %}</p>
