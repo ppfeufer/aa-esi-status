@@ -107,6 +107,11 @@ prepare-release: pot graph-models
 		echo "[$$new_version]: $(GIT__GIT_REPOSITORY)/compare/v$$previos_version...v$$new_version \"v$$new_version\"" >> CHANGELOG.md; \
 	fi; \
 	sed -i "/__version__ = /c\__version__ = \"$$new_version\"" $(GENERAL__PACKAGE)/__init__.py; \
+	# Update the version in package.json and rebuild node modules \
+	sed -i -E "\|\"version\"\: |s|\"\: .*|\"\: \"$$new_version\",|g" package.json; \
+	rm -rf node_modules; \
+	rm package-lock.json; \
+	npm install; \
 	echo "Updated version in $(TEXT_BOLD)$(GENERAL__PACKAGE)/__init__.py$(TEXT_BOLD_END)"; \
 	if [[ $$new_version =~ (alpha|beta) ]]; then \
 		echo "$(TEXT_COLOR_RED)$(TEXT_BOLD)Pre-release$(TEXT_RESET) version detected!"; \

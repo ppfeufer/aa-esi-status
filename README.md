@@ -90,7 +90,7 @@ Make sure you're in the virtual environment (venv) of your Alliance Auth install
 Then install the latest version:
 
 ```shell
-pip install aa-esi-status==4.1.1
+pip install aa-esi-status==4.2.0
 ```
 
 #### Step 2: Update Your AA Settings<a name="step-2-update-your-aa-settings"></a>
@@ -133,7 +133,7 @@ Restart your supervisor services for AA.
 Add the app to your `conf/requirements.txt`:
 
 ```text
-aa-esi-status==4.1.1
+aa-esi-status==4.2.0
 ```
 
 #### Step 2: Update Your AA Settings<a name="step-2-update-your-aa-settings-1"></a>
@@ -212,7 +212,7 @@ Then run the following commands from your AA project directory (the one that
 contains `manage.py`).
 
 ```shell
-pip install aa-esi-status==4.1.1
+pip install aa-esi-status==4.2.0
 python manage.py collectstatic
 python manage.py migrate
 ```
@@ -225,7 +225,7 @@ To update your existing installation of AA ESI Status, all you need to do is to
 update the respective line in your `conf/requirements.txt` file to the latest version.
 
 ```text
-aa-esi-status==4.1.1
+aa-esi-status==4.2.0
 ```
 
 Now rebuild your containers:
