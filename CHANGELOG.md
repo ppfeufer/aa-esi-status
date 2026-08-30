@@ -37,6 +37,10 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Changed
+
+- Improved performance when large status history data is loaded for the ESI status history graph
+
 ### Removed
 
 - Unnecessary sorting
