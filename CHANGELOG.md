@@ -37,6 +37,10 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Removed
+
+- Unnecessary sorting
+
 ## [4.2.2] - 2026-08-23
 
 ### Fixed

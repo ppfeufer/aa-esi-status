@@ -80,7 +80,7 @@ class EsiStatus(models.Model):
         :rtype: dict
         """
 
-        latest_snapshot = cls.objects.order_by("-timestamp").first()
+        latest_snapshot = cls.objects.first()
 
         if latest_snapshot:
             return {
@@ -107,16 +107,12 @@ class EsiStatus(models.Model):
             hours=ESISTATUS_SHOW_HISTORY_THRESHOLD
         )
 
-        entries = (
-            cls.objects.filter(timestamp__gte=history_threshold)
-            .order_by("-timestamp")
-            .values(
-                "timestamp",
-                "total_endpoints",
-                "status_data",
-                "compatibility_date",
-                "esi_name",
-            )
+        entries = cls.objects.filter(timestamp__gte=history_threshold).values(
+            "timestamp",
+            "total_endpoints",
+            "status_data",
+            "compatibility_date",
+            "esi_name",
         )
 
         history_list: list[dict[str, Any]] = []
