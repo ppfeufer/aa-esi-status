@@ -37,6 +37,8 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [4.2.3] - 2026-08-30
+
 ### Changed
 
 - Improved performance when large status history data is loaded for the ESI status history graph
@@ -855,7 +857,8 @@ CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
 [4.2.0]: https://github.com/ppfeufer/aa-esi-status/compare/v4.1.1...v4.2.0 "v4.2.0"
 [4.2.1]: https://github.com/ppfeufer/aa-esi-status/compare/v4.2.0...v4.2.1 "v4.2.1"
 [4.2.2]: https://github.com/ppfeufer/aa-esi-status/compare/v4.2.1...v4.2.2 "v4.2.2"
-[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v4.2.2...HEAD "In Development"
+[4.2.3]: https://github.com/ppfeufer/aa-esi-status/compare/v4.2.2...v4.2.3 "v4.2.3"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v4.2.3...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
