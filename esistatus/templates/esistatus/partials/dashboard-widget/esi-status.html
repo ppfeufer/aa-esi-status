@@ -24,8 +24,11 @@
                     </svg>
 
                     {% translate "Status" %}
-                    <br>
-                    <small class="text-muted">{{ timestamp }} {{ translated_eve_time }}</small>
+
+                    {% if esi_endpoint_status %}
+                        <br>
+                        <small class="text-muted">{{ timestamp }} {{ translated_eve_time }}</small>
+                    {% endif %}
                 </h4>
             </div>
 

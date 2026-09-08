@@ -9,9 +9,9 @@
 # Automatic translation add-on <noreply-addon-autotranslate@weblate.ppfeufer.de>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: AA ESI Status 2.4.3\n"
-"Report-Msgid-Bugs-To: https://github.com/ppfeufer/aa-esi-status/issues\n"
-"POT-Creation-Date: 2026-08-23 23:02+0200\n"
+"Project-Id-Version: AA ESI Status\n"
+"Report-Msgid-Bugs-To: https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/\n"
+"POT-Creation-Date: 2026-09-08 16:05+0200\n"
 "PO-Revision-Date: 2026-08-23 17:16+0000\n"
 "Last-Translator: Automatic translation add-on <noreply-addon-autotranslate@weblate.ppfeufer.de>\n"
 "Language-Team: Japanese <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/ja/>\n"
@@ -126,33 +126,33 @@ msgstr "ステータス"
 msgid "EVE time"
 msgstr "EVE時間（ET）"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:52
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:55
 #: esistatus/templates/esistatus/partials/index/esi-status.html:117
 msgid "No ESI status data is available at this time."
 msgstr "現在ESIステータスデータは利用できません。"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:68
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:71
 #: esistatus/templates/esistatus/partials/index/esi-status.html:29
 #, python-format
 msgid "Last hour"
 msgid_plural "Last %(counter)s hours"
 msgstr[0] ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:74
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:77
 #: esistatus/templates/esistatus/partials/index/esi-status.html:35
 msgid "ESI status history chart"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:111
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:114
 #: esistatus/templates/esistatus/partials/index/esi-status.html:103
 msgid "compatibility date"
 msgstr ""
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:125
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:128
 msgid "Detailed ESI status"
 msgstr "詳細なESIステータス"
 
-#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:127
+#: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:130
 msgid "EVE Online status"
 msgstr "EVE Onlineのステータス"
 
