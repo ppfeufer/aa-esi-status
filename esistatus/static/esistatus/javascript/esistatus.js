@@ -6,7 +6,7 @@ $(document).ready(() => {
     const esistatus = {
         esiStatusIndex: $('.esi-status-index'),
         loading: $('.esistatus-loading'),
-        tooltip: '[data-bs-tooltip="aa-esi-status"]',
+        tooltip: '[data-bs-tooltip="aa-esi-status"]'
     };
 
     /**
@@ -19,7 +19,7 @@ $(document).ready(() => {
         await fetchGet({
             url: esistatusSettings.url.esistatus,
             responseIsJson: false
-        }).then(response => {
+        }).then((response) => {
             if (!response) {
                 throw new Error('ESI Status Dashboard Widget: No response received from the server');
             }
@@ -52,5 +52,5 @@ $(document).ready(() => {
 
     fetchEsiStatus()
         .then(() => console.log('ESI Status page loaded successfully'))
-        .catch(error => console.error('Failed to load ESI Status page', error));
+        .catch((error) => console.error('Failed to load ESI Status page', error));
 });

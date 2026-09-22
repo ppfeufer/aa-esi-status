@@ -24,7 +24,7 @@ $(document).ready(() => {
         await fetchGet({
             url: esistatusSettings.dashboardWidget.ajaxUrl,
             responseIsJson: false
-        }).then(response => {
+        }).then((response) => {
             if (!response) {
                 throw new Error('ESI Status Dashboard Widget: No response received from the server');
             }
@@ -57,7 +57,7 @@ $(document).ready(() => {
 
             // Render the status history chart
             renderStatusHistoryChart();
-        }).catch(error => {
+        }).catch((error) => {
             console.error('ESI Status Dashboard Widget: Failed to update', error);
         });
     };
@@ -72,7 +72,7 @@ $(document).ready(() => {
 
         updateWidget()
             .then(() => console.log('ESI Status Dashboard Widget: Initial update complete'))
-            .catch(error => console.error('ESI Status Dashboard Widget: Initial update failed', error));
+            .catch((error) => console.error('ESI Status Dashboard Widget: Initial update failed', error));
 
         esistatus.refreshInterval = setInterval(updateWidget, 30000);
     };

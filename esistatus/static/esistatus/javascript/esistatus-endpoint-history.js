@@ -12,7 +12,7 @@ const _hexToRgba = (hex, alpha) => {
     'use strict';
 
     const h = hex.replace('#', '');
-    const normalized = h.length === 3 ? h.split('').map(c => c + c).join('') : h;
+    const normalized = h.length === 3 ? h.split('').map((c) => c + c).join('') : h;
     const bigint = parseInt(normalized, 16);
     const r = (bigint >> 16) & 255; // jshint ignore:line
     const g = (bigint >> 8) & 255; // jshint ignore:line
@@ -112,7 +112,7 @@ const _isTransparentColor = (cssColor) => {
     }
 
     // Otherwise, comma or space separated. Try comma-separated rgba(r,g,b,a)
-    const parts = inner.split(',').map(p => p.trim()).filter(p => p.length > 0);
+    const parts = inner.split(',').map((p) => p.trim()).filter((p) => p.length > 0);
 
     if (parts.length === 4) {
         const alphaStr = parts[3].replace(/\)/g, '').trim();
@@ -291,7 +291,7 @@ const renderStatusHistoryChart = () => { // eslint-disable-line no-unused-vars
                     // hide the x-axis tick labels (dates) to reduce clutter
                     display: true,
                     ticks: {
-                        display: false,
+                        display: false
                         // maxRotation: 45,
                         // minRotation: 0
                     }
