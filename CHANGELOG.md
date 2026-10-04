@@ -37,6 +37,12 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Added
+
+- Persistence to the status filter in the Dashboard widget, so the filter will be
+  remembered when the status data is reloaded automatically every 60 seconds, or
+  when the user reloads the page manually
+
 ## [4.2.3] - 2026-08-30
 
 ### Changed
