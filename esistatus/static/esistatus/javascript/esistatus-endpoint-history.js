@@ -1,4 +1,4 @@
-/* global Chart, esistatusDashboardWidgetData */
+/* global Chart, esistatusData */
 
 /**
  * Convert a hex color code to an rgba(...) string with the specified alpha value.
@@ -358,7 +358,7 @@ const _updatePersistedVisibilityEntry = (chartId, datasetKey, hidden) => {
  * Render the ESI Status History Chart using Chart.js
  *
  * This function initializes a line chart that displays the historical status of ESI services.
- * It uses the data provided in the `esistatusDashboardWidgetData` object, which should contain
+ * It uses the data provided in the `esistatusData` object, which should contain
  * labels and datasets for different status categories (OK, Degraded, Down, Recovering, Unknown).
  * The chart is rendered on a canvas element with the ID 'esi-status-chart-canvas'.
  *
@@ -425,12 +425,12 @@ const _renderStatusHistoryChartImpl = () => {
 
     // Reverse the data arrays to display the most recent data on the right side of the chart
     // Use slice() to avoid mutating the source arrays when reversing
-    const labels = (esistatusDashboardWidgetData.chartData.labels || []).slice().reverse();
-    const okData = (esistatusDashboardWidgetData.chartData.okData || []).slice().reverse();
-    const degradedData = (esistatusDashboardWidgetData.chartData.degradedData || []).slice().reverse();
-    const downData = (esistatusDashboardWidgetData.chartData.downData || []).slice().reverse();
-    const recoveringData = (esistatusDashboardWidgetData.chartData.recoveringData || []).slice().reverse();
-    const unknownData = (esistatusDashboardWidgetData.chartData.unknownData || []).slice().reverse();
+    const labels = (esistatusData.chartData.labels || []).slice().reverse();
+    const okData = (esistatusData.chartData.okData || []).slice().reverse();
+    const degradedData = (esistatusData.chartData.degradedData || []).slice().reverse();
+    const downData = (esistatusData.chartData.downData || []).slice().reverse();
+    const recoveringData = (esistatusData.chartData.recoveringData || []).slice().reverse();
+    const unknownData = (esistatusData.chartData.unknownData || []).slice().reverse();
 
     // Set the default font color for Chart.js to match the computed color of the body element
     Chart.defaults.color = getComputedStyle(document.querySelector('body')).color;
@@ -477,7 +477,7 @@ const _renderStatusHistoryChartImpl = () => {
                     backgroundColor: _rgbAlpha(color.success, color.backgroundAlpha),
                     borderColor: color.success,
                     data: okData,
-                    label: esistatusDashboardWidgetData.translations.ok
+                    label: esistatusData.translations.ok
                 },
                 {
                     ...datasetDefaults,
@@ -485,7 +485,7 @@ const _renderStatusHistoryChartImpl = () => {
                     backgroundColor: _rgbAlpha(color.warning, color.backgroundAlpha),
                     borderColor: color.warning,
                     data: degradedData,
-                    label: esistatusDashboardWidgetData.translations.degraded
+                    label: esistatusData.translations.degraded
                 },
                 {
                     ...datasetDefaults,
@@ -493,7 +493,7 @@ const _renderStatusHistoryChartImpl = () => {
                     backgroundColor: _rgbAlpha(color.danger, color.backgroundAlpha),
                     borderColor: color.danger,
                     data: downData,
-                    label: esistatusDashboardWidgetData.translations.down
+                    label: esistatusData.translations.down
                 },
                 {
                     ...datasetDefaults,
@@ -501,7 +501,7 @@ const _renderStatusHistoryChartImpl = () => {
                     backgroundColor: _rgbAlpha(color.info, color.backgroundAlpha),
                     borderColor: color.info,
                     data: recoveringData,
-                    label: esistatusDashboardWidgetData.translations.recovering
+                    label: esistatusData.translations.recovering
                 },
                 {
                     ...datasetDefaults,
@@ -509,7 +509,7 @@ const _renderStatusHistoryChartImpl = () => {
                     backgroundColor: _rgbAlpha(color.default, color.backgroundAlpha),
                     borderColor: color.default,
                     data: unknownData,
-                    label: esistatusDashboardWidgetData.translations.unknown
+                    label: esistatusData.translations.unknown
                 }
             ]
         },

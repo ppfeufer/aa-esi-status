@@ -43,6 +43,10 @@ Section Order:
   remembered when the status data is reloaded automatically every 60 seconds, or
   when the user reloads the page manually
 
+### Changed
+
+- Some small visual improvements to the ESI status details page
+
 ## [4.2.3] - 2026-08-30
 
 ### Changed
