@@ -79,7 +79,7 @@
                 <script>
                     // Use window property to avoid "Identifier ... has already been declared" when
                     // this partial is reloaded via AJAX
-                    window.esistatusDashboardWidgetData = {
+                    window.esistatusData = {
                         chartData: {
                             labels: [{% for entry in esi_endpoint_history %}"{{ entry.timestamp }} {{ translated_eve_time|escapejs }}" {% if not forloop.last %}, {% endif %}{% endfor %}],
                             okData: [{% for entry in esi_endpoint_history %}{{ entry.ok }}{% if not forloop.last %}, {% endif %}{% endfor %}],
