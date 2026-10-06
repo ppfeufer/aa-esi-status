@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status\n"
 "Report-Msgid-Bugs-To: https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/\n"
-"POT-Creation-Date: 2026-09-08 16:05+0200\n"
-"PO-Revision-Date: 2026-08-23 17:17+0000\n"
-"Last-Translator: Automatic translation add-on <noreply-addon-autotranslate@weblate.ppfeufer.de>\n"
+"POT-Creation-Date: 2026-10-06 10:23+0200\n"
+"PO-Revision-Date: 2026-09-16 08:54+0000\n"
+"Last-Translator: s0k0l -_- <salarysalo@gmail.com>\n"
 "Language-Team: Ukrainian <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : (n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.8.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 
 #: esistatus/__init__.py:13 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
@@ -27,7 +27,7 @@ msgstr "Статус ESI"
 
 #: esistatus/models.py:33
 msgid "The timestamp of the status entry."
-msgstr ""
+msgstr "Таймстемп статуса запису."
 
 #: esistatus/models.py:41
 msgid "The ESI compatibility date."
@@ -35,7 +35,7 @@ msgstr "Дата сумісності ESI."
 
 #: esistatus/models.py:46
 msgid "The name ESI is currently going by. The three letters have never once meant the same thing twice."
-msgstr ""
+msgstr "Назва, під якою зараз відома ESI. Ці три літери ніколи не означали одне й те саме двічі."
 
 #: esistatus/models.py:55
 msgid "The ESI status data."
@@ -55,7 +55,7 @@ msgstr "Статуси ендпойнтів ESI"
 
 #: esistatus/templates/esistatus/base.html:13
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:27
-#: esistatus/templates/esistatus/partials/index/esi-status.html:70
+#: esistatus/templates/esistatus/partials/index/esi-status.html:73
 msgid "Status"
 msgstr "Статус"
 
@@ -114,11 +114,9 @@ msgid "These routes have an unknown status."
 msgstr "Ці маршрути мають невідомий статус."
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:15
-#: esistatus/templates/esistatus/partials/index/esi-status.html:25
-#, fuzzy
-#| msgid "Status"
+#: esistatus/templates/esistatus/partials/index/esi-status.html:26
 msgid "Status history"
-msgstr "Статус"
+msgstr "Історія статусів"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:16
 #: esistatus/templates/esistatus/partials/index/esi-status.html:15
@@ -126,29 +124,29 @@ msgid "EVE time"
 msgstr "Час за EVE"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:55
-#: esistatus/templates/esistatus/partials/index/esi-status.html:117
+#: esistatus/templates/esistatus/partials/index/esi-status.html:123
 msgid "No ESI status data is available at this time."
 msgstr "Нема даних від ESI."
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:71
-#: esistatus/templates/esistatus/partials/index/esi-status.html:29
+#: esistatus/templates/esistatus/partials/index/esi-status.html:30
 #, python-format
 msgid "Last hour"
 msgid_plural "Last %(counter)s hours"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Остання %(counter)s година"
+msgstr[1] "Останні %(counter)s годин"
+msgstr[2] "Останні %(counter)s годин"
+msgstr[3] "Останні %(counter)s годин"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:77
-#: esistatus/templates/esistatus/partials/index/esi-status.html:35
+#: esistatus/templates/esistatus/partials/index/esi-status.html:36
 msgid "ESI status history chart"
-msgstr ""
+msgstr "Таблиця історії статусів ESI"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:114
-#: esistatus/templates/esistatus/partials/index/esi-status.html:103
+#: esistatus/templates/esistatus/partials/index/esi-status.html:106
 msgid "compatibility date"
-msgstr ""
+msgstr "дата сумісності"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:128
 msgid "Detailed ESI status"
@@ -170,6 +168,6 @@ msgstr "Хочете допомогти перекласти цю програм
 msgid "Join our team of translators!"
 msgstr "Приєднуйтесь до нашої команди перекладачів!"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:118
+#: esistatus/templates/esistatus/partials/index/esi-status.html:124
 msgid "Please try again later."
 msgstr "Будь ласка спробуйте пізніше."

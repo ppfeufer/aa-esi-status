@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status\n"
 "Report-Msgid-Bugs-To: https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/\n"
-"POT-Creation-Date: 2026-09-08 16:05+0200\n"
-"PO-Revision-Date: 2026-08-23 13:34+0000\n"
+"POT-Creation-Date: 2026-10-06 10:23+0200\n"
+"PO-Revision-Date: 2026-09-27 17:49+0000\n"
 "Last-Translator: Automatic translation add-on <noreply-addon-autotranslate@weblate.ppfeufer.de>\n"
 "Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/de/>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.8.1\n"
+"X-Generator: Weblate 2026.9.1\n"
 
 #: esistatus/__init__.py:13 esistatus/templates/esistatus/base.html:6
 msgid "ESI Status"
@@ -53,7 +53,7 @@ msgstr "ESI-Endpunktstatusse"
 
 #: esistatus/templates/esistatus/base.html:13
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:27
-#: esistatus/templates/esistatus/partials/index/esi-status.html:70
+#: esistatus/templates/esistatus/partials/index/esi-status.html:73
 msgid "Status"
 msgstr "Status"
 
@@ -112,7 +112,7 @@ msgid "These routes have an unknown status."
 msgstr "Diese Routen haben einen unbekannten Status."
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:15
-#: esistatus/templates/esistatus/partials/index/esi-status.html:25
+#: esistatus/templates/esistatus/partials/index/esi-status.html:26
 msgid "Status history"
 msgstr "Statusverlauf"
 
@@ -122,12 +122,12 @@ msgid "EVE time"
 msgstr "EVE Zeit"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:55
-#: esistatus/templates/esistatus/partials/index/esi-status.html:117
+#: esistatus/templates/esistatus/partials/index/esi-status.html:123
 msgid "No ESI status data is available at this time."
 msgstr "Derzeit sind keine ESI-Statusdaten verfügbar."
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:71
-#: esistatus/templates/esistatus/partials/index/esi-status.html:29
+#: esistatus/templates/esistatus/partials/index/esi-status.html:30
 #, python-format
 msgid "Last hour"
 msgid_plural "Last %(counter)s hours"
@@ -135,12 +135,12 @@ msgstr[0] "Vergangene Stunde"
 msgstr[1] "Vergangene %(counter)s Stunden"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:77
-#: esistatus/templates/esistatus/partials/index/esi-status.html:35
+#: esistatus/templates/esistatus/partials/index/esi-status.html:36
 msgid "ESI status history chart"
 msgstr "Diagramm zum ESI-Statusverlauf"
 
 #: esistatus/templates/esistatus/partials/dashboard-widget/esi-status.html:114
-#: esistatus/templates/esistatus/partials/index/esi-status.html:103
+#: esistatus/templates/esistatus/partials/index/esi-status.html:106
 msgid "compatibility date"
 msgstr "Kompatibilitätsdatum"
 
@@ -164,6 +164,6 @@ msgstr "Du möchtest helfen diese App in Deine Sprache zu übersetzen oder die b
 msgid "Join our team of translators!"
 msgstr "Tritt unserm Team von Übersetzern bei!"
 
-#: esistatus/templates/esistatus/partials/index/esi-status.html:118
+#: esistatus/templates/esistatus/partials/index/esi-status.html:124
 msgid "Please try again later."
 msgstr "Bitte versuche es später noch einmal."
