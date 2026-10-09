@@ -1,7 +1,6 @@
 {% extends "esistatus/base.html" %}
 
-{% load static %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block aa_esistatus_body %}
     <div class="esistatus-loading text-center">
@@ -12,11 +11,11 @@
     </div>
 
     <div class="esi-status-index"></div>
-{% endblock %}
+{% endblock aa_esistatus_body %}
 
 {% block extra_css %}
     {% include "esistatus/bundles/esistatus-css.html" %}
-{% endblock %}
+{% endblock extra_css %}
 
 {% block extra_javascript %}
     <script>
@@ -30,4 +29,4 @@
     {% include "bundles/chart-js.html" %}
     {% include "esistatus/bundles/esistatus-endpoint-history-js.html" %}
     {% include "esistatus/bundles/esistatus-js.html" %}
-{% endblock %}
+{% endblock extra_javascript %}
