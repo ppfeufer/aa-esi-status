@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AA ESI Status\n"
 "Report-Msgid-Bugs-To: https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/\n"
-"POT-Creation-Date: 2026-10-06 10:23+0200\n"
+"POT-Creation-Date: 2026-10-09 12:07+0200\n"
 "PO-Revision-Date: 2026-09-27 17:49+0000\n"
 "Last-Translator: Automatic translation add-on <noreply-addon-autotranslate@weblate.ppfeufer.de>\n"
 "Language-Team: German <https://weblate.ppfeufer.de/projects/alliance-auth-apps/aa-esi-status/de/>\n"
@@ -57,7 +57,7 @@ msgstr "ESI-Endpunktstatusse"
 msgid "Status"
 msgstr "Status"
 
-#: esistatus/templates/esistatus/index.html:11
+#: esistatus/templates/esistatus/index.html:10
 msgid "Loading ESI status…"
 msgstr "Lade ESI Status…"
 
