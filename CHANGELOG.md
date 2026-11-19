@@ -37,6 +37,12 @@ Section Order:
 
 <!-- Your changes go here -->
 
+### Fixed
+
+- Routes/Endpoints that have been deprecated or removed for the current ESI
+  compatibility date will no longer be counted or displayed in the ESI status details
+  view
+
 ## [4.3.0] - 2026-10-06
 
 ### Added
