@@ -37,6 +37,8 @@ Section Order:
 
 <!-- Your changes go here -->
 
+## [4.3.1] - 2026-11-19
+
 ### Fixed
 
 - Routes/Endpoints that have been deprecated or removed for the current ESI
@@ -878,7 +880,8 @@ CELERYBEAT_SCHEDULE["ESI Status :: Update"] = {
 [4.2.2]: https://github.com/ppfeufer/aa-esi-status/compare/v4.2.1...v4.2.2 "v4.2.2"
 [4.2.3]: https://github.com/ppfeufer/aa-esi-status/compare/v4.2.2...v4.2.3 "v4.2.3"
 [4.3.0]: https://github.com/ppfeufer/aa-esi-status/compare/v4.2.3...v4.3.0 "v4.3.0"
-[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v4.3.0...HEAD "In Development"
+[4.3.1]: https://github.com/ppfeufer/aa-esi-status/compare/v4.3.0...v4.3.1 "v4.3.1"
+[in development]: https://github.com/ppfeufer/aa-esi-status/compare/v4.3.1...HEAD "In Development"
 [keep a changelog]: http://keepachangelog.com/ "Keep a Changelog"
 [readme]: https://github.com/ppfeufer/aa-esi-status/blob/main/README.md "README.md"
 [semantic versioning]: http://semver.org/ "Semantic Versioning"
