@@ -311,12 +311,17 @@ def _enrich_status_json(status: dict[str, Any], openapi: dict[str, Any]) -> list
     """
 
     for route in status["routes"]:
-        spec = openapi["paths"].get(route["path"], {}).get(route["method"].lower(), {})
+        route_in_openapi = openapi["paths"].get(route["path"])
 
-        route["description"] = spec.get("description", None)
-        route["operation_id"] = spec.get("operationId", None)
-        route["summary"] = spec.get("summary", None)
-        route["tags"] = spec.get("tags", ["Deprecated"])
+        if route_in_openapi:
+            spec = route_in_openapi.get(route["method"].lower(), {})
+
+            if spec.get("tags"):
+                route["description"] = spec.get("description", None)
+                route["operation_id"] = spec.get("operationId", None)
+                route["summary"] = spec.get("summary", None)
+                # route["tags"] = spec.get("tags", ["Deprecated"])
+                route["tags"] = spec.get("tags")
 
     return status["routes"]
 
@@ -364,19 +369,20 @@ def _esi_endpoint_status_from_json(esi_endpoint_json: list) -> dict:
     for esi_endpoint in esi_endpoint_json:
         status = esi_endpoint["status"]
 
-        _append_value(
-            dict_obj=esi_endpoint_status[status]["endpoints"],
-            key=esi_endpoint["tags"][0],
-            value={
-                "path": esi_endpoint["path"],
-                "method": esi_endpoint["method"].upper(),
-                "operation_id": esi_endpoint["operation_id"],
-                "summary": esi_endpoint["summary"],
-                "description": esi_endpoint["description"],
-            },
-        )
+        if esi_endpoint.get("tags") and isinstance(esi_endpoint["tags"], list):
+            _append_value(
+                dict_obj=esi_endpoint_status[status]["endpoints"],
+                key=esi_endpoint["tags"][0],
+                value={
+                    "path": esi_endpoint["path"],
+                    "method": esi_endpoint["method"].upper(),
+                    "operation_id": esi_endpoint["operation_id"],
+                    "summary": esi_endpoint["summary"],
+                    "description": esi_endpoint["description"],
+                },
+            )
 
-        esi_endpoint_status[status]["count"] += 1
+            esi_endpoint_status[status]["count"] += 1
 
     # Compute total endpoints, then sort endpoints and calculate percentages in one pass
     endpoints_total = sum(

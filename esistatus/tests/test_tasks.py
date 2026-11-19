@@ -406,20 +406,41 @@ class TestHelperAddTagsToStatus(BaseTestCase):
 
         self.assertEqual(result[0]["tags"], ["Public"])
 
-    def test_assigns_deprecated_tag_when_no_matching_openapi_specs(self):
+    def test_leaves_route_unchanged_when_path_is_missing_from_openapi_specs(self):
         """
-        Test assigning the "Deprecated" tag when there are no matching OpenAPI specs.
+        Test that routes without matching OpenAPI paths are returned unchanged.
+
+        :return:
+        :rtype:
+        """
+
+        status = {"routes": [{"path": "/missing", "method": "GET"}]}
+        openapi = {"paths": {}}
+
+        result = _enrich_status_json(status, openapi)
+
+        self.assertEqual(
+            result,
+            [{"path": "/missing", "method": "GET"}],
+        )
+
+    def test_leaves_route_unchanged_when_openapi_spec_has_no_tags(self):
+        """
+        Test that routes are returned unchanged when the matching spec has no tags.
 
         :return:
         :rtype:
         """
 
         status = {"routes": [{"path": "/path1", "method": "GET"}]}
-        openapi = {"paths": {}}
+        openapi = {"paths": {"/path1": {"get": {}}}}
 
         result = _enrich_status_json(status, openapi)
 
-        self.assertEqual(result[0]["tags"], ["Deprecated"])
+        self.assertEqual(
+            result,
+            [{"path": "/path1", "method": "GET"}],
+        )
 
     def test_handles_multiple_routes_with_different_tags(self):
         """
@@ -462,20 +483,20 @@ class TestHelperAddTagsToStatus(BaseTestCase):
 
         self.assertEqual(result, [])
 
-    def test_assigns_deprecated_tag_when_method_is_missing_in_openapi(self):
-        """
-        Test assigning the "Deprecated" tag when the method is missing in OpenAPI specs.
-
-        :return:
-        :rtype:
-        """
-
-        status = {"routes": [{"path": "/path1", "method": "GET"}]}
-        openapi = {"paths": {"/path1": {}}}
-
-        result = _enrich_status_json(status, openapi)
-
-        self.assertEqual(result[0]["tags"], ["Deprecated"])
+    # def test_assigns_deprecated_tag_when_method_is_missing_in_openapi(self):
+    #     """
+    #     Test assigning the "Deprecated" tag when the method is missing in OpenAPI specs.
+    #
+    #     :return:
+    #     :rtype:
+    #     """
+    #
+    #     status = {"routes": [{"path": "/path1", "method": "GET"}]}
+    #     openapi = {"paths": {"/path1": {}}}
+    #
+    #     result = _enrich_status_json(status, openapi)
+    #
+    #     self.assertEqual(result[0]["tags"], ["Deprecated"])
 
 
 class TestHelperAppendValue(BaseTestCase):
@@ -610,6 +631,38 @@ class TestHelperEsiEndpointStatusFromJson(BaseTestCase):
         self.assertEqual(result["esi_status"]["Down"]["count"], 0)
         self.assertEqual(result["esi_status"]["OK"]["percentage"], "0.00%")
         self.assertEqual(result["esi_status"]["Down"]["percentage"], "0.00%")
+
+    def test_skips_endpoints_without_valid_list_tags(self):
+        """
+        Test that endpoints are skipped when tags are missing, empty, or not a list.
+
+        :return:
+        :rtype:
+        """
+
+        base_endpoint = {
+            "status": "OK",
+            "path": "/path1",
+            "method": "get",
+            "operation_id": None,
+            "summary": None,
+            "description": None,
+        }
+        tag_values = [
+            {},
+            {"tags": []},
+            {"tags": "tag1"},
+        ]
+
+        for tag_value in tag_values:
+            with self.subTest(tags=tag_value):
+                endpoint = {**base_endpoint, **tag_value}
+
+                result = _esi_endpoint_status_from_json([endpoint])
+
+                self.assertEqual(result["total_endpoints"], 0)
+                self.assertEqual(result["esi_status"]["OK"]["count"], 0)
+                self.assertEqual(result["esi_status"]["OK"]["endpoints"], {})
 
     def test_calculates_percentages_correctly(self):
         """
